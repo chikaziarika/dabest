@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+body{
+    font-family: 'Poppins';
+    margin: 0;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    margin-top: -10px;
+}
+
+
+h1 {
+    margin-bottom: 15px;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 700;
+    font-style: normal;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    color: #014aad;
+}
+
+p {
+    margin-bottom: 15px;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 700;
+    font-style: normal;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    /* color: #014aad; */
+}
+
+h2 {
+    margin-bottom: 15px;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 700;
+    font-style: normal;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    color: #014aad;
+}
+
+.container-fluid {
+   margin-left: 5%;
+   margin-right: 5%;
+}
+
+.logoNavbar {
+    /* width: 50rem;
+    height: 50rem;
+    position: absolute;
+    bottom: 10%;
+    right: 0%;
+    opacity: 0.2; */
+    transform: scale(0.15);
+    width: 20rem;
+    height: 20rem;
+    position: absolute;
+    margin: 0;
+    left: -3%;
+    top: -235%;
+}
+
+.logoFooter {
+    width: 237px;
+    height: 133px;
+}
+
+.rowFoot1 {
+    background-color: #145DA0;
+    padding: 6px;
+}
+
+.rowFoot2 {
+    background-color: #014AAD;
+    padding: 6px;
+    height: auto;
+}
+
+/* reset button */
+
+button {
+    background: none;
+    border: none;
+}
+
+button:active, button:focus {
+  outline: none !important;
+}
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
+.dropdown .dropdown-menu {
+    -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    display: block !important;
+    transform: scale(0);
+}
+.dropdown .dropdown-menu.show{
+    transform: scale(1);
+}
+
+
+    /* home */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+  height: 94vh;
+  width: 100vw;
+  margin-top: -0.5%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.slide.current {
+  opacity: 1;
+}
+
+.slide .content {
+  position: absolute;
+  bottom: 70px;
+  left: -600px;
+  opacity: 0;
+  width: 600px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 35px;
+}
+
+.slide .content h1 {
+  margin-bottom: 10px;
+}
+
+.slide.current .content {
+  opacity: 1;
+  transform: translateX(600px);
+  transition: all 0.7s ease-in-out 0.3s;
+}
+
+.buttons button#next {
+  position: absolute;
+  top: 40%;
+  right: 15px;
+}
+
+.buttons button#prev {
+  position: absolute;
+  top: 40%;
+  left: 15px;
+}
+
+.buttons button {
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding: 13px 15px;
+  border-radius: 50%;
+  outline: none;
+}
+
+.buttons button:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+@media (max-width: 500px) {
+  .slide .content {
+    bottom: -300px;
+    left: 0;
+    width: 100%;
+  }
+
+  .slide.current .content {
+    transform: translateY(-300px);
+  }
+}
+
+
+
+/* Backgorund Images */
+ 
+.slide:first-child {
+  background: url('') no-repeat
+    center top/cover;
+}
+.slide:nth-child(2) {
+    background: url('') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.slide:nth-child(3) {
+    background: url('') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.slide:nth-child(4) {
+    background: url('') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.slide:nth-child(5) {
+    background: url('') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+} 
+.slide:nth-child(6)  {
+  background: url('') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+    /* DABEST     */
+    #instructions {
+        position: absolute;
+        color: #666;
+        bottom: 0;
+        padding-bottom: 6px;
+        font-family: sans-serif;
+        width: 100%;
+        text-align: center;
+        pointer-events: none;
+    }
+
+
+    /* SERVICE  */
+    
+
+    @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+
+:root {
+    --background-color1: #416f9a;
+    --background-color2: #6DFC6B;
+    --animation-time: 4s;
+    --water-color: #03a9f4;
+    --second-water-color: #33d6d1;
+}
+
+
+
+
+.water {
+    position: relative;
+    
+
+}
+
+.water h2 {
+    position: relative;
+    transform: translate(-50%, -50%);
+    font-size: 6em;
+    
+}
+
+.water h2:nth-child(1) {
+    color: #fff;
+    text-shadow: -1px 1px 0px #d48a46,
+        -2px 2px 0px #d48a46,
+        -6px 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.water h2:nth-child(2) {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to left, var(--water-color), var(--second-water-color));
+    animation: wave var(--animation-time) ease-in-out infinite;
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        clip-path: polygon(0 49%, 8% 45%, 16% 44%, 25% 47%, 33% 55%, 47% 63%, 62% 66%, 76% 65%, 85% 59%, 100% 57%, 100% 99%, 0% 99%);
+    }
+
+    50% {
+        clip-path: polygon(0 62%, 13% 64%, 25% 67%, 38% 66%, 49% 63%, 59% 56%, 67% 51%, 78% 48%, 88% 47%, 100% 50%, 100% 99%, 0% 99%);
+    }
+}
+
+.insideContent {
+  position: relative;
+  top: 70px;
+}
+
+.adminActions {
+  position: fixed;
+  bottom: 10px;
+  left: 90px;
+  z-index: 1;
+}
+
+  .adminButton {
+    height: 60px;
+    width: 60px;
+    background-color: rgba(67, 83, 143, .8);
+    border-radius: 50%;
+    display: block;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+    .adminButton i {
+      font-size: 22px;
+    }
+
+  .adminButtons {
+    position: absolute;
+    width: 100%;
+    bottom: 120%;
+    text-align: center;
+  }
+
+    .adminButtons a {
+      display: block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      text-decoration: none;
+      margin: 10px auto 0;
+      line-height: 1.15;
+      color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      position: relative;
+      box-shadow: 0 0 5px 1px rgba(51, 51, 51, .3);
+    }
+
+      .adminButtons a:hover {
+        transform: scale(1.05);
+      }
+
+      .adminButtons a:nth-child(1) {background-color: #ff5722; transition: opacity .2s ease-in-out .3s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(2) {background-color: #03a9f4; transition: opacity .2s ease-in-out .25s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(3) {background-color: #f44336; transition: opacity .2s ease-in-out .2s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(4) {background-color: #4CAF50; transition: opacity .2s ease-in-out .15s, transform .15s ease-in-out;}
+
+      .adminActions a i {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+  .adminToggle {
+    -webkit-appearance: none;
+    position: absolute;
+    border-radius: 50%;
+    top: 0; left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    z-index: 2;
+    transition: box-shadow .2s ease-in-out;
+    box-shadow: 0 3px 5px 1px rgba(51, 51, 51, .3);
+  }
+
+    .adminToggle:hover {
+      box-shadow: 0 3px 6px 2px rgba(51, 51, 51, .3);
+    }
+
+    .adminToggle:checked ~ .adminButtons a {
+      opacity: 1;
+      visibility: visible;
+    }
+
+
+    
+    

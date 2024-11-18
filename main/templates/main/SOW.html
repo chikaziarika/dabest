@@ -1,0 +1,199 @@
+{% load static %}
+
+
+
+<style>
+
+.container {
+  height: 70%;
+  display: flex;
+  gap: 0.3rem;
+  position: fixed;
+  margin: auto;
+  max-width: 94%;
+  width: 1920px;
+}
+
+.slideSOW {
+  flex:1;
+  background-color:lime;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center;
+  height:100%;
+  transition:250ms ease;
+  position:relative;
+  isolation:isolate;
+}
+
+.slideSOW::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:black;
+  opacity:0.7;
+  z-index:-1;
+  transition:inherit;
+}
+
+.slideSOW:hover {
+  cursor:pointer;
+}
+
+.slideSOW:hover::before {
+  opacity:0;
+}
+
+.slideSOW h3 {
+    writing-mode: vertical-rl;
+    color: white;
+    line-height: 1.2;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    transition: 350ms ease;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 1px;
+    transform: rotate(180deg);
+    font-size: 0.9rem;
+}
+
+.slideSOW.active h3 {
+  opacity:0;
+  visibility:hidden;
+}
+
+.slideSOW.active {
+  flex:15;
+}
+
+.slideSOW.active::before {
+  opacity:0;
+}
+
+@media screen and (max-width:1024px) {
+  .container {
+    flex-direction:column;
+  }
+  
+  .slideSOW h3 {
+    writing-mode: horizontal-tb;
+    top:50%;
+    bottom:unset;
+    transform:translate(-50%, -50%);
+  }
+}
+
+@media only screen and (max-width : 768px) {
+
+  .slideSOW h3 {
+    writing-mode: horizontal-tb;
+    top: 50%;
+    bottom: unset;
+    transform: translate(-50%, -50%);
+    font-size: 0.5rem !important;
+    left: 35%;
+  }
+	#SOWContent .container {
+		position: absolute;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    max-width: 1920px;
+	}
+
+  .container {
+  /* background:black; */
+    height:100%;
+    display: flex;
+    gap: 0.3rem;
+    position: absolute;
+  }
+
+}
+
+#SOWContent .container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1920px;
+	}
+</style>
+
+
+<div id="SOWContent"  class="container" >
+	<div class="slideSOW active"> <h3>FIELD SURVEY - Asset Inventory and Valuation Survey</h3></div>
+	<div class="slideSOW"> <h3>FIELD SURVEY - Topographic Survey</h3></div>
+	<div class="slideSOW"> <h3>FIELD SURVEY - Asset Inventory and Valuation Survey</h3></div>
+	<div class="slideSOW"> <h3>FIELD SURVEY - Bathymetric and Oceanographic Survey</h3></div>
+	<div class="slideSOW"> <h3>FIELD SURVEY - Hydrometric Survey</h3></div>
+	<div class="slideSOW"> <h3>FIELD SURVEY - Geotechnical Investigation Survey</h3></div>
+	<div class="slideSOW"> <h3>FIELD SURVEY - Aerial Photo Mapping Survey</h3></div>
+	<div class="slideSOW"> <h3>FIELD SURVEY - Socioeconomic Survey</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Topographical Analysis</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Aerial photo processing</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Hydrological Modeling for Water Supply</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Hydrological Modeling for Flood Design</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Open Flow Hydraulic Modeling</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Hydraulic Modeling in Closed Pipes</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Tidal Forecasting</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Current, Wave, and Sedimentation Modeling</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Structure Analysis</h3></div>
+	<div class="slideSOW"> <h3>TECHNICAL ANALYSIS - Soil Strength Analysis</h3></div>
+	<div class="slideSOW"> <h3>ENGINEERING PRODUCT - Topographic Map Depiction</h3></div>
+	<div class="slideSOW"> <h3>ENGINEERING PRODUCT - Thematic Map Depiction</h3></div>
+	<div class="slideSOW"> <h3>ENGINEERING PRODUCT - Detailed Drawings of Building Designs</h3></div>
+	<div class="slideSOW"> <h3>ENGINEERING PRODUCT - BOQ calculation</h3></div>
+	<div class="slideSOW"> <h3>ENGINEERING PRODUCT - RAB calculation</h3></div>
+	<div class="slideSOW"> <h3>ENGINEERING PRODUCT - Report</h3></div>
+	
+</div>
+
+
+<script>
+const slides = document.querySelectorAll(".slideSOW");
+
+const images = [
+	"https://images.unsplash.com/photo-1647003810228-ba8324796acf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80", 
+	"https://images.unsplash.com/photo-1647003613495-b5f9a858365b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80", 
+	"https://images.unsplash.com/photo-1615758043606-084300e6439b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
+	"https://images.unsplash.com/photo-1638913976954-8f7b612867c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80", 
+	"https://images.unsplash.com/photo-1646991838618-7d7147658f37?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80", 
+	"https://images.unsplash.com/photo-1646988423425-bc236bc449bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80", 
+	"https://images.unsplash.com/photo-1646928998297-5fb2a10aca27?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" 
+]
+
+
+slides.forEach((slide, index) =>{
+  
+  slide.style.backgroundImage = `url(${images[index]})`;
+  
+  slide.addEventListener("click", ()=>{
+    
+    slides.forEach(el => {
+      
+      if(el.classList.contains("active") && el != slide){
+        el.classList.remove("active");  
+      }
+      
+    });
+    
+    
+    if(slide.classList.contains("active")){
+      slide.classList.remove("active");
+    }else {
+      slide.classList.add("active");
+    }
+    
+    
+  });
+  
+});
+
+</script>
+  
+

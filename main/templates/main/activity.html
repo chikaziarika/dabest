@@ -1,0 +1,78 @@
+{% extends 'main/main.html' %}
+{% comment %} {% include 'main/navbar.html' %} {% endcomment %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content%} 
+
+<div id="container-article" class="container">
+    <!-- <h4>DABEST</h4>
+    <h3>NEWSROOM</h3> -->
+    <a href="{% url 'news' %}" style="font-size: 1.25em;">&larr; Go back to News</a>
+    <div class="articlePost">
+        {% for post in data %}
+        <div class="postList">
+            {% comment %} {% for data in post.tags.all %}
+            <h3 class="postTag" style="font-family: 'Poppins';font-weight: 800;text-decoration: underline;">{{ data }}</h3>
+            {% endfor %} {% endcomment %}
+            <h2  class="headTagArticle">{{ post.headline }}</h2>
+            <p>Date: {{ post.createAt }}</p>
+            <hr>
+            <img class="articleImg" src="{{ post.image.url }}" alt="newsImg">
+            <hr>
+            <p class="articleTeks">{{ post.textarea|safe }}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div>
+    <span class='otherPost'>another interesting article</span>
+          <div class="recent">
+            {% for post in other %}
+            <div class="row rowKlik" style='margin-top: 1em;'>
+                <div class='col-md-4'>
+                    <img class="otherRecentImg" src="{{ post.image.url }}" alt="newsImg">
+                </div>
+                <div class='col-md-8'>
+                    <a href="{% url 'activity' post.ids %}" class="otherheadTag" >{{ post.headline }}</a>
+                    <div class='infoOther'>
+                    {% for data in post.tags.all %}
+                    <h3 class="recentpostTag">{{ data }}</h3>
+                    {% endfor %}
+                    <p>{{ post.createAt|date:"d M Y" }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    var addrs = $('.rowKlik').find('.col-md-8').find('a');
+    var pathAdd = window.location.pathname;
+      
+    for (var i = 0; i < addrs.length; i++)  
+    {
+        if ( addrs[i].getAttribute('href') == pathAdd ) {
+            console.log('Ada...', addrs[i].parentNode.parentNode)
+            addrs[i].parentNode.parentNode.style.display='none';
+        }  else {
+            console.log('Tidak ada...', addrs[i])
+            addrs[i].parentNode.parentNode.style.display='inline-flex';
+        }
+    }
+
+
+});
+
+
+</script>
+{% endblock %}

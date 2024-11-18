@@ -1,0 +1,868 @@
+{% load static %}
+{% load i18n %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+:root {
+    --light-bg: white;
+    --light-primary: rgb(247, 249, 250);
+
+    --dark-bg: black;
+    --dark-primary: #15181c;
+
+    --gray-text: rgb(153, 153, 153);
+
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+.light-theme {
+    --background-color: var(--light-bg);
+    --primary-bg: var(--light-primary);
+    color: black;
+}
+.dark-theme {
+    --background-color: var(--dark-bg);
+    --primary-bg: var(--dark-primary);
+    color: white;
+}
+
+body {
+    background-color: var(--background-color);
+    padding: 16px;
+}
+main {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.themer {
+    all: unset;
+    padding: 4px;
+    height: 20px;
+    width: 40px;
+    border-radius: 20px;
+    position: relative;
+}
+    .light-theme .themer {
+        border: 2px solid var(--dark-bg);
+    }
+    .dark-theme .themer {
+        border: 2px solid var(--light-bg);
+    }
+    .themer:hover {
+        cursor: pointer;
+    }
+.themer::after {
+    content: '';
+    display: block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+}
+    .light-theme .themer::after {
+        background-color: var(--dark-bg);
+        right: 4px;
+    }
+    .dark-theme .themer::after {
+        background-color: var(--light-bg);
+        left: 4px;
+    }
+
+.profile {
+    border-radius: 8px;
+    height: 180px;
+    width: 30%;
+    position: relative;
+    overflow: hidden;
+    transition: height 0.2s ease;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: inline-block;
+    margin: 8px;
+    vertical-align: top;
+    clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+    background: #253252;
+    color: #F8F8FF;
+}
+    .profile:hover {
+        cursor: pointer;
+    }
+    .profile.profile--expanded {
+        height: 350px;
+        animation: expand 0.5s ease;
+    }
+
+    
+    .profile__banner {
+        display: block;
+        height: 70px;
+        width: 100%;
+        background-color: rgb(175, 105, 175);
+        border-top-right-radius: inherit;
+        border-top-left-radius: inherit;
+    }
+    .profile__pic {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 20px;
+    }
+            .profile__pic img {
+            width: 4.8em;
+            height: 4.8em;
+            background: white;
+            border-radius: 15px;
+            margin: auto;
+            object-fit: cover;
+            object-position: top;
+        }
+    .profile__info {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 104px;
+    }
+        .profile__info-display, .profile__info-username {
+            display: block;
+            width: 100%;
+        }
+        .profile__info-display {
+            font-size: 1.5rem !important;
+            font-weight: bold;
+            color: #F8F8FF;
+            text-align: center;
+            display: block;
+            font-size: 1em;
+        }
+        .profile__info-username {
+            color: var(--gray-text);    
+            font-size: 1rem;
+        }
+    .profile__data {
+        opacity: 0;
+    }
+        .profile--unexpanded > .profile__data, .profile--expanded > .profile__data {
+            width: 100%;
+            text-align: center;
+            padding-top: inherit;
+            height: 66px;
+            position: absolute;
+            top: 168px;
+
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+        }
+        .profile--unexpanded > .profile__data {
+            opacity: 0;
+            animation: unreveal 0.2s ease;
+        }
+        .profile--expanded > .profile__data {
+            opacity: 1;
+            animation: reveal 0.7s ease;
+        }
+        .profile__data > * > * {
+            display: block;
+        }
+        .profile__data > * > *:first-child {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .profile__data > * > *:nth-child(2) {
+            font-size: 0.9rem;
+        }
+    .profile__about {
+      opacity: 0 ;
+    }    
+
+    .profile--unexpanded > .profile__about, .profile--expanded > .profile__about {
+            width: 100%;
+            text-align: center;
+            padding-top: inherit;
+            height: 66px;
+            position: absolute;
+            top: 185px;
+
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+        }
+        .profile--unexpanded > .profile__about {
+            opacity: 0;
+            animation: unreveal 0.2s ease;
+        }
+        .profile--expanded > .profile__about {
+            opacity: 1;
+            animation: reveal 0.7s ease;
+        }
+        .profile__about > * > * {
+            display: block;
+            margin: 0 auto;
+            text-align: justify;
+            width: 82%;
+            overflow-y: scroll;
+            font-size: 0.75rem;
+            line-height: 1.2;
+        }
+        .profile__about > * > *:first-child {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .profile__about > * > *:nth-child(2) {
+            font-size: 0.9rem;
+        }
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes unreveal {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+@keyframes expand {
+    0% {
+        height: 180px;
+    }
+    100% {
+        height: 240px;
+    }
+}
+@keyframes unexpand {
+    0% {
+        height: 240px;
+    }
+    100% {
+        height: 180px;
+    }
+}  
+</style>
+
+<button onclick="toggleTheme()" class="themer"></button>
+<h2>MEET OUR DABEST SUPER TEAM</h2>
+<main>
+
+  <div class="profile" onclick="expand(this)">
+    <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+    <div>
+        <div class="profile__pic">
+          <img src="../static/images/Bpk_Danis.jpg" alt="Profile picture of Lorem Ipsum">
+        </div>
+        <div class="profile__info">
+            <span class="profile__info-display">Danis Aryo Bronto</span>
+            <span class="profile__info-username">CHIEF EXECUTIVE OFFICER</span>
+        </div>
+    </div>
+
+    <div class="profile__about">
+      <span class="profile__data-about">
+        <span class="profile__about-title">About Me</span> <br>
+        <span class="profile__about-desc">Entrepreneur dengan pengalaman lebih dari 14 tahun dalam
+          perencanaan Sumber Daya Air. Meraih gelar Magister dalam
+          program studi Pengelolaan Sumber Daya Air  dari ITB.
+          Berpengalaman dalam memberikan solusi yang berdampak
+          baik dan mendorong hasil yang berkelanjutan dalam
+          bidang pengelolaan sumber daya air, dengan bekerjasama
+          dengan Pemerintah, BUMN, perusahaan asing dan swasta.</span>
+      </span>
+    </div>
+  </div>
+  
+
+<br><br>
+
+    <!-- C-LEVEL # 1 -->
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/Ibu_Wina.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Wina Yuanita</span>
+              <span class="profile__info-username">CHIEF FINANCIAL OFFICER</span>
+          </div>
+      </div>
+  
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">Dengan lebih dari 20 tahun pengalaman diberbagai
+              bidang, meliputi komunikasi, penyiaran, hubungan
+              masyarakat, manajemen perbankan, dan industri start-up.
+              Memiliki gelar Sarjana Ilmu Komunikasi dari UNPAD, telah
+              memperoleh wawasan dan keahlian praktis yang sangat
+              berharga. Antusiasme di bidang perbankan, manajemen
+              perbankan, strategi bisnis, perencanaan, manajemen, dan
+              sumber daya manusia.
+          </span>
+        </span>
+      </div>
+    </div>
+
+
+    <!-- C-LEVEL #2  -->
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+            <img src="../static/images/Bpk_Ridwan.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">C. Ridwan Gunawidjaya</span>
+              <span class="profile__info-username">CHIEF OPERATING OFFICER</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">Sarjana Perencanaan Wilayah dan Kota dan  Magister
+            dalam program studi Pengelolaan Sumber Daya Air  di ITB,
+            memiliki keahlian dalam perencanaan strategis,
+            manajemen operasional dan proyek. Fokus pada
+            peningkatan manajemen proyek, optimalisasi alokasi
+            sumber daya, membina hubungan dengan klien, dan
+            pelaksanaan proyek terkait Sumber Daya Air secara efektif.</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- C LEVEL # 3  -->
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/Bpk_Haekal.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Faekal Hauzan</span>
+              <span class="profile__info-username">CHIEF MARKETING OFFICER</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">Berkontribusi aktif terhadap koordinasi dalam pemasaran,
+            mengawasi tugas administratif, dan memastikan operasi
+            departemen atau perusahaan yang efisien. Memiliki gelar
+            Magister Studi Pembangunan dari ITB dan berspesialisasi
+            dalam perencanaan dan strategi pembangunan,
+            manajemen pengembangan proyek, perencanaan teknik,
+            manajemen produk pembiayaan, dan pengadaan proyek.</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- MANAGEMENT  -->
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/Ibu_Anggi.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Anggia Prajna Paramita P.</span>
+              <span class="profile__info-username">Financial Controller</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">Mengawasi dan mengelola aspek keuangan dari
+            konsultansi Sumber Daya Air. Memainkan peran penting
+            dalam menjaga pengelolaan keuangan yang efektif pada
+            proyek perencanaan. Hal ini memberikan kontribusi yang
+            signifikan terhadap keberhasilan dan kelangsungan operasi
+            perusahaan dalam bidang khusus ini dalam jangka
+            panjang.</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/tasa.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Tasa Fachri O.</span>
+              <span class="profile__info-username">IT Support</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate 'Responsible for providing technical assistance and support to end-users within the organization. This role involves troubleshooting hardware and software issues, maintaining IT systems, and ensuring smooth and efficient operation of IT services. Provide first-line support to end-users for hardware, software, and network issues.' %}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/intan.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Intan Khoirunnisa.</span>
+              <span class="profile__info-username">Marketing Communication</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Graduate with a Master's degree in Biomanagement from ITB.. Responsible for creating and implementing marketing strategies and communication plans that effectively promote the company's brand, products, and services. Managing and developing promotional activities, handles both online and offline promotions, as well as managing business social media across all channels." %}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/biru.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">R. Biru Permana</span>
+              <span class="profile__info-username">Asst. Marketing Communication</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate 'Supports the marketing communication team in executing marketing strategies and campaigns. This role involves assisting with the creation of marketing materials, managing social media accounts, and coordinating promotional activities.' %}</span>
+        </span>
+      </div>
+    </div>
+
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/dian.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Dian Andiyana</span>
+              <span class="profile__info-username">Project Adm.</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate 'Supports project management teams by handling administrative tasks, coordinating project activities, and ensuring that projects are executed efficiently. This role involves maintaining documentation, communicating with stakeholders, and assisting with the planning and scheduling of project activities.'%}</span>
+        </span>
+      </div>
+    </div>
+
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/Rabbiendra.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Rabbiendra</span>
+              <span class="profile__info-username">Project Adm.</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate 'Supports project management teams by handling administrative tasks, coordinating project activities, and ensuring that projects are executed efficiently. This role involves maintaining documentation, communicating with stakeholders, and assisting with the planning and scheduling of project activities.'%}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/ical.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Faisal Arya</span>
+              <span class="profile__info-username">Project Coordinator</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{%translate "A Bachelor's degree in Water Resources Engineering from ITB. Holds substantial experience in consultancy services, specializing in the planning of water resources engineering, possessing expertise in hydrology, hydraulic structure, and diverse aspects of water resources development."%}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/yudhi.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">M. Yudhisman</span>
+              <span class="profile__info-username">Engineer</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate 'A Civil Engineering graduate from Sangga Buana YPKP University majoring in Civil Engineering. Proficient in coastal engineer, data analyst and various software applications such as Hec-RAS, Global Mapper, MIKE 21, Hec-HMS, PCSWMM, etc., which support work-related tasks. Holds over 10 years of experience in the consultancy field.'%}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/syam.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Syam Afra F.</span>
+              <span class="profile__info-username">Engineer</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "A graduate of UPI (Universitas Pendidikan Indonesia) with a Bachelor's degree in Building Engineering Education (Civil). Proficient in structural operation, geotechnics, and cost estimation. Possesses over 8 years of experience in consultancy services, adeptly handling software such as Hec-RAS, AutoCAD, Sketchup, SAP2000, among others." %}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/daffa.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Daffa Radya</span>
+              <span class="profile__info-username">Engineer</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "A Bachelor's degree in Civil Engineering from ITENAS. Proficient in structural operation, geotechnics, and cost estimation. Designs, manages, and oversees projects that involve the control and use of water. Collect and analyze data related to water quality, flow rates, and environmental impact. Use GIS and other mapping tools to assess geographical and environmental factors."%}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/tyaz.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Zahrani Imtyaz</span>
+              <span class="profile__info-username">Engineer</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "A Master's degree in Environmental Engineering from ITB. Perform hydrological and hydraulic modeling to analyze water flow, flood risks, and drainage systems. Utilize software tools like HEC-RAS, HEC-HMS, and SWMM for simulations and predictions."%}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/aldi.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Aldiva Putra</span>
+              <span class="profile__info-username">Engineer</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "A Bachelor's degree in Civil Engineering from ITENAS. Designs, manages, and oversees projects that involve the control and use of water. Collect and analyze data related to water quality, flow rates, and environmental impact. Use GIS and other mapping tools to assess geographical and environmental factors."%}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/erlangga.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Erlangga Wicaksono</span>
+              <span class="profile__info-username">Asst. Engineer</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate 'Assist in the preparation of project proposals, feasibility studies, and environmental impact assessments. Planning of water resources engineering, possessing expertise in hydrology, hydraulic structure, and diverse aspects of water resources development.' %}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/zendra.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Raizendra M.J</span>
+              <span class="profile__info-username">Asst. Engineer</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate 'Assist in the preparation of project proposals, feasibility studies, and environmental impact assessments. Support the design of hydraulic structures, drainage systems, and other water-related infrastructure.
+            ' %}</span>
+        </span>
+      </div>
+    </div>
+
+    
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/Asep.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Asep S. Iskandar</span>
+              <span class="profile__info-username">Survey & Gambar Coordinator</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Proficient in generating and designing civil engineering plans, blueprints, and technical drawings using software. Specializes in translating engineering concepts and specifications into detailed drawings and designs for construction projects related to infrastructure, buildings, roads, bridges, and various civil engineering structures. Additionally, an expert in cost estimation." %}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/sodik.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Sodik Hidayah</span>
+              <span class="profile__info-username">Senior Surveyor</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Analyzing and interpreting geographic and spatial data to produce maps, charts, and models. Utilizing diverse technologies such as GPS, GIS, remote sensing, and various surveying methods to gather and manipulate geographical information for a broad spectrum of applications, encompassing urban planning, land development, environmental assessment, and additional fields." %}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/usep.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Usep M. Saeppudin</span>
+              <span class="profile__info-username">Senior Surveyor</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Analyzing and interpreting geographic and spatial data to produce maps, charts, and models. Utilizing diverse technologies such as GPS, GIS, remote sensing, and various surveying methods to gather and manipulate geographical information for a broad spectrum of applications, encompassing urban planning, land development, environmental assessment, and additional fields."%}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/edi.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Edi Suryadi</span>
+              <span class="profile__info-username">Senior Drafter</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Responsible for creating and maintaining technical drawings and plans in support of engineering and construction projects. This role involves leading drafting teams, overseeing project documentation, and ensuring compliance with industry standards and specifications. Prepare detailed drawings, layouts, and diagrams based on project requirements and specifications." %}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/naufal.png" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Naufal Rizki A.</span>
+              <span class="profile__info-username">Assistant Drafter</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Prepare preliminary sketches and layouts based on specifications provided by engineers. Supports the drafting team by assisting in the creation and modification of technical drawings and plans. This role involves working under the guidance of senior drafters or engineers to produce accurate and detailed drawings for engineering and construction projects." %}</span>
+        </span>
+      </div>
+    </div>
+
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/karno.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Karno Romadon</span>
+              <span class="profile__info-username">Assistant Drafter</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Prepare preliminary sketches and layouts based on specifications provided by engineers. Supports the drafting team by assisting in the creation and modification of technical drawings and plans. This role involves working under the guidance of senior drafters or engineers to produce accurate and detailed drawings for engineering and construction projects."%}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/gomgom.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Gomgom B. Y. S</span>
+              <span class="profile__info-username">Research & Development</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Bachelor of Engineering in Water Resources Management from ITB. Extensive experience in consultancy services in the field of Water Resources Engineering. Skilled in hydrology, hydraulics, geotechnical engineering, and various aspects of Water Resources development."%}</span>
+        </span>
+      </div>
+    </div>
+    
+    <div class="profile" onclick="expand(this)">
+      <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+      <div>
+          <div class="profile__pic">
+              <img src="../static/images/zovan.jpg" alt="Profile picture of Lorem Ipsum">
+          </div>
+          <div class="profile__info">
+              <span class="profile__info-display">Jovan Fortino</span>
+              <span class="profile__info-username">Research & Development</span>
+          </div>
+      </div>
+
+      <div class="profile__about">
+        <span class="profile__data-about">
+          <span class="profile__about-title">About Me</span> <br>
+          <span class="profile__about-desc">{% translate "Bachelor of Engineering in Civil Engineering from Parahyangan University. Responsible for utilizing Autodesk Civil 3D software to design and manage civil engineering projects. This role involves creating detailed 3D models, analyzing terrain data, and generating construction plans and documentation." %}</span>
+        </span>
+      </div>
+    </div>
+
+      <div class="profile" onclick="expand(this)">
+        <div class="profile__banner" style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;"></div>
+        <div>
+            <div class="profile__pic">
+                <img src="../static/images/Ahmad.jpg" alt="Profile picture of Lorem Ipsum">
+            </div>
+            <div class="profile__info">
+                <span class="profile__info-display">Ahmad Nugraha</span>
+                <span class="profile__info-username">General Affair</span>
+            </div>
+        </div>
+
+        <div class="profile__about">
+          <span class="profile__data-about">
+            <span class="profile__about-title">About Me</span> <br>
+            <span class="profile__about-desc">{% translate "This role involves managing various tasks related to office management, facilities, procurement, and employee services. Oversee day-to-day office operations, including maintenance, cleanliness, and security. Manage facilities such as office buildings, equipment, and utilities." %}</span>
+          </span>
+        </div>
+      </div>
+</main>
+
+<script>
+function expand(card) {
+            card.classList.toggle('profile--expanded');
+
+            // If card is not expanded after toggle, add 'unexpanded' class
+            if (!card.classList.contains('profile--expanded')) card.classList.toggle('profile--unexpanded');
+            // Else if card is expanded after toggle and still contains 'unexpanded' class, remove 'unexpanded'
+            else if (card.classList.contains('profile--expanded') && card.classList.contains('profile--unexpanded')) card.classList.toggle('profile--unexpanded');
+        }
+
+        function toggleTheme() {
+            let docu = document.querySelector('html');
+
+            docu.classList.toggle('light-theme');
+            docu.classList.toggle('dark-theme');
+        }  
+</script>
+
+

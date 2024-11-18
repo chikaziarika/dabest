@@ -1,0 +1,111 @@
+{% load static %}
+{% load i18n %}
+<nav class="navbar navbar-expand-lg bg-transparent " style="background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252) !important;position: fixed;padding: 10px;z-index: 1001;font-size: 1.5rem;top: 0;width: 105%; left: -10px;">
+  <div class="container-fluid" style="width: 95% !important; background-color: rgba(0,0,0,0); transition: background-color 0.5s ease 0s;">
+  
+    <a class="navbar-brand" aria-label="home" href="/"  style="height: 60px;width: 8%;margin-left: -1%;"></a>
+    <img class="logoDabest" src="../static/images/backup_logo.png" srcset="../static/images/backup_logo.png 480w, ../static/images/backup_logo.png 1080w" sizes="50vw"  alt="logo" >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto" style="z-index: 6;">
+        
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="{% url 'home' %}" style="font-family: Poppins; font-weight: 800; color: #f6f6f6;" >Home</a> -->
+            <!-- <a class="navbar-brand" href="{% url 'home' %}">
+              <img class="logoNavbar" src="{% static 'images/STAMPLE-DABEST-BULAT.png' %}" alt="" >
+            </a> -->
+            <li class="nav-item dropdown dropdown-center" style="z-index: 1;">
+              <a class="nav-link dropdown-toggle" aria-label="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: Poppins; font-weight: 800; color: #f6f6f6;">
+                DABEST Corner
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'news' %}">Dabest Journal</a></li>
+                <li><a class="dropdown-item" href="{% url 'careers' %}">Dabest Careers</a></li>
+                <li><a class="dropdown-item" href="{% url 'article' %}">Dabest Article</a></li>
+                <!-- <li><a class="dropdown-item" href="{% url 'underconst' %}">Dabest Sharing Data</a></li> -->
+              </ul>
+            </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-label="linkSosmed" aria-current="page" href="{% url 'careers' %}" style="font-family: Poppins; font-weight: 800; color: #f6f6f6;">{% translate 'Careers' %}</a>
+          </li>   -->
+          <li class="nav-item">
+            <a class="nav-link "  aria-label="linkSosmed" aria-current="page" href="{% url 'projects' %}" style="font-family: Poppins; font-weight: 800; color: #f6f6f6;">{% translate 'Projects' %} </a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-label="linkSosmed" aria-current="page" href="{% url 'services' %}" style="font-family: Poppins; font-weight: 800; color: #f6f6f6;">{% translate 'Services' %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-label="linkSosmed" aria-current="page" href="{% url 'about' %}" style="font-family: Poppins; font-weight: 800; color: #f6f6f6;">{% translate 'About Us' %}</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" aria-label="News" aria-current="page" href="{% url 'news' %}" style="font-family: Poppins; font-weight: 800; color: #f6f6f6;">{% translate 'Journal ' %}</a>
+          </li> -->
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" aria-label="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: Poppins; font-weight: 800; color: #f6f6f6;">
+              <i class="fa fa-language" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for available_languages as languages %}
+              
+              {% for lang in languages %}
+              <li>
+                <a class="dropdown-item" href="/{{ lang.code }}/">
+                  {{lang.name_local}}
+                </a>
+              </li> 
+              {% endfor%}
+            </ul>
+          </li>
+        
+        
+      </ul>
+      <form class="d-flex" role="search">
+        {% if request.user.is_authenticated  %}
+        <ul class="navbar-nav justify-content-end" style="position: static !important;">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" aria-label="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: 8px">
+              <div class="square1"></div>
+              <i class="fas fa-user me-lg-2 customNav" style="display: inline-flex;"  ><span class='userText'>&nbsp; {{request.user}}</span></i>
+            </a>
+            
+            <ul class="dropdown-menu">
+              <!-- <li><a href="{% url 'settings' %}" class="dropdown-item"  style="font-family: Poppins; font-weight: 800; color: #253252;">My Profile</a></li> -->
+              {% if user.is_superuser %}
+              <li><a href="{% url 'admin:index' %}" class="dropdown-item"  style="font-family: Poppins; font-weight: 800; color: #F8F8FF;">Admin Site</a></li>
+              <li><a href="{% url 'logout' %}" class="dropdown-item" style="font-family: Poppins; font-weight: 800; color: #F8F8FF;">Log Out</a></li>
+              {% else %}
+              <li><a href="{% url 'change_password' %}" class="dropdown-item"  style="font-family: Poppins; font-weight: 800; color: #F8F8FF;">Update Password</a></li>
+              <li><a href="/accounts/logout/" class=" dropdown-item" style="font-family: Poppins; font-weight: 800; color: #F8F8FF;">Log Out</a></li>
+              {% endif%}
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <ul class="nav justify-content-end" style="position: static !important;">
+          <!-- <li class="nav-item" style="margin: auto;">
+            <span style="font-family: Poppins; font-weight: 800; color: #f6f6f6;" >Already have Account ?</span>
+          </li> -->
+          <li class="nav-item">
+            <div class="square"></div>
+            
+            <!-- <a class="nav-link" aria-current="page" href="{% url 'login' %}" style="font-weight: 800; color: #f6f6f6 ;"><i class='bx bx-user-circle' style="transform: scale(1.7);position: relative;top: 3px;"></i> &nbsp;&nbsp;Log In</a> -->
+            <a id="forLogin" class="nav-link" aria-current="page" href="/accounts/login/" style="font-weight: 800; color: #f6f6f6 ;"><i class='bx bx-user-circle' style="transform: scale(1.7);position: relative;top: 3px;"></i> &nbsp;&nbsp;Log In</a>
+          </li>
+        </ul>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});  
+</script>

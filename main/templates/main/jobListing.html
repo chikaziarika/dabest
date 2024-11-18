@@ -1,0 +1,283 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% load i18n%}
+{% block content %}
+
+<style>
+.contentKarir {
+  margin: 3rem auto;
+  vertical-align: middle;
+  padding: 75px;
+  display: inline-block;
+  width: 100dvw;
+}  
+</style>
+
+
+<div class="customContainer">
+  <div class="sideBarContent">
+    <h1 class="headTitle">{% translate 'Similar Job' %}</h1>
+    <div class="ListJob">
+
+    </div>
+  </div>
+  <img src="../../static/images/Artboard10.avif" class="img-fluid gambarApp" alt="Responsive image">
+  <a href="{% url 'careers' %}" style="position: relative;z-index: 10000;left: 20%;top: 10em;">&larr; Go back to Career List</a>
+   <div class="btn-toolbar" style="position: relative;margin-top: -35px;float: right;width: 275px;">
+      <a class="btn btn-primary clickedLink">{% translate 'APPLY FOR THIS JOB' %}</a>
+      <a href="#" class="btn btn-primary" style="margin-left: 10px">{% translate 'SHARE' %}</a>
+      
+    </div>
+  <div class="customHeader">
+      <div class="col colSt1">
+          <div class="row">
+            <div class="col-sm-1">
+              
+            </div>
+            <div class="col-sm-11">
+              <h3 class="JobPos"></h3>
+            </div>
+          </div>
+          <div class="row rowSt1">
+            <div class="col-md-4 rowSt1Inner">
+              <i class="fa-regular fa-clock"></i>
+              <p>{% translate 'dibuat pada'%} :<span class="CreateAt"></span></p>
+              
+            </div>
+            <div class="col-md-4 rowSt1Inner">
+              <i class="fa-solid fa-building-user" ></i>
+              <span id="Dept" name="Dept" class="Dept"></span> 
+              
+            </div>
+            <div class="col-md-1 rowSt1Inner">
+              <i class="fa-solid fa-location-dot"></i>
+              <span class="Lokasi" ></span>
+            
+            </div>
+            <div class="col-md-3 rowSt1Inner">
+              <i class="fa-solid fa-file-contract"></i>
+              <span class="EmpType"></span> 
+            </div>
+            
+           
+          </div>
+      </div>
+  </div>
+  <div class="Careercontainer">
+    <!-- <a href="{% url 'careers' %}" class="btn btn-primary" id='btnBack' style="margin-bottom: 30px"> Kembali</a> -->
+    
+    <div class="row" >
+      </div>
+      <!-- <div class="row KeteranganAtas">
+        <div class="col-md-3">
+          Department
+        </div>
+        <div class="col-md-3">
+          Job Posted On
+        </div>
+        <div class="col-md-3">
+          Employee Type
+        </div>
+        <div class="col-md-3">
+          Experience Range ( Years)
+        </div>
+      </div> -->
+      <div class="row KeteranganBawah">
+          <div class="col-md-3">
+            <!-- <span id="Dept" name="Dept" class="Dept"></span>  -->
+          </div>
+          <div class="col-md-3">
+            <!-- <span class="CreateAt"></span>  -->
+          </div>
+          <div class="col-md-3">
+            <!-- <span class="EmpType"></span>  -->
+          </div>
+          <!-- <div class="col">
+            <span class="Experience"></span> 
+          </div> -->
+      </div>
+    
+  
+    <div class="row">
+      <div>
+        <div class="row responsible" >
+          <h3 class="h3Style">{% translate 'ABOUT THIS JOB' %}</h3>
+          <span class="JobDesk"></span>
+        </div>
+        <div class="row qualifide" >
+          <h3 class="h3Style">{% translate 'ABOUT YOU' %}</h3>
+          <span class="rekurement" ></span>
+        </div>
+        
+      </div>
+      <!-- <div class="simJobs" style="box-shadow: 10px 10px;border: 2px solid #000;margin-bottom: 30px;padding: 10px;width: 20%;margin-left: 5%;">
+        <h3>Similar Job</h3>
+        <span>No Jobs Found</span>
+         <div class="ListJob">
+
+         </div>
+      </div> -->
+      
+    </div>
+  </div>
+  
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var urlAdd = window.location.href;
+    var split = urlAdd.split('/');
+    var strFile = split[split.length-1];
+    
+    $.ajax({
+      url: '../joblist/'+strFile+'',
+      type: 'GET',
+      dataSrc: 'data',
+      success: function (data, status, xhr) {
+        // console.log('data: ', data.data[0].id);
+        var JobList = data.position;
+        var Lokasi = data.location;
+        var rekurement = data.requirements;
+        var JobDesk = data.jobDesk;
+        var Dept = data.department;
+        var CreateAt = data.posting_date;
+        var DatePost = CreateAt.split('T')[0];
+        var EmpType = data.employeeType;
+        
+        $('.JobPos').text(JobList);
+        $('.Lokasi').text(Lokasi);
+        $('.JobDesk').html(JobDesk);
+        $('.rekurement').html(rekurement);
+        $('.Dept').text(Dept);
+        $('.Dept').attr('value',Dept);
+        $('.CreateAt').text(DatePost);
+        $('.EmpType').html(EmpType);
+        $('.Experience').html('');
+        $.ajax({
+          url: '../joblist/?format=json',
+          type: 'GET',
+          dataSrc: 'data2',
+          success: function (data2, status, xhr) {
+            
+              // console.log('address: ', $('.JobPos').text());
+              var ArrayFilter = $.grep(data2, function(v){
+                return v.department === $(".Dept").text();
+              })
+              console.log('Data Filter', $('.JobPos').text())
+              dataArray = ArrayFilter;
+              
+              $(dataArray).each(function(i, e) {
+                  // console.log('WAW...', dataArray)
+                  for (let i = 0; i < ArrayFilter.length; ++i) {
+                  var idX = ArrayFilter[i].id
+                  if ( ArrayFilter[i].position !== $('.JobPos').text()) 
+                    
+                    $(".ListJob").append(
+                      '<div class=idKe'+idX+'>\
+                      <h2> '+ArrayFilter[i].position+' </h2>\
+                      <p> Location: '+ArrayFilter[i].location+' </p>\
+                      <p> Employee Type : '+ArrayFilter[i].employeeType+' </p>\
+                      <a href="../jobListing/'+ArrayFilter[i].id+'" class="ListSJ'+ArrayFilter[i].id+'"> View Job</a> \
+                      </div>'
+                    )
+
+                  if ( ArrayFilter[i].length === 0 ) 
+                    
+                    $(".ListJob").append(
+                      '<p>Data Tidak Ditemukan</p>'
+                    )  
+                    
+                    $('.idKe'+idX).not(':last').remove()
+                  
+                    
+                  } 
+
+                  
+              });
+            },
+            // complete: function( data2, status, xhr){
+              
+            //   console.log('data22: ', DeptText);
+            //   var Similar_jobs = $.grep(data2, function(v) {
+            //       return v.name === "Joe" && v.age < 30;
+            //   });
+            //   console.log('data23: ', Similar_jobs);
+            // }
+        });
+      },
+      complete: function(data, status, xhr) {
+        console.log('data: ', $('#Dept').text());
+      }
+    
+  });
+
+  
+  })
+
+ 
+
+  document.addEventListener('DOMContentLoaded', function(){
+    console.log('Baaa...', $('.logIn').attr('href'))
+
+  $(".clickedLink").on('click',function()
+     {
+        var urlAdd = window.location.href;
+        var split = urlAdd.split('/');
+        var strFile = split[split.length-1];
+        var username = $('.logIn').attr('href');
+        console.log('ke klik ga ?', strFile)
+        // window.location.href="../apply/"+strFile;
+
+        if ( username !== '/accounts/logout/') {
+          console.log('A.....')
+          window.location.href = "/accounts/login/";
+
+          setTimeout(function() { 
+            window.location.href="../apply/"+strFile;
+          }, 2000);
+        } else {
+          console.log('B.....')
+          window.location.href="../apply/"+strFile;
+        }
+
+     });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      $('.sideBarContent').on('click',function() {
+        // console.log(' Nih...')
+        $(this).animate({right:'-10%'});
+        $(this).animate({height:'50%'});
+        $('.headTitle').animate({left:'2.25em'});
+        $('.headTitle').animate({top:'2.5%'});
+        $('.headTitle').animate({
+          step: function(now,fx) {
+            $(this).css('transform','rotate(270deg)')
+          },duration:'slow'
+          },'linear')
+        $('.headTitle').css('transform','rotate(0deg)')
+        });
+        
+      $('.sideBarContent').on('mouseleave',function() {
+        // console.log(' Noh...')
+        $(this).animate({right: '-32%'});
+        $(this).animate({height:'25%'});
+        $('.headTitle').animate({left:'-1.75em'});
+        $('.headTitle').animate({top:'40%'});
+        $('.headTitle').animate({
+          step: function(now,fx) {
+            $(this).css('transform','rotate(0deg)')
+          },duration:'slow'
+        },'linear')
+        $('.headTitle').css('transform','rotate(270deg)')
+      })
+
+      
+    });
+
+
+   
+    
+</script>
+{% endblock %}

@@ -1,0 +1,197 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% load i18n%}
+{% block content%} 
+
+<div id="container-news" class="container">
+        
+        <h4>DABEST</h3>
+        <h3>JOURNAL</h3>
+        
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              {% for post in posts%}
+              <div class="carousel-item {% if forloop.first %} active{% endif %}">
+                <img id="gmbrCar" src="{{post.image.url}}" class="w-100 d-md-block" alt="...">
+                <div class="carousel-caption d-md-block">
+                  <h5>{{ post.headline }}</h5>
+                  
+                </div>
+              </div>
+              {% endfor%}
+              
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    
+        <div class="newsPost">
+            {% for post in posts %}
+            <div class="postList">
+                <img class="newsImg" src="{{ post.image.url }}" alt="newsImg">
+                {% for data in post.tags.all %}
+                <h3 class="postTag" style="font-size: 0.50vw;font-family: 'Poppins';font-weight: 800;text-decoration: underline;">{{ data }}</h3>
+                {% endfor %}
+                <a href="{% url 'article' post.id%}" class="headTag" >{{ post.headline }}</a>
+                <!-- <p>{{ post.textarea }}</p> -->
+                <p>Date: {{ post.createAt }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="#" class="ShowMoreJournal btn btn-primary" style="float: right; margin-right: 15px; bottom:3em;">SHOW MORE</a>
+        <a href="#" class="ShowLessJournal btn btn-primary" style="float: left; margin-left: 15px; bottom:3em;">SHOW LESS</a>
+    </div>
+    <br><br>
+    <!-- <div id="container-ig" class="container">
+        <h4 style="text-align: center;">DABEST ON INSTAGRAM</h4>
+                <h4>DABEST</h4>
+                <h3>INSTAGRAM</h3>
+        <div class="igMedia">
+            
+                <div class="igFeed">
+                    <img class="igThumbs" src="" alt="thumb_1" width="350px" height="300px">
+                    <p class="timestamp"></p>
+                    <h2 class="igCaption"></h2>
+                </div>
+            
+    
+            
+                <div class="igFeed_1">
+                    <img class="igThumbs_1" src="" alt="thumb_1" width="350px" height="300px">
+                    <p class="timestamp_1"></p>
+                    <h2 class="igCaption_1"></h2>
+                </div>
+            
+    
+            
+                <div class="igFeed_2">
+                    <img class="igThumbs_2" src="" alt="thumb_1" width="350px" height="300px">
+                    <p class="timestamp_2"></p>
+                    <h2 class="igCaption_2"></h2>
+                </div>
+    
+                <div class="igFeed_3">
+                    <img class="igThumbs_3" src="" alt="thumb_1" width="350px" height="300px">
+                    <h2 class="igCaption_3"></h2>
+                    <p class="timestamp"></p>
+                </div>
+            
+            
+        </div>
+    
+    </div> -->
+    
+    <div id="container-info" class="container_warta_bumi" style='margin-top: 3em;'>
+        <h4>DABEST</h3>
+        <h3>WARTA-BUMI</h3>
+        <div class='container wartabumi'>
+        {% for title, link, createAt, desc, img in data %}
+        <div class="artList">
+            <div class='row'> 
+            <div  style='width: 100%;'> 
+                <img src={{img}} class="newsImg" width="350px" height="233px">
+            </div>
+            <div class='wscText' > 
+                <h3> {{ title }}</h3>
+                <p> {{ createAt}} </p>
+                <span> {{ desc }} </span>
+                <br>
+                <br>
+                <span><a href='{{link}}' target="_blank">Sumber Berita </a></span>
+                <br>
+                <br>
+                {% comment %} <a href="" title="{{title}}"> {% endcomment %}
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        <a href="#" class="ShowMoreJournal2 btn btn-primary" style="float: right; margin-right: 20em; bottom:2em;">SHOW MORE</a>
+        <a href="#" class="ShowLessJournal2 btn btn-primary" style="float: left; margin-left: 20em; bottom: 2em;">SHOW LESS</a>
+    </div>
+
+
+    <div id="container-news" class="container container__bnpb" style="margin-bottom: 10%;">
+     <iframe src="https://dibi.bnpb.go.id/peta2/index2" frameborder="0" scrolling="yes" onload="resizeIframe(this)" width="100%" height="450px"></iframe>
+    </div>
+
+
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function(){
+
+        $('.newsPost').each(function() {
+            var $list = $(this);
+            // $list.before('<button class="more_less">More</button>')
+            $list.find('.postList:gt(2)').hide();
+        });
+
+        $('.ShowLessJournal').hide();
+
+        $('.ShowMoreJournal').on('click',function(e) {
+            e.preventDefault();
+            // var $btn = $(this)
+            $('.postList:gt(2)').show();    
+            $('.ShowLessJournal').fadeIn()
+            // $btn.text($btn.text() == 'More' ? 'Less' : 'More');    
+        });
+
+        $('.ShowLessJournal').on('click',function(e) {
+            e.preventDefault();
+            $('.postList:gt(2)').hide();
+            $('.ShowLessJournal').fadeOut();
+            // $btn.text($btn.text() == 'More' ? 'Less' : 'More');    
+        });
+
+    
+    });
+
+
+     
+    
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+        $('.wartabumi').each(function() {
+            var $list = $(this);
+            // $list.before('<button class="more_less">More</button>')
+            $list.find('.artList:gt(2)').hide();
+        });
+
+        $('.ShowLessJournal2').hide();
+
+        $('.ShowMoreJournal2').on('click',function(e) {
+            e.preventDefault();
+            // var $btn = $(this)
+            $('.artList:gt(2)').show();    
+            $('.ShowLessJournal2').fadeIn()
+            // $btn.text($btn.text() == 'More' ? 'Less' : 'More');    
+        });
+
+        $('.ShowLessJournal2').on('click',function(e) {
+            e.preventDefault();
+            $('.artList:gt(2)').hide();
+            $('.ShowLessJournal2').fadeOut();
+            // $btn.text($btn.text() == 'More' ? 'Less' : 'More');    
+        });
+
+    
+    });
+
+</script>
+
+{% endblock %}

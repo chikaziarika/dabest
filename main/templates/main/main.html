@@ -1,0 +1,79 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    {% include 'main/script.html' %}
+    {% block extrahead %}
+    {% comment %} <link rel="preload" as="style" href="{% static 'css/desktop.css' %}" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous"> {% endcomment %}
+    <link rel="stylesheet" href="{% static "css/desktopSXGA.css" %}">
+    <link rel="stylesheet" href="{% static "css/desktopWXGA.css" %}">
+    <link rel="stylesheet" href="{% static "css/desktopWXGA+.css" %}">
+    <link rel="stylesheet" href="{% static "css/tabletLand.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/tabletPort.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/mobPort.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/mobLand.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/smalldev.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/meddev.css" %}"> 
+    {% comment %} <link rel="stylesheet" href="{% static "css/smartphones.css" %}"> {% endcomment %}
+    {% endblock %}    
+</head>
+
+{% include 'main/navbar.html' %}
+<body>
+{% if request.user.is_authenticated  %}
+  <div class='infoUser'>
+    <p>{% translate 'Welcome Back!' %}, {{request.user}} </p>
+  </div>
+  {% else %}
+  <div class='infoUser'>
+    <p> {% translate 'Welcome'%} Anonimous </p>
+  </div>
+{% endif %}
+   <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFFBQKWF"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->   
+   {% block content%}
+   <div class="container pt-4 mx-auto">
+    
+
+   </div>
+   
+   {%endblock%}
+
+
+
+   
+</body>
+
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    $(window).scroll(function() {
+      if ($(window).scrollTop() + $(window).outerHeight() == $(document).outerHeight()) {
+        //Script for activity on reaching bottom of document
+        $(".scroll-icon21").fadeOut();
+        $(".scroll-icon3").fadeOut();
+        // console.log('CIAT....')
+      } else // optional
+      {
+        $(".scroll-icon21").fadeIn();
+        $(".scroll-icon3").fadeIn();
+        // console.log('CIAT....CIAT')
+      }
+    });   
+});	
+
+
+    
+</script>
+
+
+{% include 'main/javascript.html' %}
+
+
+
+

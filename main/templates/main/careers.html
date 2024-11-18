@@ -1,0 +1,751 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% load i18n%}
+{% block content %}
+
+<style>
+html,body { 
+  
+  overflow: hidden; 
+  }
+
+
+
+.pagecontainer {
+    width: 100%;
+    margin: 2em auto;
+    position: relative;
+    margin-bottom: 100px;
+    height: 100%;
+    padding: 0;   
+    overflow: scroll;
+    height: 85vh;
+    scroll-snap-points-y: repeat(100vh);
+    scroll-snap-type: y mandatory;
+}
+
+
+
+.pagecontainer ul {
+  padding: 0;
+}
+.headerimagecontainer {
+    background-image: url(/static/images/37.png);
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    height: 480px;
+    border-radius: 8px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center top -25em;
+    position: relative;
+    margin-top: 15px;
+    width: 100%;
+}
+
+
+.headercontent {
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  top: 0;
+  transform: translateY(0%);
+  -moz-transform: translateY(10%);
+  border-radius: 10px;
+  height: 100%;
+  background-color: rgb(213, 220, 239, 0.6);
+}
+
+.headercontent h1 {
+  font-family: 'League Spartan', sans-serif;
+  color: #004aad;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+  line-height: 1.25;
+  margin: 0.75em auto;
+  display: block;
+  font-size: 4em;
+  padding-left: -0.5em;
+  text-align: left;
+}
+
+.headercontent img {
+  margin-top: -15px;
+}
+.benefitscontainer {
+  margin-top: 0px;
+  position: relative;
+  top: 4%;
+}
+.headercontent p,
+.benefitscontainer p {
+  font-size: 1.25rem;
+  font-family: 'Poppins';
+  color: #fff;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  margin: 0 auto;
+  margin-bottom: 25px !important;
+  text-align: center;
+}
+.headercontent p {
+  width: 100%;
+  font-size: 0.75em;
+  text-align: left;
+  color: gray;
+}
+.headercontent span {
+  color: #e57177;
+}
+.headercontent a {
+  font-size: 14px;
+  font-family: 'Montserrat', 'Verdana', 'Geneva', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  cursor: pointer;
+  background-color: #004AAD;
+  border: none;
+  border-radius: 0;
+  color: white;
+  text-align: center;
+  padding: 20px 40px;
+  text-decoration: none;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+.headercontent a:hover {
+  background: #004AAD;
+}
+.benefitscontainer {
+  text-align: center;
+}
+.benefitscontainer ul {
+  margin-top: 50px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 3rem;
+}
+.benefitscontainer h2, .current-openings h2 {
+  font-size: 45px;
+  font-family: 'Poppins';
+  color: #004aad !important;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+  line-height: 1.25;
+  text-align: center;
+}
+.benefitscontainer h3 {
+  font-size: 16px;
+  font-family: 'Poppins';
+  color: #000 !important;
+  margin: 15px 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.25;
+}
+#bottom-adjustment {
+  margin-top: 20px;
+}
+#location {
+  margin-top: 0;
+}
+.benefitscontainer p {
+  color: #000;
+  text-align: justify;
+}
+.benefitscontainer span {
+  font-size: .75rem;
+}
+.benefitscontainer li {
+  width: 100%;
+  margin-bottom: 50px;
+  list-style: none;
+  margin-top: 5px;
+}
+.benefitscontainer img {
+  width: 30%;
+}
+.variable-width button {
+  display: none !important;
+}
+.variable-width img {
+  margin: 0 15px;
+}
+.overall-carousel {
+  overflow: hidden;
+}
+.ribbons-total {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -1.4em;
+}
+aside {
+  line-height: 40px;
+  position: relative;
+}
+aside.ribbons {
+  background-color: #e57177;
+  width: 18em;
+  margin: 0 auto;
+  text-align: center;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  z-index: 200;
+  margin-right: 2em;
+}
+.ribbons a, .grey-ribbon a {
+  cursor: pointer;
+}
+.ribbons:after{
+  border-width: 20px 10px 20px 0;
+  border-color: #e57177 transparent;
+  right: -10px;
+}
+.ribbons:before, .grey-ribbon:before {
+  border-width: 20px 0 20px 10px;
+  left: -10px;
+}
+.ribbons:before {
+  border-color: #e57177 transparent;
+}
+aside:before, aside:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+}
+aside.grey-ribbon {
+  background-color: grey;
+  width: 18em;
+  margin: 0 auto;
+  text-align: center;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  z-index: 200;
+  margin-left: 2em;
+}
+.grey-ribbon:after{
+  border-width: 20px 10px 20px 0;
+  border-color: grey transparent;
+  right: -10px;
+}
+.grey-ribbon:before {
+  border-color: grey transparent;
+}
+.current-openings {
+  margin: 3.5em 0;
+}
+#whr_embed_hook {
+  width: 75%;
+  margin: auto;
+}
+.whr-info {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  flex-wrap: wrap;
+  margin-right: 2.5em;
+  color: #000;
+  font-family: 'Poppins';
+}
+.whr-info span {
+  display: none;
+}
+.whr-item {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+.whr-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.whr-title a {
+  color: #e57177;
+}
+.whr-location, .whr-date {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.job-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 2em auto;
+  width: 75%;
+  font-family: 'Poppins' !important;
+  color: #000 !important;
+}
+.whr-dept, .department {
+  display: none;
+}
+.location {
+  padding-left: 3em;
+}
+@media (max-width: 1199px) {
+  .pagecontainer {
+    width: 100%;
+  }
+  #whr_embed_hook, .job-labels {
+    width: 75%;
+    margin: 2em auto;
+  }
+}
+@media (max-width: 900px) {
+  .benefitscontainer li {
+    width: 45%;
+    margin-bottom: 0;
+  }
+  #ul2 {
+    margin-top: 0;
+  }
+  .location {
+    padding-left: 3em;
+  }
+}
+@media (max-width: 780px) {
+  .whr-info {
+    width: 55%;
+  }
+  .location {
+    padding-left: 5em;
+  }
+}
+@media (max-width: 767px) {
+  .overall-carousel {
+    display: none;
+  }
+  #whr_embed_hook, .job-labels {
+    width: 95%;
+  }
+}
+@media (max-width: 568px) {
+  .whr-info {
+    margin: 1em auto;
+    width: 100%;
+  }
+  #whr_embed_hook, .job-labels {
+    width: 75%;
+  }
+}
+@media (max-width: 480px) {
+  .headercontent h1 {
+    font-size: 2em;
+  }
+  .headercontent img {
+    width: 30%;
+  }
+  .benefitscontainer li {
+    width: 75%;
+    margin-bottom: 0;
+  }
+  #whr_embed_hook, .job-labels {
+    width: 95%;
+    margin: 2em auto;
+  }
+  .location {
+    padding-left: 0;
+  }
+}
+
+/* .container-fluid > a >h2{
+  color: #000 !important;
+  font-family: 'Poppins';
+}
+
+ul.navbar-nav > li.nav-item > a {
+  color: #000 !important;
+  font-family: 'Poppins';
+}
+
+span {
+  color: #000 !important;
+  font-family: 'Poppins';  
+} */
+
+#custom-button {
+  padding: 10px;
+  color: white;
+  background-color: #009578;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#custom-button:hover {
+  background-color: #00b28f;
+}
+#custom-text {
+  margin-left: 10px;
+  font-family: sans-serif;
+  color: #aaa;
+  opacity: 0;
+}
+
+section {
+  
+  width: 100%;
+  height: 85vh;
+  margin-top: 7.5em;
+  scroll-snap-align: start;
+  position: relative;
+    
+}
+
+
+
+
+
+.RPts {
+  background: #004aad;
+  height: 9em;
+  border-radius: 20px;
+  width: 30%;
+  padding-left: 5em;
+  margin: 3em auto;
+  margin-top: 100px;
+}
+
+iRPts{ 
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.RPts h2 {
+    font-family: 'Poppins';
+    color: #fff;
+    font-weight: 800;
+    font-size: 1em;
+    text-align: left;
+}
+
+#tableJobs_wrapper {
+  margin: auto;
+  padding-left: 10em;
+  padding-right: 10em;
+  width: 100%;
+}
+
+
+label[for=JobTitle],
+label[for=deptDropdown],
+label[for=locDropdown],
+label[for=EmpType] {
+  color: #000;
+  margin-top: 0em;
+  position: relative;
+  display: flex;
+  left: 0px;
+}
+</style>
+
+
+<div>
+    <div class="pagecontainer">
+        <section id='detailSection-1'>
+        <div class="headerimagecontainer">
+          <div class="headercontent">
+            <div  class='row'>
+              <div class='col-6' style='margin-top: 50px;'>
+              <h1 style=" text-shadow: -2px 2px 3px #000;margin-bottom: 0.25em;">{% translate 'Find Your <br> Dream Job Here' %}</h1>
+              <p style='color: #004aad;font-size: 1.25em;padding-left: 5em;text-align: left;'>{% translate 'Join our dynamic team at DABEST and unlock' %} <br> {% translate 'exciting career opportunities!' %}</p>
+              </div>
+              <div class='col-6 RPts'>
+                <div class='row d-flex justify-content-center mt-5 h-100'> 
+                  <div class='col-sm-6 d-flex'>
+                    <i class="fas fa-map-marker-alt fa-2xl" style='padding: 20px;color: #fff;'></i>
+                  <div>
+                    <h2>Location </h2>
+                    <p>Location</p>
+                  </div>
+                  </div>
+
+                   <div class='col-sm-6 d-flex'>
+                    <i class="fas fa-building fa-2xl" style='padding: 20px;color: #fff;'></i>
+                    {% comment %} <i class="fas fa-map-marker-alt fa-2xl" style='padding: 20px;color: #fff;'></i> {% endcomment %}
+                    <div>
+                    <h2>Type </h2>
+                    <p>Designer, Engineer</p>
+                  </div>
+                  </div>
+                </div>
+                <div class='row' style='float: right;'> 
+                  <button type="button" class="btn btn-EN" style='width: 8em;' >Search</button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="benefitscontainer">
+          <h2>{% translate 'benefits of being DABEST Team' %}</h2>
+          <div class='row'>
+            <div class='col-lg-2'>
+              <img src='../static/images/36.png'>
+              <h3>{% translate 'Work Life Balance' %}</h3> 
+            </div>
+            <div class='col-lg-2'>
+            <img src='../static/images/32.png'>
+            <h3>{% translate 'Learning and Training' %}</h3> 
+            </div>
+            <div class='col-lg-2'>
+            <img src='../static/images/33.png'>
+            <h3>{% translate 'You Will Get What You Do' %}</h3> 
+            </div>
+            <div class='col-lg-2'>
+              <img src='../static/images/34.png'>
+              <h3>{% translate 'Free Lunch' %}</h3> 
+            </div>
+            <div class='col-lg-2'>
+              <img src='../static/images/35.png'>
+              <h3>{% translate 'Spiritual Refreshing' %}</h3> 
+            </div>
+            <div class='col-lg-2'>
+              <img src='../static/images/31.png'>
+              <h3>{% translate 'Casual Attire' %}</h3> 
+            </div>
+            
+          </div>
+          
+        </div>
+        </section>
+        <section id='detailSection'>
+              <div class="current-openings" id="joblistings" style="color: #000;">
+                <h2>{% translate 'Current Openings' %}</h2>
+              </div>
+              <div style='width: 100%;'>
+                <div class="formFilter" >
+                  <div class="mb-3 jobFilter">
+                    <label for="JobTitle">{% translate 'Enter Job Title' %}</label>
+                    <input type="text" class="form-control" id="JobTitle" placeholder="Search By Job Title">
+                  </div>
+                  <div class="mb-3 jobFilter">
+                    <label for="deptDropdown">{% translate 'Select Department' %}</label>
+                    <select class="form-select" id="deptDropdown" placeholder="Select Department"></select>
+                  </div>
+                  <div class="mb-3 jobFilter">
+                    <label for="locDropdown">{% translate 'Select Location' %}</label>
+                    <select class="form-select" id="locDropdown" placeholder="Select Location"></select>
+                  </div>
+                  <div class="mb-3 jobFilter">
+                    <label for="EmpType">{% translate 'Select Employee Type' %}</label>
+                    <select class="form-select" id="EmpType" placeholder="Select Employee Type"></select>
+                  </div>
+                  <button id="tableFilter" class="btn btn-primary"><i class="fa-solid fa-rotate"></i></button>
+                </div>
+              </div>
+              <table id="tableJobs" class="table table-striped table-bordered" style="width:100%;">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">POSITION</th>
+                    <th scope="col">DEPARTMENT</th>
+                    <th scope="col">LOCATION</th>
+                    <th scope="col">EMPLOYEE TYPE</th>
+                    <th scope="col">POSTING DATE</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                
+                </tbody>
+              </table>
+              
+          </div>
+        </section>
+       
+     {% comment %} <span class="scroll-icon3">
+          <span class="scroll-icon__dot3"></span>
+        </span> {% endcomment %}
+  </div>
+
+
+
+<script>
+
+
+  
+document.addEventListener('DOMContentLoaded', function(){
+      
+      
+      
+      var table = $('#tableJobs').DataTable({
+        initComplete: function () {
+             this.api().columns( [ 2 ] ).every(function () {
+                  var column = this;
+                  var select = $('#deptDropdown')
+                      .on('change', function () {
+                          var val = $(this).val();
+                          column.search(val).draw();
+                  });
+
+                  column.data().unique().sort().each(function (d, j) {
+                      select.append('<option value="' + d + '">' + d + '</option>')
+                  });
+              });
+          
+              this.api().columns( [ 3 ] ).every(function () {
+                  var column = this;
+                  var select = $('#locDropdown')
+                      .on('change', function () {
+                          var val = $(this).val();
+                          column.search(val).draw();
+                  });
+
+                  column.data().unique().sort().each(function (d, j) {
+                      select.append('<option value="' + d + '">' + d + '</option>')
+                  });
+              });  
+              
+              this.api().columns( [ 4 ] ).every(function () {
+                  var column = this;
+                  var select = $('#EmpType')
+                      .on('change', function () {
+                          var val = $(this).val();
+                          column.search(val).draw();
+                  });
+
+                  column.data().unique().sort().each(function (d, j) {
+                      select.append('<option value="' + d + '">' + d + '</option>')
+                  });
+              });  
+          },
+
+          "processing": true,   
+          "serverSide": false,        
+          "deferRender": true,     
+          "deferLoading": true,      
+          "iDisplayLength": 5,
+          "paging": true,
+          'responsive':true,
+          'searching': true,
+          'bFilter': true,
+          "lengthChange": false,
+          dom: 'lfrtp',
+          ajax: {
+          url: '../joblist/?format=json',
+          type: 'GET',
+          // dataSrc: 'data',
+          dataSrc: function ( json ) {
+             var lok = $(location).attr('href') ;
+             console.log(json);
+             console.log("nahhh....", lok.split("/")[3])
+             return json;
+        }
+          
+          },
+          columns: [
+              // { "data": null,
+              //   render: function (data, type, row, meta) {
+              //       return meta.row + meta.settings._iDisplayStart + 1;
+              //   }   
+              // },
+              {"data": 'id' },
+              {"data": "position",
+                  "render": function(data, type, row, meta){
+                    var lok = $(location).attr('href').split("/")[3] ;
+                    if(type === 'display'){
+                        data = '<a href="../'+lok+'/jobListing/'+row.id+'">' + data + '</a>';
+                    }
+
+                    return data;
+                }},
+              { "data": 'department' },
+              { "data": 'location' },
+              { "data": 'employeeType' },
+              { "data": 'posting_date' },
+          ],
+          columnDefs: [
+          {"className": "dt-center", "targets": "_all"},
+          {
+            targets: 5,
+            render: DataTable.render.datetime('Do MMM YYYY')
+          }
+            // {  targets: 4,
+            //   render: function (data, type, row, meta) {
+            //       // return '<input type="button" class="Apply" id=s-"' + meta.row + '" value="Apply"/>';
+            //          return '<input type="file" id="real-file" hidden="hidden" /><button type="button" id="custom-button">APPLY</button><span id="custom-text">No file chosen, yet.</span> '
+            //   }
+
+            // }
+            ,{
+                  target: 0,
+                  visible: false
+              }
+          ],
+          
+    });
+
+    $('#tableFilter').on('click', function(e){
+      table.search('').columns().search('').draw();
+    });
+
+    $('#JobTitle').on('change',function(){
+      console.log('Kena deh..!!')
+      table.columns(1).search($(this).val()).draw(); 
+    })
+
+  });
+
+
+  // jQuery('#filter').click(function(e){
+  // dataTable.columns(2).search(jQuery("#2").val()).columns(3).search(jQuery("#3").val()).columns(11).search(jQuery("#11").val()).columns(12).search(jQuery("#12").val()).columns(13).search(jQuery("#13").val()).draw();});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){  
+var realFileBtn = document.getElementById("real-file");
+var customBtn = document.getElementById("custom-button");
+var customTxt = document.getElementById("custom-text");
+
+$(document).on("click" , '#custom-button', function() {
+    console.log('A....')
+    document.getElementById("real-file").click();
+});
+
+$(document).on("change",'#real-file',function() {
+  if (document.getElementById("real-file").value) {
+    document.getElementById("custom-text").innerHTML = document.getElementById("real-file").value.match(
+      /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    )[1];
+  } else {
+    document.getElementById("custom-text").innerHTML = "No file chosen, yet.";
+    // $('#custom-text').css({
+    //   'opacity': '1',
+    //   'transition': 'all 1s'
+
+    // })
+  }
+});
+});
+
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){  
+$('li.nav-item a.nav-link').removeClass('active');
+$('li.nav-item a.nav-link:eq(3)').addClass('active');
+
+
+
+$(".btnJob").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#joblistings").offset().top
+    }, 2000);
+});
+});
+</script>
+
+
+{% endblock %}

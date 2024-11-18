@@ -1,0 +1,285 @@
+{% load static %}
+
+<style>
+
+
+.slideSOW {
+  flex:1;
+  background-color:#13b2f6;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center;
+  height:100%;
+  transition:250ms ease;
+  position:relative;
+  isolation:isolate;
+}
+
+.slideSOW::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:black;
+  opacity:0.7;
+  z-index:-1;
+  transition:inherit;
+}
+
+.slideSOW:hover {
+  cursor:pointer;
+}
+
+.slideSOW:hover::before {
+  opacity:0;
+}
+
+.slideSOW h3 {
+  color: white;
+  line-height: 1.2;
+  position: absolute;
+  bottom: 80%;
+  left: 20%;
+  transition: 350ms ease;
+  font-family: 'league spartan';
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.slideSOW.active h3 {
+  opacity:0;
+  visibility:hidden;
+}
+
+.slideSOW.active {
+  flex:15;
+}
+
+.slideSOW.active::before {
+  opacity:0;
+}
+
+@media screen and (max-width:1024px) {
+  .container {
+    flex-direction:column;
+  }
+  
+  .slideSOW h3 {
+    writing-mode: horizontal-tb;
+    top:50%;
+    bottom:unset;
+    transform:translate(-50%, -50%);
+  }
+}
+
+@media only screen and (max-width : 768px) {
+
+    h2.resp-accordion {
+        display: block;
+        font-size: 0.7rem;
+    }
+
+  .slideSOW h3 {
+    writing-mode: horizontal-tb;
+    top: 50%;
+    bottom: unset;
+    transform: translate(-50%, -50%);
+    font-size: 0.5rem !important;
+    left: 35%;
+  }
+	#SOWContent .container {
+    position: absolute;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    max-width: 1920px;
+	}
+
+    .container {
+        height: 60% !important;
+        display: flex;
+        gap: 0.3rem;
+        position: fixed;
+        max-width: 100%;
+        width: 1920px;
+        margin: 15px auto;
+        left: 0%;
+    }
+
+  .resp-tab-content-active {
+    width: 99%;
+    position: relative;
+    height: 920px;
+    max-height: 60vh;
+}
+.resp-tabs-container {
+    padding: 0px;
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    clear: left;
+    width: 80%;
+}
+
+}
+
+#SOWContent .container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1920px;
+	}
+
+  .slideSOWh4{
+    color: #fff;
+    font-family: 'league spartan';
+    font-weight: 800;
+    margin-top: 15px;
+    text-transform: uppercase;
+    opacity: 0;
+    position: absolute;
+    bottom: 40%;
+  }
+
+  .slideSOWspan {
+    font-family: 'Poppins';
+    color: #f6f6f6;
+    font-weight: 800;
+    text-shadow: 2px 2px #253252;;
+    opacity: 0;
+    position: absolute;
+    bottom: 30%;
+  }
+</style>
+
+
+<div id="SOWContent"  class="container" style="left: 0px; bottom: 20px;" >
+	<div class="slideSOW">
+    <h3>Perencanaan Irigasi</h3>
+    <div> 
+      <h4 class="slideSOWh4">Perencanaan Irigasi ke</h4>
+      <span class="slideSOWspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>
+  </div>
+	<div class="slideSOW"> 
+    <h3>Perhitungan Neraca Ketersediaan Air</h3>
+    <div>
+      <h4 class="slideSOWh4">Perhitungan Neraca Ketersediaan Air</h4>
+      <span class="slideSOWspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>
+  </div>
+	<div class="slideSOW"> 
+    <h3>Rencana Alokasi Air</h3>
+    <div>
+      <h4 class="slideSOWh4">Rencana Alokasi Air</h4>
+      <span class="slideSOWspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>  
+  </div>
+	<div class="slideSOW"> 
+    <h3>Perencanaan PLTA</h3>
+    <div>
+      <h4 class="slideSOWh4">Perencanaan PLTA</h4>
+      <span class="slideSOWspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>  
+  </div>
+  <div class="slideSOW"> 
+    <h3>Perencanaan SPAM</h3>
+    <div>
+      <h4 class="slideSOWh4">Perencanaan SPAM</h4>
+      <span class="slideSOWspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>  
+  </div>
+</div>
+
+
+<script>
+const slides = document.querySelectorAll(".slideSOW");
+
+const images = [
+	"../static/images/Irigasi.jpg", 
+	"../static/images/NERACA.jpg", 
+	"../static/images/Alokasi_Air.jpg",
+	"../static/images/PLTA2.jpg", 
+	"../static/images/SPAM2.jpg", 
+  // "../static/images/DabestCard.jpg", 
+  // "../static/images/DabestCard.jpg", 
+	// "../static/images/DabestCard.jpg" ,
+	// "../static/images/DabestCard.jpg" ,
+	// "../static/images/DabestCard.jpg", 
+	// "../static/images/DabestCard.jpg" 
+]
+
+
+slides.forEach((slide, index) =>{
+  
+  slide.style.backgroundImage = `url(${images[index]})`;
+  
+  slide.addEventListener("click", ()=>{
+    
+    slides.forEach(el => {
+      
+      if(el.classList.contains("active") && el != slide){
+        el.classList.remove("active");  
+      }
+      
+    });
+    
+    
+    if(slide.classList.contains("active")){
+      slide.classList.remove("active");
+    }else {
+      slide.classList.add("active");
+    }
+    
+    
+  });
+  
+});
+
+</script>
+
+<script>
+
+$('.slideSOW').on('click',function(){
+
+  if($(this).hasClass('active')){
+    console.log('A....', $(this).find('span').html())
+    $('.slideSOW > h3').css({
+      'opacity': '0',
+      'writing-mode': 'vertical-rl',
+      'transform': 'rotate(180deg)',
+      'bottom': '10px',
+    });
+    
+    $(this).find('h4').css({
+      'opacity': '1',
+    });
+
+    $(this).find('span').css({
+      'opacity': '1',
+    });
+
+  } else {
+    console.log('B....', $('.slideSOWh4').html())
+    $('.slideSOW > h3').css({
+      'opacity':'1',
+      'writing-mode': 'horizontal-tb',
+      'transform': 'rotate(0deg)',
+      'bottom': '80%',
+
+    });
+    $('.slideSOWh4').css({
+      'opacity': '0',
+    });
+
+    $('.slideSOWspan').css({
+      'opacity': '0',
+    });
+  }
+})
+</script>
+  
+

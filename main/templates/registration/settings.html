@@ -1,0 +1,22 @@
+{% extends 'main/main.html' %}
+{% block title %} Edit Data {% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container pt-4 px-4" style="position: relative ;">
+ 
+    <h1>Informasi data  : {{request.user}}</h1>
+
+    <form method="POST" style="border-color:black ;">
+        {%csrf_token%}
+        {{ form.as_p }}
+        <div class="btn-group" style="float: right ;">
+        <button  type="button" onclick="javascript:history.back()" class="btn btn-primary"> Kembali </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button  type="submit" class="btn btn-primary">Update </button>
+        </di>
+    </form>
+</div>
+
+{% endblock %}

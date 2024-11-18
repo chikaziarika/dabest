@@ -1,0 +1,209 @@
+{% include 'main/main.html' %}
+{% load static %}
+{% include 'main/navbar.html' %}
+
+
+
+
+
+{% block content%} 
+<style>
+
+
+</style>
+
+<main>
+  <ul class='slider'>
+    <li class='item' style="background: url(/static/images/serv1.jpg); background-size: 100% 100%; ">
+      <div class='content'>
+        <h2 class='title'>"Water Supply and Utilization"</h2>
+        <p class='description'> The study also identifies the efficiency, effectiveness, relevance and sustainability of infrastructure utilization in water supply. </p>
+        <div class="buttons" data-bs-toggle="modal" data-bs-target="modal-container">
+          <div id="one" class="button butModal1" name="butModal1">Read More</div>
+        </div>
+      </div>
+    </li>
+    <li class='item' style="background: url(/static/images/serv2.jpg); background-size: 100% 100%;">
+      <div class='content'>
+        <h2 class='title'>"Water Resources Conservation"</h2>
+        <p class='description'> Water conservation is the practice of using water efficiently to reduce unnecessary water usage. 
+          According to Fresh Water Watch, water conservation is important because fresh clean water is a limited resource, as well as a costly one </p>
+        <div class="buttons">
+          <div id="one" class="button">Read More</div>
+        </div>
+      </div>
+    </li>
+    <li class='item' style="background: url(/static/images/serv3.jpg); background-size: 100% 100%;">
+      <div class='content'>
+        <h2 class='title'>"Water Damage Controling"</h2>
+        <p class='description'> Water damage can occur on many levels. From slow minor leaks that cause damage over time to intense flooding that causes substantial damage at once. </p>
+        <div class="buttons">
+          <div id="one" class="button">Read More</div>
+        </div>
+      </div>
+    </li>
+    <li class='item' style="background: url(/static/images/serv4.jpg); background-size: 100% 100%;">
+      <div class='content'>
+        <h2 class='title'>"Flood Control Design"</h2>
+        <p class='description'>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.
+        </p>
+        <div class="buttons">
+          <div id="one" class="button">Read More</div>
+        </div>
+      </div>
+    </li>
+    <li class='item' style="background: url(/static/images/serv5.jpg); background-size: 100% 100%;">
+      <div class='content'>
+        <h2 class='title'>"Hydropower Water Supply"</h2>
+        <p class='description'>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.
+        </p>
+        <div class="buttons">
+          <div id="one" class="button">Read More</div>
+        </div>
+      </div>
+    </li>
+    <li class='item' style="background: url(/static/images/serv6.jpg); background-size: 100% 100%;">
+      <div class='content'>
+        <h2 class='title'>"Water Ballance Analysis"</h2>
+        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+          adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+          praesentium nisi. Id laboriosam ipsam enim. </p>
+        <div class="buttons">
+          <div id="one" class="button">Read More</div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <nav class='nav'>
+    <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+    <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+  </nav>
+</main>
+
+<div id="modal-container">
+  <div class="modal-background">
+    <div class="modal">
+		<button id="modalButton" type="button" class="btn btn-info" style="position: relative;display: block;left: 96%; margin-bottom: 30px;z-index: 30;">Close</button>
+		<div class="accordion" id="accordionExample">
+			<div class="accordion-item">
+			  <h2 class="accordion-header" id="headingOne">
+				<button id="accordKesatu" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					WATER RESOURCES CONSERVATION
+				</button>
+			  </h2>
+			  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+					
+				</div>
+			  </div>
+			</div>
+			<div class="accordion-item">
+			  <h2 class="accordion-header" id="headingTwo">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					WATER SUPPLY AND UTILIZATION
+				</button>
+			  </h2>
+			  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+					
+					
+			  	</div>
+			  </div>
+			</div>
+			<div class="accordion-item">
+			  <h2 class="accordion-header" id="headingThree">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					WATER DAMAGE CONTROLLING
+				</button>
+			  </h2>
+			  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+					
+				</div>
+			  </div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingFour">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+					HARBOR DESIGN
+				  </button>
+				</h2>
+				<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+				  <div class="accordion-body">
+					<strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+				  </div>
+				</div>
+			  </div>
+		  </div>
+      <!-- <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+								<rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+							</svg> -->
+    </div>
+  </div>
+</div>
+
+
+{% include 'main/servicesModal.html' %}
+
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+
+const slider = document.querySelector(".slider");
+
+function activate(e) {
+  const items = document.querySelectorAll(".item");
+  e.target.matches(".next") && slider.append(items[0]);
+  e.target.matches(".prev") && slider.prepend(items[items.length - 1]);
+}
+
+document.addEventListener("click", activate, false);
+
+$('.button').click(function(){
+  var buttonId = $(this).attr('id');
+  $('#modal-container').removeAttr('class').addClass(buttonId);
+  $('body').addClass('modal-active');
+})
+
+$('#modalButton').click(function(){
+  $('#modal-container').addClass('out');
+  $('body').removeClass('modal-active');
+});
+
+
+
+$('#accordKesatu').click(function(){
+	if($(this).hasClass('collapsed')) {
+		$('.photo-gallery').fadeOut(200);
+	} else {
+		$('.photo-gallery').fadeIn(200);
+	}
+})
+
+$("#lightbox-modal").on('hidden.bs.modal', function () {
+    console.log('AA.....')
+	$('.lightbox-content').html('');
+	
+});
+
+
+
+</script>
+
+
+
+      
+{% endblock %}
+{% include 'main/footer.html' %}
+{% include 'main/javascript.html' %}
+
+    
+
+
+

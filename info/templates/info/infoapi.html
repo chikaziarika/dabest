@@ -1,0 +1,37 @@
+{% extends 'main/main.html' %}
+{% include 'main/navbar.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content%} 
+
+<div id="container-news" class="container">
+    <h4>DABEST</h4>
+    <h3>INFO</h3>
+
+    {{ response.articles.[0].source }}
+    <!-- {{ response.author }} -->
+    <!-- {{ response.title }} -->
+   
+    <div class="newsPost">
+        {% for post in posts %}
+        <div class="postList">
+            <img class="newsImg" src="{{ post.image.url }}" alt="newsImg">
+            <h3 class="postTag" style="font-size: 0.50vw;
+            font-family: 'Poppins';
+            font-weight: 800;
+            text-decoration: underline;">{{ post.tags }}</h3>
+            <a href="{% url 'article' post.id%}" class="headTag" style="font-size: 0.75vw;
+            font-family: 'league spartan';
+            font-weight: 800;">{{ post.headline }}</a>
+            <!-- <p>{{ post.textarea }}</p> -->
+            <p>Date: {{ post.createAt }}</p>
+        </div>
+
+    {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

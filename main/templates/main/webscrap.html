@@ -1,0 +1,34 @@
+{% include 'main/main.html' %}
+{% load static %}
+{% include 'main/navbar.html' %}
+{% block content %}
+<div class="container" style="position: relative; top: 10%;">
+
+  {% for title, link, createAt, desc, img in data %}
+  <div class="isiData">
+    <div class='row'> 
+      <div class='col-md-5' style='width: auto;'> 
+        <img src={{img}} class="img-fluid lazyload" width="350px" height="233px">
+      </div>
+      <div class='col-md-7'> 
+        <h3> {{ title }}</h3>
+        <p> {{ createAt}} </p>
+        <span> {{ desc }} </span>
+        <br>
+        <span><a href='{{link}}'>Sumber Berita </a></span>
+        {% comment %} <a href="" title="{{title}}"> {% endcomment %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  
+</div>
+{% endblock %}
+
+{% include 'main/javascript.html' %}
+
+    
+
+
+

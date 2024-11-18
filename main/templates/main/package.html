@@ -1,0 +1,1247 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% load i18n%}
+{% block content %}
+
+
+<style>
+html,body { 
+  
+  overflow: hidden; 
+  }
+
+
+.btn-cyp2 {
+  position: relative;
+  float: right;
+  margin-top: -3em;
+  right: 10em;
+  z-index: 1;
+  background: #004aad !important;
+  color: #fff;
+}
+
+.nav-link {
+  font-size: 1.25em;
+}
+
+.tab-pane {
+  overflow-y: scroll;
+  height: 100%;
+  margin-bottom: 5em;
+}
+
+section {
+  
+  width: 100%;
+  height: 85vh;
+  margin-top: 7.5em;
+  scroll-snap-align: start;
+  position: relative;
+    
+}
+
+.rowHeader {
+  position: sticky;
+  top: 0%;
+}
+
+.Kotak1 {
+  border-color: #000;
+  border-style: solid;
+  border-radius: 14px;
+  width: 90%; 
+  height: 45vh;
+  padding-top:2em;
+}
+
+.Kotak2 {
+  border-color: #000;
+  border-style: solid;
+  border-radius: 14px;
+  margin-top:3em;
+  width: 90%;
+}
+
+.card_spp {
+  height: 50vh;
+  margin: 2em auto;
+}
+
+.btn_card_spp {
+  position: sticky;
+  top: 100%;
+  display: block;
+  width: 50%;
+  font-size: 0.75em;
+  margin: auto;
+  background: transparent;
+  border: 1px solid #fff;
+}
+
+.btn_card_spps4 {
+  position: sticky;
+  top: 100%;
+  display: block;
+  width: 50%;
+  font-size: 0.75em;
+  margin: auto;
+  background: transparent;
+  border: 1px solid #004aad;
+  color:#004aad;
+}
+
+.container {
+    margin: 5em auto;
+    position: relative;
+    padding: 0;   
+    overflow: scroll;
+    height: 85vh;
+    scroll-snap-points-y: repeat(100vh);
+    scroll-snap-type: y mandatory;
+}
+
+
+.tab-content {
+    margin-top: 0.25rem;
+    display: block;
+    font-size: 1rem;
+    max-width: 100%;
+    height: 34em;
+    padding: 0 1rem;
+    transition: all 0.45s ease-in-out;
+  }
+
+
+.style1 {
+  background-color: #13b2f6;
+  color: #fff;
+}
+
+
+.style2 {
+  background-color: #004aad;
+  color: #fff;
+}
+
+.style3 {
+  background-color: #253252;
+  color: #fff;
+}
+
+.style4 {
+  transform: scale(1.1);
+  background-color: #fff;
+  color: #004aad;
+  border: 2px solid #000;
+}
+
+.inputComp {
+  font-size: 0.85vw;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.colKanan {
+      margin-top: 10em;
+      width: 25%;
+}
+
+</style>
+
+<div class="container">
+  <div class="row rowHeader">
+    <div class="col-md-4 mt-3">
+      <h2 class='h2Pack' style='font-family: League Spartan;font-weight: 800;color: #004aad;font-size: 2.25em;width: 12em;text-align: left;padding-left: 0;'>Explore Your Dream Project with Us</h2>
+    </div>
+    <div class="col-md-8 mt-3" style='font-size: 1.75em; padding: 10px;'>
+      Make your water resource planning dreams come true with us. <br> We will deliver the best solutions for your needs.
+    </div>
+  </div>
+
+  <section id='kesatu' >
+  <div class="row rowKesatu" style='margin-top:10em;'>
+    <div class="col-md-9 colKiri" >
+      <nav>
+      <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-tab1-tab" data-bs-toggle="tab" data-bs-target="#nav-tab1" type="button" role="tab" aria-controls="nav-tab1" aria-selected="true">Pemanfaatan Sumber <br> Daya Air</button>
+        <button class="nav-link" id="nav-tab2-tab" data-bs-toggle="tab" data-bs-target="#nav-tab2" type="button" role="tab" aria-controls="nav-tab2" aria-selected="false">Perencanaan <br>Pesisir</button>
+        <button class="nav-link" id="nav-tab3-tab" data-bs-toggle="tab" data-bs-target="#nav-tab3" type="button" role="tab" aria-controls="nav-tab3" aria-selected="false">Pengendalian Daya <br>Rusak Air</button>
+        <button class="nav-link" id="nav-tab4-tab" data-bs-toggle="tab" data-bs-target="#nav-tab4" type="button" role="tab" aria-controls="nav-tab4" aria-selected="false">Konservasi Sumber <br>Daya Air</button>
+      </div>
+    </nav>
+    <div class="tab-content tabIsi" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-tab1" role="tabpanel" aria-labelledby="nav-tab1-tab">
+      <div class="container" style='height:75vh'>
+        <div class="row" hidden>
+          <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+            <div class="col-2 GP">
+            <img class='GP-1' src='../static/images/GambarTest.png' >
+            </div>
+            <div class="col-4 JP">Neraca dan alokasi ketersediaan air</div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+            </div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+            </div>
+            
+          </div>
+          <div id='Detail2' class="col-12 DePe">
+            <div class="row">
+                <div class="col-12">
+                <p>Neraca ketersediaan air adalah perhitungan yang mencakup total jumlah air yang tersedia, konsumsi, dan pembagian, untuk memastikan bahwa semua kebutuhan dapat terpenuhi dengan efisien dan berkelanjutan. Alokasi ketersediaan air merujuk pada proses pembagian sumber daya air yang ada di antara berbagai kebutuhan dan pengguna, seperti pertanian, industri, dan konsumsi domestik. </p>
+                </div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Durasi</div>
+                <div class="col-9">&#177; 4 Bulan</div>
+              </div>
+              <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                <div class="col-3">Rekomendasi Services</div>
+                <div class="col-9">Studio</div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Output</div>
+                <div class="col-9">
+                 <ul style='padding-left: 12.75px;'>
+                  <li>Database ketersediaan air pada DAS kajian </li>
+                  <li>Database pemanfaatan air </li>
+                  <li>Hasil neraca air pada DAS Kajian </li>
+                  <li>Alokasi Air tahunan di DAS tersebut</li>
+                </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+            <div class="col-2 GP">
+            <img class='GP-1' src='../static/images/GambarTest.png' >
+            </div>
+            <div class="col-4 JP">Neraca dan alokasi ketersediaan air</div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+            </div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+            </div>
+            
+          </div>
+          <div id='Detail2' class="col-12 DePe">
+            <div class="row">
+                <div class="col-12">
+                <p>Neraca ketersediaan air adalah perhitungan yang mencakup total jumlah air yang tersedia, konsumsi, dan pembagian, untuk memastikan bahwa semua kebutuhan dapat terpenuhi dengan efisien dan berkelanjutan. Alokasi ketersediaan air merujuk pada proses pembagian sumber daya air yang ada di antara berbagai kebutuhan dan pengguna, seperti pertanian, industri, dan konsumsi domestik. </p>
+                </div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Durasi</div>
+                <div class="col-9">&#177; 4 Bulan</div>
+              </div>
+              <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                <div class="col-3">Rekomendasi Services</div>
+                <div class="col-9">Studio</div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Output</div>
+                <div class="col-9">
+                 <ul style='padding-left: 12.75px;'>
+                  <li>Database ketersediaan air pada DAS kajian </li>
+                  <li>Database pemanfaatan air </li>
+                  <li>Hasil neraca air pada DAS Kajian </li>
+                  <li>Alokasi Air tahunan di DAS tersebut</li>
+                </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+        
+
+        <div class="row">
+          <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+            <div class="col-2 GP">
+            <img class='GP-1' src='../static/images/GambarTest43.avif' >
+            </div>
+            <div class="col-4 JP">Perencanaan air baku</div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+            </div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+            </div>
+            
+          </div>
+          <div id='Detail2' class="col-12 DePe">
+            <div class="row">
+                <div class="col-12">
+                <p>Serangkaian kegiatan yang dilakukan untuk memastikan ketersediaan air dalam jumlah yang cukup dan kualitas yang baik untuk memenuhi kebutuhan masyarakat, industri, dan lingkungan. Kegiatan ini mencakup berbagai aspek, mulai dari identifikasi sumber air, analisis kualitas air, perhitungan kebutuhan air, hingga perancangan sistem pengambilan dan pendistribusian air. </p>
+                </div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Durasi</div>
+                <div class="col-9">&#177; 4 Bulan</div>
+              </div>
+              <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                <div class="col-3">Rekomendasi Services</div>
+                <div class="col-9">All In</div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Output</div>
+                <div class="col-9">
+                 <ul style='padding-left: 12.75px;'>
+                  <li>Analisis Sumber Air</li>
+                  <li>Membuat skema alokasi air</li>
+                  <li>Masterplan air baku</li>
+                  <li>Desain Infrastruktur (Intake  saluran transmisi & distribusi, dan reservoir)</li>
+                </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+            <div class="col-2 GP">
+            <img class='GP-1' src='../static/images/GambarTest44.avif' >
+            </div>
+            <div class="col-4 JP">Perencanaan Irigasi / Industri</div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+            </div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+            </div>
+            
+          </div>
+          <div id='Detail2' class="col-12 DePe">
+            <div class="row">
+                <div class="col-12">
+                <p>Proses perancangan dan pengelolaan sistem penyediaan air untuk memenuhi kebutuhan air pada sektor pertanian dan industri. Proses ini sangat penting untuk memastikan ketersediaan air yang cukup dan berkualitas, sehingga aktivitas produksi pertanian dan industri dapat berjalan dengan optimal.</p>
+                </div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Durasi</div>
+                <div class="col-9">&#177; 2 Bulan</div>
+              </div>
+              <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                <div class="col-3">Rekomendasi Services</div>
+                <div class="col-9">All In</div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Output</div>
+                <div class="col-9">
+                 <ul style='padding-left: 12.75px;'>
+                  <li>Analisis Neraca & alokasi Ketersediaan Air</li>
+                  <li>Desain Infrastruktur</li>
+                  <li>Perancangan sistem pengolahan air limbah</li>
+                </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+            <div class="col-2 GP">
+            <img class='GP-1' src='../static/images/GambarTest45.avif' >
+            </div>
+            <div class="col-4 JP">Penyediaan Air untuk PLTA</div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+            </div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+            </div>
+            
+          </div>
+          <div id='Detail2' class="col-12 DePe">
+            <div class="row">
+                <div class="col-12">
+                <p>Penyediaan air untuk Pembangkit Listrik Tenaga Air (PLTA) merupakan aspek krusial dalam proses produksi energi listrik. Air berperan sebagai penggerak turbin yang menghasilkan energi mekanik, yang kemudian diubah menjadi energi listrik oleh generator.</p>
+                </div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Durasi</div>
+                <div class="col-9">&#177; 8 Bulan</div>
+              </div>
+              <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                <div class="col-3">Rekomendasi Services</div>
+                <div class="col-9">All In</div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Output</div>
+                <div class="col-9">
+                 <ul style='padding-left: 12.75px;'>
+                  <li>Analisa potensi Hidrologis</li>
+                  <li>Perancangan Bendungan</li>
+                  <li>Perancangan sistem pengambilan air</li>
+                  <li>Analisis Hidrolika</li>
+                  <li>Desain bangunan PLTA</li>
+                  <ul>
+                    <li>Laporan Teknis,</li>
+                    <li>Gambar desain,</li>
+                    <li>Spesifikasi Teknis,</li>
+                    <li>BOQ dan RAB,</li>
+                    <li>Analisa finansial (ROI),</li>
+                  </UL>
+                </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+            <div class="col-2 GP">
+            <img class='GP-1' src='../static/images/GambarTest46.avif' >
+            </div>
+            <div class="col-4 JP">Perencanaan Sistem Penyediaan Air Minum (SPAM)</div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+            </div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+            </div>
+            
+          </div>
+          <div id='Detail2' class="col-12 DePe">
+            <div class="row">
+                <div class="col-12">
+                <p>Perencanaan SPAM adalah rangkaian aktivitas untuk merancang dan mengelola sistem yang akan menyediakan air minum kepada masyarakat. Ini mencakup identifikasi sumber air, perancangan infrastruktur, serta pengelolaan dan distribusi air dengan tujuan utama memenuhi kebutuhan air minum yang berkualitas dan berkelanjutan.</p>
+                </div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Durasi</div>
+                <div class="col-9">&#177; 4 Bulan</div>
+              </div>
+              <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                <div class="col-3">Rekomendasi Services</div>
+                <div class="col-9">All In</div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Output</div>
+                <div class="col-9">
+                 <ul style='padding-left: 12.75px;'>
+                  <li>Perhitungan neraca ketersediaan air  </li>
+                  <li>Analisa kualitas air </li>
+                  <li>Hasil analisa survey lapangan </li>
+                  <li>Desain infrastruktur (intake, saluran transmisi, WTP, dan saluran distribusi) </li>
+                  <li>Analisa finansial</li>
+                </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      </div>
+      <div class="tab-pane fade" id="nav-tab2" role="tabpanel" aria-labelledby="nav-tab2-tab">
+        <div class="container">
+          <div class="row">
+          <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+            <div class="col-2 GP">
+            <img class='GP-1' src='../static/images/GambarTest47.avif' >
+            </div>
+            <div class="col-4 JP">Perencanaan Alur Pelayaran</div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+            </div>
+            <div class="col-3 d-flex justify-content-center">
+              <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+            </div>
+            
+          </div>
+          <div id='Detail2' class="col-12 DePe">
+            <div class="row">
+                <div class="col-12">
+                <p>Proses perancangan dan pengembangan jalur air yang aman dan efisien untuk lalu lintas kapal. Alur pelayaran ini dapat berupa sungai, kanal, atau saluran buatan lainnya yang menghubungkan berbagai wilayah, baik untuk tujuan transportasi barang maupun penumpang.</p>
+                </div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Durasi</div>
+                <div class="col-9">&#177; 2 Bulan</div>
+              </div>
+              <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                <div class="col-3">Rekomendasi Services</div>
+                <div class="col-9">All In</div>
+              </div>
+              <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                <div class="col-3">Output</div>
+                <div class="col-9">
+                 <ul style='padding-left: 12.75px;'>
+                  <li>Layout alur pelayaran </li>
+                  <li>Desain pengerukan alur </li>
+                  <li>Desain kolam putar </li>
+                  <li>Desain navigasi alur </li>
+                </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="row">
+            <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+              <div class="col-2 GP">
+              <img class='GP-1' src='../static/images/GambarTest48.avif' >
+              </div>
+              <div class="col-4 JP">Desain Pelindung Pantai</div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+              </div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+              </div>
+              
+            </div>
+            <div id='Detail2' class="col-12 DePe">
+              <div class="row">
+                  <div class="col-12">
+                  <p>Proses perencanaan dan perancangan struktur fisik yang bertujuan untuk melindungi garis pantai dari proses abrasi atau pengikisan oleh gelombang laut, arus, dan angin. Abrasi dapat menyebabkan kerusakan lingkungan pesisir, mengancam infrastruktur pantai.</p>
+                  </div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Durasi</div>
+                  <div class="col-9">&#177; 4 Bulan</div>
+                </div>
+                <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                  <div class="col-3">Rekomendasi Services</div>
+                  <div class="col-9">All In</div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Output</div>
+                  <div class="col-9">
+                  <ul style='padding-left: 12.75px;'>
+                    <li>Analisa abrasi dan akresi </li>
+                    <li>Desain pelindung pantai </li>
+                    <li>RAB & BOQ </li>
+                  </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          <div class="row">
+            <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+              <div class="col-2 GP">
+              <img class='GP-1' src='../static/images/GambarTest49.avif' >
+              </div>
+              <div class="col-4 JP">Desain Dermaga</div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+              </div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+              </div>
+              
+            </div>
+            <div id='Detail2' class="col-12 DePe">
+              <div class="row">
+                  <div class="col-12">
+                  <p>Proses perencanaan dan perancangan struktur bangunan yang menjorok ke dalam badan air, baik itu laut, sungai, maupun danau. Dermaga berfungsi sebagai tempat sandar kapal, bongkar muat barang, dan berbagai aktivitas maritim lainnya.</p>
+                  </div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Durasi</div>
+                  <div class="col-9">&#177; 5 Bulan</div>
+                </div>
+                <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                  <div class="col-3">Rekomendasi Services</div>
+                  <div class="col-9">All In</div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Output</div>
+                  <div class="col-9">
+                  <ul style='padding-left: 12.75px;'>
+                    <li>Desain alur pelayaran </li>
+                    <li>Desain pelindung Pantai </li>
+                    <li>DLKr & DLKp </li>
+                    <li>Desain Jetty </li>
+                    <li>Desain Dermaga  </li>
+                    <li>RAB & BOQ </li>
+                  </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+      <div class="tab-pane fade" id="nav-tab3" role="tabpanel" aria-labelledby="nav-tab3-tab">
+        <div class="container">
+        <div class="row">
+            <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+              <div class="col-2 GP">
+              <img class='GP-1' src='../static/images/GambarTest50.avif' >
+              </div>
+              <div class="col-4 JP">Perencanaan Pengendali Banjir</div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+              </div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+              </div>
+              
+            </div>
+            <div id='Detail2' class="col-12 DePe">
+              <div class="row">
+                  <div class="col-12">
+                  <p>Serangkaian kegiatan yang dilakukan untuk mengurangi risiko dan dampak bencana banjir. Kegiatan ini melibatkan analisis kondisi hidrologi dan hidrolika, perancangan berbagai struktur pengendali banjir, serta pengembangan strategi mitigasi lainnya.</p>
+                  </div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Durasi</div>
+                  <div class="col-9">&#177; 2 Bulan</div>
+                </div>
+                <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                  <div class="col-3">Rekomendasi Services</div>
+                  <div class="col-9">All In</div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Output</div>
+                  <div class="col-9">
+                  <ul style='padding-left: 12.75px;'>
+                    <li>Layout alur pelayaran</li>
+                    <li>Desain pengerukan alur</li>
+                    <li>Desain kolam putar</li>
+                    <li>Desain navigasi alur</li>
+                  </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+
+          <div class="row">
+            <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+              <div class="col-2 GP">
+              <img class='GP-1' src='../static/images/GambarTest51.avif' >
+              </div>
+              <div class="col-4 JP">Perencanaan sungai</div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+              </div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+              </div>
+              
+            </div>
+            <div id='Detail2' class="col-12 DePe">
+              <div class="row">
+                  <div class="col-12">
+                  <p>Proses perancangan dan pengelolaan tata guna sungai secara komprehensif. Tujuannya adalah untuk mengoptimalkan manfaat sungai bagi masyarakat, sekaligus menjaga kelestarian ekosistem sungai.</p>
+                  </div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Durasi</div>
+                  <div class="col-9">&#177; 4 Bulan</div>
+                </div>
+                <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                  <div class="col-3">Rekomendasi Services</div>
+                  <div class="col-9">All In</div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Output</div>
+                  <div class="col-9">
+                  <ul style='padding-left: 12.75px;'>
+                    <li>Morfologi sungai</li>
+                    <li>Analisa banjir</li>
+                    <li>Analisa Sedimentasi</li>
+                    <li>Rekomendasi Desain Sungai</li>
+                    <li>RAB & BOQ</li>
+                  </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <div class="row">
+            <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+              <div class="col-2 GP">
+              <img class='GP-1' src='../static/images/GambarTest52.avif' >
+              </div>
+              <div class="col-4 JP">Settling pond</div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+              </div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+              </div>
+              
+            </div>
+            <div id='Detail2' class="col-12 DePe">
+              <div class="row">
+                  <div class="col-12">
+                  <p>Settling pond atau kolam pengendap, adalah sebuah kolam buatan yang dirancang untuk mengendapkan partikel padat yang tersuspensi dalam air. Kolam ini memiliki peran penting dalam proses pengolahan air, baik untuk keperluan industri, domestik, maupun lingkungan.</p>
+                  </div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Durasi</div>
+                  <div class="col-9">&#177; 6 Bulan</div>
+                </div>
+                <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                  <div class="col-3">Rekomendasi Services</div>
+                  <div class="col-9">All In</div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Output</div>
+                  <div class="col-9">
+                  <ul style='padding-left: 12.75px;'>
+                    <li>Pembagian daerah tangkapan air</li>
+                    <li>Desain Settling Pond</li>
+                    <li>Desain drainase</li>
+                    <li>RAB & BOQ</li>
+                  </ul>
+                  </div>
+                </div>
+              </div>
+           </div>
+          </div>
+      </div>
+      <div class="tab-pane fade" id="nav-tab4" role="tabpanel" aria-labelledby="nav-tab4-tab">
+      <div class='container'>
+        <div class="row">
+            <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+              <div class="col-2 GP">
+              <img class='GP-1' src='../static/images/GambarTest53.avif' >
+              </div>
+              <div class="col-4 JP">Perencanaan Penanaman Pohon</div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+              </div>
+              <div class="col-3 d-flex justify-content-center">
+                <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+              </div>
+              
+            </div>
+            <div id='Detail2' class="col-12 DePe">
+              <div class="row">
+                  <div class="col-12">
+                  <p>Perencanaan penanaman pohon adalah proses yang melibatkan pemilihan jenis pohon, lokasi penanaman, serta strategi pengelolaan yang tepat untuk mencapai tujuan tertentu, seperti perbaikan kualitas lingkungan, pengendalian erosi, atau peningkatan estetika suatu area.</p>
+                  </div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Durasi</div>
+                  <div class="col-9">&#177; 3 Bulan</div>
+                </div>
+                <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                  <div class="col-3">Rekomendasi Services</div>
+                  <div class="col-9">All In</div>
+                </div>
+                <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                  <div class="col-3">Output</div>
+                  <div class="col-9">
+                  <ul style='padding-left: 12.75px;'>
+                    <li>Penentuan Zonasi </li>
+                    <li>Analisa ekologi </li>
+                    <li>Pemilihan Jenis Pohon </li>
+                    <li>Perancangan Tata letak </li>
+                    <li>Penyusunan Laporan </li>
+                    <li>Gambar desain </li>
+                    <li>BOQ & RAB </li>
+                  </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+                <div class="col-2 GP">
+                <img class='GP-1' src='../static/images/GambarTest54.avif' >
+                </div>
+                <div class="col-4 JP">perencanaan embung</div>
+                <div class="col-3 d-flex justify-content-center">
+                  <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+                </div>
+                <div class="col-3 d-flex justify-content-center">
+                  <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+                </div>
+                
+              </div>
+              <div id='Detail2' class="col-12 DePe">
+                <div class="row">
+                    <div class="col-12">
+                    <p>Settling pond atau kolam pengendap, adalah sebuah kolam buatan yang dirancang untuk mengendapkan partikel padat yang tersuspensi dalam air. Kolam ini memiliki peran penting dalam proses pengolahan air, baik untuk keperluan industri, domestik, maupun lingkungan.</p>
+                    </div>
+                  </div>
+                  <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                    <div class="col-3">Durasi</div>
+                    <div class="col-9">&#177; 4 Bulan</div>
+                  </div>
+                  <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                    <div class="col-3">Rekomendasi Services</div>
+                    <div class="col-9">All In</div>
+                  </div>
+                  <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                    <div class="col-3">Output</div>
+                    <div class="col-9">
+                    <ul style='padding-left: 12.75px;'>
+                      <li>Penentuan Lokasi embung</li>
+                      <li>Perhitungan Neraca Air</li>
+                      <li>Desain Embung</li>
+                      <li>Gambar Desain</li>
+                      <li>BOQ & RAB</li>
+                    </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+            
+              <div class="row">
+                <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+                  <div class="col-2 GP">
+                  <img class='GP-1' src='../static/images/GambarTest55.avif' >
+                  </div>
+                  <div class="col-4 JP">Perencanaan Bendungan</div>
+                  <div class="col-3 d-flex justify-content-center">
+                    <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+                  </div>
+                  <div class="col-3 d-flex justify-content-center">
+                    <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+                  </div>
+                  
+                </div>
+                <div id='Detail2' class="col-12 DePe">
+                  <div class="row">
+                      <div class="col-12">
+                      <p>Proses yang kompleks dan membutuhkan keahlian khusus. Ini melibatkan berbagai tahapan, mulai dari studi kelayakan hingga konstruksi, dengan tujuan utama untuk membangun struktur yang mampu menampung air dalam jumlah besar untuk berbagai keperluan, seperti: Irigasi, Pembangkit listrik tenaga air (PLTA), Pengendalian banjir, Penyediaan air bersih ataupun Rekreasi dan pariwisata.</p>
+                      </div>
+                    </div>
+                    <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                      <div class="col-3">Durasi</div>
+                      <div class="col-9">&#177; 4 Bulan</div>
+                    </div>
+                    <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                      <div class="col-3">Rekomendasi Services</div>
+                      <div class="col-9">All In</div>
+                    </div>
+                    <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                      <div class="col-3">Output</div>
+                      <div class="col-9">
+                      <ul style='padding-left: 12.75px;'>
+                        <li>Penentuan Lokasi Bendungan</li>
+                        <li>Perhitungan Neraca Air</li>
+                        <li>Desain Bendungan</li>
+                        <li>Analisis Dampak Lingkungan (AMDAL)</li>
+                        <li>Analisis Geoteknik</li>
+                        <li>Gambar Desain</li>
+                        <li>BOQ & RAB</li>
+                      </ul>
+                    </div>
+                  </div>
+               </div>
+
+              </div>
+        
+              <div class="row">
+                <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+                  <div class="col-2 GP">
+                  <img class='GP-1' src='../static/images/GambarTest56.avif' >
+                  </div>
+                  <div class="col-4 JP">Perencanaan Sumur Resapan</div>
+                  <div class="col-3 d-flex justify-content-center">
+                    <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+                  </div>
+                  <div class="col-3 d-flex justify-content-center">
+                    <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+                  </div>
+                  
+                </div>
+                <div id='Detail2' class="col-12 DePe">
+                  <div class="row">
+                      <div class="col-12">
+                      <p>Proses perancangan dan pembangunan struktur sederhana untuk menyerap air hujan ke dalam tanah. Tujuan utama dari sumur resapan adalah untuk mengurangi limpasan permukaan, meningkatkan infiltrasi air ke dalam tanah, dan pada akhirnya membantu mengatasi masalah banjir, kekeringan, dan penurunan muka air tanah..</p>
+                      </div>
+                    </div>
+                    <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                      <div class="col-3">Durasi</div>
+                      <div class="col-9">&#177; 4 Bulan</div>
+                    </div>
+                    <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                      <div class="col-3">Rekomendasi Services</div>
+                      <div class="col-9">All In</div>
+                    </div>
+                    <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                      <div class="col-3">Output</div>
+                      <div class="col-9">
+                      <ul style='padding-left: 12.75px;'>
+                        <li>Penentuan Lokasi Sumur Resapan</li>
+                        <li>Desain Infrastruktur</li>
+                        <li>Perancangan sistem drainase</li>
+                        <li>Penyusunan Laporan</li>
+                        <li>Gambar Desain</li>
+                        <li>BOQ & RAB</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+                  <div class="col-2 GP">
+                  <img class='GP-1' src='../static/images/GambarTest57.avif' >
+                  </div>
+                  <div class="col-4 JP">Pemanenan Air Hujan </div>
+                  <div class="col-3 d-flex justify-content-center">
+                    <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+                  </div>
+                  <div class="col-3 d-flex justify-content-center">
+                    <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+                  </div>
+                  
+                </div>
+                <div id='Detail2' class="col-12 DePe">
+                  <div class="row">
+                      <div class="col-12">
+                      <p>Pemanenan air hujan (rainwater harvesting) adalah proses pengumpulan, penyimpanan, dan pemanfaatan air hujan untuk berbagai keperluan. Ini merupakan salah satu solusi yang efektif untuk mengatasi masalah ketersediaan air bersih, terutama di daerah dengan musim kemarau yang panjang.</p>
+                      </div>
+                    </div>
+                    <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                      <div class="col-3">Durasi</div>
+                      <div class="col-9">&#177; 3 Bulan</div>
+                    </div>
+                    <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                      <div class="col-3">Rekomendasi Services</div>
+                      <div class="col-9">All In</div>
+                    </div>
+                    <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                      <div class="col-3">Output</div>
+                      <div class="col-9">
+                      <ul style='padding-left: 12.75px;'>
+                        <li>Analisis Curah Hujan</li>
+                        <li>Perancangan sistem pemanenan</li>
+                        <li>Perancangan sistem distribusi</li>
+                        <li>Penyusunan Laporan</li>
+                        <li>Gambar Desain</li>
+                        <li>BOQ & RAB</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-12 judulAtas d-flex justify-content-center mt-3">
+                  <div class="col-2 GP">
+                  <img class='GP-1' src='../static/images/GambarTest58.avif' >
+                  </div>
+                  <div class="col-4 JP">Perencanaan Trashboom</div>
+                  <div class="col-3 d-flex justify-content-center">
+                    <a href="#" class="btn btn-primary btn-PYP">Create Your Project</a>
+                  </div>
+                  <div class="col-3 d-flex justify-content-center">
+                    <a href="#Detail2" class="btn btn-primary btn-SD2">See Detail</a>
+                  </div>
+                  
+                </div>
+                <div id='Detail2' class="col-12 DePe">
+                  <div class="row">
+                      <div class="col-12">
+                      <p>Trashboom adalah struktur mengambang yang dirancang untuk menyaring dan menampung sampah yang terbawa arus air, terutama di sungai, danau, atau muara. Perencanaan trashboom merupakan langkah penting dalam upaya mengurangi pencemaran lingkungan akibat sampah air.</p>
+                      </div>
+                    </div>
+                    <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                      <div class="col-3">Durasi</div>
+                      <div class="col-9">&#177; 4 Bulan</div>
+                    </div>
+                    <div class="row" style='background: #fff;margin-left: 0em;margin-right: 0em;'> 
+                      <div class="col-3">Rekomendasi Services</div>
+                      <div class="col-9">All In</div>
+                    </div>
+                    <div class="row" style='background: #f5f5ff;margin-left: 0em;margin-right: 0em;'>
+                      <div class="col-3">Output</div>
+                      <div class="col-9">
+                      <ul style='padding-left: 12.75px;'>
+                        <li>Penentuan Lokasi</li>
+                        <li>Perancangan dimensi dan Struktur trashboom</li>
+                        <li>Perancangan sistem pengumpulan sampah</li>
+                        <li>Gambar Desain</li>
+                        <li>BOQ & RAB</l
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+
+          
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-md-offset-3 colKanan" >
+      <div class='row justify-content-center rowKanan1' >
+        <div class='Kotak1'>
+          <h2 class='H2Judul'> choose your package </h2>
+          <select class="form-select selectSize ProjestList" aria-label="Default select example">
+              <option selected value='0' >Packages</option>
+              <option  value='Pemanfaatan Sumber Daya Air'>Pemanfaatan Sumber Daya Air</option>
+              <option  value='Perencanaan Pesisir'>Perencanaan pesisir</option>
+              <option  value='Pengendalian Daya Rusak Air'>Pengendalian Daya Rusak Air</option>
+              <option  value='Konservasi Sumber Daya Air'>Konservasi Sumber Daya Air</option>
+            </select>
+          <select class="form-select selectSize" aria-label="Default select example">
+            <option selected>Your Project</option>
+            <option class ='PSDA'>Neraca dan alokasi ketersediaan air</option>
+            <option class ='PSDA'>Perencanaan air baku</option>
+            <option class ='PSDA'>Perencanaan Irigasi / Industri</option>
+            <option class ='PSDA'>Penyediaan Air untuk PLTA</option>
+            <option class ='PSDA'>Perencanaan Sistem Penyediaan Air Minum (SPAM)</option>
+            <option class='PP'>Perencanaan Alur Pelayaran</option>
+            <option class='PP'>Desain Pelindung Pantai</option>
+            <option class='PP'>Desain Dermaga</option>
+            <option class='PDRA'>Perencanaan Pengendali Banjir</option>
+            <option class='PDRA'>Perencanaan sungai</option>
+            <option class='PDRA'>Settling pond</option>
+            <option class='KSDA'>Perencanaan Penanaman Pohon</option>
+            <option class='KSDA'>perencanaan embung</option>
+            <option class='KSDA'>Perencanaan Bendungan</option>
+            <option class='KSDA'>Perencanaan Sumur Resapan</option>
+            <option class='KSDA'>Pemanenan Air Hujan</option>
+            <option class='KSDA'>Perencanaan Trashboom</option>
+          </select>
+          <select class="form-select selectSize" aria-label="Default select example">
+            <option selected>Services Package</option>
+              <option >Administrasi Package</option>
+              <option >Survey Package</option>
+              <option >Studio Package</option>
+              <option >All in Package</option>
+          </select>
+          <input type="text" class="inputComp CompanyInput" placeholder='Your Company'>
+            <input type="email" class="inputComp EmailInput" placeholder="Email Address">
+          <button type="button" class="btn btn-EN " >Book Now</button>
+          <p class='CU'>No suitable projects found? <a href='#'> Contact Us </a></p>
+          {% comment %} <button type="button" class="btn btn-SM">See More</button> {% endcomment %}
+        </div>
+      </div>
+      {% comment %} <div class='row justify-content-center rowKanan2'>
+        <div class='Kotak2'>
+              <h2 class='H2Judul'> Need help for your project? </h2>
+              <button type="button" class="btn btn-SM">Contact US</button>
+            </div>
+        </div>
+      </div> {% endcomment %}
+  </div>
+  </section>
+
+  <section id='Kedua'>
+  <div class="row" style='margin-top:8em;'>
+    <div class="col-12 mt-3">
+      <h2 style='font-family: League Spartan;font-weight: 800;color: #004aad;font-size: 2.25em;text-align: center;border: 2px solid;padding: 10px;border-radius: 10px;'>Services Packages & Pricing</h2>
+      </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <div class="card card_spp style1">
+                <div class="card-body">
+                  <h5 class="card-title tittlee">Administrasi Package</h5>
+                  <p class="card-text tittlep">*Start From.</p>
+                  <h3 class='tittleh3' >Rp. 5.000.000</h3>
+                  <hr>
+                  <span class='Feat'>Features</span>
+                  <ul class='ulBul' style='list-style: none; line-height: 25px;'>
+                    <li class='liPackage'>Penyusunan KAK</li>
+                    <li class='liPackage'>Penyediaan Tenaga Ahli</li>
+                    <li class='liPackage'>Penyediaan Dokumen Usulan Teknis & Biaya</li>
+                    <li class='liPackage'>Invoice & Berita Acara</li>
+                  </ul>
+                  <a href="#" class="btn btn-primary btn_card_spp">Book Now</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-sm-3">
+              <div class="card card_spp style2">
+                <div class="card-body">
+                  <h5 class="card-title tittlee">Survey Package</h5>
+                  <p class="card-text tittlep">*Start From.</p>
+                  <h3 class='tittleh3' >Rp. 50.000.000</h3>
+                  <hr>
+                  <span class='Feat'>Features</span>
+                  <ul class='ulBul' style='list-style: none; line-height: 25px;'>
+                    <li class='liPackage'>Penyusunan KAK & Tenaga Ahli</li>
+                    <li class='liPackage'>Survey Pendahuluan</li>
+                    <li class='liPackage'>Survey Lapangan (Topografi/Geoteknik/ Hidrometri/Ekologi/Sosioekonomi)</li>
+                  </ul>
+                  <a href="#" class="btn btn-primary btn_card_spp">Book Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card card_spp style3">
+                <div class="card-body">
+                  <h5 class="card-title tittlee">Studio Package</h5>
+                  <p class="card-text tittlep">*Start From.</p>
+                  <h3 class='tittleh3' >Rp. 100.000.000</h3>
+                  <hr>
+                  <span class='Feat'>Features</span>
+                  <ul class='ulBul' style='list-style: none; line-height: 25px;'>
+                    <li class='liPackage'>Penyusunan KAK & Tenaga Ahli</li>
+                    <li class='liPackage'>Survey Pendahuluan</li>
+                    <li class='liPackage'>Analisa Data Survey & Teknik</li>
+                    <li class='liPackage'>Analisa Finansial, RAB & BOQ</li>
+                    <li class='liPackage'>Detail Design & Report Analysis</li>
+                  </ul>
+                  <a href="#" class="btn btn-primary btn_card_spp">Book Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card card_spp style4">
+                <div class="card-body">
+                  <img class='BestChoice' src='../static/images/BestChoice.png'>
+                  <h5 class="card-title tittlees4">All in Package</h5>
+                  <p class="card-text tittleps4">*Start From.</p>
+                  <h3 class='tittleh3s4' >Rp. 150.000.000</h3>
+                  <hr>
+                  <span class='Feats4'>Features</span>
+                  <ul class='ulBul' style='list-style: none; line-height: 25px;'>
+                    <li class='liPackages4'>Administrasi Package</li>
+                    <li class='liPackages4'>Survey Pendahuluan & Lapangan</li>
+                    <li class='liPackages4'>Analisa Data Survey & Teknik</li>
+                    <li class='liPackages4'>Analisa Finansial, RAB & BOQ</li>
+                    <li class='liPackages4'>Detail Design & Report Analysis</li>
+                  </ul>
+                  <a href="#" class="btn btn-primary btn_card_spps4">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>  
+    </div>
+  </div>
+  </section>
+</div>
+
+
+ <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    $('li.nav-item a.nav-link').removeClass('active');
+    $('li.nav-item a.nav-link:eq(1)').addClass('active');
+
+    console.log('ehm..test AH')
+
+    var coll = document.getElementsByClassName("btn-SD2");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("DePeactive");
+        var content = this.parentElement.parentElement.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.style.cssText = `
+          max-height: 50em;
+          line-height: normal;
+          font-size: 1.5em;
+          margin-top: 1em;
+          padding-left: 2em;
+          padding-right: 2em;
+          scroll-behavior: smooth;`;
+          
+        } 
+      });
+    }
+})
+;
+
+</script> 
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+
+if(window.location.hash == '#KSDA'){
+  $('button.nav-link:nth-child(4)').click();
+} else if(window.location.hash == '#PDRA'){
+  $('button.nav-link:nth-child(3)').click();
+} else if(window.location.hash == '#PP'){
+  $('button.nav-link:nth-child(2)').click();
+} else if(window.location.hash == '#PSDA'){
+  $('button.nav-link:nth-child(1)').click();
+} 
+
+
+
+
+$('.ProjestList').on('change',  function (e){
+    e.preventDefault();
+    var optionSelected = $(this).val()
+    //console.log('Nih....', optionSelected)
+
+    if ( optionSelected == 'Pemanfaatan Sumber Daya Air') {
+          //console.log('A.....')
+          $('button.nav-link:nth-child(1)').click();
+          $('.PP, .PDRA, .KSDA').hide();
+          $('.PSDA').show();
+          window.location.href = '../package#PSDA';
+        } else if ( optionSelected == 'Perencanaan Pesisir') {
+          //console.log('B.....')
+          $('button.nav-link:nth-child(2)').click();
+          $('.PSDA, .PDRA, .KSDA').hide();
+          $('.PP').show();
+          window.location.href = '../package#PP';
+        } else if ( optionSelected == 'Pengendalian Daya Rusak Air') {
+          //console.log('C.....')
+          $('button.nav-link:nth-child(3)').click();
+          $('.box:nth-child(3)').click();
+          $('.PP, .PSDA, .KSDA').hide();
+          $('.PDRA').show();
+          window.location.href = '../package#PDRA';
+        } else {
+          //console.log('D.....')
+          $('button.nav-link:nth-child(4)').click();
+          $('.PP, .PDRA, .PSDA').hide();
+          $('.KSDA').show();
+          window.location.href = '../package#KSDA';
+        }
+
+})
+
+
+})
+
+</script>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+  $('.btn-EN').attr('disabled', 'disabled');
+
+  $('.Kotak1 input').on('keyup', function() {
+    let empty = false;
+
+    $('.Kotak1 input').each(function() {
+      empty = $(this).val().length == 0;
+    });
+
+    if (empty)
+      $('.btn-EN').attr('disabled', 'disabled');
+      
+    else
+      $('.btn-EN').attr('disabled', false);
+      
+  });
+  
+})
+
+</script>
+
+
+{% endblock %}

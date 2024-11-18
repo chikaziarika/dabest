@@ -1,0 +1,196 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% load i18n %}
+{% block content%} 
+
+<style>
+#cont-Serv {
+    position: relative;
+    top: 2.5rem;
+}    
+
+.isi {
+    height: 350px;
+    padding: 10px;
+}
+
+#btnOk {
+    position: relative;
+    bottom: 0;
+    float: right;
+    right: 10px;
+}
+
+.isiP {
+    height: 225px;
+    font-weight: 800;
+    font-family: 'Poppins';
+    color: #000;
+}
+
+.h2-s1 {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 600;
+    font-size: 2em;
+    text-align: center;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+                                                
+}
+
+.infoH1 {
+    color: #000;
+    justify-items: center;
+    text-align: center;
+    margin: auto;
+    font-size: 1.5em;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+}
+
+.infoH1-1 {
+    color: #FFF;
+    justify-items: center;
+    text-align: center;
+    margin: auto;
+    font-size: 3em;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+}
+
+
+.headP {
+    color: #000;
+    font-size: 1rem;
+    text-align: justify;
+    margin-right: 10%;
+}
+
+.headP-1 {
+    color: #FFF;
+    font-size: 1rem;
+    text-align: center;
+    margin-right: 10%;
+}
+</style>
+
+<div id="cont-Serv" class="container">
+    
+    <div class="col" style="border-bottom: 1rem solid; padding: 10px;">
+        <div class="row mt-5 mb-5" style="background: linear-gradient(0deg, rgba(1, 74, 173, 0.3), rgb(1 12 26 / 74%)), url(../static/images/BackServ1.jpg);height: 25dvh;background-position: center center;background-size: cover;background-repeat: no-repeat;">
+            <h2 class="infoH1-1" >{% translate 'Our Business is Trying to Solve' %}</h2>
+            <p class="headP-1">
+                {% translate 'Our company is striving to solve water resource-related issues through the development of innovative solutions that promote efficient water management, improve access to clean water, and contribute to environmental conservation.' %}
+            </p>
+        </div>
+        <div class="row mt-5 mb-5 p-3">
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" >
+                <div class="isi"> 
+                    <h2 class="h2-s1"> {% translate 'PEMANFAATAN SUMBER DAYA AIR' %}</h2>
+                    <p class="isiP">{% translate 'Pemanfaatan air yang tidak optimal tidak hanya menjadi penghambat bagi produktivitas manusia, tetapi juga membawa dampak negatif yang signifikan terhadap ekonomi dan keberlanjutan lingkungan. Dengan menghadapi dan menyelesaikan tantangan-tantangan ini, kami memiliki berbagai solusi untuk meningkatkan keberlanjutan pemanfaatan air dan memastikan akses air yang memadai bagi semua pihak.' %}</p>
+                    <a class="btn-donate" onclick="openMyModal21()" style="float: right;position: relative;top: 10px;">{% translate 'Our Solution' %}</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" >
+                <div class="isi" > 
+                    <h2 class="h2-s1">{% translate 'PENGENDALIAN DAYA RUSAK AIR'%}</h2>
+                    <p class="isiP">{% translate 'Pengendalian daya rusak air adalah upaya untuk mencegah, mengurangi, atau mengatasi kerusakan yang disebabkan oleh air pada lingkungan, infrastruktur, dan kehidupan manusia. Langkah-langkah pengendalian ini melibatkan berbagai strategi teknis, manajerial, dan kebijakan untuk mengelola air secara efektif dan berkelanjutan.'%}</p>
+                    <a class="btn-donate" onclick="openMyModal22()" style="float: right;position: relative;top: 10px;">{% translate 'Our Solution' %}</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" >
+                <div class="isi"> 
+                    <h2 class="h2-s1">{% translate 'KONSERVASI SUMBER DAYA AIR' %}</h2>
+                    <p class="isiP">{% translate 'Konservasi sumber daya air adalah upaya untuk melindungi, mengelola, dan memanfaatkan sumber daya air secara bijaksana dan berkelanjutan guna memastikan ketersediaannya bagi generasi sekarang dan masa depan. Konservasi ini mencakup berbagai strategi dan tindakan yang bertujuan mengurangi pemborosan, meningkatkan efisiensi penggunaan air, dan menjaga kualitas air.' %}</p>
+                    <a class="btn-donate" onclick="openMyModal23()" style="float: right;position: relative;top: 10px;">{% translate 'Our Solution' %}</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" >
+                <div class="isi"> 
+                    <h2 class="h2-s1">{% translate 'PERENCANAAN PELABUHAN' %}</h2>
+                    <p class="isiP">{% translate 'Desain Jalur pelabuhan melibatkan perencanaan dan pembangunan fasilitas yang memungkinkan kapal untuk berlabuh, memuat, dan membongkar barang serta penumpang dengan aman dan efisien. Proses desain jalur pelabuhan mencakup berbagai aspek teknis dan operasional untuk memastikan kelancaran operasional pelabuhan serta keselamatan kapal dan pekerja. '%}</p>
+                    <a class="btn-donate" onclick="openMyModal24()" style="float: right;position: relative;top: 10px;">{% translate 'Our Solution' %}</a>
+                </div>
+            </div>
+            <!-- <div class="col-md-3 col-md-offset-2 mb-3 mt-3" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../static/images/DabestCard.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2>DAYA RUSAK AIR</h2>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../static/images/DabestCard.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2>KONSERVASI</h2>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../static/images/DabestCard.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2>JALUR PELAYARAN</h2>
+            </div> -->
+            
+        </div>
+    </div>
+    <div class="col" style="height: 85dvh;">
+        <div class="row mt-5 mb-5" style="background: linear-gradient(0deg, rgba(1, 74, 173, 0.3), rgb(1 12 26 / 74%)), url(../static/images/BackServ2.jpg);height: 25dvh;background-position: center center;background-size: cover;background-repeat: no-repeat;">
+            <h2 class="infoH1-1">{% translate 'Level Of Services' %}</h2>
+            <p class="headP-1">
+                {% translate 'To enhance our level of services, our aim is to deliver optimal solutions in water resource management, ensuring sustainability, and effectively meeting the needs of both society and the environment.'%}
+              </p>
+        </div>
+        <div class="row mt-5 mb-5 p-3">
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" >
+                <div class="isi"> 
+                    <h2 class="h2-s1">{% translate 'SITE VISIT SURVEY'%}</h2>
+                    <p class="isiP">{% translate 'Fokus utama kami dalam memperbaiki manajemen sumber daya air. Pemanfaatan air yang tidak optimal tidak hanya menjadi penghambat bagi produktivitas manusia, tetapi juga membawa dampak negatif yang signifikan terhadap ekonomi dan keberlanjutan lingkungan. Dengan menghadapi dan menyelesaikan tantangan-tantangan ini, kami memiliki berbagai solusi untuk meningkatkan keberlanjutan pemanfaatan air dan memastikan akses air yang memadai bagi semua pihak.' %}</p>
+                    <a class="btn-donate" onclick="openMyModal10()" style="float: right;position: relative;top: 10px;">{% translate 'Our Solution' %}</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" >
+                <div class="isi" > 
+                    <h2 class="h2-s1">{% translate 'MASTERPLAN' %}</h2>
+                    <p class="isiP">{% translate 'Fokus utama kami dalam memperbaiki manajemen sumber daya air. Pemanfaatan air yang tidak optimal tidak hanya menjadi penghambat bagi produktivitas manusia, tetapi juga membawa dampak negatif yang signifikan terhadap ekonomi dan keberlanjutan lingkungan. Dengan menghadapi dan menyelesaikan tantangan-tantangan ini, kami memiliki berbagai solusi untuk meningkatkan keberlanjutan pemanfaatan air dan memastikan akses air yang memadai bagi semua pihak.'%}</p>
+                    <a class="btn-donate" onclick="openMyModal7()" style="float: right;position: relative;top: 10px;">{% translate 'Our Solution' %}</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" >
+                <div class="isi" > 
+                    <h2 class="h2-s1">{% translate 'FEASIBILITY STUDY' %}</h2>
+                    <p class="isiP">{% translate 'Fokus utama kami dalam memperbaiki manajemen sumber daya air. Pemanfaatan air yang tidak optimal tidak hanya menjadi penghambat bagi produktivitas manusia, tetapi juga membawa dampak negatif yang signifikan terhadap ekonomi dan keberlanjutan lingkungan. Dengan menghadapi dan menyelesaikan tantangan-tantangan ini, kami memiliki berbagai solusi untuk meningkatkan keberlanjutan pemanfaatan air dan memastikan akses air yang memadai bagi semua pihak.'%}</p>
+                    <a class="btn-donate" onclick="openMyModal8()" style="float: right;position: relative;top: 10px;">{% translate 'Our Solution' %}</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" >
+                <div class="isi" > 
+                    <h2 class="h2-s1"> {% translate 'DETAIL ENGINEERING DESIGN' %}</h2>
+                    <p class="isiP">{% translate 'Fokus utama kami dalam memperbaiki manajemen sumber daya air. Pemanfaatan air yang tidak optimal tidak hanya menjadi penghambat bagi produktivitas manusia, tetapi juga membawa dampak negatif yang signifikan terhadap ekonomi dan keberlanjutan lingkungan. Dengan menghadapi dan menyelesaikan tantangan-tantangan ini, kami memiliki berbagai solusi untuk meningkatkan keberlanjutan pemanfaatan air dan memastikan akses air yang memadai bagi semua pihak.' %}</p>
+                    <a class="btn-donate" onclick="openMyModal9()" style="float: right;position: relative;top: 10px;">{% translate 'Our Solution' %}</a>
+                </div>
+            </div>
+            <!-- <div class="col-md-3 col-md-offset-2 mb-3 mt-3" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../static/images/DabestCard.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2>DAYA RUSAK AIR</h2>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../static/images/DabestCard.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2>KONSERVASI</h2>
+            </div>
+            <div class="col-md-3 col-md-offset-2 mb-3 mt-3" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../static/images/DabestCard.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2>JALUR PELAYARAN</h2>
+            </div> -->
+            
+        </div>
+    </div>
+    <span class="scroll-icon21">
+        <span class="scroll-icon__dot1"></span>
+    </span>
+</div>
+
+
+
+
+{% include 'main/modal.html'%}
+
+
+
+{% endblock %}
+
+
+    
+
+
+

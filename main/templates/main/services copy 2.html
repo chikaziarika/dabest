@@ -1,0 +1,238 @@
+{% extends 'main/main.html' %}
+{% load static %}
+
+{% block content%} 
+
+<style>
+.slider {
+    position: relative;
+    overflow: hidden;
+    height: 98vh;
+    width: 98vw;
+}
+
+.slideAbout {
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.slideAbout.active {
+    transform: translateX(-100%);
+}
+
+.slideAbout .info {
+    background-color: transparent;
+    color: #333;
+    padding: 20px 15px;
+    position: absolute;
+    text-align: center;
+    width: 1920px;
+    max-width: 99%;
+    margin: 125px auto;
+    height: 75%;
+}
+
+.slideAbout.active .info {
+    opacity: 1;
+    transform: translateY(-40px);
+    transition: all 0.5s ease-in-out 0.6s;
+}
+
+.slideAbout .info h1 {
+    margin: 10px 0;
+}
+
+.slideAbout .info p {
+    letter-spacing: 1px;
+}
+
+.eraser {
+    background: linear-gradient(-90deg, #13B2F6, #004AAD, #253252);
+    /* background: transparent;  */
+    position: absolute;
+    transition: transform 0.7s ease-in-out;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+}
+
+.eraser.active {
+    transform: translateX(-100%);
+}
+
+.buttons-container {
+    position: absolute;
+    bottom: 60px;
+    right: 20px;
+}
+
+.buttons-container button {
+    border: 2px solid #F8F8FF;
+    background-color: transparent;
+    color: #F8F8FF;
+    cursor: pointer;
+    padding: 8px 20px;
+}
+
+.buttons-container button:hover {
+    background-color: #253252;
+    color: #F8F8FF;
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+/* #previous {
+  position: absolute;
+  left: -2950%;
+  top: -750%;
+}
+
+#next {
+  position: absolute;
+  top: -750%;
+} */
+
+
+
+</style>
+
+<body style="height: 80% !important; "> 
+  <div class="slider">
+    <div class="Aboutslider-container">
+        <div
+            class="slideAbout active"
+            style="background: linear-gradient(0deg, rgba(1, 74, 173, 0.3), rgb(1 12 26 / 74%)), url(../static/images/BackServ1.jpg);background-size:cover;">
+            <div class="info">
+                <h1 style="font-family: 'League Spartan', sans-serif;font-weight: 800;color: #F8F8FF; font-size: 10vh;width: 40%;margin: 0 auto;position: relative;top: 25%;">Our Business is Trying to Solve</h1>
+                <p style="font-family: 'Poppins', sans-serif;font-weight: 800;width: 69%;text-align: center;color: #F8F8FF;margin: 0 auto;position: relative;top: 25%;font-size: 2.5vh;">
+                  Our company is striving to solve water resource-related issues through the development of innovative solutions that promote efficient water management, improve access to clean water, and contribute to environmental conservation.
+                </p>
+                <button class="btn-donate" data-bs-toggle="modal" data-bs-target="#playingField" style="position: relative;top: 30%;">
+                  Read More
+              </button>
+            </div>
+        </div>
+        <div class="slideAbout" style="background: linear-gradient(0deg, rgba(1, 74, 173, 0.3), rgb(1 12 26 / 74%)), url(../static/images/BackServ2.jpg);background-size:cover;">
+            <div class="info">
+              <h1 style="font-family: 'League Spartan', sans-serif;font-weight: 800;color: #F8F8FF;font-size: 11vh;width: 50%;margin: 0 auto;position: relative;top: 35%;">Level of Services</h1>
+              <p style="font-family: 'Poppins', sans-serif;font-weight: 800;width: 55%;text-align: center;color: #F8F8FF;margin: 0 auto;position: relative;top: 35%;font-size: 2vh;">
+                To enhance our level of services, our aim is to deliver optimal solutions in water resource management, ensuring sustainability, and effectively meeting the needs of both society and the environment.
+              </p>
+              <button class="btn-donate" data-bs-toggle="modal" data-bs-target="#SnD" style="position: relative; top: 40%;">
+                Read More
+            </button>
+            </div>
+        </div>
+    </div>
+    <div class="eraser"></div>
+    <div class="buttons-container">
+        <button id="previous"><i class="fa fa-arrow-left"></i></button>
+        <button id="next"><i class="fa fa-arrow-right"></i></button>
+    </div>
+</div>
+
+</body>
+
+
+
+
+
+
+<script>
+  const slides = document.querySelectorAll('.Aboutslider-container .slideAbout'); // get all the slides
+const eraser = document.querySelector('.eraser'); // the eraser
+const prev = document.getElementById('previous'); // previous button
+const next = document.getElementById('next'); // next button
+const intervalTime = 10000; // time until nextSlide triggers in miliseconds
+const eraserActiveTime = 700; // time to wait until the .eraser goes all the way
+let sliderInterval; // variable used to save the setInterval and clear it when needed
+
+const nextSlide = () => {
+    // Step 1.
+    eraser.classList.add('active');
+
+    // Step 2.
+    setTimeout(() => {
+        // Step 3.
+        const active = document.querySelector('.slideAbout.active');
+        active.classList.toggle('active');
+
+        // Step 4.
+        if (active.nextElementSibling) {
+            active.nextElementSibling.classList.toggle('active');
+        } else {
+            // Step 5.
+            slides[0].classList.toggle('active');
+        }
+
+        // Step 6.
+        setTimeout(() => {
+            eraser.classList.remove('active');
+        }, 200);
+    }, eraserActiveTime);
+};
+
+const prevSlide = () => {
+    eraser.classList.add('active');
+    setTimeout(() => {
+        const active = document.querySelector('.slideAbout.active');
+        active.classList.toggle('active');
+
+        // The *changed* part from the nextSlide code
+        if (active.previousElementSibling) {
+            active.previousElementSibling.classList.toggle('active');
+        } else {
+            slides[slides.length - 1].classList.toggle('active');
+        }
+        // End of the changed part
+
+        setTimeout(() => {
+            eraser.classList.remove('active');
+        }, 200);
+    }, eraserActiveTime);
+};
+
+sliderInterval = setInterval(nextSlide, intervalTime);
+
+next.addEventListener('click', () => {
+    nextSlide();
+    clearInterval(sliderInterval);
+    sliderInterval = setInterval(nextSlide, intervalTime);
+});
+
+prev.addEventListener('click', () => {
+    prevSlide();
+    clearInterval(sliderInterval);
+    sliderInterval = setInterval(nextSlide, intervalTime);
+});
+</script>
+
+
+{% include 'main/modal.html'%}
+
+
+
+{% endblock %}
+
+
+    
+
+
+

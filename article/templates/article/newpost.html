@@ -1,0 +1,56 @@
+{% extends 'main/main.html' %}
+{% include 'main/navbar.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content%} 
+
+
+<style>
+.containerPost {
+    padding: 20px;
+    width: 80%;
+    margin: 100px auto;
+}
+
+.h1Post {
+    text-align: center; 
+    font-size:2em;
+}
+
+@media screen and (max-width: 768px) {
+  .containerPost {
+    margin-top: 20% !important;
+    padding: 20px !important;
+  }
+
+  .tags {
+    width:  50% !important;
+  }
+
+  .h1Post {
+    font-size:1em !important;
+  }
+  
+}
+
+</style>
+
+
+<div class='containerPost' style='margin-top: 5%;'>
+<a href="javascript:history.back()" style="font-size: 1rem;">&larr; Go back to Article</a>
+<h1 class="h1Post"> BUAT ARTIKEL BARU</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    {% comment %} <div class="">
+    <span> Judul </span>
+       {{form.headline}}{{form.headline}}
+    </div> {% endcomment %}
+    <button class="btn btn-primary btnPost" type="submit" style="display: flex;margin: auto;margin-bottom: 26px;margin-top: 25px;"> POST </button>
+</form>
+</div>
+
+{% endblock %}

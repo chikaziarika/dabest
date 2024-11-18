@@ -1,0 +1,637 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content%} 
+
+
+<style>
+
+#timeline .timeline-item:after, header:after, #timeline .timeline-item:before, header:before {
+  content: "";
+  display: block;
+  width: 100%;
+  clear: both;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+  background: #f9f9f9;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: helvetica, arial, tahoma, verdana;
+  line-height: 20px;
+  font-size: 14px;
+  color: #726f77;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 500;
+}
+
+.project-name {
+  text-align: center;
+  padding: 10px 0;
+}
+
+header {
+  background: #2b2e48;
+  padding: 10px;
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+  -ms-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+}
+header .logo {
+  color: #ee4d4d;
+  float: left;
+  font-family: "Dosis", arial, tahoma, verdana;
+  font-size: 22px;
+  font-weight: 500;
+}
+header .logo > span {
+  color: #f7aaaa;
+  font-weight: 300;
+}
+header .social {
+  float: right;
+}
+header .social .btn {
+  
+  font-size: 14px;
+  margin: 10px 5px;
+}
+
+#timeline {
+  width: 100%;
+  margin: 30px auto;
+  position: relative;
+  padding: 0 10px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+#timeline:before {
+  content: "";
+  width: 3px;
+  height: 100%;
+  background: #004AAB;
+  left: 50%;
+  top: 0;
+  position: absolute;
+}
+#timeline:after {
+  content: "";
+  clear: both;
+  display: table;
+  width: 100%;
+}
+#timeline .timeline-item {
+  margin-bottom: 50px;
+  position: relative;
+}
+#timeline .timeline-item .timeline-icon {
+  background: #004AAB;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  overflow: hidden;
+  margin-left: -23px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+#timeline .timeline-item .timeline-icon svg {
+  position: relative;
+  top: 14px;
+  left: 14px;
+}
+#timeline .timeline-item .timeline-content {
+  width: 45%;
+  background: #fff;
+  padding: 20px;
+  -webkit-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+#timeline .timeline-item .timeline-content h2 {
+    padding: 12px;
+    background: #004AAB;
+    color: #fff;
+    margin: -20px -20px 0 -20px;
+    font-weight: 800;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.4em;
+}
+
+#timeline .timeline-item .timeline-content:before {
+  content: "";
+  position: absolute;
+  left: 45%;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #004AAB;
+}
+#timeline .timeline-item .timeline-content.right {
+  float: right;
+}
+#timeline .timeline-item .timeline-content.right:before {
+  content: "";
+  right: 45%;
+  left: inherit;
+  border-left: 0;
+  border-right: 7px solid #004AAB;
+}
+
+.btn {
+  padding: 5px 15px;
+  text-decoration: none;
+  background: transparent;
+  border: 2px solid #004AAD;
+  color: #000;
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 12px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: background 0.3s ease;
+  -moz-transition: background 0.3s ease;
+  -ms-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+  -webkit-box-shadow: 2px 2px 0 #004aad;
+  -moz-box-shadow: 2px 2px 0 #004aad;
+  -ms-box-shadow: 2px 2px 0 #004aad;
+  box-shadow: 2px 2px 0 #004aad;
+}
+.btn:hover {
+  box-shadow: none;
+  top: 2px;
+  left: 2px;
+  -webkit-box-shadow: 2px 2px 0 transparent;
+  -moz-box-shadow: 2px 2px 0 transparent;
+  -ms-box-shadow: 2px 2px 0 transparent;
+  box-shadow: 2px 2px 0 transparent;
+}
+
+@media screen and (max-width: 768px) {
+  #timeline {
+    margin: 30px;
+    padding: 0px;
+    width: 90%;
+  }
+  #timeline:before {
+    left: 0;
+  }
+  #timeline .timeline-item .timeline-content {
+    width: 90%;
+    float: right;
+  }
+  #timeline .timeline-item .timeline-content:before, #timeline .timeline-item .timeline-content.right:before {
+    left: 10%;
+    margin-left: -6px;
+    border-left: 0;
+    border-right: 7px solid #ee4d4d;
+  }
+  #timeline .timeline-item .timeline-icon {
+    left: 0;
+  }
+}
+
+.scroll-icon2 {
+    display: block;
+    position: sticky;
+    height: 3em;
+    width: 1.5em;
+    border: 0.25em solid #253252;
+    border-radius: 1em;
+    bottom: 3%;
+    margin: 0px 52%;
+}
+
+
+.service-section .icon-box {
+	margin-bottom: 20px;
+	padding: 30px;
+	border-radius: 6px;
+	background-color: #f8f9fa;
+  height: 172px;
+  box-shadow: 0 0 50px #ccc;
+}
+.service-section .icon-box:hover .service-title a {
+	color: #41A1FD;
+}
+.service-section .icon-box .service-icon {
+	float: left;
+	color: #41A1FD;
+	font-size: 40px;
+}
+.service-section .icon-box .service-title {
+	margin-left: 70px;
+	font-weight: 700;
+	margin-bottom: 15px;
+	font-size: 18px;
+	line-height: 1.2;
+  font-family: 'League Spartan', sans-serif;
+  cursor: pointer;
+                                                
+}
+.service-section .icon-box .service-title a {
+	color: #556270;
+	transition: 0.3s;
+	text-decoration: none;
+}
+.service-section .icon-box .service-para {
+	margin-left: 70px;
+	line-height: 24px;
+	font-size: 14px;
+}
+.service-section .service-main-heading {
+	color: #556270;
+	padding: 0;
+	margin-bottom: 20px;
+	line-height: 1;
+	font-size: 60px;
+	font-weight: 600;
+}
+
+@media only screen and (max-width : 768px) {
+  .service-section .icon-box {
+      margin-bottom: 20px;
+      padding: 30px;
+      border-radius: 6px;
+      background-color: #f8f9fa;
+      height: 225px;
+      box-shadow: 0 0 50px #ccc;
+  }
+
+
+}
+
+
+
+ .cardAbout {
+  width: 55%;
+  max-width: 1920px;
+  height: 150px;
+  background: rgba(1, 74, 173, .4);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  backdrop-filter: blur(10px);
+  transition: 0.5s ease-in-out;
+  position: relative;
+  top: 7%;
+  margin: 15px auto;
+  opacity: 0.8;
+ }
+
+.cardAbout:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background: linear-gradient(#d7cfcf, #9198e5);
+}
+
+.cardAbout:hover > .img {
+  transition: 0.5s ease-in-out;
+  background: linear-gradient(#9198e5, #712020);
+}
+
+.textBox {
+  width: calc(100% - 90px);
+  margin-left: 10px;
+  color: white;
+  font-family: 'Poppins' sans-serif;
+}
+
+.textContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.span {
+  font-size: 10px;
+}
+
+.h1 {
+  font-size: 2.5vw;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+}
+
+.h1About {
+  font-size: 2.5vw;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+}
+
+.p {
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+
+
+</style>
+
+<!-- <body style="background-image: url('../static/images/backgroundAbout.png');background-repeat: no-repeat fixed;background-size: cover"> -->
+  <body>
+   <div class="mx-auto" style="margin-top: 125px;">
+    <div id="timeline">
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 24.1071C18.9105 24.1071 24.1071 18.9105 24.1071 12.5C24.1071 6.08952 18.9105 0.892822 12.5 0.892822C6.08955 0.892822 0.892857 6.08952 0.892857 12.5C0.892857 18.9105 6.08955 24.1071 12.5 24.1071Z" fill="white" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.82143 17.8572H15.1786" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.5 17.8572V11.6072H10.7143" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.5 7.58915C12.2534 7.58915 12.0536 7.38927 12.0536 7.14272C12.0536 6.89616 12.2534 6.69629 12.5 6.69629" fill="black"/>
+            <path d="M12.5 7.58915C12.2534 7.58915 12.0536 7.38927 12.0536 7.14272C12.0536 6.89616 12.2534 6.69629 12.5 6.69629" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.5 7.58915C12.7466 7.58915 12.9464 7.38927 12.9464 7.14272C12.9464 6.89616 12.7466 6.69629 12.5 6.69629" fill="black"/>
+            <path d="M12.5 7.58915C12.7466 7.58915 12.9464 7.38927 12.9464 7.14272C12.9464 6.89616 12.7466 6.69629 12.5 6.69629" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+            
+          
+        </div>
+        <div class="timeline-content">
+          <h2>TENTANG PERUSAHAAN</h2>
+          <p style="padding: 15px;">
+            Sejarah Perusahaan PT. Daya Agung Bestari (DABEST)
+          </p>
+          <a class="btn" data-bs-toggle="modal" data-bs-target="#modalTiga">Read More..</a>
+        </div>
+      </div>
+  
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.625 11.1542C23.9211 11.5233 24.085 12.0029 24.085 12.5002C24.085 12.9974 23.9211 13.477 23.625 13.8462C21.75 16.1163 17.4821 20.536 12.4999 20.536C7.5178 20.536 3.24994 16.1163 1.37494 13.8462C1.0788 13.477 0.914871 12.9974 0.914871 12.5002C0.914871 12.0029 1.0788 11.5233 1.37494 11.1542C3.24994 8.88405 7.5178 4.46436 12.4999 4.46436C17.4821 4.46436 21.75 8.88405 23.625 11.1542Z" fill="white" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.5 16.0716C14.4724 16.0716 16.0714 14.4726 16.0714 12.5001C16.0714 10.5277 14.4724 8.92871 12.5 8.92871C10.5276 8.92871 8.92857 10.5277 8.92857 12.5001C8.92857 14.4726 10.5276 16.0716 12.5 16.0716Z" fill="white" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+            
+            
+                      
+            
+        </div>
+        <div class="timeline-content right">
+          <h2>VISI DAN MISI PERUSAHAAN</h2>
+          <p style="padding: 15px;">
+            Visi dan Misi PT. Daya Agung Bestari (DABEST)
+          </p>
+          <a class="btn" data-bs-toggle="modal" data-bs-target="#modalDua">Read More..</a>
+        </div>
+      </div>
+  
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.1977 2.2002H4.80232C4.56267 2.20678 4.32792 2.2697 4.11707 2.38385C3.90621 2.49801 3.72518 2.66021 3.58858 2.85734L0.989743 6.45734C0.796767 6.73015 0.700393 7.05964 0.715914 7.3935C0.731436 7.72737 0.857964 8.04647 1.07542 8.30019L8.87194 17.2859C9.00542 17.458 9.17645 17.5973 9.37197 17.693C9.56748 17.7889 9.78231 17.8386 10 17.8386C10.2177 17.8386 10.4325 17.7889 10.6281 17.693C10.8236 17.5973 10.9946 17.458 11.1281 17.2859L18.9246 8.30019C19.142 8.04647 19.2686 7.72737 19.2842 7.3935C19.2996 7.05964 19.2033 6.73015 19.0103 6.45734L16.4114 2.85734C16.2749 2.66021 16.0939 2.49801 15.883 2.38385C15.6722 2.2697 15.4373 2.20678 15.1977 2.2002Z" fill="white" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.2572 2.18579L5.77148 7.58579L10.0001 17.8" fill="white"/>
+            <path d="M9.2572 2.18579L5.77148 7.58579L10.0001 17.8" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10.7857 2.18579L14.2571 7.58579L10 17.8" fill="white"/>
+            <path d="M10.7857 2.18579L14.2571 7.58579L10 17.8" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M0.74292 7.58594H19.2572Z" fill="white"/>
+            <path d="M0.74292 7.58594H19.2572" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+            
+            
+        </div>
+        <div class="timeline-content">
+          <h2>COMPANY VALUE</h2>
+          <p style="padding: 15px;">
+            Company value PT. Daya Agung Bestari (DABEST) diwujudkan baik melalui budaya, cara kerja, keputusan strategi, bahkan pada produk yang diciptakan.
+          </p>
+          <a class="btn" data-bs-toggle="modal" data-bs-target="#modalCompany">Read More..</a>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.0638 10.1756L20.0856 6.15393L24.1072 10.1756" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.0638 16.6101L20.0856 20.6318L24.1072 16.6101" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.78692 8.30516C8.64703 8.30516 10.155 6.79723 10.155 4.93712C10.155 3.07702 8.64703 1.56909 6.78692 1.56909C4.92681 1.56909 3.41888 3.07702 3.41888 4.93712C3.41888 6.79723 4.92681 8.30516 6.78692 8.30516Z" fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.681 14.1992C12.681 12.636 12.06 11.1369 10.9547 10.0315C9.84933 8.92616 8.35015 8.30518 6.78694 8.30518C5.22374 8.30518 3.72456 8.92616 2.6192 10.0315C1.51386 11.1369 0.892883 12.636 0.892883 14.1992V16.7253H3.4189L4.26092 23.4613H9.31297L10.155 16.7253H12.681V14.1992Z" fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+            
+            
+        </div>
+        <div class="timeline-content right">
+          <h2>MEET OUR TEAM</h2>
+          <p style="padding: 15px;">
+            Meet a team of experts and innovators who are pioneers in their field.
+          </p>
+          <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Read More..</a>
+        </div>
+      </div>
+  
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.3214 24.1071H5.35716C4.64677 24.1071 3.96545 23.825 3.46312 23.3226C2.9608 22.8203 2.67859 22.1389 2.67859 21.4285C2.67859 20.7182 2.9608 20.0367 3.46312 19.5344C3.96545 19.0321 4.64677 18.75 5.35716 18.75H20.5357C21.0093 18.75 21.4636 18.5618 21.7984 18.2269C22.1332 17.8921 22.3214 17.4379 22.3214 16.9643V2.67854C22.3214 2.20493 22.1332 1.75073 21.7984 1.41585C21.4636 1.08096 21.0093 0.892822 20.5357 0.892822H5.35716C4.65896 0.892574 3.98827 1.16495 3.48795 1.65194C2.98761 2.13893 2.69721 2.80202 2.67859 3.49997V21.3571" fill="white"/>
+            <path d="M22.3214 24.1071H5.35716C4.64677 24.1071 3.96545 23.825 3.46312 23.3226C2.9608 22.8203 2.67859 22.1389 2.67859 21.4285C2.67859 20.7182 2.9608 20.0367 3.46312 19.5344C3.96545 19.0321 4.64677 18.75 5.35716 18.75H20.5357C21.0093 18.75 21.4636 18.5618 21.7984 18.2269C22.1332 17.8921 22.3214 17.4379 22.3214 16.9643V2.67854C22.3214 2.20493 22.1332 1.75073 21.7984 1.41585C21.4636 1.08096 21.0093 0.892822 20.5357 0.892822H5.35716C4.65896 0.892574 3.98827 1.16495 3.48795 1.65194C2.98761 2.13893 2.69721 2.80202 2.67859 3.49997V21.3571" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.5358 18.75V24.1071" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14.3776 8.93213H18.5116L14.1193 15.1332H18.77" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.271 10.6884L8.1746 4.97754C8.27219 4.68477 8.54616 4.4873 8.85476 4.4873C9.16337 4.4873 9.43735 4.68477 9.53492 4.97754L11.4385 10.6884M6.96 8.62134H10.7495" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          
+            
+        </div>
+        <div class="timeline-content">
+          <h2>LEGALITAS PERUSAHAAN</h2>
+          <p style="padding: 15px;">
+            LEGALITAS PT. Daya Agung Bestari (DABEST).
+          </p>
+          <a class="btn" data-bs-toggle="modal" data-bs-target="#Tiga">Read More..</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+
+  <span class="scroll-icon2">
+  <span class="scroll-icon__dot"></span>
+  </span>
+
+
+<!--   
+  <div class="cardAbout">
+    <div class="img"></div>
+    <div class="textBox">
+      <div class="textContent">
+        <p class="h1About">Tentang PT Daya Agung Bestari </p>
+        <a data-bs-toggle="modal" data-bs-target="#modalTiga">
+          <i class="fa-regular fa-circle-right fa-4x" style="color: #F8F8FF;"></i>
+        </a>
+      </div>
+    <div>
+  </div></div></div>
+
+  <div class="cardAbout">
+    <div class="img"></div>
+    <div class="textBox">
+      <div class="textContent">
+        <p class="h1About">Visi dan Misi </p>
+        <a data-bs-toggle="modal" data-bs-target="#modalDua">
+          <i class="fa-regular fa-circle-right fa-4x" style="color: #F8F8FF;"></i>
+        </a>
+      </div>
+    <div>
+  </div></div></div>
+
+  <div class="cardAbout">
+    <div class="img"></div>
+    <div class="textBox">
+      <div class="textContent">
+        <p class="h1About">Company Value </p>
+        <a data-bs-toggle="modal" data-bs-target="#modalCompany">
+        <i class="fa-regular fa-circle-right fa-4x" style="color: #F8F8FF;"></i>
+        </a>
+      </div>
+    <div>
+  </div></div></div>
+
+  <div class="cardAbout">
+    <div class="img"></div>
+    <div class="textBox">
+      <div class="textContent">
+        <p class="h1About">Dabest Super Team</p>
+        <a data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
+          <i class="fa-regular fa-circle-right fa-4x" style="color: #F8F8FF;"></i>
+        </a>
+      </div>
+    <div>
+  </div></div></div>
+
+  <div class="cardAbout">
+    <div class="img"></div>
+    <div class="textBox">
+      <div class="textContent">
+        <p class="h1About">Legalitas PT Daya Agung Bestari </p>
+        <a data-bs-toggle="modal" data-bs-target="#Tiga">
+          <i class="fa-regular fa-circle-right fa-4x" style="color: #F8F8FF;"></i>
+        </a>
+      </div>
+    <div>
+  </div></div></div> -->
+
+
+  <!-- <section class="service-section py-5">
+    <div class="container" style="width: 100%; max-width: 1920px; margin-top: 50px;">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 col-12">
+          <div class="icon-box">
+            <i class="fa fa-briefcase service-icon"></i>
+            <i class="fa fa-solid fa-info fa-3x service-icon"></i>
+            <p class="service-title"><a data-bs-toggle="modal" data-bs-target="#modalTiga">TENTANG PT. DAYA AGUNG BESTARI (DABEST)</a></p>
+            <p class="service-para">Sejarah Perusahaan PT. Daya Agung Bestari (DABEST)</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-12 mt-4 mt-md-0">
+          <div class="icon-box">
+            <i class="fa fa-eye service-icon"></i>
+            <p class="service-title"><a data-bs-toggle="modal" data-bs-target="#modalDua">VISI DAN MISI PT. DAYA AGUNG BESTARI (DABEST)</a></p>
+            <p class="service-para">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-12 mt-4 mt-md-0">
+          <div class="icon-box">
+            <i class="fa fa-gem service-icon"></i>
+            <p class="service-title"><a data-bs-toggle="modal" data-bs-target="#modalCompany">COMPANY VALUE PT. DAYA AGUNG BESTARI (DABEST)</a></p>
+            <p class="service-para">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-12 mt-4 mt-md-0">
+          <div class="icon-box">
+            <i class="fa fa-people-group service-icon"></i>
+            <p class="service-title"><a data-bs-toggle="modal" data-bs-target="#exampleModalToggle">SUPER TEAMS PT. DAYA AGUNG BESTARI (DABEST)</a></p>
+            <p class="service-para">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-12 mt-4 mt-md-0">
+          <div class="icon-box">
+            <i class="fa fa-file-contract service-icon"></i>
+            <p class="service-title"><a data-bs-toggle="modal" data-bs-target="#Tiga">LEGALITAS PT. DAYA AGUNG BESTARI ( DABEST) </a></p>
+            <p class="service-para">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-12 mt-4 mt-md-0">
+          <div class="icon-box">
+            <i class="fa fa-calendar-alt service-icon"></i>
+            <p class="service-title"><a href="#">Eiusmod Tempor</a></p>
+            <p class="service-para">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+</body>
+
+
+
+{% include 'main/modal.html'%}
+
+
+
+
+
+
+
+
+{% endblock %}

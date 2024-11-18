@@ -1,0 +1,134 @@
+{% load static %}
+{% load i18n %}
+{% block content%} 
+
+<style>
+.cardPF {
+  width: 100% ;
+  position: relative;
+  height: 75% ;
+}  
+</style>
+
+<section class="wrapper">
+    <div class="container-fostrap">
+       <div class="content">
+            <div class="containerSnD">
+                <div id="playingFieldRow" class="row mx-auto p-2" >
+                  <div class="">
+                    <div class="cardPF" style="background: rgb(0 65 189 / 75%); border-radius: 20px;">
+                          <a class="img-card" href="">
+                            <img src="../static/images/DabestCard.jpg" />
+                          </a>
+                        <div class="card-content">
+                            <h4 class="card-title">
+                                <a href="#">{% translate 'PEMANFAATAN SUMBER DAYA AIR' %}</a>
+                            </h4>
+                            <p class="teksCard">
+                              {% translate 'Pemanfaatan sumber daya air adalah proses mengelola dan menggunakan air secara optimal untuk berbagai kebutuhan, termasuk kebutuhan domestik, pertanian, industri, dan ekologi. Pengelolaan sumber daya air yang efektif sangat penting untuk memastikan ketersediaan air bersih, mendukung kegiatan ekonomi, dan melestarikan lingkungan.' %}</p>
+                        </div>
+                        <div class="card-read-more">
+                          <a class="btn-donate" onclick="openMyModal21()">Our Solution</a>
+                        </div>
+                    </div>
+                  </div>
+                    <div class="">
+                        <div class="cardPF" style="background: rgb(0 65 189 / 75%); border-radius: 20px;">
+                            <a class="img-card" href="">
+                            <img src="../static/images/DabestCard.jpg" />
+                          </a>
+                            <div class="card-content">
+                                <h4 class="card-title">
+                                    <a href=""> {% translate 'PENGENDALIAN DAYA RUSAK AIR' %}
+                                  </a>
+                                </h4>
+                                <p class="teksCard">
+                                  {% translate 'Pengendalian daya rusak air adalah upaya untuk mencegah, mengurangi, atau mengatasi kerusakan yang disebabkan oleh air pada lingkungan, infrastruktur, dan kehidupan manusia. Langkah-langkah pengendalian ini melibatkan berbagai strategi teknis, manajerial, dan kebijakan untuk mengelola air secara efektif dan berkelanjutan.'%}
+                                </p>
+                            </div>
+                            <div class="card-read-more">
+                                <a class="btn-donate" onclick="openMyModal22()">Our Solution</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="cardPF" style="background: rgb(0 65 189 / 75%); border-radius: 20px;">
+                            <a class="img-card" href="">
+                            <img src="../static/images/DabestCard.jpg" />
+                          </a>
+                            <div class="card-content">
+                                <h4 class="card-title">
+                                    <a href="#"> KONSERVASI
+                                  </a>
+                                </h4>
+                                <p class="teksCard">
+                                  Fokus utama dalam upaya kami untuk meningkatkan pengelolaan sumber daya air. Masalah yang dihadapi mencakup penanaman pohon yang tidak terencana dapat menyebabkan erosi tanah dan degradasi lahan, pembangunan bendungan yang berpotensi mengubah pola aliran air dan mempengaruhi ekosistem sungai, serta desain yang tidak optimal dari sungai dan kolam yang dapat mengakibatkan erosi dan pencemaran air. Dengan memahami serta mengatasi tantangan-tantangan ini, kami memiliki berbagai solusi untuk memperbaiki dan melindungi kualitas serta keberlanjutan sumber daya air.
+                                </p>
+                            </div>
+                            <div class="card-read-more">
+                              <a class="btn-donate" onclick="openMyModal23()">Our Solution</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="cardPF" style="background: rgb(0 65 189 / 75%); border-radius: 20px;">
+                            <a class="img-card" href="">
+                                <img src="../static/images/DabestCard.jpg" />
+                          </a>
+                            <div class="card-content">
+                                <h4 class="card-title">
+                                    <a href="#">JALUR PELAYARAN
+                                  </a>
+                                </h4>
+                                <p class="teksCard">
+                                  Fokus utama dalam upaya kami untuk memperbaiki infrastruktur maritim. Tantangan yang dihadapi termasuk tata letak pelabuhan yang tidak efisien dapat mengganggu arus logistik dan lalu lintas kapal, perencanaan alur pelayaran yang kurang optimal berpotensi meningkatkan risiko kecelakaan dan hambatan navigasi, serta desain bangunan pengaman pantai yang tidak memadai dapat meningkatkan kerentanan terhadap erosi pantai dan dampak akibat naiknya permukaan air laut. Dengan memperhatikan dan mengatasi tantangan-tantangan ini, kami bertujuan untuk meningkatkan keamanan, efisiensi, dan keberlanjutan sistem maritim. </p>
+                            </div>
+                            <div class="card-read-more">
+                              <a class="btn-donate" onclick="openMyModal24()">Our Solution</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+  function openMyModal21() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('playingField1'), {});
+         myModal.show();
+     }  
+
+  function openMyModal22() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('playingField2'), {});
+         myModal.show();
+     }     
+
+  function openMyModal23() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('playingField3'), {});
+         myModal.show();
+     }  
+  
+  function openMyModal24() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('playingField4'), {});
+         myModal.show();
+     }     
+
+  
+ </script>
+
+
+
+{% endblock %}
+
+
+    
+
+
+

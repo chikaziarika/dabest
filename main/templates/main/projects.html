@@ -1,0 +1,755 @@
+{% extends 'main/main.html' %}
+{% load static %}
+
+{% block content%} 
+
+
+<style>
+body { margin:0; padding:0; }
+#map {
+    position: absolute !important;
+    top: 1em;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+video {
+  width: 100%;
+}
+
+video::-webkit-media-controls-panel {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.leaflet-popup-content {
+    margin: 13px 19px;
+    line-height: 1.4;
+    width: 350px !important;
+    text-align: center;
+}
+
+#tblPro {
+  position: sticky;
+  z-index: 1000;
+  width: 100%;
+  background: #F8F8FF;
+  top: 100%;
+  left: 100%;
+}
+
+.leaflet-sidebar-right .leaflet-sidebar-header {
+    padding-left: 50px;
+}
+
+#t_points tr:hover {
+  /* color: #F8F8FF; */
+  background-color: blue;
+  cursor: pointer;
+
+}
+
+#t_points td:hover {
+  background-color: blue;
+  color: #F8F8FF;
+  cursor: pointer;
+}
+
+.leaflet-sidebar-pane.active {
+    display: block;
+    padding-top: 10px;
+    background: #ffffff;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#map > #sidebar {
+  height: 50%; 
+  top: 1.5%;
+}
+
+
+#filterJob {
+    border-radius: 0;
+    width: 96%;
+    height: 3em;
+    margin-right: 5%;
+    border: 2px solid #f5f5ff;
+    border-radius: 6px;
+    margin: auto;
+}
+
+.searchIcon {
+    position: fixed;
+    right: 4.5em;
+    padding-top: 1rem;
+}
+
+.Component {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 97%;
+  gap: 10px;
+  margin: auto;
+}
+
+img.huechange2020 { 
+  filter: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(4017%) hue-rotate(229deg) brightness(93%) contrast(100%);
+  }
+img.huechange2021 { 
+  filter: brightness(0) saturate(100%) invert(51%) sepia(70%) saturate(1473%) hue-rotate(165deg) brightness(101%) contrast(93%);
+  }
+img.huechange2022 { 
+    filter: brightness(0) saturate(100%) invert(16%) sepia(39%) saturate(816%) hue-rotate(183deg) brightness(92%) contrast(90%);
+  }
+img.huechange2023 { 
+  filter: brightness(0) saturate(100%) invert(35%) sepia(49%) saturate(4352%) hue-rotate(328deg) brightness(95%) contrast(110%);
+  }
+img.huechange2024 { 
+  filter: brightness(0) saturate(100%) invert(87%) sepia(33%) saturate(1504%) hue-rotate(132deg) brightness(100%) contrast(91%);
+}
+
+.colorLegend {
+  position: sticky;
+  top: 100%;
+  z-index: 10001;
+  display: flex;
+  justify-content: center;
+}
+
+.Legend-colorBox {
+    width: 2.5rem;
+    height: 0.5rem;
+    display: inline-block;
+    background-color: #0937EC;
+}
+
+.Legend {
+  list-style: none;
+}
+
+li.Legend-item {
+  display: grid;
+}
+</style>
+
+<div id="sidebar" class="leaflet-sidebar collapsed">
+    
+    <!-- Nav tabs -->
+    <div class="leaflet-sidebar-tabs">
+        <ul role="tablist"> <!-- top aligned tabs -->
+            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+            {% comment %} <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+            <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li> {% endcomment %}
+        </ul>
+
+        <ul role="tablist"> <!-- bottom aligned tabs -->
+            <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+        </ul>
+    </div>
+
+    <!-- Tab panes -->
+    <div class="leaflet-sidebar-content">
+        <div class="leaflet-sidebar-pane" id="home">
+            <h1 class="leaflet-sidebar-header">
+               Daftar Pengalaman Pekerjaan DABEST
+                <div class="leaflet-sidebar-close"><i class="fa fa-caret-left "></i></div>
+            </h1>
+            <div class='Component'>
+              <input type="text" id="filterJob">
+              <i class="fa-solid fa-magnifying-glass searchIcon fa-lg"></i>
+
+              <select class="form-select selectFilter" aria-label="Default select example">
+              <option selected > --Silahkan Pilih Tahun-- </option>
+                
+              </select>
+            </div>
+              <table id="tblPro" class="table table-bordered"  >
+          
+                <tbody id="t_points" style="font-family: 'Poppins', sans-serif;font-size: 0.7em;"></tbody>
+              </table>
+        </div>
+
+        {% comment %} <div class="leaflet-sidebar-pane" id="messages">
+            <h1 class="leaflet-sidebar-header">Messages<div class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></div></h1>
+        </div>
+
+        <div class="leaflet-sidebar-pane" id="profile">
+            <h1 class="leaflet-sidebar-header">Profile<div class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></div></h1>
+        </div> {% endcomment %}
+    </div>
+</div>
+
+<div id="map"></div>
+<div class='colorLegend'>
+  <ul class="Legend">
+    <li class="Legend-item">
+      <span class="Legend-colorBox" style="background-color: #0937EC;">
+      </span>
+      <span class="Legend-label">
+        2020
+      </span>
+    </li>
+  </ul>
+  <ul class="Legend">
+    <li class="Legend-item">
+      <span class="Legend-colorBox" style="background-color: #13B2F6;">
+      </span>
+      <span class="Legend-label">
+        2021
+      </span>
+    </li>
+  </ul>
+  <ul class="Legend">
+    <li class="Legend-item">
+      <span class="Legend-colorBox" style="background-color: #253252;">
+      </span>
+      <span class="Legend-label">
+        2022
+      </span>
+    </li>
+  </ul>
+  <ul class="Legend">
+    <li class="Legend-item">
+      <span class="Legend-colorBox" style="background-color: #FE2C55;">
+      </span>
+      <span class="Legend-label">
+        2023
+      </span>
+    </li>
+  </ul>
+  <ul class="Legend">
+    <li class="Legend-item">
+      <span class="Legend-colorBox" style="background-color: #25F4EE;">
+      </span>
+      <span class="Legend-label">
+        2024
+      </span>
+    </li>
+  </ul>
+  
+</div>
+{% comment %} <h2 style="position: absolute;bottom: 0%;left: 1%;z-index: 1000;font-family: 'League Spartan', sans-serif;font-weight: 800;">DABEST PROJECT</h2> {% endcomment %}
+{% comment %} <h3 >Geodesic Points</h3>   {% endcomment %}
+
+
+
+
+
+<!-- var map = L.map("map").setView([-4.003392, 114.739904], 5); -->
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+
+$('li.nav-item a.nav-link').removeClass('active');
+$('li.nav-item a.nav-link:eq(2)').addClass('active');
+  // $('.navbar ').css('display', 'none');
+  
+    
+
+// var markers = [
+//     ["DETAIL ENGINEERING DESIGN PEMBANGUNAN CEK DAM / SEDIMEN TRAP SAGULING", -6.926970, 107.312483],
+//     ["SID PEMBANGUNAN PANTAI KAWASAN WISATA BURUNG MANDI", -2.884289, 108.242454],
+//     ["FEASIBILITY STUDY EMBUNG SE KABUPATEN ROKAN HULU", 0.960528, 100.472632],
+//     ["Review Perhitungan Neraca Air untuk evaluasi rencana pengambilan air di intake Cibangoak - RWS Kertasari", -7.223760, 107.678917],
+//     ["Survey Inventarisasi dan identifikasi Potensi Embung dan Perencanaan Sumur Resapan pada Mikro DAS Cirasea", -7.179543, 107.673615],
+//     ["Perencanaan Teknis Embung Cibereum Sukabumi", -6.930301, 106.928199],
+//     ["PERENCANAAN KONSERVASI PADA DAS CIRASEA DAN IDENTIFIKASI KONDISI SALURAN IRIGASI DI WANIR DAN DI WANGISAGARA", -7.208967, 107.657491],
+//   ];
+ 
+
+//   var map = L.map('map').setView([-4.003392, 114.739904], 5);
+//       // map.addControl( new L.Control.ListMarkers({layer: markersLayer}) );
+   
+
+//   mapLink ='<a href="http://openstreetmap.org">OpenStreetMap</a>';
+//   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     attribution: '&copy; ' + mapLink + ' Contributors',
+//     maxZoom: 10,
+//   }).addTo(map);
+
+//   L.control.resetView({
+//         position: "topleft",
+//         title: "Reset view",
+//         latlng: L.latLng([-4.003392, 114.739904]),
+//         zoom: 5,
+//         }).addTo(map);
+
+// map.on('popupopen', function(centerMarker) {
+//     map.flyTo(centerMarker.popup._latlng, 15);   
+// });
+
+// function addRowTable(code, coords){
+//   var tr = document.createElement("tr");
+//   var td = document.createElement("td");
+//   var p2 = L.marker([code]);
+//   td.textContent = code;
+//   tr.appendChild(td);
+//   tr.onclick = function(){
+//     // console.log('UWOW.......', p2)
+//     // map.setView(coords, 17);
+
+//     marker.openPopup();
+//     map.flyTo([value['lat'], value['lng']], 15);
+    
+//   };
+//   document.getElementById("t_points").appendChild(tr);
+// }
+// var buffers = [];
+
+
+// function addMarker(code, lat, lng) {
+//   var marker = L.marker([lat, lng]);
+//   marker.title = code;
+//   marker.bindPopup("<table><tr><td style='font-size: 0.8em;'>Nama Pekerjaan : </td><td style='font-size: 0.8em;'>"+ code +"</td></tr></table>");
+//   marker.addTo(map);
+//   addRowTable(marker, code, [lat, lng]);
+// }
+
+// $(document).ready(function () {
+//   var points = [
+//     ["DETAIL ENGINEERING DESIGN PEMBANGUNAN CEK DAM / SEDIMEN TRAP SAGULING", -6.926970, 107.312483],
+//     ["SID PEMBANGUNAN PANTAI KAWASAN WISATA BURUNG MANDI", -2.884289, 108.242454],
+//     ["FEASIBILITY STUDY EMBUNG SE KABUPATEN ROKAN HULU", 0.960528, 100.472632],
+//     ["Review Perhitungan Neraca Air untuk evaluasi rencana pengambilan air di intake Cibangoak - RWS Kertasari", -7.223760, 107.678917],
+//     ["Survey Inventarisasi dan identifikasi Potensi Embung dan Perencanaan Sumur Resapan pada Mikro DAS Cirasea", -7.179543, 107.673615],
+//     ["Perencanaan Teknis Embung Cibereum Sukabumi", -6.930301, 106.928199],
+//     ["PERENCANAAN KONSERVASI PADA DAS CIRASEA DAN IDENTIFIKASI KONDISI SALURAN IRIGASI DI WANIR DAN DI WANGISAGARA", -7.208967, 107.657491]
+//   ];
+//   for (var i = 0; i < points.length; i++) {
+//     addMarker(points[i][0], points[i][1], points[i][2]);
+//   }
+// });
+
+
+
+// $("#range").change(function(e){
+//   var radius = parseInt($(this).val())
+//   buffers.forEach(function(e){
+//     e.setRadius(radius);
+//     e.addTo(map);
+//   });
+// });
+
+
+
+
+  map = L.map('map').setView([-4.003392, 114.739904], 5);
+      
+  mapLink ='<a href="http://openstreetmap.org">OpenStreetMap</a>';
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; ' + mapLink + ' Contributors',
+    maxZoom: 10,
+  }).addTo(map);
+
+  var sidebar = L.control.sidebar({
+    autopan: false,       // whether to maintain the centered map point when opening the sidebar
+    closeButton: true,    // whether t add a close button to the panes
+    container: 'sidebar', // the DOM container or #ID of a predefined sidebar container that should be used
+    position: 'right',     // left or right
+  }).addTo(map);
+
+
+  L.control.resetView({
+      position: "topleft",
+      title: "Reset view",
+      latlng: L.latLng([-4.003392, 114.739904]),
+      zoom: 5,
+      }).addTo(map);
+   
+  map.on('popupopen', function(centerMarker) {
+    map.setView(centerMarker.popup._latlng, 12);   
+  });    
+        
+function addRowTable(marker, code, coords) {
+  var tr = document.createElement("tr");
+  var td = document.createElement("td");
+  td.textContent = code;
+  tr.appendChild(td);
+  tr.onclick = () => {
+    marker.openPopup();
+    map.setView(coords, 12);
+  };
+  document.getElementById("t_points").appendChild(tr);
+}
+
+function addMarker(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            addRowTable(marker, code, [lat, lng]);
+
+
+                          }
+  // marker.bindPopup("<table>\
+  //                         <tr>\
+  //                           <br>\
+  //                           <video control autoplay loop='true'><source src='../static/media/video1.mp4?autoplay=1' width='560px' height='315px'></source></video>\
+  //                           <td style='font-size: 0.8em;'>Nama Pekerjaan : </td><td style='font-size: 0.8em;'>"+ code +"</td>\
+  //                           </tr>\
+  //                           </table>", {
+  //                             maxWidth : 560}
+  //                           );
+  //                           marker.addTo(map);
+  //                           addRowTable(marker, code, [lat, lng]);
+  //                         }
+                          // <object id='myvideo' data='../static/media/video1.mp4' width='560' height='315'></object>\
+
+$(document).ready(function () {
+  var a = []
+  var b = []
+  var c = []
+  var point = []
+  $.ajax({
+        type: 'GET',
+        url: "../dataProject/?format=json",
+        dataType: "json",
+        
+        success:function(data){
+          console.log('DATA......',data);
+          $.each(data, function(i, item) {   
+                  
+                  $('.selectFilter').append($('<option>', {
+                      value: item.tahun ,
+                      text: item.tahun
+                  }));
+                }); 
+          $(".selectFilter option").each(function (idx, val) {
+              $(this).siblings("[value='" + $(this).val() + "']").remove();
+              
+          });
+
+          $('.selectFilter option')
+              .filter(function() {
+                  return !this.value || $.trim(this.value).length == 0;
+              })
+            .remove();
+
+
+
+
+
+
+
+
+          data.sort();
+          for(i = 0; i < data.length; i++){
+
+                addMarker(data[i].namaPekerjaan, data[i].latCoor, data[i].longCoor, data[i].videoFile)
+
+            };
+         
+     
+
+                    
+
+              var options = $('select.selectFilter option');
+              var arr = options.map(function(_, o) { return { t: $(o).text(), v: o.value }; }).get();
+              arr.sort(function(o1, o2) { return o1.t > o2.t ? 1 : o1.t < o2.t ? -1 : 0; });
+              options.each(function(i, o) {
+                o.value = arr[i].v;
+                $(o).text(arr[i].t);
+              });
+            
+            // point.push(a,b,c)
+            // for (var i = 0; i < point.length; i++) {
+            //   addMarker(point[i].namaPekerjaan, point[i].latCoor, point[i].longCoor);
+            // }  
+            
+          }
+          
+    });
+  // var points = [
+  //   ["DETAIL ENGINEERING DESIGN PEMBANGUNAN CEK DAM / SEDIMEN TRAP SAGULING", -6.926970, 107.312483],
+  //   ["SID PEMBANGUNAN PANTAI KAWASAN WISATA BURUNG MANDI", -2.884289, 108.242454],
+  //   ["FEASIBILITY STUDY EMBUNG SE KABUPATEN ROKAN HULU", 0.960528, 100.472632],
+  //   ["REVIEW PERHITUNGAN NERACA AIR UNTUK EVALUASI RENCANA PENGAMBILAN AIR DI CIBANGOAK - RWS KERTASARI", -7.223760, 107.678917],
+  //   ["SURVEY INVENTARISASI DAN IDENTIFIKASI POTENSI EMBUNG DAN PERENCANAAN SUMUMR RESAPAN PADA MIKRO DAS CIRASEA", -7.179543, 107.673615],
+  //   ["Perencanaan Teknis Embung Cibereum Sukabumi", -6.930301, 106.928199],
+  //   ["PERENCANAAN KONSERVASI PADA DAS CIRASEA DAN IDENTIFIKASI KONDISI SALURAN IRIGASI DI WANIR DAN DI WANGISAGARA", -7.208967, 107.657491]
+  // ];
+  
+  // for (var i = 0; i < points.length; i++) {
+  //   addMarker(points[i][0], points[i][1], points[i][2]);
+  // }
+  // console.log('masuk ga nih', points)
+});
+  
+
+// var elem = document.querySelector("[name='media']");
+// if (elem.requestFullscreen) {
+//   elem.requestFullscreen();
+// } else if (elem.mozRequestFullScreen) {
+//   elem.mozRequestFullScreen();
+// } else if (elem.webkitRequestFullscreen) {
+//   elem.webkitRequestFullscreen();
+// } else if (elem.msRequestFullscreen) { 
+//   elem.msRequestFullscreen();
+// }
+
+
+
+$(function() {
+  
+  $("#filterJob").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tblPro > tbody > tr").filter(function() {      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+
+    var seen = {};
+    $('#tblPro > tbody > tr').each(function() {
+      var txt = $(this).text();
+      if (seen[txt])
+        $(this).remove();
+      else
+        seen[txt] = true;
+    });
+  });
+
+  var request; 
+
+  $('.selectFilter').on('change', function (e){
+    
+    e.preventDefault();
+    var TahunY = $(this).val();
+    var table = $("#tblPro > tbody > tr") ;
+    if (map != undefined) map.remove() && table.remove();
+    map = L.map('map').setView([-4.003392, 114.739904], 5);
+      
+  mapLink ='<a href="http://openstreetmap.org">OpenStreetMap</a>';
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; ' + mapLink + ' Contributors',
+    maxZoom: 10,
+  }).addTo(map);
+
+  var sidebar = L.control.sidebar({
+    autopan: false,       // whether to maintain the centered map point when opening the sidebar
+    closeButton: true,    // whether t add a close button to the panes
+    container: 'sidebar', // the DOM container or #ID of a predefined sidebar container that should be used
+    position: 'right',     // left or right
+  }).addTo(map);
+
+
+  L.control.resetView({
+      position: "topleft",
+      title: "Reset view",
+      latlng: L.latLng([-4.003392, 114.739904]),
+      zoom: 5,
+      }).addTo(map);
+   
+  map.on('popupopen', function(centerMarker) {
+    map.setView(centerMarker.popup._latlng, 12);   
+  });    
+        
+  function addRowTable(marker, code, coords,) {
+    console.log(marker)
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    td.textContent = code;
+    tr.appendChild(td);
+    tr.onclick = () => {
+      marker.openPopup();
+      map.setView([marker._latlng.lat, marker._latlng.lng], 12);
+    };
+    document.getElementById("t_points").appendChild(tr);
+  }
+
+  // TAHUN 2020
+function addMarker(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2020");
+                           // addRowTable(marker, code, [lat, lng]);
+                          }
+
+// TAHUN 2024
+function addMarker2(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2024");
+                           // addRowTable(marker, code, [lat, lng]);
+                          }
+
+// TAHUN 2021
+function addMarker3(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2021");
+                           // addRowTable(marker, code, [lat, lng]);
+                          }
+
+// TAHUN 2022
+function addMarker4(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2022");
+                            //addRowTable(marker, code, [lat, lng]);
+                          }
+// TAHUN 2023
+function addMarker5(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2023");
+                            //addRowTable(marker, code, [lat, lng]);
+                          }
+
+
+    $.ajax({
+          type: 'GET',
+          url: '/dataProject/?tahun=&unitImpact=&ktPekerjaan=',
+          dataType: "json",
+          
+          success:function(data){
+            {% comment %} var dataFilter = data.filter(v => v.tahun <= TahunY && v.tahun != null)
+                
+
+            for(i = 0; i < dataFilter.length; i++){
+                  var marker = L.marker([dataFilter[i].latCoor, dataFilter[i].longCoor]);
+                  
+                  
+
+                  addRowTable(marker, dataFilter[i].namaPekerjaan, dataFilter[i].videoFile)
+                  addMarker(dataFilter[i].namaPekerjaan, dataFilter[i].latCoor, dataFilter[i].longCoor, dataFilter[i].videoFile);
+                  //map.setView([dataFilter[i].latCoor, dataFilter[i].langCoor], 12);
+              }; {% endcomment %}
+
+              var dataFilter = data.filter(v => v.tahun <= TahunY && v.tahun == '2020' && v.tahun != null)
+
+              var dataXilter = data.filter(v => v.tahun <= TahunY && v.tahun == '2024' && v.tahun != null)
+
+              var dataXilter2 = data.filter(v => v.tahun <= TahunY && v.tahun == '2021' && v.tahun != null)
+
+              var dataXilter3 = data.filter(v => v.tahun <= TahunY && v.tahun == '2022' && v.tahun != null)
+
+              var dataXilter4 = data.filter(v => v.tahun <= TahunY && v.tahun == '2023' && v.tahun != null)
+
+            for(i = 0; i < dataFilter.length; i++){
+                  var marker = L.marker([dataFilter[i].latCoor, dataFilter[i].longCoor]);
+                  addMarker(dataFilter[i].namaPekerjaan, dataFilter[i].latCoor, dataFilter[i].longCoor, dataFilter[i].videoFile);
+                  addRowTable(marker, dataFilter[i].namaPekerjaan, dataFilter[i].videoFile)
+              };
+           
+            for(i = 0; i < dataXilter.length; i++){
+                  var marker = L.marker([dataXilter[i].latCoor, dataXilter[i].longCoor]);
+                  addMarker2(dataXilter[i].namaPekerjaan, dataXilter[i].latCoor, dataXilter[i].longCoor, dataXilter[i].videoFile);
+                  addRowTable(marker, dataXilter[i].namaPekerjaan, dataXilter[i].videoFile)
+                  
+              };
+            
+            for(i = 0; i < dataXilter2.length; i++){
+                  var marker = L.marker([dataXilter2[i].latCoor, dataXilter2[i].longCoor]);
+                  addMarker3(dataXilter2[i].namaPekerjaan, dataXilter2[i].latCoor, dataXilter2[i].longCoor, dataXilter2[i].videoFile);
+                  addRowTable(marker, dataXilter2[i].namaPekerjaan, dataXilter2[i].videoFile)
+                  
+            };
+            
+            for(i = 0; i < dataXilter3.length; i++){
+                  var marker = L.marker([dataXilter3[i].latCoor, dataXilter3[i].longCoor]);
+                  addMarker4(dataXilter3[i].namaPekerjaan, dataXilter3[i].latCoor, dataXilter3[i].longCoor, dataXilter3[i].videoFile);
+                  addRowTable(marker, dataXilter3[i].namaPekerjaan, dataXilter3[i].videoFile)
+                  
+            };
+
+            for(i = 0; i < dataXilter4.length; i++){
+                  var marker = L.marker([dataXilter4[i].latCoor, dataXilter4[i].longCoor]);
+                  addMarker5(dataXilter4[i].namaPekerjaan, dataXilter4[i].latCoor, dataXilter4[i].longCoor, dataXilter4[i].videoFile);
+                  addRowTable(marker, dataXilter4[i].namaPekerjaan, dataXilter4[i].videoFile)
+              };
+
+
+              
+          },
+          complete: function (data){
+            var seen = {};
+              $('#tblPro > tbody > tr').each(function() {
+                var txt = $(this).text();
+                if (seen[txt])
+                  $(this).remove();
+                else
+                  seen[txt] = true;
+              });
+          }
+            
+      });
+  })
+});
+  
+});
+
+</script>
+      
+{% endblock %}
+
+    
+
+
+

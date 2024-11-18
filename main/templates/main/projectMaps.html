@@ -1,0 +1,1750 @@
+{% include 'main/main.html' %}
+{% load static %}
+{% include 'main/navbar.html' %}
+{% block content%} 
+<style>
+
+
+#map {
+  width: 100%; 
+  height: 100%;
+}
+.title {
+  position: absolute;
+  width: 867px;
+  height: 156px;
+  left: 60px;
+  top: 65px;
+  z-index: 1;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 62px;
+  line-height: 96px;
+  /* identical to box height */
+
+
+  color: #333333;
+}
+.search-container {
+  display:flex;
+  position: absolute;
+  z-index: 1;
+  top: 170px;
+  left: 60px;
+  width: 400px;
+  height: 60px;
+  background: #454E53;
+  border-radius: 30px;
+}
+.search-container .search {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.search-container input {
+  width: 90%;
+  padding: 0 20px;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  line-height: 40px;
+  color: #fff;
+}
+.search-container input:focus {
+  outline:none;
+}
+.search-container i {
+  font-size: 23px;
+  color: white;
+}
+.stations-list-container {
+  display:flex;
+  width: 400px;
+  position: absolute;
+  z-index: 1;
+  left: 60px;
+  top: 250px;
+  bottom: 30px;
+  background: rgba(260,260,260,.9);
+  border-radius: 30px;
+  overflow-y: hidden;
+  padding-bottom: 20px;
+}
+.stations-list {
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding: 0 20px;
+}
+.station-container {
+  border-bottom: 1px solid #979797;
+  display: flex;
+  cursor: pointer;
+}
+.station-container-background {
+  display: flex;
+  flex-grow: 1;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border-radius: 18px;
+  padding: 0 8px;
+  transition: all 0.2s ease-in-out;
+}
+.station-container-background:hover {
+  background-color: #ccc;
+}
+.station-address {
+  font-size: 19px;
+  color: #514C4C;
+  margin-top: 30px;
+}
+.station-phone-number {
+  font-size: 17px;
+  color: #B5ADAD;
+  margin: 15px 0;
+}
+.station-address span {
+  display: block;
+}
+.station-number {
+  width: 30px;
+  height: 30px;
+  background: #454E53;
+  color: #b5adad;
+  border-radius:50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search i {
+  cursor: pointer;
+}
+.station-info-container {
+  flex-grow: 1;
+}
+.station-number-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.station-info-window {
+  min-width: 300px;
+  font-size: 18px;
+  padding: 8px;
+}
+.station-info-name {
+  font-size: 21px;
+  font-weight: bold;
+  color: rgba(0,0,0,.87);
+}
+.station-info-status {
+  margin-top: 6px;
+  border-bottom: 1px solid #000029;
+  padding-bottom: 6px;
+}
+.station-info-address,
+.station-info-phone {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+}
+.station-info-window .circle {
+  width: 30px;
+  height: 30px;
+  background: #1985A1;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+}
+.stations-list-empty {
+  font-size: 16px;
+  padding-top: 20px;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <title>Google Maps Project</title>
+  <script src="js/index.js"></script>
+  <script src="js/store-data.js"></script>
+  <script src="js/stations-data.js"></script>
+  <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+</head>
+<body>
+  <div class="title">Station Locator</div>
+  <div class="search-container">
+    <div class="search">
+      <input id="zip_code_input" type="text" placeholder="Enter City" />
+      <i id="search" class="fas fa-search" onclick="searchStations()"></i>
+    </div>
+  </div>
+  <div class="stations-list-container">
+    <div class="stations-list">
+    </div>
+  </div>
+  <div id="map"></div>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOaVnngEFkkBOPmhw9GpT9WX29E_buH_o&callback=initMap">
+    </script>
+</body>
+</html>
+
+
+<script>
+'use strict';
+
+window.addEventListener("load", function () {
+  searchOnEnter();
+});
+
+var map;
+var markers = [];
+var infoWindow;
+
+function initMap() {
+  var Indonesia = {
+    lat: -0.789275,
+    lng: 113.921327
+  };
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: -0.789275, lng: 113.921327 },
+    zoom: 11,
+    mapTypeId: 'roadmap'
+  });
+  infoWindow = new google.maps.InfoWindow();
+  searchStations();
+}
+
+function clearLocations() {
+  infoWindow.close();
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers.length = 0;
+}
+
+function searchStations() {
+  let foundStations = [];
+  let cityInput = document.getElementById('zip_code_input').value.toLowerCase();
+  if (cityInput) {
+    for (let station of stations) {
+      let city = station['city'].toLowerCase();
+      if (city == cityInput) {
+        foundStations.push(station);
+      }
+    }
+    if (foundStations.length == 0) {
+      foundStations = stations;
+      displayStations(foundStations);
+      showStationsMarkers(foundStations);
+      setOnClickListener();
+      document.querySelector('.stations-list').innerHTML = '<div class="stations-list-empty">None stations here, sorry...</div>';
+      console.log("nieko neradau");
+      return;
+    }
+  } else {
+    foundStations = stations;
+    console.log("miestas neįvestas");
+  }
+  clearLocations();
+  displayStations(foundStations);
+  showStationsMarkers(foundStations);
+  setOnClickListener();
+}
+
+function setOnClickListener() {
+  let stationElements = document.querySelectorAll('.station-container');
+  stationElements.forEach(function (station, index) {
+    station.addEventListener('click', function () {
+      new google.maps.event.trigger(markers[index], 'click');
+    })
+  })
+}
+
+function displayStations(stations) {
+  let stationsHtml = '';
+  for (const [index, station] of stations.entries()) {
+    let street = station['street'];
+    let city = station['city'];
+    let phone = station['phonenumber'];
+    stationsHtml += `
+    <div class="station-container">
+    <div class="station-container-background">
+        <div class="station-info-container">
+          <div class="station-address">
+            <span>${street}</span>
+            <span>${city}</span>
+          </div>
+          <div class="station-phone-number">${phone}</div>
+        </div>
+        <div class="station-number-container">
+          <div class="station-number">
+            ${index + 1}
+          </div>
+        </div>
+      </div>  
+      </div>    
+    `;
+  }
+  document.querySelector('.stations-list').innerHTML = stationsHtml;
+}
+
+function showStationsMarkers(stations) {
+  var bounds = new google.maps.LatLngBounds();
+  for (const [index, station] of stations.entries()) {
+    var latlng = new google.maps.LatLng(
+      station['lat'],
+      station['lng']);
+
+    let name = station['name'];
+    let street = station['street'];
+    var phonenumber = station['phonenumber'];
+    bounds.extend(latlng);
+    createMarker(latlng, name, street, phonenumber, index + 1)
+  }
+  map.fitBounds(bounds);
+}
+
+function createMarker(latlng, name, street, phonenumber, index) {
+  var html = `
+    <div class="station-info-window">
+      <div class="station-info-name">
+        ${name}
+      </div>
+      <div class="station-info-address">
+        <div class="circle">
+          <i class="fas fa-location-arrow"></i>
+        </div>
+        ${street}
+      </div>
+      <div class="station-info-phone">
+        <div class="circle">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+        ${phonenumber}
+      </div>
+    </div>
+  
+  `;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: latlng,
+    label: index.toString()
+  });
+  google.maps.event.addListener(marker, 'click', function () {
+    infoWindow.setContent(html);
+    infoWindow.open(map, marker);
+  });
+  markers.push(marker);
+}
+
+function searchOnEnter() {
+  let input = document.getElementById("zip_code_input");
+  input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("search").click();
+    }
+  });
+}
+
+
+let stations = [{
+  "id": "65001",
+  "name": "CIRCLE K VINGIS",
+  "category": "Circle K",
+  "lat": "54.670943",
+  "lng": "25.236883",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Geležinio Vilko g. 2A",
+  "zipcode": "03150",
+  "city": "Vilnius",
+  "phonenumber": "+37062543307",
+  "email": "65001@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["16", "ATM"], ["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65010",
+  "name": "CIRCLE K ORO UOSTAS",
+  "category": "Circle K",
+  "lat": "54.651513",
+  "lng": "25.269338",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Eišiškių pl. 11",
+  "zipcode": "02184",
+  "city": "Vilnius",
+  "phonenumber": "+37069811930",
+  "email": "65010@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65211",
+  "name": "CIRCLE K MURAVA II",
+  "category": "Circle K",
+  "lat": "54.928264",
+  "lng": "23.973337",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Savanorių pr. 404B",
+  "zipcode": "50300",
+  "city": "Kaunas",
+  "phonenumber": "+37062577234",
+  "email": "sakep@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["8", "Car wash jetwash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65030",
+  "name": "CIRCLE K MARIJAMPOLĖ",
+  "category": "Circle K",
+  "lat": "54.576179",
+  "lng": "23.371203",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Kauno g. 130",
+  "zipcode": "68226",
+  "city": "Marijampolė",
+  "phonenumber": "+37062934981",
+  "email": "65030@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["18", "Agro Diesel"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65039",
+  "name": "CIRCLE K KURĖNAI",
+  "category": "Circle K",
+  "lat": "55.311368",
+  "lng": "24.788074",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Ežero g. 7, Vidiškių sen.",
+  "zipcode": "20102",
+  "city": "Kurėnų k.",
+  "phonenumber": "+37062387601",
+  "email": "alemat@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65053",
+  "name": "CIRCLE K KRETINGA",
+  "category": "Circle K",
+  "lat": "55.863697",
+  "lng": "21.217169",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Klaipėdos g. 155",
+  "zipcode": "97156",
+  "city": "Kretinga",
+  "phonenumber": "+37061320075",
+  "email": "vspa@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"], ["13", "Windshield liquid on pump"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65043",
+  "name": "CIRCLE K MAŽEIKIAI",
+  "category": "Circle K",
+  "lat": "56.302280",
+  "lng": "22.345340",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Žemaitijos g. 57",
+  "zipcode": "89136",
+  "city": "Mažeikiai",
+  "phonenumber": "+37062793506",
+  "email": "65043@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65068",
+  "name": "CIRCLE K GREITKELIS I",
+  "category": "Circle K",
+  "lat": "54.935017",
+  "lng": "23.966138",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Briedžių takas 6B",
+  "zipcode": "49106",
+  "city": "Kaunas",
+  "phonenumber": "+37061886216",
+  "email": "65068@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65083",
+  "name": "CIRCLE K KRYŽKALNIS",
+  "category": "Circle K",
+  "lat": "55.461363",
+  "lng": "22.692898",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Pikelių k.",
+  "zipcode": "60376",
+  "city": "Pikelių k.",
+  "phonenumber": "+37062562479",
+  "email": "65083@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65023",
+  "name": "CIRCLE K UTENA I",
+  "category": "Circle K",
+  "lat": "55.505111",
+  "lng": "25.620718",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Basanavičiaus g. 108A",
+  "zipcode": "28214",
+  "city": "Utena",
+  "phonenumber": "+37062777304",
+  "email": "daileb@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["18", "Agro Diesel"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65020",
+  "name": "CIRCLE K TALINO G.",
+  "category": "Circle K",
+  "lat": "54.71366",
+  "lng": "25.20937",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Talino g. 2B",
+  "zipcode": "05200",
+  "city": "Vilnius",
+  "phonenumber": "+37069409461",
+  "email": "65020@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65006",
+  "name": "CIRCLE K ŽIRMŪNAI",
+  "category": "Circle K",
+  "lat": "54.718687",
+  "lng": "25.300586",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Kareivių g. 13",
+  "zipcode": "09109",
+  "city": "Vilnius",
+  "phonenumber": "+37061626977",
+  "email": "liun@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65004",
+  "name": "CIRCLE K ŽIRMŪNŲ TILTAS",
+  "category": "Circle K",
+  "lat": "54.695145",
+  "lng": "25.297968",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Sporto g. 16A",
+  "zipcode": "09200",
+  "city": "Vilnius",
+  "phonenumber": "+37069858144",
+  "email": "danben@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65007",
+  "name": "CIRCLE K ŠALIA PARLAMENTO",
+  "category": "Circle K",
+  "lat": "54.694286",
+  "lng": "25.263459",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "A.Goštauto g. 13",
+  "zipcode": "01108",
+  "city": "Vilnius",
+  "phonenumber": "+37062480554",
+  "email": "asask@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65008",
+  "name": "CIRCLE K VIRŠULIŠKĖS",
+  "category": "Circle K",
+  "lat": "54.709152",
+  "lng": "25.227978",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Laisvės pr. 43C",
+  "zipcode": "05112",
+  "city": "Vilnius",
+  "phonenumber": "+37062710940",
+  "email": "65008@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65069",
+  "name": "CIRCLE K GREITKELIS II",
+  "category": "Circle K",
+  "lat": "54.933772",
+  "lng": "23.965411",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Islandijos pl. 61C",
+  "zipcode": "49117",
+  "city": "Kaunas",
+  "phonenumber": "+37069808299",
+  "email": "65069@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65075",
+  "name": "CIRCLE K GRIGIŠKĖS",
+  "category": "Circle K",
+  "lat": "54.686255",
+  "lng": "25.053940",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Dėdeliškių km.",
+  "zipcode": "21401",
+  "city": "Dėdeliškių k.",
+  "phonenumber": "+37062784914",
+  "email": "vildiu@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65032",
+  "name": "CIRCLE K DRUSKININKAI",
+  "category": "Circle K",
+  "lat": "54.010281",
+  "lng": "23.993545",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Čiurlionio g. 113",
+  "zipcode": "66161",
+  "city": "Druskininkai",
+  "phonenumber": "+37062541546",
+  "email": "65032@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65009",
+  "name": "CIRCLE K VOKĖ",
+  "category": "Circle K",
+  "lat": "54.623068",
+  "lng": "25.11016",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "J.Tiškevičiaus g. 24",
+  "zipcode": "02231",
+  "city": "Vilnius",
+  "phonenumber": "+37061852969",
+  "email": "65009@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65013",
+  "name": "CIRCLE K VILIJAMPOLĖ",
+  "category": "Circle K",
+  "lat": "54.908266",
+  "lng": "23.864536",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Raudondvario pl. 107A",
+  "zipcode": "47186",
+  "city": "Kaunas",
+  "phonenumber": "+37062496366",
+  "email": "65013@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["18", "Agro Diesel"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65021",
+  "name": "CIRCLE K PABALIAI",
+  "category": "Circle K",
+  "lat": "55.909230",
+  "lng": "23.319420",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Pramonės g. 17a",
+  "zipcode": "78136",
+  "city": "Šiauliai",
+  "phonenumber": "+37069821015",
+  "email": "edistu@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65027",
+  "name": "CIRCLE K PERKĖLA",
+  "category": "Circle K",
+  "lat": "55.687683",
+  "lng": "21.144927",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Minijos g. 90",
+  "zipcode": "93234",
+  "city": "Klaipėda",
+  "phonenumber": "+37062336900",
+  "email": "65027@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65048",
+  "name": "CIRCLE K ROKIŠKIS",
+  "category": "Circle K",
+  "lat": "55.952350",
+  "lng": "25.589580",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Respublikos g. 111A",
+  "zipcode": "42135",
+  "city": "Rokiškis",
+  "phonenumber": "+37068859047",
+  "email": "kesd@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["18", "Agro Diesel"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65014",
+  "name": "CIRCLE K TARANDĖ",
+  "category": "Circle K",
+  "lat": "54.760552",
+  "lng": "25.202007",
+  "street": "Bukiškio k., Avižienių sen.",
+  "zipcode": "14185",
+  "city": "Avižienių k.",
+  "phonenumber": "+37069818215",
+  "email": "edbal@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 0,
+  "services": [["11", "AdBlue"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65022",
+  "name": "CIRCLE K ELEKTRĖNAI",
+  "category": "Circle K",
+  "lat": "54.789384",
+  "lng": "24.676210",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Sabališkių g. 1F",
+  "zipcode": "26001",
+  "city": "Elektrėnai",
+  "phonenumber": "+37068809012",
+  "email": "grenmac@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65026",
+  "name": "CIRCLE K KURŠĖNAI",
+  "category": "Circle K",
+  "lat": "55.999869",
+  "lng": "22.987947",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Plento g. 1, Kuršėnų m.",
+  "zipcode": "81115",
+  "city": "Šiaulių r.",
+  "phonenumber": "+37062346026",
+  "email": "gic@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65025",
+  "name": "CIRCLE K PALANGA",
+  "category": "Circle K",
+  "lat": "55.914690",
+  "lng": "21.077580",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Kretingos g. 56",
+  "zipcode": "00103",
+  "city": "Palanga",
+  "phonenumber": "+37068625157",
+  "email": "sikon@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65081",
+  "name": "CIRCLE K ŽIEDAS",
+  "category": "Circle K",
+  "lat": "55.692908",
+  "lng": "21.180037",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Vilniaus pl. 1A",
+  "zipcode": "94105",
+  "city": "Klaipėda",
+  "phonenumber": "+37062574335",
+  "email": "ddru@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["16", "ATM"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65012",
+  "name": "CIRCLE K GARLIAVA",
+  "category": "Circle K",
+  "lat": "54.81914",
+  "lng": "23.857220",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Baltijos g. 1, Mastaičių k.",
+  "zipcode": "53289",
+  "city": "Kauno r.",
+  "phonenumber": "+37061859834",
+  "email": "65012@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65047",
+  "name": "CIRCLE K JONIŠKIS",
+  "category": "Circle K",
+  "lat": "56.258603",
+  "lng": "23.622419",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Satkūnų k.",
+  "zipcode": "84101",
+  "city": "Joniškis",
+  "phonenumber": "+37062502518",
+  "email": "65047@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65017",
+  "name": "CIRCLE K SAVANORIŲ PR.",
+  "category": "Circle K",
+  "lat": "54.919959",
+  "lng": "23.952899",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Savanorių pr. 321",
+  "zipcode": "50120",
+  "city": "Kaunas",
+  "phonenumber": "+37062569969",
+  "email": "65017@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65034",
+  "name": "CIRCLE K PARKO G.",
+  "category": "Circle K",
+  "lat": "55.731943",
+  "lng": "24.341862",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Parko g. 7A",
+  "zipcode": "35189",
+  "city": "Panevėžys",
+  "phonenumber": "+37062567781",
+  "email": "giep@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65077",
+  "name": "CIRCLE K UTENA II",
+  "category": "Circle K",
+  "lat": "55.495680",
+  "lng": "25.583296",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Basanavičiaus g. 3",
+  "zipcode": "28134",
+  "city": "Utena",
+  "phonenumber": "+37062917389",
+  "email": "65077@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65031",
+  "name": "CIRCLE K ALYTUS",
+  "category": "Circle K",
+  "lat": "54.395229",
+  "lng": "24.038220",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Rūtų g. 2B",
+  "zipcode": "62119",
+  "city": "Alytus",
+  "phonenumber": "+37069858296",
+  "email": "ndim@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65201",
+  "name": "CIRCLE K VILKPĖDĖ I",
+  "category": "Circle K",
+  "lat": "54.661673",
+  "lng": "25.235301",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Savanorių pr. 118",
+  "zipcode": "03150",
+  "city": "Vilnius",
+  "phonenumber": "+37069829119",
+  "email": "65201@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65215",
+  "name": "CIRCLE K SANTAKA",
+  "category": "Circle K",
+  "lat": "54.901537",
+  "lng": "23.894566",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Jonavos g. 38",
+  "zipcode": "44263",
+  "city": "Kaunas",
+  "phonenumber": "+37062930199",
+  "email": "ramge@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65018",
+  "name": "CIRCLE K ALEKSOTAS",
+  "category": "Circle K",
+  "lat": "54.880829",
+  "lng": "23.894030",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Veiverių pl. 49A",
+  "zipcode": "46336",
+  "city": "Kaunas",
+  "phonenumber": "+37061490828",
+  "email": "odejan@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["16", "ATM"], ["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65051",
+  "name": "CIRCLE K ŠEŠKINĖS KALNAS I",
+  "category": "Circle K",
+  "lat": "54.702355",
+  "lng": "25.264848",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Geležinio Vilko g. 39",
+  "zipcode": "08104",
+  "city": "Vilnius",
+  "phonenumber": "+37062960205",
+  "email": "kkun@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65055",
+  "name": "CIRCLE K RADVILIŠKIS",
+  "category": "Circle K",
+  "lat": "55.8113860",
+  "lng": "23.5497520",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Gedimino 42B",
+  "zipcode": "82174",
+  "city": "Radviliškis",
+  "phonenumber": "+37062522673",
+  "email": "65055@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65059",
+  "name": "CIRCLE K IX FORTAS",
+  "category": "Circle K",
+  "lat": "54.935488",
+  "lng": "23.869944",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Vakarinis aplinkkelis 10",
+  "zipcode": "48182",
+  "city": "Kaunas",
+  "phonenumber": "+37069446259",
+  "email": "65059@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65019",
+  "name": "CIRCLE K DUBIJOS G.",
+  "category": "Circle K",
+  "lat": "55.928880",
+  "lng": "23.297890",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Dubijos g. 20A",
+  "zipcode": "77207",
+  "city": "Šiauliai",
+  "phonenumber": "+37061512750",
+  "email": "minp@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65002",
+  "name": "CIRCLE K BALTUPIAI",
+  "category": "Circle K",
+  "lat": "54.735951",
+  "lng": "25.265647",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Baltupio g. 10",
+  "zipcode": "08303",
+  "city": "Vilnius",
+  "phonenumber": "+37068718173",
+  "email": "65002@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65005",
+  "name": "CIRCLE K FABIJONIŠKĖS",
+  "category": "Circle K",
+  "lat": "54.720103",
+  "lng": "25.246217",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Ukmergės g. 231",
+  "zipcode": "07156",
+  "city": "Vilnius",
+  "phonenumber": "+37062332517",
+  "email": "65005@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65060",
+  "name": "CIRCLE K ŠILAINIAI",
+  "category": "Circle K",
+  "lat": "54.925231",
+  "lng": "23.890350",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Žemaičių pl. 19",
+  "zipcode": "48255",
+  "city": "Kaunas",
+  "phonenumber": "+37068884391",
+  "email": "65060@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65228",
+  "name": "CIRCLE K JŪRININKŲ PR.",
+  "category": "Circle K",
+  "lat": "55.656726",
+  "lng": "21.182370",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Jūrininkų g. 31",
+  "zipcode": "95225",
+  "city": "Klaipėda",
+  "phonenumber": "+37068660379",
+  "email": "65228@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["6", "Shower"], ["3", "Simply Great Coffee"], ["9", "Truck parking"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65011",
+  "name": "CIRCLE K DAINAVA",
+  "category": "Circle K",
+  "lat": "54.916025",
+  "lng": "23.986502",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Pramonės pr. 18",
+  "zipcode": "51183",
+  "city": "Kaunas",
+  "phonenumber": "+37068852108",
+  "email": "gdud@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65016",
+  "name": "CIRCLE K ALYTUS II",
+  "category": "Circle K",
+  "lat": "54.424622",
+  "lng": "24.003559",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Naujoji g. 120",
+  "zipcode": "62175",
+  "city": "Alytus",
+  "phonenumber": "+37069401928",
+  "email": "dven@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65080",
+  "name": "CIRCLE K SMILTELĖ",
+  "category": "Circle K",
+  "lat": "55.666549",
+  "lng": "21.172773",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Taikos pr. 112A",
+  "zipcode": "93150",
+  "city": "Klaipėda",
+  "phonenumber": "+37069453515",
+  "email": "65080@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65227",
+  "name": "CIRCLE K SENDVARIS",
+  "category": "Circle K",
+  "lat": "55.704311",
+  "lng": "21.160698",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Tilžės g. 56A",
+  "zipcode": "91110",
+  "city": "Klaipėda",
+  "phonenumber": "+37061294163",
+  "email": "65227@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65024",
+  "name": "CIRCLE K APLINKKELIS",
+  "category": "Circle K",
+  "lat": "55.810976",
+  "lng": "24.368963",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Ūtos k.",
+  "zipcode": "38413",
+  "city": "Panevėžio r.",
+  "phonenumber": "+37062429869",
+  "email": "rbaz@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["17", "AdBlue"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65065",
+  "name": "CIRCLE K TAIKA KAUNAS",
+  "category": "Circle K",
+  "lat": "54.911973",
+  "lng": "23.956504",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Taikos pr. 52A",
+  "zipcode": "51305",
+  "city": "Kaunas",
+  "phonenumber": "+37062474084",
+  "email": "zsar@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65205",
+  "name": "CIRCLE K ŠEŠKINĖS KALNAS II",
+  "category": "Circle K",
+  "lat": "54.702860",
+  "lng": "25.264075",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Geležinio Vilko g. 4",
+  "zipcode": "08104",
+  "city": "Vilnius",
+  "phonenumber": "+37068807836",
+  "email": "65205@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65041",
+  "name": "CIRCLE K ŠILUTĖ",
+  "category": "Circle K",
+  "lat": "55.350610",
+  "lng": "21.474538",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Cintjoniškių g. 15",
+  "zipcode": "99116",
+  "city": "Šilutė",
+  "phonenumber": "+37062542525",
+  "email": "rasarim@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["18", "Agro Diesel"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65202",
+  "name": "CIRCLE K UKMERGĖS G.",
+  "category": "Circle K",
+  "lat": "54.730385",
+  "lng": "25.239126",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "P.Žadeikos g. 1A",
+  "zipcode": "06319",
+  "city": "Vilnius",
+  "phonenumber": "+37061411956",
+  "email": "65202@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65078",
+  "name": "CIRCLE K LAZDIJAI",
+  "category": "Circle K",
+  "lat": "54.226695",
+  "lng": "23.524979",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Nekrūnai 1",
+  "zipcode": "67171",
+  "city": "Nekrūnų k.",
+  "phonenumber": "+37068691439",
+  "email": "65078@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["18", "Agro Diesel"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65050",
+  "name": "CIRCLE K JONAVA",
+  "category": "Circle K",
+  "lat": "55.070625",
+  "lng": "24.263510",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Vasario 16-osios g. 33",
+  "zipcode": "55164",
+  "city": "Jonava",
+  "phonenumber": "+37062502772",
+  "email": "65050@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65003",
+  "name": "CIRCLE K KAROLINIŠKĖS",
+  "category": "Circle K",
+  "lat": "54.695300",
+  "lng": "25.218397",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Kavoliuko g. 32A",
+  "zipcode": "04329",
+  "city": "Vilnius",
+  "phonenumber": "+37061859642",
+  "email": "joljok@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65040",
+  "name": "CIRCLE K TELŠIAI",
+  "category": "Circle K",
+  "lat": "55.977088",
+  "lng": "22.265596",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Luokės g. 70",
+  "zipcode": "87141",
+  "city": "Telšiai",
+  "phonenumber": "+37069602965",
+  "email": "sauv@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["18", "Agro Diesel"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65033",
+  "name": "CIRCLE K BASANAVIČIAUS G.",
+  "category": "Circle K",
+  "lat": "55.717285",
+  "lng": "24.371345",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Basanavičiaus g. 63",
+  "zipcode": "36204",
+  "city": "Panevėžys",
+  "phonenumber": "+37068715982",
+  "email": "esalm@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65073",
+  "name": "CIRCLE K KARALIAUS MINDAUGO PR.",
+  "category": "Circle K",
+  "lat": "54.894140",
+  "lng": "23.913589",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Karaliaus Mindaugo pr. 34A",
+  "zipcode": "44306",
+  "city": "Kaunas",
+  "phonenumber": "+37069422945",
+  "email": "65073@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65079",
+  "name": "CIRCLE K VILKAVIŠKIS",
+  "category": "Circle K",
+  "lat": "54.636467",
+  "lng": "23.074293",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Serdokų k.",
+  "zipcode": "70201",
+  "city": "Serdokų k.",
+  "phonenumber": "+37068842409",
+  "email": "biand@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["18", "Agro Diesel"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65203",
+  "name": "CIRCLE K VILKPĖDĖ II",
+  "category": "Circle K",
+  "lat": "54.662759",
+  "lng": "25.234893",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Savanorių pr. 119A",
+  "zipcode": "03150",
+  "city": "Vilnius",
+  "phonenumber": "+37069802137",
+  "email": "jurag@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["46", "milesPLUS 98"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65036",
+  "name": "CIRCLE K KALVARIJA II",
+  "category": "Circle K",
+  "lat": "54.357213",
+  "lng": "23.181244",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Muitinės g. 22A,  Takėnų k.",
+  "zipcode": "69230",
+  "city": "Kalvarija",
+  "phonenumber": "+37061469564",
+  "email": "jvos@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65037",
+  "name": "CIRCLE K KALVARIJA I",
+  "category": "Circle K",
+  "lat": "54.360157",
+  "lng": "23.181152",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Muitinės g. 13, Trakėnų k.",
+  "zipcode": "69264",
+  "city": "Kalvarija",
+  "phonenumber": "+37062932986",
+  "email": "65037@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["9", "Truck parking"], ["15", "Wifi"]],
+  "fuelServices": [["17", "AdBlue"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65214",
+  "name": "CIRCLE K BARŠAUSKO G.",
+  "category": "Circle K",
+  "lat": "54.899341",
+  "lng": "23.960356",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Baršausko g. 57",
+  "zipcode": "51423",
+  "city": "Kaunas",
+  "phonenumber": "+37062475072",
+  "email": "65214@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65038",
+  "name": "CIRCLE K KĖDAINIAI",
+  "category": "Circle K",
+  "lat": "55.286500",
+  "lng": "23.972383",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Basanavičiaus g. 40A",
+  "zipcode": "57290",
+  "city": "Kėdainiai",
+  "phonenumber": "+37062723221",
+  "email": "65038@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65213",
+  "name": "CIRCLE K SUKILĖLIŲ PR.",
+  "category": "Circle K",
+  "lat": "54.928480",
+  "lng": "23.928802",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Sukilėlių pr. 120",
+  "zipcode": "49237",
+  "city": "Kaunas",
+  "phonenumber": "+37061823636",
+  "email": "65213@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65056",
+  "name": "CIRCLE K TAURAGĖ",
+  "category": "Circle K",
+  "lat": "55.248334",
+  "lng": "22.302866",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Gedimino g. 47",
+  "zipcode": "72294",
+  "city": "Tauragė",
+  "phonenumber": "+37061983410",
+  "email": "65056@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65204",
+  "name": "CIRCLE K VERKIAI",
+  "category": "Circle K",
+  "lat": "54.715449",
+  "lng": "25.290774",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Kareivių g. 3",
+  "zipcode": "08221",
+  "city": "Vilnius",
+  "phonenumber": "+37062338027",
+  "email": "milvo@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["10", "Lounge"], ["12", "Made to Go fast food"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65212",
+  "name": "CIRCLE K TVIRTOVĖS AL.",
+  "category": "Circle K",
+  "lat": "54.913040",
+  "lng": "23.926141",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Tvirtovės al.. 33A",
+  "zipcode": "50157",
+  "city": "Kaunas",
+  "phonenumber": "+37062727998",
+  "email": "andab@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65229",
+  "name": "CIRCLE K PILIES G.",
+  "category": "Circle K",
+  "lat": "55.702261",
+  "lng": "21.138001",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Sausio 15-osios g. 2",
+  "zipcode": "91200",
+  "city": "Klaipėda",
+  "phonenumber": "+37062966037",
+  "email": "65229@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["57", "Vacuum Cleaner"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65029",
+  "name": "CIRCLE K MIŠKAS",
+  "category": "Circle K",
+  "lat": "55.730418",
+  "lng": "21.124654",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "H.Manto g. 96",
+  "zipcode": "92295",
+  "city": "Klaipėda",
+  "phonenumber": "+37061883659",
+  "email": "65029@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65028",
+  "name": "CIRCLE K TAIKA KLAIPĖDA",
+  "category": "Circle K",
+  "lat": "55.692454",
+  "lng": "21.153692",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Taikos pr. 61B",
+  "zipcode": "91182",
+  "city": "Klaipėda",
+  "phonenumber": "+370699 49734",
+  "email": "65028@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["7", "Car wash"], ["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"]]
+}, {
+  "id": "65206",
+  "name": "CIRCLE K GARIŪNAI",
+  "category": "Circle K",
+  "lat": "54.658890",
+  "lng": "25.160837",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Gariūnų g. 45",
+  "zipcode": "02300",
+  "city": "Vilnius",
+  "phonenumber": "+37062551551",
+  "email": "65206@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["15", "Wifi"]],
+  "fuelServices": [["40", "miles 95"], ["42", "miles Diesel"], ["45", "milesPLUS 95"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65401",
+  "name": "CIRCLE K PLUNGĖ",
+  "category": "Circle K",
+  "lat": "55.937652",
+  "lng": "21.87865",
+  "street": "Truikių km Plungės rajonas",
+  "zipcode": "90110",
+  "city": "Plungės raj.",
+  "phonenumber": "+37044872236",
+  "email": "65401@circlekeurope.com",
+  "organizationnumber": "169700486",
+  "allday": 0,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["5", "TruckDiesel Network"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65015",
+  "name": "CIRCLE K PETRAŠIŪNAI",
+  "category": "Circle K",
+  "lat": "54.894319",
+  "lng": "24.006652",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "R.Kalantos g. 159",
+  "zipcode": "52314",
+  "city": "Kaunas",
+  "phonenumber": "+37069405157",
+  "email": "miald@circlekeurope.com",
+  "organizationnumber": "211454910",
+  "allday": 1,
+  "services": [["12", "Made to Go fast food"], ["56", "Road Taxes"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"], ["15", "Wifi"]],
+  "fuelServices": [["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}, {
+  "id": "65402",
+  "name": "CIRCLE K ŠAKIAI",
+  "category": "Circle K",
+  "lat": "54.9592949",
+  "lng": "23.083431",
+  "weekdays": "00.00-24.00",
+  "saturdays": "00.00-24.00",
+  "sundays": "00.00-24.00",
+  "street": "Kauno g. 68",
+  "zipcode": "71129",
+  "city": "Girėnų k.",
+  "email": "65402@circlekeurope.com",
+  "organizationnumber": "302893603",
+  "allday": 1,
+  "services": [["11", "AdBlue"], ["12", "Made to Go fast food"], ["4", "Routex Atlas"], ["3", "Simply Great Coffee"]],
+  "fuelServices": [["17", "AdBlue"], ["38", "LPG"], ["40", "miles 95"], ["42", "miles Diesel"], ["47", "milesPLUS Diesel"]]
+}]
+
+</script>
+
+      
+{% endblock %}
+{% include 'main/footer.html' %}
+{% include 'main/javascript.html' %}
+
+    
+
+
+

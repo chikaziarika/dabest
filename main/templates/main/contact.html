@@ -1,0 +1,472 @@
+
+{% include 'main/main.html' %}
+{% load static %}
+{% include 'main/navbar.html' %}
+{% block content%} 
+
+<style>
+
+.place-card-large {
+    display: none !important;
+}
+
+.navbar {
+  background-color: transparent !important;
+  position: absolute;
+  width: 100%;
+}
+
+a.nav-link{
+  color: #f6f6f6;
+  font-family: 'Poppins';
+  font-weight: 900;
+}
+
+body {
+    font-family: 'Poppins';
+    margin: 0;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    margin-top: -79px;
+}
+
+
+.contact {
+    padding: 158px 0;
+}
+
+.contact .heading h2 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+
+}
+
+.contact .heading h2 span {
+    color: #ff9100;
+}
+
+.contact .heading p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #999999;
+    margin: 20px 0 60px;
+    padding: 0;
+}
+
+.contact .form-control {
+    padding: 25px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border: 0;
+    border-radius: 10px;
+}
+
+.contact button.btn {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    background: #ff9100;
+    color: #ffffff;
+}
+
+.contact .title h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.contact .title p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    line-height: 1.6;
+    margin: 0 0 40px;
+}
+
+.contact .content .info {
+    margin-top: 30px;
+}
+.contact .content .info i {
+    font-size: 30px;
+    padding: 0;
+    margin: 0;
+    color: #02434b;
+    margin-right: 20px;
+    text-align: center;
+    width: 20px;
+}
+.contact .content .info h4 {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.contact .content .info h4 span {
+    font-size: 13px;
+    font-weight: 300;
+    color: #999999;
+}
+
+
+.row {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.red-box {  top: 0;   left: 0;
+  width: 100vw;
+  height: 110vh;
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  background:red;
+  padding: 0px;
+}
+
+.blue-box {   
+  display: block;
+  position: absolute;
+  top: 22%;   left: 50%;
+  -webkit-transform:translateX(-50%);
+  width: 50vw;
+  height: 50vh;
+  z-index: 1001;
+  background:rgba(222,222,222,.6);
+  padding: 20px;
+  
+  border-radius: 12px;
+  box-shadow: .5px 4px 20px rgba(0,0,0,.5);;
+/*     filter: blur(25px);   */
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.message {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 5px;
+}
+
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,.form label .input:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.form label .input:valid + span {
+  color: green;
+}
+
+.input01 {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 5px;
+}
+
+.form label .input01 + span {
+  position: absolute;
+  left: 10px;
+  top: 50px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input01:placeholder-shown + span {
+  top: 40px;
+  font-size: 0.9em;
+}
+
+.form label .input01:focus + span,.form label .input01:valid + span {
+    top: 85px;
+    font-size: 0.6em;
+    font-weight: 600;
+}
+
+.form label .input01:valid + span {
+  color: green;
+}
+
+.fancy {
+  background-color: #fff;
+  border: 2px solid #cacaca;
+  border-radius: 0px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 390;
+  letter-spacing: 2px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 8px 30px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  transition: all 0.3s ease-in-out;
+  user-select: none;
+  font-size: 13px;
+}
+
+.fancy::before {
+  content: " ";
+  width: 1.7rem;
+  height: 2px;
+  background: #cacaca;
+  top: 50%;
+  left: 1.5em;
+  position: absolute;
+  transform: translateY(-50%);
+  transform: translateX(230%);
+  transform-origin: center;
+  transition: background 0.3s linear, width 0.3s linear;
+}
+
+.fancy .text {
+  font-size: 1.125em;
+  line-height: 1.33333em;
+  padding-left: 2em;
+  display: block;
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+  text-transform: lowercase;
+  text-decoration: none;
+  color: #818181;
+  transform: translateX(30%);
+}
+
+.fancy .top-key {
+  height: 2px;
+  width: 1.5625rem;
+  top: -2px;
+  left: 0.625rem;
+  position: absolute;
+  background: white;
+  transition: width 0.5s ease-out, left 0.3s ease-out;
+}
+
+.fancy .bottom-key-1 {
+  height: 2px;
+  width: 1.5625rem;
+  right: 1.875rem;
+  bottom: -2px;
+  position: absolute;
+  background: white;
+  transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.fancy .bottom-key-2 {
+  height: 2px;
+  width: 0.625rem;
+  right: 0.625rem;
+  bottom: -2px;
+  position: absolute;
+  background: white;
+  transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.fancy:hover {
+  color: white;
+  background: #cacaca;
+}
+
+.fancy:hover::before {
+  width: 1.5rem;
+  background: white;
+}
+
+.fancy:hover .text {
+  color: white;
+  padding-left: 1.5em;
+}
+
+.fancy:hover .top-key {
+  left: -2px;
+  width: 0px;
+}
+
+.fancy:hover .bottom-key-1,
+ .fancy:hover .bottom-key-2 {
+  right: 0;
+  width: 0;
+}
+
+
+#footer_container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000 !important;
+}
+
+
+
+
+</style>
+
+<div class="row">
+    
+    <div class="blue-box">
+        <section class="contact" id="contact">
+            <div class="container" style="margin-top: -155px;">
+                <div class="heading text-center" style="position: absolute;left: 42%;top: 59%;">
+                    <h2>Our
+                        <span> Office </span></h2>
+                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        <br>incididunt ut labore et dolore magna aliqua.</p> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="title">
+                            <h3 style="color: #000;">Contact detail</h3>
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p> -->
+                        </div>
+                        <div class="content">
+                            <!-- Info-1 -->
+                            <div class="info">
+                                <i class="fas fa-mobile-alt"></i>
+                                <!-- <h4 class="d-inline-block" style="color: #000;">PHONE : -->
+                                    <!-- <br> -->
+                                    <a href="https://wa.me/628111014006"><span style="font-weight: 400; font-family: 'Poppins'; color: #000 !important;">  &nbsp; +6281 1101 4006</span></h4>
+                            </div>
+                            <!-- Info-2 -->
+                            <div class="info">
+                                <i class="far fa-envelope"></i>
+                                <!-- <h4 class="d-inline-block" style="color: #000 !important; ">EMAIL : -->
+                                    <!-- <br> -->
+                                    <a href="mailto:springs@dabestconsultan.com">
+                                        <span style="font-weight: 400; font-family: 'Poppins'; color: #000 !important; "> &nbsp; Mail US </span>
+                                    </a></h4>
+                            </div>
+                            <!-- Info-3 -->
+                            <div class="info">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <!-- <h4 class="d-inline-block" style="color: #000;">ADDRESS :<br> -->
+                                    <a href="https://maps.app.goo.gl/EpKYr6w9GxNoYprX8"> <span style="font-weight: 400;  font-family: 'Poppins'; color: #000 !important;"> &nbsp; Jalan Batik Saketi No. 5</span></a>
+                                 </h4>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        
+                    </div>
+        
+                    <div class="col-md-6">
+                        <form class="form">
+    
+                            <div class="flex">
+                                <label>
+                                    <input required="" placeholder="" type="text" class="input">
+                                    <span>first name</span>
+                                </label>
+                        
+                                <label>
+                                    <input required="" placeholder="" type="text" class="input">
+                                    <span>last name</span>
+                                </label>
+                            </div>  
+                                    
+                            <label>
+                                <input required="" placeholder="" type="email" class="input">
+                                <span>email</span>
+                            </label> 
+                                
+                            <label>
+                                <input required="" type="tel" placeholder="" class="input">
+                                <span>contact number</span>
+                            </label>
+                            <label>
+                                <textarea required="" rows="3" placeholder="" class="input01"></textarea>
+                                <span>message</span>
+                            </label>
+                            
+                            <button class="fancy" href="#">
+                              <span class="top-key"></span>
+                              <span class="text">submit</span>
+                              <span class="bottom-key-1"></span>
+                              <span class="bottom-key-2"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- <iframe class="red-box" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62500.326679418!2d78.15534515784213!3d11.745990006878106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf5042b868067%3A0x23fd6235e743cf34!2sYercaud+Juice+Bar!5e0!3m2!1sen!2sin!4v1524835491008">     </iframe> -->
+    <iframe class="red-box" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6661.527691053447!2d107.62924308502843!3d-6.894423503511207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7afa63b20f1%3A0x939a7aa9677c30e3!2sJl.%20Batik%20Saketi%20No.5%2C%20Sukaluyu%2C%20Kec.%20Cibeunying%20Kaler%2C%20Kota%20Bandung%2C%20Jawa%20Barat%2040123!5e0!3m2!1sid!2sid!4v1707815588460!5m2!1sid!2sid" ></iframe>
+</div>
+
+
+
+
+
+
+
+      
+{% endblock %}
+{% include 'main/footer.html' %}
+{% include 'main/javascript.html' %}
+
+    
+
+
+

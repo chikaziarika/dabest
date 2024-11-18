@@ -1,0 +1,2661 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-12 11:54+0700\n"
+"PO-Revision-Date: 2024-11-12 11:57+0700\n"
+"Last-Translator:   <tazsafakhri@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\article\admin.py:41 .\article\admin.py:94 .\article\admin.py:138
+#, python-format
+msgid "%d Article was successfully marked as Approve."
+msgid_plural "%d Article were successfully marked as Approve."
+msgstr[0] ""
+
+#: .\article\models.py:16
+msgid "BIG TITLE"
+msgstr ""
+
+#: .\article\models.py:17 .\article\models.py:38 .\article\models.py:67
+#: .\main\models.py:247 .\main\models.py:274
+msgid "HEADER"
+msgstr ""
+
+#: .\article\models.py:18 .\article\models.py:39 .\article\models.py:68
+#: .\main\models.py:248 .\main\models.py:275
+msgid "GAMBAR"
+msgstr ""
+
+#: .\article\models.py:21 .\article\models.py:42
+msgid "AUTHOR"
+msgstr ""
+
+#: .\article\models.py:58
+msgid "  Approve Article"
+msgstr ""
+
+#: .\article\models.py:63
+msgid "  Reject Article"
+msgstr ""
+
+#: .\article\views.py:15 .\info\views.py:14 ⁨.\main\templates\main\base copy
+#: 3.html⁩:179 ⁨.\main\templates\main\base copy 3.html⁩:235
+#: .\main\views.py:152 .\news\views.py:16
+msgid "What's problem our business is trying to solved"
+msgstr "Permasalahan yang bisa kami selesaikan"
+
+#: .\dabest\settings.py:228
+msgid "Indonesian"
+msgstr ""
+
+#: .\dabest\settings.py:229
+msgid "English"
+msgstr ""
+
+#: .\dabest\urls.py:36 .\dabest\urls.py:55
+msgid "workshop/"
+msgstr ""
+
+#: .\dabest\urls.py:73
+msgid "DABEST Index"
+msgstr ""
+
+#: .\dabest\urls.py:74
+msgid "DABEST Admin"
+msgstr ""
+
+#: .\dabest\urls.py:75
+msgid "DABEST ADMIN Management"
+msgstr ""
+
+#: .\main\admin.py:49
+#, python-format
+msgid "%d Applicant was successfully marked as On Review."
+msgid_plural "%d Applicant were successfully marked as On Review."
+msgstr[0] ""
+
+#: .\main\admin.py:204
+#, python-format
+msgid "%d Applicant was successfully marked as On Approve Applicant."
+msgid_plural "%d Applicant were successfully marked as On Approve Applicant."
+msgstr[0] ""
+
+#: .\main\admin.py:217
+#, python-format
+msgid "%d Applicant was successfully marked as On Reject Applincant."
+msgid_plural "%d Applicant were successfully marked as On Reject Applincant."
+msgstr[0] ""
+
+#: .\main\models.py:176
+msgid "DEPARTEMENT"
+msgstr ""
+
+#: .\main\models.py:183
+msgid "EMPLOYEE TYPE"
+msgstr ""
+
+#: .\main\models.py:189
+msgid "Employee Type"
+msgstr ""
+
+#: .\main\models.py:206
+#, fuzzy
+#| msgid "Careers"
+msgid "Career List"
+msgstr "Karir"
+
+#: .\main\models.py:216
+msgid "NAMA PEKERJAAN"
+msgstr ""
+
+#: .\main\models.py:217
+msgid "LATITTUDE"
+msgstr ""
+
+#: .\main\models.py:218
+msgid "LONGITUDE"
+msgstr ""
+
+#: .\main\models.py:219
+msgid "TAHUN PEKERJAAN"
+msgstr ""
+
+#: .\main\models.py:220
+msgid "KATEGORI PEKERJAAN"
+msgstr ""
+
+#: .\main\models.py:221
+msgid "VIDEO"
+msgstr ""
+
+#: .\main\models.py:222
+msgid "JUMLAH IMPACT"
+msgstr ""
+
+#: .\main\models.py:223
+msgid "UNIT IMPACT"
+msgstr ""
+
+#: .\main\models.py:229 .\main\templates\main\navbar.html:36
+msgid "Project"
+msgstr "Pekerjaan"
+
+#: .\main\models.py:255 .\main\templates\main\navbar.html:42
+msgid "Journal"
+msgstr "Jurnal"
+
+#: .\main\models.py:282
+msgid "DABEST Activities"
+msgstr ""
+
+#: .\main\models.py:341
+msgid "JOB APPLICANT FOR"
+msgstr ""
+
+#: .\main\models.py:342
+msgid "FIRST NAME"
+msgstr ""
+
+#: .\main\models.py:343
+msgid "LAST NAME"
+msgstr ""
+
+#: .\main\models.py:344
+msgid "JENIS KELAMIN"
+msgstr ""
+
+#: .\main\models.py:345
+msgid "TANGGAL LAHIR"
+msgstr ""
+
+#: .\main\models.py:346
+msgid "TEMPAT LAHIR"
+msgstr ""
+
+#: .\main\models.py:347
+msgid "WARGA NEGARA"
+msgstr ""
+
+#: .\main\models.py:348
+msgid "EMAIL"
+msgstr ""
+
+#: .\main\models.py:349
+msgid "NO. TELEPHONE"
+msgstr ""
+
+#: .\main\models.py:350
+msgid "DRIVING LICENSE"
+msgstr ""
+
+#: .\main\models.py:351
+msgid "LINKEDIN ID"
+msgstr ""
+
+#: .\main\models.py:352
+msgid "ADDRESS_1 "
+msgstr ""
+
+#: .\main\models.py:353
+msgid "ADDRESS_2 "
+msgstr ""
+
+#: .\main\models.py:354
+msgid "SALARY"
+msgstr ""
+
+#: .\main\models.py:355
+msgid "GROSS SALARY"
+msgstr ""
+
+#: .\main\models.py:356
+msgid "MEDICAL HISTORY"
+msgstr ""
+
+#: .\main\models.py:357
+msgid "Referensi Info"
+msgstr ""
+
+#: .\main\models.py:358
+msgid "Referensi Name"
+msgstr ""
+
+#: .\main\models.py:359
+msgid "Referensi Relasi"
+msgstr ""
+
+#: .\main\models.py:371
+msgid "Status"
+msgstr ""
+
+#: .\main\models.py:375
+msgid "   Pending Applicant"
+msgstr ""
+
+#: .\main\models.py:384
+msgid "  Approve Applicant"
+msgstr ""
+
+#: .\main\models.py:389
+msgid " Reject Applicant"
+msgstr ""
+
+#: .\main\models.py:394
+msgid " Review Applicant"
+msgstr ""
+
+#: .\main\templates\admin\base_site.html:25
+msgid "Documentation"
+msgstr ""
+
+#: .\main\templates\admin\base_site.html:29
+msgid "Change password"
+msgstr ""
+
+#: .\main\templates\admin\base_site.html:31
+msgid "Log out"
+msgstr ""
+
+#: .\main\templates\allauth\account\account_inactive.html:5
+#: .\main\templates\allauth\account\account_inactive.html:9
+#: .\main\templates\allauth\templates\account\account_inactive.html:5
+#: .\main\templates\allauth\templates\account\account_inactive.html:9
+msgid "Account Inactive"
+msgstr ""
+
+#: .\main\templates\allauth\account\account_inactive.html:12
+#: .\main\templates\allauth\templates\account\account_inactive.html:12
+msgid "This account is inactive."
+msgstr ""
+
+#: .\main\templates\allauth\account\base_reauthenticate.html:5
+#: .\main\templates\allauth\account\base_reauthenticate.html:9
+#: .\main\templates\allauth\templates\account\base_reauthenticate.html:5
+#: .\main\templates\allauth\templates\account\base_reauthenticate.html:9
+msgid "Confirm Access"
+msgstr ""
+
+#: .\main\templates\allauth\account\base_reauthenticate.html:12
+#: .\main\templates\allauth\templates\account\base_reauthenticate.html:12
+msgid "Please reauthenticate to safeguard your account."
+msgstr ""
+
+#: .\main\templates\allauth\account\base_reauthenticate.html:19
+#: .\main\templates\allauth\mfa\authenticate.html:31
+#: .\main\templates\allauth\templates\account\base_reauthenticate.html:19
+msgid "Alternative options"
+msgstr ""
+
+#: .\main\templates\allauth\account\confirm_login_code.html:5
+#: .\main\templates\allauth\account\confirm_login_code.html:27
+#: .\main\templates\allauth\account\login.html:5
+#: .\main\templates\allauth\account\login.html:9
+#: .\main\templates\allauth\account\login.html:31
+#: .\main\templates\allauth\account\request_login_code.html:5
+#: .\main\templates\allauth\allauth\layouts\base.html:68
+#: .\main\templates\allauth\mfa\authenticate.html:6
+#: .\main\templates\allauth\mfa\authenticate.html:24
+#: .\main\templates\allauth\openid\login.html:5
+#: .\main\templates\allauth\openid\login.html:9
+#: .\main\templates\allauth\openid\login.html:20
+#: .\main\templates\allauth\socialaccount\login.html:5
+#: .\main\templates\allauth\socialaccount\login_redirect.html:5
+#: .\main\templates\allauth\templates\account\confirm_login_code.html:5
+#: .\main\templates\allauth\templates\account\confirm_login_code.html:27
+#: .\main\templates\allauth\templates\account\login.html:7
+#: .\main\templates\allauth\templates\account\request_login_code.html:5
+#: .\main\templates\main\error403.html:7
+msgid "Sign In"
+msgstr ""
+
+#: .\main\templates\allauth\account\confirm_login_code.html:9
+#: .\main\templates\allauth\templates\account\confirm_login_code.html:9
+msgid "Enter Sign-In Code"
+msgstr ""
+
+#: .\main\templates\allauth\account\confirm_login_code.html:15
+#: .\main\templates\allauth\templates\account\confirm_login_code.html:15
+#, python-format
+msgid ""
+"We’ve sent a code to %(email_link)s. The code expires shortly, so please "
+"enter it soon."
+msgstr ""
+
+#: .\main\templates\allauth\account\confirm_login_code.html:34
+#: .\main\templates\allauth\account\request_login_code.html:31
+#: .\main\templates\allauth\templates\account\confirm_login_code.html:34
+#: .\main\templates\allauth\templates\account\request_login_code.html:31
+msgid "Other sign-in options"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:6
+#: .\main\templates\allauth\account\email.html:10
+#: .\main\templates\allauth\templates\account\email.html:6
+#: .\main\templates\allauth\templates\account\email.html:11
+#, fuzzy
+#| msgid "Mailing Address"
+msgid "Email Addresses"
+msgstr "alamat surat"
+
+#: .\main\templates\allauth\account\email.html:14
+#: .\main\templates\allauth\templates\account\email.html:15
+msgid "The following email addresses are associated with your account:"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:27
+#: .\main\templates\allauth\templates\account\email.html:28
+msgid "Verified"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:31
+#: .\main\templates\allauth\templates\account\email.html:32
+msgid "Unverified"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:36
+#: .\main\templates\allauth\templates\account\email.html:37
+msgid "Primary"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:46
+#: .\main\templates\allauth\templates\account\email.html:48
+msgid "Make Primary"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:49
+#: .\main\templates\allauth\account\email_change.html:37
+#: .\main\templates\allauth\templates\account\email.html:51
+#: .\main\templates\allauth\templates\account\email_change.html:37
+msgid "Re-send Verification"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:52
+#: .\main\templates\allauth\mfa\webauthn\authenticator_confirm_delete.html:14
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:58
+#: .\main\templates\allauth\socialaccount\connections.html:40
+#: .\main\templates\allauth\templates\account\email.html:54
+msgid "Remove"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:61
+#: .\main\templates\allauth\templates\account\email.html:64
+#, fuzzy
+#| msgid "Mailing Address"
+msgid "Add Email Address"
+msgstr "alamat surat"
+
+#: .\main\templates\allauth\account\email.html:72
+#: .\main\templates\allauth\templates\account\email.html:75
+msgid "Add Email"
+msgstr ""
+
+#: .\main\templates\allauth\account\email.html:81
+#: .\main\templates\allauth\templates\account\email.html:85
+msgid "Do you really want to remove the selected email address?"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\account_already_exists_message.txt:4
+#: .\main\templates\allauth\templates\account\email\account_already_exists_message.txt:4
+#, python-format
+msgid ""
+"You are receiving this email because you or someone else tried to signup for an\n"
+"account using email address:\n"
+"\n"
+"%(email)s\n"
+"\n"
+"However, an account using that email address already exists.  In case you have\n"
+"forgotten about this, please use the password forgotten procedure to recover\n"
+"your account:\n"
+"\n"
+"%(password_reset_url)s"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\account_already_exists_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\account_already_exists_subject.txt:3
+msgid "Account Already Exists"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\base_message.txt:1
+#: .\main\templates\allauth\templates\account\email\base_message.txt:1
+#, python-format
+msgid "Hello from %(site_name)s!"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\base_message.txt:5
+#, python-format
+msgid ""
+"Thank you!\n"
+"%(site_domain)s"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\base_notification.txt:5
+#: .\main\templates\allauth\templates\account\email\base_notification.txt:5
+msgid ""
+"You are receiving this mail because the following change was made to your "
+"account:"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\base_notification.txt:10
+#: .\main\templates\allauth\templates\account\email\base_notification.txt:10
+#, python-format
+msgid ""
+"If you do not recognize this change then please take proper security precautions immediately. The change to your account originates from:\n"
+"\n"
+"- IP address: %(ip)s\n"
+"- Browser: %(user_agent)s\n"
+"- Date: %(timestamp)s"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\email_changed_message.txt:4
+#: .\main\templates\allauth\templates\account\email\email_changed_message.txt:4
+#, python-format
+msgid "Your email has been changed from %(from_email)s to %(to_email)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\email_changed_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\email_changed_subject.txt:3
+msgid "Email Changed"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\email_confirm_message.txt:4
+#: .\main\templates\allauth\templates\account\email\email_confirm_message.txt:4
+msgid "Your email has been confirmed."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\email_confirm_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\email_confirm_subject.txt:3
+msgid "Email Confirmation"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\email_confirmation_message.txt:5
+#: .\main\templates\allauth\templates\account\email\email_confirmation_message.txt:5
+#, python-format
+msgid ""
+"You're receiving this email because user %(user_display)s has given your email address to register an account on %(site_domain)s.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\email_confirmation_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\email_confirmation_subject.txt:3
+msgid "Please Confirm Your Email Address"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\email_deleted_message.txt:4
+#: .\main\templates\allauth\templates\account\email\email_deleted_message.txt:4
+#, python-format
+msgid "Email address %(deleted_email)s has been removed from your account."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\email_deleted_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\email_deleted_subject.txt:3
+msgid "Email Removed"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\login_code_message.txt:5
+#: .\main\templates\allauth\templates\account\email\login_code_message.txt:5
+msgid ""
+"Your sign-in code is listed below. Please enter it in your open browser "
+"window."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\login_code_message.txt:9
+#: .\main\templates\allauth\account\email\unknown_account_message.txt:6
+#: .\main\templates\allauth\templates\account\email\login_code_message.txt:9
+#: .\main\templates\allauth\templates\account\email\unknown_account_message.txt:6
+msgid "This mail can be safely ignored if you did not initiate this action."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\login_code_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\login_code_subject.txt:3
+msgid "Sign-In Code"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_changed_message.txt:4
+#: .\main\templates\allauth\templates\account\email\password_changed_message.txt:4
+msgid "Your password has been changed."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_changed_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\password_changed_subject.txt:3
+msgid "Password Changed"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_reset_key_message.txt:4
+#: .\main\templates\allauth\templates\account\email\password_reset_key_message.txt:4
+msgid ""
+"You're receiving this email because you or someone else has requested a password reset for your user account.\n"
+"It can be safely ignored if you did not request a password reset. Click the link below to reset your password."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_reset_key_message.txt:9
+#: .\main\templates\allauth\templates\account\email\password_reset_key_message.txt:9
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_reset_key_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\password_reset_key_subject.txt:3
+msgid "Password Reset Email"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_reset_message.txt:4
+#: .\main\templates\allauth\templates\account\email\password_reset_message.txt:4
+msgid "Your password has been reset."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_reset_subject.txt:3
+#: .\main\templates\allauth\account\password_reset.html:4
+#: .\main\templates\allauth\account\password_reset.html:8
+#: .\main\templates\allauth\account\password_reset_done.html:6
+#: .\main\templates\allauth\account\password_reset_done.html:10
+#: .\main\templates\allauth\templates\account\email\password_reset_subject.txt:3
+#: .\main\templates\allauth\templates\account\password_reset.html:5
+#: .\main\templates\allauth\templates\account\password_reset_done.html:6
+#: .\main\templates\allauth\templates\account\password_reset_done.html:11
+msgid "Password Reset"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_set_message.txt:4
+#: .\main\templates\allauth\templates\account\email\password_set_message.txt:4
+msgid "Your password has been set."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\password_set_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\password_set_subject.txt:3
+msgid "Password Set"
+msgstr ""
+
+#: .\main\templates\allauth\account\email\unknown_account_message.txt:4
+#: .\main\templates\allauth\templates\account\email\unknown_account_message.txt:4
+#, python-format
+msgid ""
+"You are receiving this email because you, or someone else, tried to access "
+"an account with email %(email)s. However, we do not have any record of such "
+"an account in our database."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\unknown_account_message.txt:8
+#: .\main\templates\allauth\templates\account\email\unknown_account_message.txt:8
+msgid "If it was you, you can sign up for an account using the link below."
+msgstr ""
+
+#: .\main\templates\allauth\account\email\unknown_account_subject.txt:3
+#: .\main\templates\allauth\templates\account\email\unknown_account_subject.txt:3
+msgid "Unknown Account"
+msgstr ""
+
+#: .\main\templates\allauth\account\email_change.html:5
+#: .\main\templates\allauth\account\email_change.html:9
+#: .\main\templates\allauth\templates\account\email_change.html:5
+#: .\main\templates\allauth\templates\account\email_change.html:9
+#, fuzzy
+#| msgid "Mailing Address"
+msgid "Email Address"
+msgstr "alamat surat"
+
+#: .\main\templates\allauth\account\email_change.html:21
+#: .\main\templates\allauth\account\email_change.html:29
+#: .\main\templates\allauth\templates\account\email_change.html:21
+#: .\main\templates\allauth\templates\account\email_change.html:29
+msgid "Current email"
+msgstr ""
+
+#: .\main\templates\allauth\account\email_change.html:31
+#: .\main\templates\allauth\templates\account\email_change.html:31
+msgid "Changing to"
+msgstr ""
+
+#: .\main\templates\allauth\account\email_change.html:35
+#: .\main\templates\allauth\templates\account\email_change.html:35
+msgid "Your email address is still pending verification."
+msgstr ""
+
+#: .\main\templates\allauth\account\email_change.html:41
+#: .\main\templates\allauth\templates\account\email_change.html:41
+msgid "Cancel Change"
+msgstr ""
+
+#: .\main\templates\allauth\account\email_change.html:49
+#: .\main\templates\allauth\templates\account\email_change.html:49
+msgid "Change to"
+msgstr ""
+
+#: .\main\templates\allauth\account\email_change.html:55
+#: .\main\templates\allauth\allauth\layouts\base.html:31
+#: .\main\templates\allauth\templates\account\email_change.html:55
+msgid "Change Email"
+msgstr ""
+
+#: .\main\templates\allauth\account\email_confirm.html:6
+#: .\main\templates\allauth\account\email_confirm.html:11
+#: .\main\templates\allauth\templates\account\email_confirm.html:6
+#: .\main\templates\allauth\templates\account\email_confirm.html:11
+#, fuzzy
+#| msgid "Mailing Address"
+msgid "Confirm Email Address"
+msgstr "alamat surat"
+
+#: .\main\templates\allauth\account\email_confirm.html:17
+#: .\main\templates\allauth\templates\account\email_confirm.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
+"address for user %(user_display)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\email_confirm.html:25
+#: .\main\templates\allauth\account\reauthenticate.html:18
+#: .\main\templates\allauth\mfa\reauthenticate.html:18
+#: .\main\templates\allauth\templates\account\email_confirm.html:25
+#: .\main\templates\allauth\templates\account\reauthenticate.html:18
+msgid "Confirm"
+msgstr ""
+
+#: .\main\templates\allauth\account\email_confirm.html:31
+#: .\main\templates\allauth\account\messages\email_confirmation_failed.txt:2
+#: .\main\templates\allauth\templates\account\email_confirm.html:31
+#: .\main\templates\allauth\templates\account\messages\email_confirmation_failed.txt:2
+#, python-format
+msgid ""
+"Unable to confirm %(email)s because it is already confirmed by a different "
+"account."
+msgstr ""
+
+#: .\main\templates\allauth\account\email_confirm.html:37
+#, python-format
+msgid ""
+"This email confirmation link expired or is invalid!. Please <a "
+"href=\"%(email_url)s\">issue a new email confirmation request</a>."
+msgstr ""
+
+#: .\main\templates\allauth\account\login.html:19
+#, python-format
+msgid ""
+"If you have not created an account yet, then please %(link)ssign "
+"up%(end_link)s first."
+msgstr ""
+
+#: .\main\templates\allauth\account\login.html:42
+msgid "Sign in with a passkey"
+msgstr ""
+
+#: .\main\templates\allauth\account\login.html:47
+#: .\main\templates\allauth\account\request_login_code.html:9
+#: .\main\templates\allauth\templates\account\request_login_code.html:9
+msgid "Mail me a sign-in code"
+msgstr ""
+
+#: .\main\templates\allauth\account\logout.html:4
+#: .\main\templates\allauth\account\logout.html:8
+#: .\main\templates\allauth\account\logout.html:21
+#: .\main\templates\allauth\allauth\layouts\base.html:61
+#: .\main\templates\allauth\templates\account\logout.html:4
+#: .\main\templates\allauth\templates\account\logout.html:8
+#: .\main\templates\allauth\templates\account\logout.html:21
+#: .\main\templates\allauth\usersessions\usersession_list.html:64
+msgid "Sign Out"
+msgstr ""
+
+#: .\main\templates\allauth\account\logout.html:11
+#: .\main\templates\allauth\templates\account\logout.html:11
+msgid "Are you sure you want to sign out?"
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\cannot_delete_primary_email.txt:2
+#: .\main\templates\allauth\templates\account\messages\cannot_delete_primary_email.txt:2
+#, python-format
+msgid "You cannot remove your primary email address (%(email)s)."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\email_confirmation_sent.txt:2
+#: .\main\templates\allauth\templates\account\messages\email_confirmation_sent.txt:2
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\email_confirmed.txt:2
+#: .\main\templates\allauth\templates\account\messages\email_confirmed.txt:2
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\email_deleted.txt:2
+#: .\main\templates\allauth\templates\account\messages\email_deleted.txt:2
+#, python-format
+msgid "Removed email address %(email)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\logged_in.txt:4
+#: .\main\templates\allauth\templates\account\messages\logged_in.txt:4
+#, python-format
+msgid "Successfully signed in as %(name)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\logged_out.txt:2
+#: .\main\templates\allauth\templates\account\messages\logged_out.txt:2
+msgid "You have signed out."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\login_code_sent.txt:2
+#: .\main\templates\allauth\templates\account\messages\login_code_sent.txt:2
+#, python-format
+msgid "A sign-in code has been mailed to %(email)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\password_changed.txt:2
+#: .\main\templates\allauth\templates\account\messages\password_changed.txt:2
+msgid "Password successfully changed."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\password_set.txt:2
+#: .\main\templates\allauth\templates\account\messages\password_set.txt:2
+msgid "Password successfully set."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\primary_email_set.txt:2
+#: .\main\templates\allauth\templates\account\messages\primary_email_set.txt:2
+msgid "Primary email address set."
+msgstr ""
+
+#: .\main\templates\allauth\account\messages\unverified_primary_email.txt:2
+#: .\main\templates\allauth\templates\account\messages\unverified_primary_email.txt:2
+msgid "Your primary email address must be verified."
+msgstr ""
+
+#: .\main\templates\allauth\account\password_change.html:4
+#: .\main\templates\allauth\account\password_change.html:9
+#: .\main\templates\allauth\account\password_change.html:21
+#: .\main\templates\allauth\account\password_reset_from_key.html:5
+#: .\main\templates\allauth\account\password_reset_from_key.html:12
+#: .\main\templates\allauth\account\password_reset_from_key.html:30
+#: .\main\templates\allauth\account\password_reset_from_key_done.html:5
+#: .\main\templates\allauth\account\password_reset_from_key_done.html:9
+#: .\main\templates\allauth\allauth\layouts\base.html:37
+#: .\main\templates\allauth\templates\account\password_change.html:4
+#: .\main\templates\allauth\templates\account\password_change.html:9
+#: .\main\templates\allauth\templates\account\password_change.html:21
+#: .\main\templates\allauth\templates\account\password_reset_from_key.html:5
+#: .\main\templates\allauth\templates\account\password_reset_from_key.html:13
+#: .\main\templates\allauth\templates\account\password_reset_from_key.html:31
+#: .\main\templates\allauth\templates\account\password_reset_from_key_done.html:5
+#: .\main\templates\allauth\templates\account\password_reset_from_key_done.html:10
+msgid "Change Password"
+msgstr ""
+
+#: .\main\templates\allauth\account\password_change.html:23
+#: .\main\templates\allauth\templates\account\password_change.html:23
+msgid "Forgot Password?"
+msgstr ""
+
+#: .\main\templates\allauth\account\password_reset.html:14
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+
+#: .\main\templates\allauth\account\password_reset.html:25
+msgid "Reset My Password"
+msgstr ""
+
+#: .\main\templates\allauth\account\password_reset.html:30
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: .\main\templates\allauth\account\password_reset_done.html:16
+#: .\main\templates\allauth\templates\account\password_reset_done.html:17
+msgid ""
+"We have sent you an email. If you have not received it please check your "
+"spam folder. Otherwise contact us if you do not receive it in a few minutes."
+msgstr ""
+
+#: .\main\templates\allauth\account\password_reset_from_key.html:10
+#: .\main\templates\allauth\templates\account\password_reset_from_key.html:11
+msgid "Bad Token"
+msgstr ""
+
+#: .\main\templates\allauth\account\password_reset_from_key.html:18
+#: .\main\templates\allauth\templates\account\password_reset_from_key.html:19
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
+"reset</a>."
+msgstr ""
+
+#: .\main\templates\allauth\account\password_reset_from_key_done.html:12
+#: .\main\templates\allauth\templates\account\password_reset_from_key_done.html:13
+msgid "Your password is now changed."
+msgstr ""
+
+#: .\main\templates\allauth\account\password_set.html:5
+#: .\main\templates\allauth\account\password_set.html:9
+#: .\main\templates\allauth\account\password_set.html:21
+#: .\main\templates\allauth\templates\account\password_set.html:5
+#: .\main\templates\allauth\templates\account\password_set.html:9
+#: .\main\templates\allauth\templates\account\password_set.html:21
+msgid "Set Password"
+msgstr ""
+
+#: .\main\templates\allauth\account\reauthenticate.html:6
+#: .\main\templates\allauth\templates\account\reauthenticate.html:6
+msgid "Enter your password:"
+msgstr ""
+
+#: .\main\templates\allauth\account\request_login_code.html:12
+#: .\main\templates\allauth\templates\account\request_login_code.html:12
+msgid ""
+"You will receive an email containing a special code for a password-free "
+"sign-in."
+msgstr ""
+
+#: .\main\templates\allauth\account\request_login_code.html:24
+#: .\main\templates\allauth\templates\account\request_login_code.html:24
+msgid "Request Code"
+msgstr ""
+
+#: .\main\templates\allauth\account\signup.html:4
+#: .\main\templates\allauth\socialaccount\signup.html:7
+#: .\main\templates\allauth\templates\account\signup.html:5
+msgid "Signup"
+msgstr ""
+
+#: .\main\templates\allauth\account\signup.html:8
+#: .\main\templates\allauth\account\signup.html:30
+#: .\main\templates\allauth\allauth\layouts\base.html:74
+#: .\main\templates\allauth\socialaccount\signup.html:11
+#: .\main\templates\allauth\socialaccount\signup.html:27
+msgid "Sign Up"
+msgstr ""
+
+#: .\main\templates\allauth\account\signup.html:17
+#, python-format
+msgid "Already have an account? Then please %(link)ssign in%(end_link)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\signup_closed.html:5
+#: .\main\templates\allauth\account\signup_closed.html:9
+#: .\main\templates\allauth\templates\account\signup_closed.html:5
+#: .\main\templates\allauth\templates\account\signup_closed.html:9
+msgid "Sign Up Closed"
+msgstr ""
+
+#: .\main\templates\allauth\account\signup_closed.html:12
+#: .\main\templates\allauth\templates\account\signup_closed.html:12
+msgid "We are sorry, but the sign up is currently closed."
+msgstr ""
+
+#: .\main\templates\allauth\account\snippets\already_logged_in.html:7
+#: .\main\templates\allauth\templates\account\snippets\already_logged_in.html:7
+msgid "Note"
+msgstr ""
+
+#: .\main\templates\allauth\account\snippets\already_logged_in.html:7
+#: .\main\templates\allauth\templates\account\snippets\already_logged_in.html:7
+#, python-format
+msgid "You are already logged in as %(user_display)s."
+msgstr ""
+
+#: .\main\templates\allauth\account\snippets\warn_no_email.html:3
+#: .\main\templates\allauth\templates\account\snippets\warn_no_email.html:3
+msgid "Warning:"
+msgstr ""
+
+#: .\main\templates\allauth\account\snippets\warn_no_email.html:3
+#: .\main\templates\allauth\templates\account\snippets\warn_no_email.html:3
+msgid ""
+"You currently do not have any email address set up. You should really add an"
+" email address so you can receive notifications, reset your password, etc."
+msgstr ""
+
+#: .\main\templates\allauth\account\verification_sent.html:5
+#: .\main\templates\allauth\account\verification_sent.html:10
+#: .\main\templates\allauth\account\verified_email_required.html:5
+#: .\main\templates\allauth\account\verified_email_required.html:9
+#: .\main\templates\allauth\templates\account\verification_sent.html:5
+#: .\main\templates\allauth\templates\account\verification_sent.html:10
+#: .\main\templates\allauth\templates\account\verified_email_required.html:5
+#: .\main\templates\allauth\templates\account\verified_email_required.html:9
+msgid "Verify Your Email Address"
+msgstr ""
+
+#: .\main\templates\allauth\account\verification_sent.html:13
+#: .\main\templates\allauth\templates\account\verification_sent.html:13
+msgid ""
+"We have sent an email to you for verification. Follow the link provided to "
+"finalize the signup process. If you do not see the verification email in "
+"your main inbox, check your spam folder. Please contact us if you do not "
+"receive the verification email within a few minutes."
+msgstr ""
+
+#: .\main\templates\allauth\account\verified_email_required.html:13
+#: .\main\templates\allauth\templates\account\verified_email_required.html:13
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your email address. "
+msgstr ""
+
+#: .\main\templates\allauth\account\verified_email_required.html:18
+#: .\main\templates\allauth\templates\account\verified_email_required.html:18
+msgid ""
+"We have sent an email to you for\n"
+"verification. Please click on the link inside that email. If you do not see the verification email in your main inbox, check your spam folder. Otherwise\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+
+#: .\main\templates\allauth\account\verified_email_required.html:23
+#: .\main\templates\allauth\templates\account\verified_email_required.html:23
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your "
+"email address</a>."
+msgstr ""
+
+#: .\main\templates\allauth\allauth\layouts\base.html:18
+msgid "Messages:"
+msgstr ""
+
+#: .\main\templates\allauth\allauth\layouts\base.html:25
+msgid "Menu:"
+msgstr ""
+
+#: .\main\templates\allauth\allauth\layouts\base.html:43
+msgid "Account Connection"
+msgstr ""
+
+#: .\main\templates\allauth\allauth\layouts\base.html:49
+#: .\main\templates\allauth\mfa\authenticate.html:10
+#: .\main\templates\allauth\mfa\index.html:5
+#: .\main\templates\allauth\mfa\index.html:9
+msgid "Two-Factor Authentication"
+msgstr ""
+
+#: .\main\templates\allauth\allauth\layouts\base.html:55
+#: .\main\templates\allauth\usersessions\usersession_list.html:6
+#: .\main\templates\allauth\usersessions\usersession_list.html:10
+msgid "Sessions"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\authenticate.html:13
+msgid ""
+"Your account is protected by two-factor authentication. Please enter an "
+"authenticator code:"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\authenticate.html:36
+#: .\main\templates\allauth\mfa\webauthn\reauthenticate.html:15
+msgid "Use a security key"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\authenticate.html:41
+msgid "Cancel"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\recovery_codes_generated_message.txt:4
+msgid ""
+"A new set of Two-Factor Authentication recovery codes has been generated."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\recovery_codes_generated_subject.txt:3
+msgid "New Recovery Codes Generated"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\totp_activated_message.txt:4
+#: .\main\templates\allauth\mfa\messages\totp_activated.txt:2
+msgid "Authenticator app activated."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\totp_activated_subject.txt:3
+msgid "Authenticator App Activated"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\totp_deactivated_message.txt:4
+#: .\main\templates\allauth\mfa\messages\totp_deactivated.txt:2
+msgid "Authenticator app deactivated."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\totp_deactivated_subject.txt:3
+msgid "Authenticator App Deactivated"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\webauthn_added_message.txt:4
+msgid "A new security key has been added."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\webauthn_added_subject.txt:3
+msgid "Security Key Added"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\webauthn_removed_message.txt:4
+msgid "A security key has been removed."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\email\webauthn_removed_subject.txt:3
+msgid "Security Key Removed"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:14
+#: .\main\templates\allauth\mfa\totp\base.html:4
+msgid "Authenticator App"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:19
+msgid "Authentication using an authenticator app is active."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:23
+msgid "An authenticator app is not active."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:32
+#: .\main\templates\allauth\mfa\totp\deactivate_form.html:24
+msgid "Deactivate"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:36
+#: .\main\templates\allauth\mfa\totp\activate_form.html:32
+msgid "Activate"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:45
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:8
+#: .\main\templates\allauth\mfa\webauthn\base.html:4
+msgid "Security Keys"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:50
+#, python-format
+msgid "You have added %(count)s security key."
+msgid_plural "You have added %(count)s security keys."
+msgstr[0] ""
+
+#: .\main\templates\allauth\mfa\index.html:53
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:11
+msgid "No security keys have been added."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:60
+msgid "Manage"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:65
+#: .\main\templates\allauth\mfa\webauthn\add_form.html:18
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:68
+msgid "Add"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:75
+#: .\main\templates\allauth\mfa\recovery_codes\base.html:4
+#: .\main\templates\allauth\mfa\recovery_codes\generate.html:6
+#: .\main\templates\allauth\mfa\recovery_codes\index.html:6
+msgid "Recovery Codes"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:80
+#: .\main\templates\allauth\mfa\recovery_codes\index.html:9
+#, python-format
+msgid ""
+"There is %(unused_count)s out of %(total_count)s recovery codes available."
+msgid_plural ""
+"There are %(unused_count)s out of %(total_count)s recovery codes available."
+msgstr[0] ""
+
+#: .\main\templates\allauth\mfa\index.html:84
+msgid "No recovery codes set up."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:94
+msgid "View"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:100
+msgid "Download"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\index.html:108
+#: .\main\templates\allauth\mfa\recovery_codes\generate.html:29
+msgid "Generate"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\messages\recovery_codes_generated.txt:2
+msgid "A new set of recovery codes has been generated."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\messages\webauthn_added.txt:2
+msgid "Security key added."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\messages\webauthn_removed.txt:2
+msgid "Security key removed."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\reauthenticate.html:6
+msgid "Enter an authenticator code:"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\recovery_codes\generate.html:9
+msgid ""
+"You are about to generate a new set of recovery codes for your account."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\recovery_codes\generate.html:11
+msgid "This action will invalidate your existing codes."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\recovery_codes\generate.html:13
+msgid "Are you sure?"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\recovery_codes\index.html:13
+msgid "Unused codes"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\recovery_codes\index.html:25
+msgid "Download codes"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\recovery_codes\index.html:30
+msgid "Generate new codes"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\totp\activate_form.html:4
+#: .\main\templates\allauth\mfa\totp\activate_form.html:8
+msgid "Activate Authenticator App"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\totp\activate_form.html:11
+msgid ""
+"To protect your account with two-factor authentication, scan the QR code "
+"below with your authenticator app. Then, input the verification code "
+"generated by the app below."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\totp\activate_form.html:21
+msgid "Authenticator secret"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\totp\activate_form.html:24
+msgid ""
+"You can store this secret and use it to reinstall your authenticator app at "
+"a later time."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\totp\deactivate_form.html:5
+#: .\main\templates\allauth\mfa\totp\deactivate_form.html:9
+msgid "Deactivate Authenticator App"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\totp\deactivate_form.html:12
+msgid ""
+"You are about to deactivate authenticator app based authentication. Are you "
+"sure?"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\add_form.html:7
+msgid "Add Security Key"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_confirm_delete.html:6
+msgid "Remove Security Key"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_confirm_delete.html:8
+msgid "Are you sure you want to remove this security key?"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:16
+msgid "Key"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:19
+msgid "Usage"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:31
+msgid "Passkey"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:35
+msgid "Security key"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:38
+msgid "This key does not indicate whether it is a passkey."
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:39
+msgid "Unspecified"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:44
+#, python-format
+msgid "Added on %(created_at)s"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:46
+#, python-format
+msgid "Last used %(last_used)s"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\authenticator_list.html:54
+msgid "Edit"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\edit_form.html:7
+msgid "Edit Security Key"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\edit_form.html:18
+msgid "Save"
+msgstr ""
+
+#: .\main\templates\allauth\mfa\webauthn\snippets\scripts.html:2
+msgid "This functionality requires JavaScript."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\authentication_error.html:5
+#: .\main\templates\allauth\socialaccount\authentication_error.html:9
+msgid "Third-Party Login Failure"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\authentication_error.html:12
+msgid ""
+"An error occurred while attempting to login via your third-party account."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\connections.html:5
+#: .\main\templates\allauth\socialaccount\connections.html:9
+msgid "Account Connections"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\connections.html:13
+msgid ""
+"You can sign in to your account using any of the following third-party "
+"accounts:"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\connections.html:46
+msgid "You currently have no third-party accounts connected to this account."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\connections.html:50
+msgid "Add a Third-Party Account"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\email\account_connected_message.txt:4
+#, python-format
+msgid ""
+"A third-party account from %(provider)s has been connected to your account."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\email\account_connected_subject.txt:3
+msgid "Third-Party Account Connected"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\email\account_disconnected_message.txt:4
+#, python-format
+msgid ""
+"A third-party account from %(provider)s has been disconnected from your "
+"account."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\email\account_disconnected_subject.txt:3
+msgid "Third-Party Account Disconnected"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\login.html:10
+#, python-format
+msgid "Connect %(provider)s"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\login.html:13
+#, python-format
+msgid "You are about to connect a new third-party account from %(provider)s."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\login.html:17
+#, python-format
+msgid "Sign In Via %(provider)s"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\login.html:20
+#, python-format
+msgid ""
+"You are about to sign in using a third-party account from %(provider)s."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\login.html:27
+#: .\main\templates\allauth\socialaccount\login_redirect.html:10
+msgid "Continue"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\login_cancelled.html:5
+#: .\main\templates\allauth\socialaccount\login_cancelled.html:9
+msgid "Login Cancelled"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\login_cancelled.html:13
+#, python-format
+msgid ""
+"You decided to cancel logging in to our site using one of your existing "
+"accounts. If this was a mistake, please proceed to <a "
+"href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\messages\account_connected.txt:2
+msgid "The third-party account has been connected."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\messages\account_connected_other.txt:2
+msgid "The third-party account is already connected to a different account."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\messages\account_disconnected.txt:2
+msgid "The third-party account has been disconnected."
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\signup.html:14
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step!!!, please complete the following form:"
+msgstr ""
+
+#: .\main\templates\allauth\socialaccount\snippets\login.html:10
+msgid "Or use a third-party"
+msgstr ""
+
+#: .\main\templates\allauth\templates\account\email\base_message.txt:5
+#, python-format
+msgid ""
+"Thank you for using %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+
+#: .\main\templates\allauth\templates\account\email_confirm.html:37
+#, python-format
+msgid ""
+"This email confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new email confirmation request</a>."
+msgstr ""
+
+#: .\main\templates\allauth\usersessions\messages\sessions_logged_out.txt:2
+msgid "Signed out of all other sessions."
+msgstr ""
+
+#: .\main\templates\allauth\usersessions\usersession_list.html:23
+msgid "Started At"
+msgstr ""
+
+#: .\main\templates\allauth\usersessions\usersession_list.html:24
+#, fuzzy
+#| msgid "Mailing Address"
+msgid "IP Address"
+msgstr "alamat surat"
+
+#: .\main\templates\allauth\usersessions\usersession_list.html:25
+msgid "Browser"
+msgstr ""
+
+#: .\main\templates\allauth\usersessions\usersession_list.html:27
+msgid "Last seen at"
+msgstr ""
+
+#: .\main\templates\allauth\usersessions\usersession_list.html:47
+msgid "Current"
+msgstr ""
+
+#: .\main\templates\allauth\usersessions\usersession_list.html:60
+msgid "Sign Out Other Sessions"
+msgstr ""
+
+#: .\main\templates\main\about.html:1771
+#, fuzzy
+#| msgid "About Us"
+msgid "About Dabest"
+msgstr "Tentang Kami"
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:178
+msgid "ADVANCING CIVILIZATION THROUGH THE DEVELOPMENT OF WATER RESOURCES"
+msgstr "MEMAJUKAN PERADABAN MELALUI PENGEMBANGAN SUMBER DAYA AIR"
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:188
+msgid ""
+"Kami adalah konsultan Sumber Daya Air yang berkomitmen untuk memberikan "
+"layanan/produk terbaik kepada pelanggan kami dan memajukan peradaban bagi "
+"Indonesia. Dengan fokus pada kualitas, inovasi, dan kepuasan pelanggan, kami"
+" bertekad untuk menjadi mitra yang handal dan solusi yang dapat diandalkan."
+msgstr ""
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:197
+msgid ""
+"Kami bangga mempersembahkan proyek kami, hasil dari kerja keras dan semangat"
+" tim yang tak kenal lelah. Dengan fokus pada kualitas, keunggulan, dan "
+"dampak yang berkelanjutan, kami menjadikan proyek ini sebagai tonggak "
+"penting dalam perjalanan kami."
+msgstr ""
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:206
+msgid ""
+"Layanan-layanan kami didukung oleh tim ahli yang berpengalaman dan "
+"berkomitmen untuk memberikan pengalaman terbaik kepada pelanggan. Kami "
+"mengutamakan kualitas, efisiensi, dan kepuasan pelanggan dalam setiap "
+"langkah kami."
+msgstr ""
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:215
+msgid ""
+"Kami mengundang Anda untuk menjadi bagian dari perjalanan kami yang penuh "
+"inspirasi. Di perusahaan kami, kami tidak hanya menawarkan pekerjaan, tetapi"
+" juga membangun karier. Bergabunglah dengan kami dan mulailah membangun masa"
+" depan yang cerah bersama."
+msgstr ""
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:223
+msgid ""
+"DABEST Corners adalah sarana informasi yang kami sediakan untuk para "
+"komunitas yang bergerak di bidang Sumber Daya Air agar bisa bertukar "
+"informasi."
+msgstr ""
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:240
+msgid "CONSULT NOW"
+msgstr "Konsultasikan sekarang"
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:277
+#: .\main\templates\main\base.html:602
+msgid "Mailing Address"
+msgstr "alamat surat"
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:289
+#: .\main\templates\main\base.html:614
+msgid "Office"
+msgstr "Kantor"
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:326
+msgid "Website"
+msgstr "Situs"
+
+#: ⁨.\main\templates\main\base copy 3.html⁩:357
+#: .\main\templates\main\base.html:672
+msgid "Follow us"
+msgstr "Ikuti Kami"
+
+#: .\main\templates\main\base.html:144
+msgid "Advancing Civilization Through the Development of Water Resources"
+msgstr "Memajukan Peradaban Melalui Pengembangan Sumber Daya Air"
+
+#: .\main\templates\main\base.html:154
+msgid "Packages"
+msgstr "Pilih Paket"
+
+#: .\main\templates\main\base.html:161
+#, fuzzy
+#| msgid "Project"
+msgid "Your Project"
+msgstr "Pekerjaan"
+
+#: .\main\templates\main\base.html:182
+msgid "Paket Layanan"
+msgstr ""
+
+#: .\main\templates\main\base.html:191
+msgid "Book Now"
+msgstr ""
+
+#: .\main\templates\main\base.html:192
+msgid "Send Message"
+msgstr ""
+
+#: .\main\templates\main\base.html:196
+msgid "No suitable projects found?"
+msgstr ""
+
+#: .\main\templates\main\base.html:196
+msgid "Contact Us"
+msgstr ""
+
+#: .\main\templates\main\base.html:206
+msgid "Pemanfaatan Sumber Daya Air"
+msgstr "Pemanfaatan Sumber Daya Air"
+
+#: .\main\templates\main\base.html:215
+msgid "Perencanaan Pesisir"
+msgstr ""
+
+#: .\main\templates\main\base.html:224
+msgid "Pengendalian Daya Rusak Air"
+msgstr ""
+
+#: .\main\templates\main\base.html:233
+msgid "Konservasi Sumber Daya Air"
+msgstr "Water Resources Conservation"
+
+#: .\main\templates\main\base.html:272
+msgid "Daftar Pengalaman Pekerjaan DABEST"
+msgstr ""
+
+#: .\main\templates\main\careers.html:462
+msgid "Find Your <br> Dream Job Here"
+msgstr ""
+
+#: .\main\templates\main\careers.html:494
+msgid "benefits of being DABEST Team"
+msgstr ""
+
+#: .\main\templates\main\careers.html:498
+msgid "Work Life Balance"
+msgstr ""
+
+#: .\main\templates\main\careers.html:502
+msgid "Learning and Training"
+msgstr ""
+
+#: .\main\templates\main\careers.html:506
+msgid "You Will Get What You Do"
+msgstr ""
+
+#: .\main\templates\main\careers.html:510
+msgid "Free Lunch"
+msgstr ""
+
+#: .\main\templates\main\careers.html:514
+msgid "Spiritual Refreshing"
+msgstr ""
+
+#: .\main\templates\main\careers.html:518
+msgid "Casual Attire"
+msgstr ""
+
+#: .\main\templates\main\careers.html:527
+msgid "Current Openings"
+msgstr ""
+
+#: .\main\templates\main\careers.html:532
+msgid "Enter Job Title"
+msgstr ""
+
+#: .\main\templates\main\careers.html:536
+msgid "Select Department"
+msgstr ""
+
+#: .\main\templates\main\careers.html:540
+msgid "Select Location"
+msgstr ""
+
+#: .\main\templates\main\careers.html:544
+msgid "Select Employee Type"
+msgstr ""
+
+#: .\main\templates\main\jobListing.html:19
+msgid "Similar Job"
+msgstr ""
+
+#: .\main\templates\main\jobListing.html:27
+msgid "APPLY FOR THIS JOB"
+msgstr ""
+
+#: .\main\templates\main\jobListing.html:28
+msgid "SHARE"
+msgstr ""
+
+#: .\main\templates\main\jobListing.html:44
+msgid "dibuat pada"
+msgstr ""
+
+#: .\main\templates\main\jobListing.html:104
+msgid "ABOUT THIS JOB"
+msgstr "TENTANG LOWONGAN INI"
+
+#: .\main\templates\main\jobListing.html:108
+msgid "ABOUT YOU"
+msgstr "TENTANG KAMU"
+
+#: .\main\templates\main\main.html:29
+msgid "Welcome Back!"
+msgstr ""
+
+#: .\main\templates\main\main.html:33
+msgid "Welcome"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:263
+#: .\main\templates\main\modal.html:264 .\main\templates\main\modal.html:310
+msgid "PERENCANAAN IRIGASI"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:272
+#: .\main\templates\main\modal.html:265 .\main\templates\main\modal.html:319
+msgid ""
+"Perencanaan irigasi adalah proses merancang dan mengembangkan sistem irigasi"
+" untuk mengoptimalkan penggunaan air dalam pertanian. Tujuan utamanya adalah"
+" menyediakan air yang cukup untuk tanaman secara efisien dan berkelanjutan, "
+"serta meningkatkan produktivitas pertanian. "
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:281
+#: .\main\templates\main\modal.html:273 .\main\templates\main\modal.html:328
+msgid "PERENCANAAN NERACA KETERSEDIAAN AIR"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:290
+#: .\main\templates\main\modal.html:274 .\main\templates\main\modal.html:337
+msgid ""
+"Perencanaan neraca ketersediaan air adalah proses penilaian dan pengelolaan "
+"sumber daya air untuk memastikan bahwa ketersediaan air mencukupi untuk "
+"memenuhi kebutuhan berbagai sektor seperti pertanian, industri, domestik, "
+"dan ekosistem. Proses ini melibatkan analisis ketersediaan air dari berbagai"
+" sumber dan perbandingan dengan kebutuhan air yang diproyeksikan."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:299
+#: .\main\templates\main\modal.html:282 .\main\templates\main\modal.html:346
+msgid "RENCANA ALOKASI AIR"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:308
+#: .\main\templates\main\modal.html:283 .\main\templates\main\modal.html:355
+msgid ""
+"Rencana alokasi air adalah dokumen perencanaan yang menetapkan distribusi "
+"dan penggunaan sumber daya air secara efisien dan berkelanjutan untuk "
+"memenuhi kebutuhan berbagai sektor, seperti pertanian, industri, domestik, "
+"dan lingkungan. Tujuannya adalah untuk memastikan bahwa air tersedia dalam "
+"jumlah yang cukup dan berkualitas baik bagi semua pengguna sambil melindungi"
+" ekosistem dan mempertahankan keseimbangan lingkungan"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:317
+#: .\main\templates\main\modal.html:291 .\main\templates\main\modal.html:364
+msgid "PERENCANAAN PLTA"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:326
+#: .\main\templates\main\modal.html:292 .\main\templates\main\modal.html:373
+msgid ""
+"Perencanaan Pembangkit Listrik Tenaga Air (PLTA) melibatkan serangkaian "
+"langkah untuk merancang, mengembangkan, dan mengoperasikan fasilitas yang "
+"menggunakan tenaga air untuk menghasilkan listrik. Proses ini mencakup "
+"analisis teknis, ekonomi, dan lingkungan untuk memastikan bahwa proyek PLTA "
+"efisien, berkelanjutan, dan bermanfaat bagi masyarakat"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:335
+#: .\main\templates\main\modal.html:300 .\main\templates\main\modal.html:382
+msgid "PERENCANAAN SISTEM PENYEDIAAN AIR MINUM"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:344
+#: .\main\templates\main\modal.html:301 .\main\templates\main\modal.html:391
+msgid ""
+"Perencanaan sistem penyediaan air minum adalah proses merencanakan, "
+"mengembangkan, dan mengelola infrastruktur yang menyediakan air minum bersih"
+" dan aman kepada masyarakat. Ini melibatkan analisis terhadap sumber air, "
+"teknologi pengolahan air, distribusi air, serta manajemen operasional dan "
+"pemeliharaan sistem."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:371
+#: .\main\templates\main\modal.html:420 .\main\templates\main\modal.html:478
+msgid "PERENCANAAN DRAINASE"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:380
+#: .\main\templates\main\modal.html:421 .\main\templates\main\modal.html:487
+msgid ""
+"Perencanaan drainage adalah proses merancang, mengembangkan, dan mengelola "
+"sistem drainase untuk mengendalikan aliran air permukaan dan melindungi area"
+" dari banjir atau genangan air. Ini melibatkan analisis terhadap topografi, "
+"pola aliran air, jenis tanah, dan penggunaan lahan di suatu wilayah."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:389
+#: .\main\templates\main\modal.html:429 .\main\templates\main\modal.html:496
+msgid "PERENCANAAN DESAIN SUNGAI"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:398
+#: .\main\templates\main\modal.html:430 .\main\templates\main\modal.html:505
+msgid ""
+"Perencanaan desain sungai melibatkan proses merancang, mengelola, dan "
+"memulihkan sungai agar menjadi lebih fungsional, estetis, dan berkelanjutan."
+" Ini melibatkan berbagai aspek, termasuk hidrologi, geomorfologi, ekologi "
+"sungai, serta kebutuhan manusia. "
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:407
+#: .\main\templates\main\modal.html:438 .\main\templates\main\modal.html:514
+msgid "PERENCANAAN DEWATERING"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:416
+#: .\main\templates\main\modal.html:439 .\main\templates\main\modal.html:523
+msgid ""
+"Perencanaan dewatering adalah proses merancang dan mengimplementasikan "
+"sistem pengeluaran air (dewatering) yang efektif untuk mengontrol air tanah "
+"dan air permukaan selama konstruksi bangunan bawah tanah, proyek rekayasa "
+"tanah, atau proyek konstruksi di daerah yang berair."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:425
+#: .\main\templates\main\modal.html:447 .\main\templates\main\modal.html:532
+msgid "PERENCANAAN PEMBAHASAN GAMBUT"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:434
+#: .\main\templates\main\modal.html:448 .\main\templates\main\modal.html:541
+msgid ""
+"Perencanaan pembahasan gambut adalah proses merancang strategi dan tindakan "
+"untuk mengelola lahan gambut secara berkelanjutan, termasuk pemulihan lahan "
+"yang terdegradasi dan pelestarian lingkungan gambut yang masih utuh."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:443
+#: .\main\templates\main\modal.html:456 .\main\templates\main\modal.html:550
+msgid "DESAIN KOLAM PENGENDAPAN SEDIMEN"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:452
+#: .\main\templates\main\modal.html:457 .\main\templates\main\modal.html:559
+msgid ""
+"Desain kolam pengendapan sedimen adalah proses merancang struktur fisik yang"
+" digunakan untuk mengendapkan dan mengendalikan sedimen dalam air, sering "
+"kali sebagai bagian dari sistem pengelolaan air dan lingkungan."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:478
+#: .\main\templates\main\modal.html:588 .\main\templates\main\modal.html:629
+msgid "DESAIN SUNGAI DAN KOLAM DI KAWASAN PEMUKIMAN"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:487
+#: .\main\templates\main\modal.html:589 .\main\templates\main\modal.html:638
+msgid ""
+"Desain sungai dan kolam di kawasan pemukiman adalah proses merancang sistem "
+"aliran air dan struktur perairan di sekitar wilayah tempat tinggal atau "
+"pemukiman. Tujuan utamanya adalah untuk menciptakan lingkungan yang "
+"fungsional, estetis, dan berkelanjutan, serta memberikan manfaat bagi "
+"penduduk setempat."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:496
+#: .\main\templates\main\modal.html:597 .\main\templates\main\modal.html:647
+msgid "DESAIN BENDUNGAN"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:505
+#: .\main\templates\main\modal.html:598 .\main\templates\main\modal.html:656
+msgid ""
+"Desain bendungan adalah proses merancang struktur rekayasa sipil yang "
+"digunakan untuk menahan dan mengatur aliran air, biasanya untuk tujuan "
+"penyimpanan air, pengendalian banjir, irigasi, atau pembangkit listrik "
+"tenaga air."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:514
+#: .\main\templates\main\modal.html:606 .\main\templates\main\modal.html:665
+msgid "DESAIN TRASH BOOM DI SUNGAI ATAU BENDUNGAN"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:523
+#: .\main\templates\main\modal.html:607 .\main\templates\main\modal.html:674
+msgid ""
+"Desain trash boom di sungai atau bendungan adalah proses merancang struktur "
+"penghalang yang dipasang di permukaan air untuk menangkap sampah dan limbah "
+"yang mengalir di sungai atau bendungan"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:532
+#: .\main\templates\main\modal.html:616 .\main\templates\main\modal.html:683
+msgid "PERENCANAAN KONSERVASI PENANAMAN POHON"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:541
+#: .\main\templates\main\modal.html:617 .\main\templates\main\modal.html:692
+msgid ""
+"Perencanaan konservasi penanaman pohon adalah proses merencanakan dan "
+"mengelola kegiatan penanaman pohon secara strategis untuk melestarikan "
+"hutan, mengurangi deforestasi, meningkatkan kualitas lingkungan, dan "
+"memberikan manfaat ekonomi dan sosial"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:567
+#: .\main\templates\main\modal.html:720 .\main\templates\main\modal.html:751
+msgid " PERENCANAAN WILAYAH KERJA DAN TATA LETAK PELABUHAN"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:576
+#: .\main\templates\main\modal.html:721 .\main\templates\main\modal.html:760
+msgid ""
+"Perencanaan wilayah kerja dan tata letak pelabuhan adalah proses merancang "
+"struktur dan organisasi ruang di sekitar pelabuhan untuk memastikan "
+"efisiensi operasional, keselamatan, dan keterhubungan yang baik antara "
+"berbagai fasilitas dan aktivitas pelabuhan"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:585
+#: .\main\templates\main\modal.html:729 .\main\templates\main\modal.html:769
+msgid "PERENCANAAN ALUR DAN PELAYARAN DAN KOLAM PUTAR"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:594
+#: .\main\templates\main\modal.html:730 .\main\templates\main\modal.html:778
+msgid ""
+"Perencanaan alur dan pelayaran serta kolam putar adalah proses merancang "
+"struktur navigasi dan area manuver di sekitar pelabuhan atau perairan "
+"terbuka untuk memfasilitasi pelayaran kapal dengan aman dan efisien."
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:603
+#: .\main\templates\main\modal.html:738 .\main\templates\main\modal.html:787
+msgid "DESAIN BANGUNAN PENGAMAN PANTAI"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:612
+#: .\main\templates\main\modal.html:739 .\main\templates\main\modal.html:796
+msgid ""
+"Desain bangunan pengaman pantai adalah proses merancang struktur fisik yang "
+"bertujuan untuk melindungi pantai dari erosi, abrasi, dan kerusakan akibat "
+"gelombang laut"
+msgstr ""
+
+#: ⁨.\main\templates\main\modal copy.html⁩:634
+#: .\main\templates\main\modal.html:818
+msgid "Our Business Level Of Services are .."
+msgstr ""
+
+#: .\main\templates\main\modal.html:465
+msgid "PERENCANAAN SETTLING POND"
+msgstr ""
+
+#: .\main\templates\main\modal.html:466
+msgid ""
+"Settling Pond adalah suatu penyaliran berbentuk kolam yang berfungsi sebagai"
+" kolam pengendapan semua air dari areal tambang, baik air tanah maupan air "
+"hujan dan bertujuan untuk menjernihkan air yang keluar ke perairan umum."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1580
+msgid ""
+"Masterplan sumber daya air adalah dokumen strategis yang merangkum visi, "
+"tujuan, dan strategi untuk pengelolaan sumber daya air suatu wilayah atau "
+"negara dalam jangka waktu tertentu. Dokumen ini mencakup analisis menyeluruh"
+" tentang kondisi sumber daya air, termasuk ketersediaan, distribusi, dan "
+"pemanfaatan air, serta tantangan dan peluang yang dihadapi. Selain itu, "
+"masterplan ini juga menetapkan kebijakan-kebijakan yang diperlukan untuk "
+"menjaga keberlanjutan pengelolaan sumber daya air, termasuk pengaturan "
+"alokasi air, pengendalian pencemaran, dan pelestarian ekosistem."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1582
+msgid ""
+"Selain itu, masterplan sumber daya air juga mengidentifikasi proyek-proyek "
+"prioritas yang perlu dilaksanakan untuk memenuhi kebutuhan air dalam jangka "
+"panjang, seperti pembangunan bendungan, pengembangan sistem irigasi, dan "
+"pengolahan air limbah. Proyek-proyek ini didasarkan pada analisis kelayakan "
+"ekonomi, sosial, dan lingkungan yang komprehensif, serta memperhatikan "
+"partisipasi aktif dari pemangku kepentingan terkait. Masterplan ini juga "
+"menyediakan kerangka kerja untuk pengelolaan sumber daya air secara terpadu,"
+" melibatkan kolaborasi lintas sektor dan lintas batas wilayah."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1584
+msgid ""
+"Melalui implementasi masterplan sumber daya air yang terintegrasi, "
+"diharapkan dapat tercapai pengelolaan sumber daya air yang efisien, adil, "
+"dan berkelanjutan. Dokumen ini juga menjadi pedoman bagi pengambilan "
+"keputusan yang berkaitan dengan pengelolaan sumber daya air dalam jangka "
+"panjang, serta membantu mengidentifikasi strategi dan langkah-langkah yang "
+"diperlukan untuk menjaga ketersediaan air yang memadai bagi kebutuhan "
+"manusia dan lingkungan hidup."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1594
+msgid ""
+"Masterplan Sumber Daya Air adalah dokumen perencanaan strategis yang "
+"merangkum visi, tujuan, kebijakan, dan program-program untuk pengelolaan "
+"berkelanjutan sumber daya air suatu wilayah atau negara."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1614
+msgid ""
+"Studi kelayakan sumber daya air adalah evaluasi menyeluruh yang dilakukan "
+"untuk menentukan apakah suatu proyek pengelolaan sumber daya air layak untuk"
+" dilaksanakan. Proses ini mencakup analisis teknis, ekonomi, sosial, dan "
+"lingkungan untuk menilai potensi keberhasilan dan dampak dari proyek "
+"tersebut. Studi ini dimulai dengan pengumpulan data dan informasi tentang "
+"ketersediaan dan kualitas sumber daya air, serta kebutuhan air di wilayah "
+"yang bersangkutan. Analisis teknis mencakup penilaian terhadap infrastruktur"
+" yang dibutuhkan, seperti bendungan, sistem irigasi, dan instalasi "
+"pengolahan air."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1616
+msgid ""
+"Selain analisis teknis, studi kelayakan juga melibatkan analisis finansial "
+"untuk menilai biaya investasi, operasional, dan pemeliharaan yang "
+"diperlukan, serta proyeksi pendapatan dan keuntungan dari proyek. Evaluasi "
+"ekonomi ini membantu menentukan apakah proyek tersebut memberikan manfaat "
+"ekonomi yang lebih besar dibandingkan dengan biayanya. Di samping itu, studi"
+" ini juga mengevaluasi dampak sosial dan lingkungan dari proyek, termasuk "
+"bagaimana proyek tersebut akan mempengaruhi masyarakat setempat, ekosistem, "
+"dan kualitas lingkungan hidup."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1618
+msgid ""
+"Hasil dari studi kelayakan akan memberikan rekomendasi apakah proyek "
+"pengelolaan sumber daya air tersebut sebaiknya dilanjutkan, dimodifikasi, "
+"atau ditunda. Rekomendasi ini didasarkan pada temuan dari berbagai analisis "
+"yang dilakukan selama studi, serta mempertimbangkan risiko dan manfaat yang "
+"mungkin timbul. Dengan melakukan studi kelayakan yang komprehensif, "
+"diharapkan proyek yang diusulkan dapat dilaksanakan dengan lebih efektif, "
+"efisien, dan berkelanjutan, serta memberikan manfaat maksimal bagi "
+"masyarakat dan lingkungan."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1633
+#: .\main\templates\main\services.html:154
+msgid "FEASIBILITY STUDY"
+msgstr ""
+
+#: .\main\templates\main\modal.html:1634
+msgid ""
+"Studi kelayakan sumber daya air adalah evaluasi komprehensif terhadap "
+"potensi, kebutuhan, dan kemungkinan implementasi proyek-proyek yang terkait "
+"dengan sumber daya air."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1669
+msgid ""
+"Detail engineering design, atau desain teknik detail, merupakan tahap "
+"penting dalam siklus pengembangan proyek setelah tahap perencanaan "
+"konseptual. Pada tahap ini, konsep yang telah disepakati di tahap sebelumnya"
+" dikembangkan lebih lanjut menjadi desain teknis yang terperinci. Proses ini"
+" melibatkan penentuan spesifikasi teknis, pemilihan material, dan "
+"perancangan detail dari setiap komponen proyek. Selain itu, detail "
+"engineering design juga mencakup analisis teknis, seperti perhitungan "
+"struktural, hidrolik, atau termal, untuk memastikan keandalan dan keamanan "
+"desain."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1671
+msgid ""
+"Setelah spesifikasi teknis ditetapkan, langkah selanjutnya adalah merancang "
+"detail dari setiap komponen proyek, termasuk penyusunan gambar teknis dan "
+"spesifikasi pembuatan. Pada tahap ini, perhatian khusus diberikan pada "
+"integrasi sistem, memastikan bahwa semua komponen dapat berfungsi secara "
+"harmonis. Selain itu, detail engineering design juga mencakup pengembangan "
+"rencana konstruksi yang detail, termasuk jadwal kerja, metode konstruksi, "
+"dan prosedur keselamatan. Hal ini penting untuk memastikan bahwa konstruksi "
+"dapat dilaksanakan secara efisien dan aman."
+msgstr ""
+
+#: .\main\templates\main\modal.html:1673
+msgid ""
+"Detail engineering design juga memperhitungkan aspek biaya, dengan melakukan"
+" estimasi biaya yang akurat untuk konstruksi dan instalasi proyek. Selain "
+"itu, proses ini juga mencakup pengadaan material dan perlengkapan yang "
+"diperlukan, serta mempersiapkan dokumen tender untuk pengadaan jasa. Dengan "
+"melakukan detail engineering design secara cermat, diharapkan proyek dapat "
+"direalisasikan dengan tepat waktu, efisien, dan sesuai dengan standar "
+"kualitas yang ditetapkan."
+msgstr ""
+
+#: ⁨.\main\templates\main\navbar copy.html⁩:31
+msgid "Careers"
+msgstr ""
+
+#: ⁨.\main\templates\main\navbar copy.html⁩:34
+msgid "Projects"
+msgstr ""
+
+#: ⁨.\main\templates\main\navbar copy.html⁩:38
+msgid "Services"
+msgstr "Layanan"
+
+#: ⁨.\main\templates\main\navbar copy.html⁩:41
+msgid "About Us"
+msgstr "Tentang Kami"
+
+#: ⁨.\main\templates\main\navbar copy.html⁩:44
+msgid "Journal "
+msgstr "Jurnal"
+
+#: .\main\templates\main\navbar.html:30
+#, fuzzy
+msgid "Home"
+msgstr "Beranda"
+
+#: .\main\templates\main\navbar.html:33
+msgid "Package"
+msgstr "Paket"
+
+#: .\main\templates\main\navbar.html:39
+msgid "Career"
+msgstr "Karir"
+
+#: .\main\templates\main\organization.html:418
+msgid ""
+"Responsible for providing technical assistance and support to end-users "
+"within the organization. This role involves troubleshooting hardware and "
+"software issues, maintaining IT systems, and ensuring smooth and efficient "
+"operation of IT services. Provide first-line support to end-users for "
+"hardware, software, and network issues."
+msgstr ""
+
+#: .\main\templates\main\organization.html:438
+msgid ""
+"Graduate with a Master's degree in Biomanagement from ITB.. Responsible for "
+"creating and implementing marketing strategies and communication plans that "
+"effectively promote the company's brand, products, and services. Managing "
+"and developing promotional activities, handles both online and offline "
+"promotions, as well as managing business social media across all channels."
+msgstr ""
+
+#: .\main\templates\main\organization.html:458
+msgid ""
+"Supports the marketing communication team in executing marketing strategies "
+"and campaigns. This role involves assisting with the creation of marketing "
+"materials, managing social media accounts, and coordinating promotional "
+"activities."
+msgstr ""
+
+#: .\main\templates\main\organization.html:479
+#: .\main\templates\main\organization.html:500
+msgid ""
+"Supports project management teams by handling administrative tasks, "
+"coordinating project activities, and ensuring that projects are executed "
+"efficiently. This role involves maintaining documentation, communicating "
+"with stakeholders, and assisting with the planning and scheduling of project"
+" activities."
+msgstr ""
+
+#: .\main\templates\main\organization.html:520
+msgid ""
+"A Bachelor's degree in Water Resources Engineering from ITB. Holds "
+"substantial experience in consultancy services, specializing in the planning"
+" of water resources engineering, possessing expertise in hydrology, "
+"hydraulic structure, and diverse aspects of water resources development."
+msgstr ""
+
+#: .\main\templates\main\organization.html:540
+msgid ""
+"A Civil Engineering graduate from Sangga Buana YPKP University majoring in "
+"Civil Engineering. Proficient in coastal engineer, data analyst and various "
+"software applications such as Hec-RAS, Global Mapper, MIKE 21, Hec-HMS, "
+"PCSWMM, etc., which support work-related tasks. Holds over 10 years of "
+"experience in the consultancy field."
+msgstr ""
+
+#: .\main\templates\main\organization.html:560
+msgid ""
+"A graduate of UPI (Universitas Pendidikan Indonesia) with a Bachelor's "
+"degree in Building Engineering Education (Civil). Proficient in structural "
+"operation, geotechnics, and cost estimation. Possesses over 8 years of "
+"experience in consultancy services, adeptly handling software such as Hec-"
+"RAS, AutoCAD, Sketchup, SAP2000, among others."
+msgstr ""
+
+#: .\main\templates\main\organization.html:580
+msgid ""
+"A Bachelor's degree in Civil Engineering from ITENAS. Proficient in "
+"structural operation, geotechnics, and cost estimation. Designs, manages, "
+"and oversees projects that involve the control and use of water. Collect and"
+" analyze data related to water quality, flow rates, and environmental "
+"impact. Use GIS and other mapping tools to assess geographical and "
+"environmental factors."
+msgstr ""
+
+#: .\main\templates\main\organization.html:600
+msgid ""
+"A Master's degree in Environmental Engineering from ITB. Perform "
+"hydrological and hydraulic modeling to analyze water flow, flood risks, and "
+"drainage systems. Utilize software tools like HEC-RAS, HEC-HMS, and SWMM for"
+" simulations and predictions."
+msgstr ""
+
+#: .\main\templates\main\organization.html:620
+msgid ""
+"A Bachelor's degree in Civil Engineering from ITENAS. Designs, manages, and "
+"oversees projects that involve the control and use of water. Collect and "
+"analyze data related to water quality, flow rates, and environmental impact."
+" Use GIS and other mapping tools to assess geographical and environmental "
+"factors."
+msgstr ""
+
+#: .\main\templates\main\organization.html:640
+msgid ""
+"Assist in the preparation of project proposals, feasibility studies, and "
+"environmental impact assessments. Planning of water resources engineering, "
+"possessing expertise in hydrology, hydraulic structure, and diverse aspects "
+"of water resources development."
+msgstr ""
+
+#: .\main\templates\main\organization.html:683
+msgid ""
+"Proficient in generating and designing civil engineering plans, blueprints, "
+"and technical drawings using software. Specializes in translating "
+"engineering concepts and specifications into detailed drawings and designs "
+"for construction projects related to infrastructure, buildings, roads, "
+"bridges, and various civil engineering structures. Additionally, an expert "
+"in cost estimation."
+msgstr ""
+
+#: .\main\templates\main\organization.html:703
+#: .\main\templates\main\organization.html:723
+msgid ""
+"Analyzing and interpreting geographic and spatial data to produce maps, "
+"charts, and models. Utilizing diverse technologies such as GPS, GIS, remote "
+"sensing, and various surveying methods to gather and manipulate geographical"
+" information for a broad spectrum of applications, encompassing urban "
+"planning, land development, environmental assessment, and additional fields."
+msgstr ""
+
+#: .\main\templates\main\organization.html:743
+msgid ""
+"Responsible for creating and maintaining technical drawings and plans in "
+"support of engineering and construction projects. This role involves leading"
+" drafting teams, overseeing project documentation, and ensuring compliance "
+"with industry standards and specifications. Prepare detailed drawings, "
+"layouts, and diagrams based on project requirements and specifications."
+msgstr ""
+
+#: .\main\templates\main\organization.html:763
+#: .\main\templates\main\organization.html:784
+msgid ""
+"Prepare preliminary sketches and layouts based on specifications provided by"
+" engineers. Supports the drafting team by assisting in the creation and "
+"modification of technical drawings and plans. This role involves working "
+"under the guidance of senior drafters or engineers to produce accurate and "
+"detailed drawings for engineering and construction projects."
+msgstr ""
+
+#: .\main\templates\main\organization.html:804
+msgid ""
+"Bachelor of Engineering in Water Resources Management from ITB. Extensive "
+"experience in consultancy services in the field of Water Resources "
+"Engineering. Skilled in hydrology, hydraulics, geotechnical engineering, and"
+" various aspects of Water Resources development."
+msgstr ""
+
+#: .\main\templates\main\organization.html:824
+msgid ""
+"Bachelor of Engineering in Civil Engineering from Parahyangan University. "
+"Responsible for utilizing Autodesk Civil 3D software to design and manage "
+"civil engineering projects. This role involves creating detailed 3D models, "
+"analyzing terrain data, and generating construction plans and documentation."
+msgstr ""
+
+#: .\main\templates\main\organization.html:844
+msgid ""
+"This role involves managing various tasks related to office management, "
+"facilities, procurement, and employee services. Oversee day-to-day office "
+"operations, including maintenance, cleanliness, and security. Manage "
+"facilities such as office buildings, equipment, and utilities."
+msgstr ""
+
+#: .\main\templates\main\playingfield.html:25
+#: .\main\templates\main\services.html:92
+msgid "PEMANFAATAN SUMBER DAYA AIR"
+msgstr ""
+
+#: .\main\templates\main\playingfield.html:28
+msgid ""
+"Pemanfaatan sumber daya air adalah proses mengelola dan menggunakan air "
+"secara optimal untuk berbagai kebutuhan, termasuk kebutuhan domestik, "
+"pertanian, industri, dan ekologi. Pengelolaan sumber daya air yang efektif "
+"sangat penting untuk memastikan ketersediaan air bersih, mendukung kegiatan "
+"ekonomi, dan melestarikan lingkungan."
+msgstr ""
+
+#: .\main\templates\main\playingfield.html:42
+#: .\main\templates\main\services.html:99
+msgid "PENGENDALIAN DAYA RUSAK AIR"
+msgstr ""
+
+#: .\main\templates\main\playingfield.html:46
+#: .\main\templates\main\services.html:100
+msgid ""
+"Pengendalian daya rusak air adalah upaya untuk mencegah, mengurangi, atau "
+"mengatasi kerusakan yang disebabkan oleh air pada lingkungan, infrastruktur,"
+" dan kehidupan manusia. Langkah-langkah pengendalian ini melibatkan berbagai"
+" strategi teknis, manajerial, dan kebijakan untuk mengelola air secara "
+"efektif dan berkelanjutan."
+msgstr ""
+
+#: .\main\templates\main\services.html:84
+#, fuzzy
+#| msgid "What's problem our business is trying to solved"
+msgid "Our Business is Trying to Solve"
+msgstr "Permasalahan yang bisa kami selesaikan"
+
+#: .\main\templates\main\services.html:86
+msgid ""
+"Our company is striving to solve water resource-related issues through the "
+"development of innovative solutions that promote efficient water management,"
+" improve access to clean water, and contribute to environmental "
+"conservation."
+msgstr ""
+
+#: .\main\templates\main\services.html:93
+msgid ""
+"Pemanfaatan air yang tidak optimal tidak hanya menjadi penghambat bagi "
+"produktivitas manusia, tetapi juga membawa dampak negatif yang signifikan "
+"terhadap ekonomi dan keberlanjutan lingkungan. Dengan menghadapi dan "
+"menyelesaikan tantangan-tantangan ini, kami memiliki berbagai solusi untuk "
+"meningkatkan keberlanjutan pemanfaatan air dan memastikan akses air yang "
+"memadai bagi semua pihak."
+msgstr ""
+
+#: .\main\templates\main\services.html:94
+#: .\main\templates\main\services.html:101
+#: .\main\templates\main\services.html:108
+#: .\main\templates\main\services.html:115
+#: .\main\templates\main\services.html:142
+#: .\main\templates\main\services.html:149
+#: .\main\templates\main\services.html:156
+#: .\main\templates\main\services.html:163
+msgid "Our Solution"
+msgstr ""
+
+#: .\main\templates\main\services.html:106
+msgid "KONSERVASI SUMBER DAYA AIR"
+msgstr ""
+
+#: .\main\templates\main\services.html:107
+msgid ""
+"Konservasi sumber daya air adalah upaya untuk melindungi, mengelola, dan "
+"memanfaatkan sumber daya air secara bijaksana dan berkelanjutan guna "
+"memastikan ketersediaannya bagi generasi sekarang dan masa depan. Konservasi"
+" ini mencakup berbagai strategi dan tindakan yang bertujuan mengurangi "
+"pemborosan, meningkatkan efisiensi penggunaan air, dan menjaga kualitas air."
+msgstr ""
+
+#: .\main\templates\main\services.html:113
+msgid "PERENCANAAN PELABUHAN"
+msgstr ""
+
+#: .\main\templates\main\services.html:114
+msgid ""
+"Desain Jalur pelabuhan melibatkan perencanaan dan pembangunan fasilitas yang"
+" memungkinkan kapal untuk berlabuh, memuat, dan membongkar barang serta "
+"penumpang dengan aman dan efisien. Proses desain jalur pelabuhan mencakup "
+"berbagai aspek teknis dan operasional untuk memastikan kelancaran "
+"operasional pelabuhan serta keselamatan kapal dan pekerja. "
+msgstr ""
+
+#: .\main\templates\main\services.html:132
+#, fuzzy
+#| msgid "Services"
+msgid "Level Of Services"
+msgstr "Layanan"
+
+#: .\main\templates\main\services.html:134
+#: .\main\templates\main\sitevisit.html:185
+msgid ""
+"To enhance our level of services, our aim is to deliver optimal solutions in"
+" water resource management, ensuring sustainability, and effectively meeting"
+" the needs of both society and the environment."
+msgstr ""
+
+#: .\main\templates\main\services.html:140
+msgid "SITE VISIT SURVEY"
+msgstr ""
+
+#: .\main\templates\main\services.html:141
+#: .\main\templates\main\services.html:148
+#: .\main\templates\main\services.html:155
+#: .\main\templates\main\services.html:162
+msgid ""
+"Fokus utama kami dalam memperbaiki manajemen sumber daya air. Pemanfaatan "
+"air yang tidak optimal tidak hanya menjadi penghambat bagi produktivitas "
+"manusia, tetapi juga membawa dampak negatif yang signifikan terhadap ekonomi"
+" dan keberlanjutan lingkungan. Dengan menghadapi dan menyelesaikan "
+"tantangan-tantangan ini, kami memiliki berbagai solusi untuk meningkatkan "
+"keberlanjutan pemanfaatan air dan memastikan akses air yang memadai bagi "
+"semua pihak."
+msgstr ""
+
+#: .\main\templates\main\services.html:147
+msgid "MASTERPLAN"
+msgstr ""
+
+#: .\main\templates\main\services.html:161
+msgid "DETAIL ENGINEERING DESIGN"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:89
+msgid "SURVEY TOPOGRAFI"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:93
+msgid "SURVEY LIDAR"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:95
+msgid ""
+"Survei LiDAR (Light Detection and Ranging) adalah teknik pemetaan yang "
+"menggunakan sinar laser untuk mengukur jarak dari sensor ke permukaan tanah "
+"atau objek lainnya. Teknologi ini memungkinkan pengumpulan data topografi "
+"yang sangat akurat dan detail."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:99
+msgid "SURVEY DRONE"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:101
+msgid ""
+"Survei drone adalah metode pengumpulan data yang menggunakan pesawat tanpa "
+"awak (drone) yang dilengkapi dengan berbagai sensor dan kamera. Teknologi "
+"ini memungkinkan pengumpulan informasi yang cepat, efisien, dan akurat dari "
+"udara untuk berbagai keperluan."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:105
+msgid "SURVEY TERESTRIS"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:107
+msgid ""
+"Survei terestris adalah metode pengukuran dan pemetaan yang dilakukan "
+"langsung di permukaan bumi menggunakan peralatan survei yang dioperasikan "
+"oleh petugas di lapangan. Metode ini sangat penting untuk menghasilkan data "
+"yang akurat tentang posisi, jarak, dan elevasi berbagai titik di permukaan "
+"tanah."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:115
+msgid "SURVEY HIDROMETI"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:119
+msgid "PENGUKURAN PASANG SURUT"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:121
+msgid ""
+"Survei pengukuran pasang surut adalah metode untuk mengamati dan mencatat "
+"perubahan permukaan air laut yang disebabkan oleh pasang surut. Pasang surut"
+" adalah fenomena periodik yang disebabkan oleh gaya gravitasi bulan dan "
+"matahari terhadap bumi."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:125
+msgid "SURVEY BATIMETRI"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:127
+msgid ""
+"Survei batimetri adalah proses pengukuran dan pemetaan kedalaman dan "
+"topografi dasar perairan, seperti laut, danau, sungai, dan waduk."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:131
+msgid "PENGUKURAN ARUS"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:133
+msgid ""
+"Survei pengukuran arus adalah proses pengumpulan data tentang kecepatan dan "
+"arah pergerakan air di berbagai badan air seperti laut, sungai, dan danau. "
+"Informasi ini penting untuk berbagai keperluan termasuk navigasi maritim, "
+"perencanaan proyek kelautan, penelitian ilmiah, dan pengelolaan sumber daya "
+"air."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:137
+msgid "PENGAMBILAN SAMPLE SEDIMEN"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:139
+msgid ""
+"Survei pengambilan sampel sedimen adalah proses mengumpulkan material dari "
+"dasar perairan, seperti laut, danau, sungai, atau waduk, untuk analisis "
+"laboratorium."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:147
+msgid "SURVEY GEOTEKNIK"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:151
+msgid "TEST PIT"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:153
+msgid ""
+"Survei test pit adalah metode investigasi geoteknik yang melibatkan "
+"penggalian lubang uji di lokasi proyek untuk memeriksa kondisi tanah dan "
+"material di bawah permukaan. Teknik ini digunakan untuk mengumpulkan data "
+"tentang sifat fisik dan mekanik tanah yang penting untuk perencanaan dan "
+"desain infrastruktur."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:157
+msgid "HANDBOR"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:159
+msgid ""
+"Survei handbor adalah metode pengumpulan data geoteknik yang menggunakan "
+"peralatan tangan untuk membuat lubang uji kecil di permukaan tanah. Metode "
+"ini berguna untuk memperoleh informasi awal tentang karakteristik tanah di "
+"lokasi proyek dengan cepat dan biaya yang relatif rendah."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:163
+msgid "SONDIR"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:165
+msgid ""
+"Survei sondir adalah teknik investigasi geoteknik yang digunakan untuk "
+"mengukur resistensi tanah dan karakteristik mekanisnya di bawah permukaan "
+"tanah. Metode ini melibatkan penggunaan peralatan sondir untuk mendorong "
+"atau menekan penetrometer ke dalam tanah, dan hasilnya digunakan untuk "
+"mengevaluasi kekuatan tanah dan kondisi geotekniknya.."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:169
+msgid "SOIL PENETRATION TEST"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:171
+msgid ""
+"Uji penetrasi tanah adalah metode pengujian geoteknik yang digunakan untuk "
+"mengevaluasi karakteristik fisik dan mekanik tanah di bawah permukaan. "
+"Metode ini melibatkan penggunaan peralatan untuk menekan atau menembus tanah"
+" dengan tekanan yang dikenakan, dan hasilnya digunakan untuk menentukan "
+"kekuatan dan kepadatan tanah."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:176
+msgid "BOR INTI"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:178
+msgid ""
+"Survey bor inti adalah metode pengambilan contoh tanah secara vertikal "
+"menggunakan alat bor inti. Metode ini digunakan untuk memperoleh informasi "
+"tentang sifat fisik dan kimia tanah di bawah permukaan tanah."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:183
+msgid "UJI LABORATORIUM TANAH"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:190
+msgid "SURVEY GEOLISTRIK"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:192
+msgid ""
+"Survey geolistrik adalah metode geofisika non-invasif yang digunakan untuk "
+"memetakan struktur bawah permukaan tanah dengan mengukur resistivitas "
+"listrik tanah. Metode ini membantu dalam memahami distribusi material "
+"geologis, air tanah, dan formasi batuan di bawah permukaan tanah."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:200
+msgid "SOCIAL MAPPING"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:204
+msgid "IDENTIFIKASI KOMUNITAS DAN PIHAK TERKAIT"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:206
+msgid ""
+"Pemetaan sosial adalah proses identifikasi, analisis, dan pemetaan komunitas"
+" serta pihak terkait yang terlibat dalam suatu proyek, kegiatan, atau isu "
+"tertentu. Tujuan utamanya adalah untuk memahami struktur sosial, dinamika "
+"interaksi, dan pola keterlibatan masyarakat dalam konteks yang relevan."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:210
+msgid "ANALISA SOSIAL EKONOMI"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:212
+msgid ""
+"Analisis sosial ekonomi adalah proses penelitian yang digunakan untuk "
+"memahami hubungan antara faktor-faktor sosial dan ekonomi dalam suatu "
+"masyarakat atau populasi. Tujuan utamanya adalah untuk mengidentifikasi, "
+"menganalisis, dan memahami dampak serta implikasi dari kebijakan, program, "
+"atau perubahan sosial ekonomi terhadap individu, kelompok, atau masyarakat "
+"secara keseluruhan."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:216
+msgid "PEMETAAN INFRASTRUKTUR DAN SUMBER DAYA AIR"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:218
+msgid ""
+"Pemetaan infrastruktur dan sumber daya air adalah proses analisis dan "
+"pemetaan yang bertujuan untuk mengidentifikasi, menggambarkan, dan memetakan"
+" infrastruktur yang terkait dengan penyediaan dan pengelolaan sumber daya "
+"air."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:222
+msgid "IDENTIFIKASI MASALAH DAN TANTANGAN"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:224
+msgid ""
+"Identifikasi masalah dan tantangan adalah proses yang dilakukan untuk "
+"mengidentifikasi dan menganalisis masalah atau hambatan yang dihadapi dalam "
+"suatu konteks tertentu."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:229
+msgid "PEMETAAN POTENSI DAN PELUANG"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:231
+msgid ""
+"Pemetaan potensi dan peluang adalah proses analisis yang dilakukan untuk "
+"mengidentifikasi dan memetakan berbagai potensi serta peluang yang ada dalam"
+" suatu wilayah, sektor, atau konteks tertentu."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:236
+msgid "KONSULTASI DAN FGD DENGAN MASYARAKAT"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:238
+msgid ""
+"Konsultasi dan FGD (Focus Group Discussion) dengan masyarakat adalah proses "
+"interaksi dan komunikasi antara pihak-pihak terkait dengan tujuan "
+"mendapatkan masukan, gagasan, atau umpan balik dari masyarakat tentang suatu"
+" topik atau isu tertentu."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:243
+msgid "ANALISA RESIKO DAN DAMPAK"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:245
+msgid ""
+"Analisis risiko dan dampak adalah proses evaluasi yang dilakukan untuk "
+"mengidentifikasi, menilai, dan memahami potensi risiko serta dampak yang "
+"dapat ditimbulkan oleh suatu kejadian atau kegiatan."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:250
+msgid "PEMETAAN KEBIJKAN DAN REGULASI DAN REKOMENDASI PROGRAM"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:252
+msgid ""
+"Pemetaan kebijakan dan regulasi serta rekomendasi program adalah proses "
+"analisis yang bertujuan untuk mengidentifikasi, mengevaluasi, dan menyusun "
+"rekomendasi terkait kebijakan, regulasi, dan program-program yang relevan "
+"dalam suatu konteks tertentu."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:260
+msgid "SURVEY EKOLOGI"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:264
+msgid "TEST PIT TANAH"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:266
+msgid ""
+"Survey test pit tanah adalah proses pengumpulan data lapangan yang "
+"melibatkan penelitian dan pengamatan langsung terhadap kondisi tanah di "
+"suatu lokasi tertentu."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:270
+msgid "SURVEY VEGETASI"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:272
+msgid ""
+"Survey vegetasi adalah proses pengumpulan data lapangan yang melibatkan "
+"penelitian, identifikasi, dan pengamatan langsung terhadap komunitas "
+"tumbuhan atau vegetasi di suatu area tertentu."
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:276
+msgid "PENGUKURAN SUHU DAN KELEMBAPAN"
+msgstr ""
+
+#: .\main\templates\main\sitevisit.html:278
+msgid ""
+"Pengukuran suhu dan kelembapan adalah proses mengukur dan merekam suhu udara"
+" dan kadar air dalam udara di suatu lokasi pada waktu tertentu. Suatu alat "
+"yang disebut termometer digunakan untuk mengukur suhu, sedangkan higrometer "
+"digunakan untuk mengukur kelembapan."
+msgstr ""
+
+#~ msgid "TENTANG LOWONGAN INI"
+#~ msgstr "TENTANG LOWONGAN INI"
+
+#~ msgid "TENTANG KAMU"
+#~ msgstr "TENTANG KAMU"
+
+#~ msgid "BE A PART OF OUR TEAM"
+#~ msgstr "JADILAH BAGIAN DARI TIM KAMI"
+
+#~ msgid "Language"
+#~ msgstr "Bahasa"

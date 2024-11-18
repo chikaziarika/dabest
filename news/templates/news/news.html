@@ -1,0 +1,595 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% load i18n%}
+{% block content%} 
+
+<style>
+html, body {
+    overflow-y: hidden;
+}
+/*.fluid-container {*/
+/*    width: 80%; */
+/*    margin: auto*/
+/*}*/
+
+.btn-cyp2 {
+  position: relative;
+  float: right;
+  margin-top: -3em;
+  right: 10em;
+  z-index: 1;
+  background: #004aad !important;
+  color: #fff;
+}
+
+
+.container {
+    height: 100% !important;
+}
+
+
+
+.nav-link {
+  font-size: 1.25em;
+}
+
+.tab-pane {
+  overflow-y: scroll;
+  height: 100%;
+  margin-bottom: 5em;
+}
+
+/*section {*/
+  
+/*  width: 100%;*/
+/*  height: auto;*/
+/*  margin-top: -5em;*/
+  
+/*  position: relative;*/
+    
+/*}*/
+
+/*.rowHeaderX {*/
+/*    position: sticky;*/
+/*    top: 3em;*/
+/*    background: #fff;*/
+/*    z-index: 1;*/
+/*    padding-top: 2em;*/
+  
+/*}*/
+
+.Kotak1 {
+    padding-top: 1em;
+    overflow-y: scroll;
+    height: auto;
+
+}
+
+.nav-link {
+    font-size: 17px;
+}
+
+
+
+.card_spp {
+  height: 50vh;
+  margin: 2em auto;
+}
+
+.btn_card_spp {
+  position: sticky;
+  top: 100%;
+  display: block;
+  width: 50%;
+  font-size: 0.75em;
+  margin: auto;
+  background: transparent;
+  border: 1px solid #fff;
+}
+
+.btn_card_spps4 {
+  position: sticky;
+  top: 100%;
+  display: block;
+  width: 50%;
+  font-size: 0.75em;
+  margin: auto;
+  background: transparent;
+  border: 1px solid #004aad;
+  color:#004aad;
+}
+
+.container {
+    margin:auto;
+    position: relative;
+    padding: 0;   
+    {% comment %} overflow-y: hidden; {% endcomment %}
+    height: 100%;
+    
+}
+
+
+
+.style1 {
+  background-color: #13b2f6;
+  color: #fff;
+}
+
+
+.style2 {
+  background-color: #004aad;
+  color: #fff;
+}
+
+.style3 {
+  background-color: #253252;
+  color: #fff;
+}
+
+.style4 {
+  transform: scale(1.1);
+  background-color: #fff;
+  color: #004aad;
+  border: 2px solid #000;
+}
+
+{% comment %} 
+button.nav-link.active {
+    background: #253252 !important;
+    color: #fff !important;
+    font-family: 'league spartan' !important;
+    font-weight: 800;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+} {% endcomment %}
+
+.FooterCard {
+    width: auto;
+    float: right;
+    display: block;
+}
+
+{% comment %} .leftCol {
+    overflow-y: scroll; 
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+} {% endcomment %}
+
+.FooterCard p {
+    font-size: 2em;
+}
+
+.btn-RM {
+    background: #004aad;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.Recpost {
+    background: #004aad;
+    color: #fff;
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    height: 2em;
+    text-align: center;
+    align-content: center;
+    position: relative;
+    top: 0;
+}
+
+.tab-content {
+    margin-top: 0.25rem;
+    display: block;
+    font-size: 1rem;
+    max-width: 100%;
+    height: 100%;
+    padding: 0 1rem;
+    transition: all 0.45s ease-in-out;
+}
+
+.DePeactive:after {
+    content: "Read Less" !important;
+    color: #004aad !important;
+    font-size: 12px;
+}
+
+.btn-SMX:after {
+    content: 'Read More';
+    color: #fff !important;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    font-size: 12px;
+    background-color: #004aad;
+}
+
+.btn-SMX {
+  font-size: 0px;
+  background-color: #004aad; /* Green */
+}
+
+.Tring {
+  opacity: 1;
+  animation: fade 2s linear;
+}
+
+@keyframes fade {
+  0%,100% { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+
+.ArticleRP, .ExsternalRP, InternalRP {
+  padding-top: 1em;
+  overflow-y: scroll;
+  height: 75vh;
+  padding-top: 0px;
+}
+
+.rowHeaderX > div:nth-child(1) {
+    display: block;
+    align-content: center;
+    position: relative;
+    left: 35px;
+}
+
+.infoUser {
+    position: fixed;
+    top: 1.5%;
+    z-index: 10000001;
+    left: 75%;
+}
+
+.rowHeaderX {
+  position: relative;
+  top: 0;
+}
+  
+</style>
+
+<div class="fluid-container">
+  
+
+  <section id='kesatu' >
+  <div class="row rowHeaderX">
+    <div class="col-md-4 mt-3">
+      <h2 class='h2Pack' style='font-family: League Spartan;font-weight: 800;color: #004aad;font-size: 2.25em;idth: 12em;text-align: left;padding-left: 0;'>Updated Information</h2>
+    </div>
+    <div class="col-md-8 mt-3">
+      Keep informed about what's going on by exploring our latest updates, partnerships, stories, and events.
+    </div>
+  </div>
+  <div class="row rowXKedua" >
+    <div class="col-md-6 leftCol" >
+      <nav>
+      <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+        <button class="nav-link Internal active" id="nav-tab1-tab" data-bs-toggle="tab" data-bs-target="#nav-tab1" type="button" role="tab" aria-controls="nav-tab1" aria-selected="true">Dabest Activities</button>
+        <button class="nav-link External" id="nav-tab2-tab" data-bs-toggle="tab" data-bs-target="#nav-tab2" type="button" role="tab" aria-controls="nav-tab2" aria-selected="false">Water Collaboration</button>
+        <button class="nav-link Article" id="nav-tab3-tab" data-bs-toggle="tab" data-bs-target="#nav-tab3" type="button" role="tab" aria-controls="nav-tab3" aria-selected="false">Water Information</button>
+
+      </div>
+    </nav>
+    <div class="tab-content tabIsi Jour" id="nav-tabContent">
+      <div class="tab-pane xScroll fade show active" id="nav-tab1" role="tabpanel" aria-labelledby="nav-tab1-tab">
+      <div class="container" >
+                        {% comment %} <a href="{% url 'article' post.id%}" class="headTag" >{{ post.headline }}</a> {% endcomment %}
+        {% comment %} <div class="row">
+           <div class="newsPost">
+            {% for post in dataKegiatan %}
+                {% if forloop.first %}
+                    <div class="postList">
+                        <img class="newsImg" src="{{ post.image.url }}" alt="newsImg">
+                        
+                        <p class='headline'>{{ post.headline }}</p> 
+                        {% for data in post.tags.all %}
+                        <h3 class="postTag">{{ data }}</h3>
+                        {% endfor %}
+                        <div class='FooterCard'>
+                        <a href="#" class="headTag" >
+                        <button type="button" class="btn btn-RM " >Read More</button>
+                        </a>
+                        <p>{{ post.createAt|date:"d M Y" }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div> {% endcomment %}
+
+        <div class="row">
+           <div class="newsPost">
+            {% for post in dataKegiatan %}
+                {% comment %} {% if forloop.first %} {% endcomment %}
+                    <div class="postList" id='numBre'>
+                        <img class="newsImg" src="{{ post.image.url }}" alt="newsImg">
+                        
+                        <p class='headline'>{{ post.headline }}</p> 
+                        {% comment %} {% for data in post.tags.all %}
+                        <h3 class="postTag">{{ data }}</h3>
+                        {% endfor %} {% endcomment %}
+                        <div class='FooterCard'>
+                        <a href="{% url 'activity' post.ids %}" class="headTag" >
+                        <button type="button" class="btn btn-SMX " >Read More</button>
+                        </a>
+                        <p>{{ post.createAt|date:"d M Y" }}</p>
+                    </div>
+                    {% comment %} <div id='Detail2' class="col-12 DePe">
+                      <div class="row">
+                          <div class="col-12">
+                            <p class='expandText'>{{ post.textarea|safe }} </p>
+                          </div>
+                      </div>
+                    </div> {% endcomment %}
+                  </div>
+                {% comment %} {% endif %} {% endcomment %}
+            {% endfor %}
+            </div>
+        
+      
+    
+        </div>
+        </div>
+      </div>
+      <div class="tab-pane xScroll fade" id="nav-tab2" role="tabpanel" aria-labelledby="nav-tab2-tab">
+        <div class="container">
+            <div class="row">
+            <div class="newsPost">
+                {% for post in latest %}
+                    
+                        <div class="postList">
+                            <img class="newsImg" src="{{ post.image.url }}" alt="newsImg">
+                            {% comment %} <a href="{% url 'article' post.id%}" class="headTag" >{{ post.headline }}</a> {% endcomment %}
+                            
+                            <p class='headline'>{{ post.headline }}</p> 
+                            {% comment %} {% for data in post.tags.all %}
+                            <h3 class="postTag">{{ data }}</h3>
+                            {% endfor %} {% endcomment %}
+                            <div class='FooterCard'>
+                            <a href="{% url 'article' post.id%}" class="headTag" >
+                            <button type="button" class="btn btn-SMX " ></button>
+                            </a>
+                            <p>{{ post.createAt|date:"d M Y" }}</p>
+                            </div>
+                            {% comment %} <div id='Detail2' class="col-12 DePe">
+                              <div class="row">
+                                  <div class="col-12">
+                                    <p class='expandText'>{{ post.textarea|safe }} </p>
+                                  </div>
+                              </div>
+                            </div> {% endcomment %}
+                        </div>
+                    
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+      </div>
+      <div class="tab-pane xScroll fade" id="nav-tab3" role="tabpanel" aria-labelledby="nav-tab3-tab">
+        <div class="container">
+            <div class="row">
+                <div class="newsPost">
+                {% for post in recentEdu %}
+                    
+                        <div class="postList">
+                            <img class="newsImg" src="{{ post.image.url }}" alt="newsImg">
+                            {% comment %} <a href="{% url 'article' post.id%}" class="headTag" >{{ post.headline }}</a> {% endcomment %}
+                            
+                            <p class='headline'>{{ post.headline }}</p> 
+                            {% comment %} {% for data in post.tags.all %}
+                            <h3 class="postTag">{{ data }}</h3>
+                            {% endfor %} {% endcomment %}
+                            <div class='FooterCard'>
+                            
+                            <a href="{% url 'read' post.id%}" class="headTag" >
+                            <button type="button" class="btn btn-SMX " >Read More</button>
+                            </a>
+                            <p>{{ post.createAt|date:"d M Y" }}</p>
+                            </div>
+                            {% comment %} <div id='Detail2' class="col-12 DePe">
+                            <div class="row">
+                                <div class="col-12">
+                                  <p class='expandText'>{{ post.textarea|safe }} </p>
+                                </div>
+                            </div> 
+                          </div> {% endcomment %}
+                        </div>
+                  
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3" >
+      <div class='row justify-content-center mx-2 h-100' >
+
+        <div class='Kotak1 InternalRP'>
+        {% comment %} <input class="form-control me-2 colPen" type="search" placeholder="Search" aria-label="Search"> {% endcomment %}
+        <span class='Recpost'>another interesting article</span>
+          <div class="recent">
+            {% for post in dataKegiatan %}
+            <div class="row rowKlik" style='margin-top: 1em;'>
+                <div class='col-4 text-center' style='margin: auto;'>
+                    <img class="RecentImg" src="{{ post.image.url }}" alt="newsImg">
+                </div>
+                <div class='col-8' style='text-align: justify;'>
+                    <a href="#numBre" class="headTag" >{{ post.headline }}</a>
+                    <div class='bottomCol8'>
+                    {% for data in post.tags.all %}
+                    <h3 class="recentpostTag">{{ data }}</h3>
+                    {% endfor %}
+                    <p>{{ post.createAt|date:"d M Y" }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class='Kotak1 ExsternalRP'>
+        {% comment %} <input class="form-control me-2 colPen" type="search" placeholder="Search" aria-label="Search"> {% endcomment %}
+        <span class='Recpost'>another interesting article</span>
+          <div class="recent">
+            {% for post in posts %}
+            <div class="row rowKlik" style='margin-top: 1em;'>
+                <div class='col-4 text-center' style='margin: auto;'>
+                    <img class="RecentImg" src="{{ post.image.url }}" alt="newsImg">
+                </div>
+                <div class='col-8' style='text-align: justify;'>
+                    <a href="#" class="headTag" >{{ post.headline }}</a>
+                    <div class='bottomCol8'>
+                    {% for data in post.tags.all %}
+                    <h3 class="recentpostTag">{{ data }}</h3>
+                    {% endfor %}
+                    <p>{{ post.createAt|date:"d M Y" }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class='Kotak1 ArticleRP'>
+          {% comment %} <input class="form-control me-2 colPen" type="search" placeholder="Search" aria-label="Search"> {% endcomment %}
+          <span class='Recpost'>another interesting article</span>
+          <div class="recent">
+            {% for post in recentEdu %}
+            <div class="row rowKlik" style='margin-top: 1em;'>
+                <div class='col-4 text-center' style='margin: auto;'>
+                    <img class="RecentImg" src="{{ post.image.url }}" alt="newsImg">
+                </div>
+                <div class='col-8' style='text-align: justify;'>
+                    <a href="#" class="headTag" >{{ post.headline }}</a>
+                    <div class='bottomCol8'>
+                    {% for data in post.tags.all %}
+                    <h3 class="recentpostTag"><a href="{{data}}page">{{ data }}</a></h3>
+                    {% endfor %}
+                    <p>{{ post.createAt|date:"d M Y" }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+      </div>
+      
+  </div>
+  </section>
+
+  
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+
+
+
+$(".InternalRP > .recent >.rowKlik").on("click", function(e) {
+        e.preventDefault();
+        var index = $(this).index();
+        //console.log(index); // Zero Based
+        var SelectedLeft = $(".postList:nth-child(" + (parseInt(index) + 1) + ")")
+        console.log(SelectedLeft); // Zero Based
+        
+        //}
+        $("#nav-tab1 > .container > .row > .newsPost .postList:nth-child(" + (parseInt(index) + 1) + ")").animate({opacity:1.0}, 500).show() && $("#nav-tab1 > .container > .row > .newsPost .postList:not(:nth-child(" + (parseInt(index) + 1) + "))").animate({opacity:0}, 500).hide();
+        // $(".postList:nth-child(" + (parseInt(index) + 1) + ")").addClass('Tring');
+    });
+
+
+$(".ExsternalRP > .recent >.rowKlik").on("click", function(e) {
+        e.preventDefault();
+        var index = $(this).index();
+        console.log(index); // Zero Based
+        var SelectedLeft = $(".postList:nth-child(" + (parseInt(index) + 1) + ")")
+        
+        
+        //}
+        $("#nav-tab2 > .container > .row > .newsPost .postList:nth-child(" + (parseInt(index) + 1) + ")").animate({opacity:1.0}, 500).show() && $("#nav-tab2 > .container > .row > .newsPost .postList:not(:nth-child(" + (parseInt(index) + 1) + "))").animate({opacity:0}, 500).hide();
+        // $(".postList:nth-child(" + (parseInt(index) + 1) + ")").addClass('Tring');
+    });
+
+$(".ArticleRP > .recent >.rowKlik > .col-8 > .headTag").on("click", function(e) {
+        e.preventDefault();
+        var index = $(this).parent().parent().index();
+        //console.log(index); // Zero Based
+        var SelectedLeft = $(".postList:nth-child(" + (parseInt(index) + 1) + ")")
+        console.log('Nah...',$(this).parent().parent().index()); // Zero Based
+        
+        //}
+        $("#nav-tab3 > .container > .row > .newsPost .postList:nth-child(" + (parseInt(index) + 1) + ")").animate({opacity:1.0}, 500).show() && $("#nav-tab3 > .container > .row > .newsPost .postList:not(:nth-child(" + (parseInt(index) + 1) + "))").animate({opacity:0}, 500).hide();
+        // $(".postList:nth-child(" + (parseInt(index) + 1) + ")").addClass('Tring');
+    });
+
+
+
+// !$('.postList:not(:first-child)').addClass('Tring');
+$('.postList:not(:first-child)').hide();
+$('li.nav-item a.nav-link').removeClass('active');
+$('li.nav-item a.nav-link:eq(4)').addClass('active');
+
+
+$('.ArticleRP').css('display', 'none');
+$('.ExsternalRP').css('display', 'none');
+
+$('#nav-tab').on('click', function(){
+if ($('button.Article').hasClass('active')) {
+        // console.log('A....')
+        $('.ExsternalRP').css('display', 'none');
+        $('.InternalRP').css('display', 'none');
+        $('.ArticleRP').css('display', 'block');
+    } else if ($('button.External').hasClass('active')) {
+        // console.log('B....')
+        $('.ArticleRP').css('display', 'none');
+        $('.InternalRP').css('display', 'none');
+        $('.ExsternalRP').css('display', 'block');
+    } else {
+        // console.log('C....')
+        $('.ArticleRP').css('display', 'none');
+        $('.InternalRP').css('display', 'block');
+        $('.ExsternalRP').css('display', 'none');
+    }
+})
+
+
+ console.log('ehm..test AH')
+
+    var coll = document.getElementsByClassName("btn-SMX");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("DePeactive");
+        var content = this.parentElement.parentElement.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.style.cssText = `
+          max-height: 80vh;
+          line-height: normal;
+          font-size: 14px;
+          margin-top: 1em;
+          scroll-behavior: smooth;
+          overflow-y: scroll;
+          text-align: justify;`;
+          {% comment %} $('html,body').animate({scrollTop: document.content.scrollHeight + "px"},"slow"); {% endcomment %}
+        } 
+      });
+    }
+
+
+})
+</script>
+
+
+
+
+{% endblock %}

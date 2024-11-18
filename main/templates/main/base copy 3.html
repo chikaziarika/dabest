@@ -1,0 +1,483 @@
+{% extends 'main/main.html' %}
+
+{% load static %}
+{% load i18n%}
+
+
+{% block content%} 
+
+<style>
+	
+.container {
+  width: 900px;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.slick-slider {
+  margin-left: -22%;
+  margin-right: -12%;
+}
+
+.slick-list {
+  padding-top: 10%!important;
+  padding-bottom: 10%!important;
+  padding-left: 15%!important;
+  padding-right: 15%!important;
+}
+
+.slick-dots {
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.slick-track {
+  max-width: 100%!important;
+  transform: translate3d(0, 0, 0)!important;
+  perspective: 100px;
+}
+
+.slick-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 0;
+  width: 100%!important;
+  transform: translate3d(0, 0, 0);
+  transition: transform 1s, opacity 1s;
+}
+
+.slick-snext,
+.slick-sprev {
+  display: block;
+}
+
+.slick-current {
+  opacity: 1;
+  position: relative;
+  display: block;
+  transform: translate3d(0, 0, 20px);
+  z-index: 2;
+}
+
+.slick-snext {
+  opacity: 1;
+  transform: translate3d(20%, 0, 0px);
+  z-index: 1;
+}
+
+.slick-sprev {
+  opacity: 1;
+  transform: translate3d(-35%, 0, 0px);
+}
+
+
+
+.About {
+	display: block;
+    width: 50%;
+    height: 70dvh;
+    background-color: #014AAD;
+    border-radius: 20px;
+    opacity: 1;
+	transform: scale(0.8);
+  
+  
+}
+
+.Project {
+	display: block;
+    width: 50%;
+    height: 70dvh;
+    background-color: #014AAD;
+    border-radius: 20px;
+    opacity: 1;
+	transform: scale(0.8);
+  
+}
+
+.Services {
+	display: block;
+    width: 50%;
+    height: 70dvh;
+    background-color: #014AAD;
+    border-radius: 20px;
+    opacity: 1;
+	transform: scale(0.8);
+  
+  
+}
+
+.Careers {
+	display: block;
+    width: 50%;
+    height: 70dvh;
+    background-color: #014AAD;
+    border-radius: 20px;
+    opacity: 1;
+	transform: scale(0.8);
+  
+  
+}
+
+.Corners {
+	display: block;
+    width: 50%;
+    height: 70dvh;
+    background-color: #014AAD;
+    border-radius: 20px;
+    opacity: 1;
+	transform: scale(0.8);
+  
+  
+}
+
+.imgBase {
+	width: 100%;
+    margin-top: 5px;
+    height: auto;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+
+
+.h4Base {
+	color: #FFFFFF;
+    font-family: 'league spartan';
+    font-weight: 800;
+    margin-top: 25px;
+	font-size: 2em;
+}
+</style>
+
+
+<div class="Header-Content">
+	<!-- <h1 id="main-title"><b>PT. DAYA AGUNG BESTARI</b></h1> -->
+	<div id="mainContent"  class="container text-center">
+		
+		<div class="row">
+				
+				<!-- <div class="col-sm-6 col-md-5 col-lg-6">
+					<div class="row">
+						<div class="col-sm-6 col-md-5 col-lg-6"><img src="{% static 'images/2.png' %}" alt="" style="width: 50px;transform: scale(5.5);margin-bottom: 70px;"></div>
+						<div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"><img src="{% static 'images/3.png' %}" alt="" style="    width: 50px;transform: scale(5.5);opacity: 0.4;float: right;margin: -30px auto;"></div>
+					</div>
+				</div> -->
+				
+			</div>
+			<div>
+				<div class="col-sm-5 col-md-6">
+					
+					<h1 class="baseText">{% translate 'ADVANCING CIVILIZATION THROUGH THE DEVELOPMENT OF WATER RESOURCES' %}</h1>
+					<p class="secBT">{% translate "What's problem our business is trying to solved" %}</p>
+				</div>
+				
+				<div class="containerSlider">
+					<div class="rev_slider">
+					  <div class="rev_slide">
+						<div class="About">
+							<img src="../static/images/Artboard_1.avif" class="imgBase" alt="Gambar-Dabest-1">
+							<h4 class="h4Base">DABEST CONSULTANT</h4>
+							<span class="DescBase"> {% translate 'Kami adalah konsultan Sumber Daya Air yang berkomitmen untuk memberikan layanan/produk terbaik kepada pelanggan kami dan memajukan peradaban bagi Indonesia. Dengan fokus pada kualitas, inovasi, dan kepuasan pelanggan, kami bertekad untuk menjadi mitra yang handal dan solusi yang dapat diandalkan.' %}</span>
+							<button type="button" id="btnBawahBase" class="btn btn-primary" ><a href="{% url 'about' %}" style="color: #FFFFFF;">Read More <i class='bx bx-chevron-right-circle' style="transform: scale(1.5);margin-left: 15px;"></i></a></button>
+							
+						</div>
+					  </div>
+					  <div class="rev_slide">
+						<div class="Project">
+							<img src="../static/images/Artboard_5.avif" srcset="../static/images/Artboard_5.avif 480w, ../static/images/Artboard_5.avif 1080w" sizes="50vw" class="imgBase" alt="Gambar-Dabest-2">
+							<h4 class="h4Base">DABEST PROJECT</h4>
+							<span class="DescBase">{% translate 'Kami bangga mempersembahkan proyek kami, hasil dari kerja keras dan semangat tim yang tak kenal lelah. Dengan fokus pada kualitas, keunggulan, dan dampak yang berkelanjutan, kami menjadikan proyek ini sebagai tonggak penting dalam perjalanan kami.' %} </span>
+							<button type="button" id="btnBawahBase" class="btn btn-primary" ><a href="{% url 'projects' %}" style="color: #FFFFFF;">Read More <i class='bx bx-chevron-right-circle' style="transform: scale(1.5);margin-left: 15px;"></i></a>
+							</button>
+						</div>
+					  </div>
+					  <div class="rev_slide">
+						<div class="Services">
+							<img src="../static/images/Artboard_3.avif" srcset="../static/images/Artboard_3.avif 480w, ../static/images/Artboard_3.avif 1080w" sizes="50vw" class="imgBase" alt="Gambar-Dabest-3">
+							<h4 class="h4Base">DABEST SERVICES</h4>
+							<span class="DescBase"> {% translate 'Layanan-layanan kami didukung oleh tim ahli yang berpengalaman dan berkomitmen untuk memberikan pengalaman terbaik kepada pelanggan. Kami mengutamakan kualitas, efisiensi, dan kepuasan pelanggan dalam setiap langkah kami.' %} </span>
+							<button type="button" id="btnBawahBase" class="btn btn-primary" ><a href="{% url 'services' %}" style="color: #FFFFFF;">Read More <i class='bx bx-chevron-right-circle' style="transform: scale(1.5);margin-left: 15px;"></i></a>
+							</button>
+						</div>
+					  </div>
+					  <div class="rev_slide">
+						<div class="Careers">
+							<img src="../static/images/Artboard_2.avif" srcset="../static/images/Artboard_2.avif 480w, ../static/images/Artboard_2.avif 1080w" sizes="50vw" class="imgBase" alt="Gambar-Dabest-4">
+							<h4 class="h4Base">DABEST CAREERS</h4>
+							<span class="DescBase"> {% translate 'Kami mengundang Anda untuk menjadi bagian dari perjalanan kami yang penuh inspirasi. Di perusahaan kami, kami tidak hanya menawarkan pekerjaan, tetapi juga membangun karier. Bergabunglah dengan kami dan mulailah membangun masa depan yang cerah bersama.' %} </span>
+							<button type="button" id="btnBawahBase" class="btn btn-primary btnBawahBase" ><a href="{% url 'careers' %}" style="color: #FFFFFF;">Read More <i class='bx bx-chevron-right-circle' style="transform: scale(1.5);margin-left: 15px;"></i></a></button>
+						</div>
+					  </div>
+					  <!-- <div class="rev_slide">
+						<div class="Corners">
+							<img src="../static/images/photo_6161128336005381597_y.jpg" class="imgBase" alt="...">
+							<h4 class="h4Base">DABEST CORNERS</h4>
+							<span class="DescBase"> {% translate 'DABEST Corners adalah sarana informasi yang kami sediakan untuk para komunitas yang bergerak di bidang Sumber Daya Air agar bisa bertukar informasi.' %} </span>
+							<button type="button" id="btnBawahBase" class="btn btn-primary btnBawahBase" ><a href="{% url 'underconst' %}" style="color: #FFFFFF;">Read More <i class='bx bx-chevron-right-circle' style="transform: scale(1.5);margin-left: 15px;"></i></a>
+							</button>
+						</div>
+					  </div> -->
+					</div>
+				  </div>
+				
+				  
+			</div>
+			<div class="row">
+			  <!-- <div id="textBawah" class="col-sm-6 col-md-5 col-lg-6" >
+				<p>{% translate "What's problem our business is trying to solved" %}</p>
+			</div> -->
+			</div>
+			<div id="rowBtnSatu" class="row" >
+				<div class="col-sm-6 col-md-5 col-lg-6" >
+					<button type="button" id="btnUtama" class="btn btn-primary btnSatu"> {% translate 'CONSULT NOW' %}
+						<i class='bx bx-chevron-right-circle' style="transform: scale(2.0);
+						margin-left: 15px;
+						margin-top: 3px;"></i></button>
+				</div>
+				<div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+			</div>
+			<!-- <div class="row">
+				<div class="col-sm-6 col-md-5 col-lg-6">
+					<div class="row">
+						<div class="col-sm-6 col-md-5 col-lg-6"><img src="{% static 'images/3.png' %}" alt="" style="    width: 50px;transform: scale(5.5);margin: 109px auto;opacity: 0.2;margin-left: -100px;"></div>
+						<div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"><img class="gambar2png" src="{% static 'images/2.png' %}" alt="" ></div>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="page-wrap">
+			<section class="example example--2">
+			  <span class="scroll-icon">
+				<span class="scroll-icon__dot"></span>
+			  </span>
+		
+			</section>
+		</div>
+	</div>
+	
+	<div class="Parallax">
+		<footer class="footer-section">
+			<div class="containerPX">
+				<div class="footer-cta pt-5 pb-5">
+					<div class="row">
+						<div class="col-xl-3 col-md-3 mb-30">
+							<div class="single-cta">
+								
+								<div class="cta-text">
+									<i class="fa fa-envelope" aria-hidden="true" style="font-size: 32px;color: #13B2F6;"></i>
+									<br>
+									<h4> {% translate 'Mailing Address' %} </h4>
+									<a target="_blank" href="https://maps.app.goo.gl/EpKYr6w9GxNoYprX8"> <span style="font-weight: 400;  font-family: 'Poppins';"> &nbsp; POINT Lab, Jalan Banda No. 30 Blok C Lt.2
+										<br>Citarum, Bandung Wetan 
+										<br>Bandung 40115</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-2 col-md-2 mb-30">
+							<div class="single-cta">
+								<div class="cta-text">
+									<i class="fas fa-map-marker-alt" style="font-size: 32px;color: #13B2F6;"></i>
+									<br>
+									<h4>{% translate 'Office' %} </h4>
+									<a target="_blank" href="https://maps.app.goo.gl/EpKYr6w9GxNoYprX8"> <span style="font-weight: 400;  font-family: 'Poppins';"> &nbsp; Jalan Batik Saketi No. 5
+										<br>Sukaluyu, Cibeunying Kaler <br>Bandung - 40135</span></a>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="col"> -->
+							<!-- <div class="row"> -->
+								<div class="col-xl-2 col-md-2 mb-30">
+									<div class="single-cta">
+										<div class="cta-text">
+											<i class='fab fa-whatsapp-square' style='font-size:32px;color:#13B2F6'></i>
+											<br>
+											<h4>Whatsapp</h4>
+											<a target="_blank" href="https://wa.me/628111014006"><span style="font-weight: 400; font-family: 'Poppins';">  &nbsp; +6281 1101 4006</span></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-md-3 mb-30">
+									<div class="single-cta">
+										<div class="cta-text">
+											<i class="fas fa-envelope-open" style="font-size: 32px;color: #13B2F6;"></i>
+											<br>
+											<a target="_blank" href="mailto:connect@dabestconsultan.com">
+												<h4>Email</h4>
+												<span style="font-weight: 400; font-family: 'Poppins';"> &nbsp;connect@dabestconsultan.com </span>
+											</a> 
+										</div>
+									</div>
+								</div>
+							<!-- </div> -->
+							<!-- <div class="row mt-3"> -->
+								<div class="col-xl-2 col-md-2 mb-30">
+									<div class="single-cta" style="display: flex;flex-direction: row;align-items: center;justify-content: center; ">
+										<div class="cta-text">
+											<i class="fa-solid fa-globe" style="font-size: 32px;color: #13B2F6;"></i>
+											<br>
+											<h4>{% translate 'Website' %} </h4>
+											<a target="_blank" href="https://wa.me/628111014006"><span style="font-weight: 400; font-family: 'Poppins';">www.dabestconsultant.com</span></a>
+										</div>
+									</div>
+								</div>
+							<!-- </div> -->
+
+						<!-- </div> -->
+					</div>
+				</div>
+				<div class="footer-content pt-5 pb-5" style="bottom: 50px;">
+					<h2 class="logoDab">PT. DAYA AGUNG BESTARI | DABEST CONSULTANT</h2>
+					<div id="logoROW" class="row" >
+						<div class="col-xl-6 col-lg-6 mb-50">
+							<div class="footer-widget">
+								<div class="footer-logo">
+									<a href="index.html"><img src="{% static 'images/LDW2.png' %}" srcset="../static/images/LDW2.png 480w, ../static/images/LDW2.png 1080w" sizes="50vw"  alt="logo"></a>
+									<div>
+										<p style="display: none;">PT. Daya Agung Bestari (DABEST CONSULTANT) merupakan perusahaan konsultan di bidang Sumber Daya Air dan telah berpengalaman lebih dari 14 tahun. </p>
+										<p style="display: none;">Mulai dari strategi, perencanaan, desain, dan pelatihan, kami menciptakan solusi Sumber Daya Air yang aman dan berkelanjutan yang memberikan kontribusi positif bagi semua orang.</p>
+										<p style="display: none;">Keahlian teknis kami didasarkan pada pengalaman yang berkontribusi terhadap strategi, perencanaan, dan desain infrastruktur energi dan air terbarukan. Kami memiliki wawasan langsung dan pemahaman mendalam tentang Sumber Daya Air yang ditemui di kehidupan nyata. Itu sebabnya klien kami mempercayai kami untuk memberikan solusi praktis secara komersial di seluruh siklus hidup aset mereka, membantu mereka mengelola risiko dan mencapai keuntungan yang berharga.</p>
+									</div>
+								</div>
+								<div class="footer-text" >
+									<!-- <p style="white-space: nowrap;">ADVANCING CIVILIZATION THROUGH THE DEVELOPMENT OF WATER RESOURCES.</p> -->
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 mb-30" id="FooterKanan" >
+							<div class="footer-social-icon">
+								<span>{% translate 'Follow us' %}</span>
+								<section id="ContactUs">
+									<div class="height450">
+										<div class="social-overlap process-scetion mt100">
+										 <div class="containerFooter">
+											 <div class="row justify-content-center">
+												 <div class="col-md-12">
+													 <div class="social-bar">
+														 <div class="social-icons mb-3 iconpad text-center">															 
+															 <a href="https://www.facebook.com/springsconsultant" target="_blank" class="slider-nav-item" aria-label="socialLink"><i class="fa-brands fa-square-facebook"></i></a>
+															 <a href="https://twitter.com/springconsultnt" target="_blank" class="slider-nav-item" aria-label="socialLink"><i class="fab fa-tiktok" style="color: #111111;filter: drop-shadow(2px 0px 0px #FD3E3E) drop-shadow(-2px -2px 0px #4DE8F4);"></i></i></a>
+															 <a href="https://www.instagram.com/dabest.consultant/" target="_blank" class="slider-nav-item" aria-label="socialLink"><i class="fab fa-instagram" style="background: #d6249f;background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"></i></a>
+															 <a href="https://www.linkedin.com/company/daya-agung-bestari/" target="_blank" class="slider-nav-item" aria-label="socialLink"><i class="fa-brands fa-linkedin"></i></a>
+														 </div>
+													 </div>
+												 </div>
+											 </div>
+										 </div>
+									 </div>
+									</div> 
+						  		 </section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright-area">
+				<div class="container">
+					<div class="copyright-text" style="text-align: center;">
+						<p>Copyright &copy; 2024, All Right Reserved <a href="{% url 'privacy' %}">DABEST CONSULTANT</a></p>
+						<a href="{% url 'toc' %}">Terms and Condition</a> | <a href="{% url 'disclaimer' %}">disclaimer</a>
+					</div>
+					<!-- <div class="row">
+						<div class="col-xl-6 col-lg-6 text-center text-lg-left">
+						</div>
+						<div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+							<div class="footer-menu">
+								<ul>
+									<li><a href="{% url 'home' %}">Home</a></li>
+									<li><a href="#">Terms</a></li>
+									<li><a href="#">Privacy</a></li>
+									<li><a href="#">Policy</a></li>
+									<li><a href="#">Contact</a></li>
+								</ul>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</footer>
+	</div>
+	
+	
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+$(".btnSatu").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".Parallax").offset().top},
+        'slow');
+});	
+
+$('.baseText').delay("fast").fadeIn();
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+var rev = $('.rev_slider');
+rev.on('init', function(event, slick, currentSlide) {
+  var
+    cur = $(slick.$slides[slick.currentSlide]),
+    next = cur.next(),
+    prev = cur.prev();
+  prev.addClass('slick-sprev');
+  next.addClass('slick-snext');
+  cur.removeClass('slick-snext').removeClass('slick-sprev');
+  slick.$prev = prev;
+  slick.$next = next;
+}).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+  //console.log('beforeChange');
+  var
+    cur = $(slick.$slides[nextSlide]);
+  //console.log(slick.$prev, slick.$next);
+  slick.$prev.removeClass('slick-sprev');
+  slick.$next.removeClass('slick-snext');
+  next = cur.next(),
+    prev = cur.prev();
+  prev.prev();
+  prev.next();
+  prev.addClass('slick-sprev');
+  next.addClass('slick-snext');
+  slick.$prev = prev;
+  slick.$next = next;
+  cur.removeClass('slick-next').removeClass('slick-sprev');
+});
+
+rev.slick({
+  speed: 1000,
+  arrows: true,
+  dots: false,
+  focusOnSelect: true,
+  prevArrow: '<button class="LeftARR" aria-label="LeftARR"><i class="fa-solid fa-angles-left fa-2x" style="color: #FFFFFF"></i> </button>',
+  nextArrow: '<button class="RightARR" aria-label="RightARR"><i class="fa-solid fa-angles-right fa-2x" style="color: #FFFFFF"></i> </button>',
+  infinite: true,
+  centerMode: true,
+  slidesPerRow: 1,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  centerPadding: '0',
+  swipe: true,
+  customPaging: function(slider, i) {
+    return '';
+  },
+  /*infinite: false,*/
+});
+});
+</script>
+
+
+
+
+{% endblock %}
+
+
+	

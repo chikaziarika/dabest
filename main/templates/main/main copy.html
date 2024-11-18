@@ -1,0 +1,307 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SPRINGS CONSULTANT {%endblock%}</title>
+    {% include 'main/script.html' %}
+</head>
+
+
+
+  <body>
+    <!-- <div class="sidebar close"> -->
+    <div class="sidebar">
+      <div class="logo-details">
+        <!-- <i class='bx bxl-bitcoin'></i> -->
+        <span class="logo_name">DABEST</span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="{% url 'home' %}">
+            <i class='bx bx-group' ></i>
+            <span class="link_name">Home</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="{% url 'home' %}">Home</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'about' %}">
+            <i class='bx bxs-buildings'></i>
+            <span class="link_name">About</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="{% url 'about' %}">About</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'projects' %}">
+            <i class='bx bxs-folder-minus' ></i>
+            <span class="link_name">Projects</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="{% url 'projects' %}">Projects</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'services' %}">
+            <i class='bx bx-bar-chart'></i>
+            <span class="link_name">Services</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="{% url 'services' %}">Services</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'careers' %}">
+            <i class='bx bx-bar-chart'></i>
+            <span class="link_name">careers</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="{% url 'careers' %}">careers</a></li>
+          </ul>
+        </li>
+        
+        
+        <!-- <li>
+          <a href="#">
+            <i class='bx bx-bar-chart'></i>
+            <span class="link_name">Chart</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Chart</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-compass'></i>
+            <span class="link_name">Explore</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Explore</a></li>
+          </ul>
+        </li> -->
+        {% if request.user.is_authenticated  %}
+          {% if user.is_superuser %}
+          <!-- <li>
+            <div class="icon-link">
+              <a href="#">
+                <i class='bx bx-bulb'></i>
+                <span class="link_name">Solutions</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Solutions</a></li>
+              <li><a href="#">Payments API</a></li>
+              <li><a href="#">Accounts APi</a></li>
+              <li><a href="#">Finance API</a></li>
+            </ul>
+          </li> -->
+          <li>
+            <div class="icon-link">
+              <a href="#">
+                <i class='bx bx-news'></i>
+                <span class="link_name">Posts</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Posts</a></li>
+              <li><a href="#">Recent</a></li>
+              <li><a href="#">Trending</a></li>
+              <li><a href="#">Most Visited</a></li>
+            </ul>
+          </li>
+            <li>
+            <div class="icon-link">
+              <a href="#">
+                <i class='bx bx-file-find'></i>
+                <span class="link_name">Insights</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Insights</a></li>
+              <li><a href="#">Money Movement</a></li>
+              <li><a href="#">Enterprise Spotlight</a></li>
+              <li><a href="#">Financial Burnout</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="icon-link">
+              <a href="{% url 'settings' %}">
+                <i class='bx bx-bulb'></i>
+                <span class="link_name">Settings</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" >Settings</a></li>
+              <li><a href="{% url 'admin:index' %}">Admin Site</a></li>
+              <li><a href="{% url 'settings' %}">Change Password</a></li>
+            </ul>
+          </li>  
+          
+          {% else %}
+          <li>
+            <div class="icon-link">
+              <a href="#">
+                <i class='bx bx-bulb'></i>
+                <span class="link_name">Solutions</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Solutions</a></li>
+              <li><a href="#">Payments API</a></li>
+              <li><a href="#">Accounts APi</a></li>
+              <li><a href="#">Finance API</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="icon-link">
+              <a href="#">
+                <i class='bx bx-news'></i>
+                <span class="link_name">Posts</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Posts</a></li>
+              <li><a href="#">Recent</a></li>
+              <li><a href="#">Trending</a></li>
+              <li><a href="#">Most Visited</a></li>
+            </ul>
+          </li>
+            <li>
+            <div class="icon-link">
+              <a href="#">
+                <i class='bx bx-file-find'></i>
+                <span class="link_name">Insights</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Insights</a></li>
+              <li><a href="#">Money Movement</a></li>
+              <li><a href="#">Enterprise Spotlight</a></li>
+              <li><a href="#">Financial Burnout</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="{% url 'settings' %}">
+              <i class='bx bx-cog'></i>
+              <span class="link_name">Setting</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="{% url 'settings' %}">Setting</a></li>
+            </ul>
+          </li>
+          
+          {% endif %}
+        {% else %}
+        <li>
+          
+          <div class="profile-details">
+            <a  href="{% url 'login' %}" style="font-weight: 900; margin: auto; color: #f6f6f6;">LOGIN</a>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    <section class="home-section">
+      <div class="home-content">
+        <i class='bx bx-menu' ></i>
+        <span class="text" >PT. DAYA AGUNG BESTARI</span>
+
+        <form class="d-flex" role="search" style="position: absolute;right: 0;">
+          {% if request.user.is_authenticated  %}
+          <ul class="nav justify-content-end" style="position: static !important;">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i id="userName" class="fas fa-user me-lg-2"  ><span>&nbsp; {{request.user}}</span></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'settings' %}" class="dropdown-item"  >My Profile</a></li>
+  
+                <li><hr class="dropdown-divider"></li>
+                {% if user.is_superuser %}
+                <li><a href="{% url 'admin:index' %}" class="dropdown-item"  >Admin Site</a></li>
+                <li><a href="{% url 'logout' %}" class="dropdown-item" >Log Out</a></li>
+                {% else %}
+                <li><a href="{% url 'logout' %}" class="dropdown-item" >Log Out</a></li>
+                {% endif%}
+              </ul>
+            </li>
+          </ul>
+          {% else %}
+          <ul class="nav justify-content-end" style="position: static !important;">
+            <li class="nav-item" style="margin: auto;">
+              <span >Already have Account ?</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'login' %}" >Login</a>
+            </li>
+          </ul>
+          {% endif %}
+        </form>
+      </div>
+        <div class='box'>
+          <div class='wave -one'></div>
+          <div class='wave -two'></div>
+          <div class='wave -three'></div>
+        </div>
+        {% block content%}{%endblock%}
+      
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalSatu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered .modal-xl ">
+          <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Board of Director</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {% include 'main/BoD.html' %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalDua" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered .modal-xl">
+          <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Organization Chart</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {% include 'main/organization.html' %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>    
+  </body>
+</html>
+
+
+
+
+{% include 'main/javascript.html' %}
+
+
+
+

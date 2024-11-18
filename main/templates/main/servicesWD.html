@@ -1,0 +1,283 @@
+{% load static %}
+
+
+
+<style>
+
+.slideWD {
+  flex:1;
+  background-color:#13b2f6;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center;
+  height:100%;
+  transition:250ms ease;
+  position:relative;
+  isolation:isolate;
+}
+
+.slideWD::before {content:"";
+  position:absolute;
+  inset:0;
+  background:black;
+  opacity:0.7;
+  z-index:-1;
+  transition:inherit;
+}
+
+.slideWD:hover {
+  cursor:pointer;
+}
+
+.slideWD:hover::before {
+  opacity:0;
+}
+
+.slideWD h3 {
+  color: white;
+  line-height: 1.2;
+  position: absolute;
+  bottom: 80%;
+  left: 20%;
+  transition: 350ms ease;
+  font-family: 'league spartan';
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.slideWD.active h3 {
+  opacity:0;
+  visibility:hidden;
+}
+
+.slideWD.active {
+  flex:15;
+}
+
+.slideWD.active::before {
+  opacity:0;
+}
+
+@media screen and (max-width:1024px) {
+  .container {
+    flex-direction:column;
+  }
+  
+  .slideWD h3 {
+    writing-mode: horizontal-tb;
+    top:50%;
+    bottom:unset;
+    transform:translate(-50%, -50%);
+  }
+}
+
+@media only screen and (max-width : 768px) {
+
+    h2.resp-accordion {
+        display: block;
+        font-size: 0.7rem;
+    }
+
+  .slideWD h3 {
+    color: white;
+    line-height: 1.2;
+    position: absolute;
+    bottom: 80%;
+    left: 20%;
+    transition: 350ms ease;
+    font-family: 'league spartan';
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+	#WDContent .container {
+    position: absolute;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    max-width: 1920px;
+	}
+
+    .container {
+        height: 60% !important;
+        display: flex;
+        gap: 0.3rem;
+        position: fixed;
+        max-width: 100%;
+        width: 1920px;
+        margin: 15px auto;
+        left: 0%;
+    }
+
+  .resp-tab-content-active {
+    width: 99%;
+    position: relative;
+    height: 920px;
+    max-height: 60vh;
+}
+.resp-tabs-container {
+    padding: 0px;
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    clear: left;
+    width: 80%;
+}
+
+}
+
+#WDContent .container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1920px;
+	}
+
+  .slideWDh4{
+    color: #fff;
+    font-family: 'league spartan';
+    font-weight: 800;
+    margin-top: 15px;
+    text-transform: uppercase;
+    opacity: 0;
+    position: absolute;
+    bottom: 40%;
+  }
+
+  .slideWDspan {
+    font-family: 'Poppins';
+    color: #f6f6f6;
+    font-weight: 800;
+    text-shadow: 2px 2px #253252;;
+    opacity: 0;
+    position: absolute;
+    bottom: 30%;
+  } 
+</style>
+
+
+<div id="WDContent"  class="container" style="left: 0px; bottom: 20px;" >
+	<div class="slideWD">
+    <h3>Perencanaan Drainase</h3>
+    <div> 
+      <h4 class="slideWDh4">Perencanaan Drainase</h4>
+      <span class="slideWDspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>
+  </div>
+	<div class="slideWD"> 
+    <h3>Perencanaan Desain Sungai</h3>
+    <div>
+      <h4 class="slideWDh4">Perencanaan Desain Sungai</h4>
+      <span class="slideWDspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>
+  </div>
+	<div class="slideWD"> 
+    <h3>Perencanaan Dewatering</h3>
+    <div>
+      <h4 class="slideWDh4">Perencanaan Dewatering</h4>
+      <span class="slideWDspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>  
+  </div>
+	<div class="slideWD"> 
+    <h3>Perencanaan Pembasahan Gambut</h3>
+    <div>
+      <h4 class="slideWDh4">Perencanaan Pembasahan Gambut</h4>
+      <span class="slideWDspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>  
+  </div>
+  <div class="slideWD"> 
+    <h3>Desain Kolam Sedimen</h3>
+    <div>
+      <h4 class="slideWDh4">Desain Kolam Sedimen</h4>
+      <span class="slideWDspan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mattis mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin semper nisi, vestibulum egestas mauris malesuada ac. Quisque ac aliquam mauris, at porttitor neque. Sed sit amet laoreet mauris. Aliquam laoreet interdum ante vitae rutrum.</span>
+    </div>  
+  </div>
+</div>
+
+
+<script>
+const slidesWD = document.querySelectorAll(".slideWD");
+
+const imagesWD = [
+	"/static/images/DabestCard.jpg", 
+	"/static/images/DabestCard.jpg", 
+	"/static/images/DabestCard.jpg",
+	"/static/images/DabestCard.jpg", 
+	"/static/images/DabestCard.jpg", 
+	"/static/images/DabestCard.jpg", 
+	"/static/images/DabestCard.jpg" 
+]
+
+
+slidesWD.forEach((slide, index) =>{
+  
+  slide.style.backgroundImage = `url(${imagesWD[index]})`;
+  
+  slide.addEventListener("click", ()=>{
+    
+    slidesWD.forEach(el => {
+      
+      if(el.classList.contains("active") && el != slide){
+        el.classList.remove("active");  
+      }
+      
+    });
+    
+    
+    if(slide.classList.contains("active")){
+      slide.classList.remove("active");
+    }else {
+      slide.classList.add("active");
+    }
+    
+    
+  });
+  
+});
+
+</script>
+  
+
+<script>
+
+  $('.slideWD').on('click',function(){
+  
+    if($(this).hasClass('active')){
+      console.log('A....')
+      $('.slideWD > h3').css({
+        'opacity': '0',
+        'writing-mode': 'vertical-rl',
+        'transform': 'rotate(180deg)',
+        'bottom': '10px',
+      });
+      $(this).find('h4').css({
+        'opacity': '1',
+      });
+
+      $(this).find('span').css({
+        'opacity': '1',
+      });
+    } else {
+      $('.slideWD > h3').css({
+        'opacity':'1',
+        'writing-mode': 'horizontal-tb',
+        'transform': 'rotate(0deg)',
+        'bottom': '80%',
+  
+      });
+      $('.slideWDh4').css({
+          'opacity': '0',
+        });
+
+        $('.slideWDspan').css({
+          'opacity': '0',
+        });
+    }
+  })
+  </script>

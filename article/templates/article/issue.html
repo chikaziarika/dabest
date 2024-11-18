@@ -1,0 +1,97 @@
+{% extends 'main/main.html' %}
+{% include 'main/navbar.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content%} 
+
+<style>
+.content {
+  width: 70%;
+  margin: 50px auto;
+  padding: 40px;
+  background: white;
+  border: 5px solid white;
+  color: #666;
+}
+
+.main-photo {
+  height: 300px;
+  background: url(https://images.unsplash.com/photo-1518670921540-7c4e09a4408e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80)no-repeat center center;
+  background-size: 100%;
+  margin-bottom: 30px;
+}
+
+h1 {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+
+
+p {
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+p.article-info {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+p:last-child {
+  font-size: 16px;
+  text-align: justify;
+}
+
+
+.imgIssue {
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
+    display: flex;
+    margin: auto;
+}
+</style>
+
+
+<!-- <div id="container-article" class="container">
+    
+    <a href="javascript:history.back()" style="font-size: 1vw;">&larr; Go back to Article</a>
+    <div class="articlePost">
+        {% for post in article %}
+        <div class="postList">
+            <h3 class="postTag" style="font-size: 1vw;
+            font-family: 'Poppins';
+            font-weight: 800;
+            text-decoration: underline;">{{ post.tags }}</h3>
+            <h2  class="headTag" style="font-size: 1.75vw;
+            font-family: 'league spartan';
+            font-weight: 800;">{{ post.headline }}</h2>
+            <p>Date: {{ post.createAt }}</p>
+            
+            <img class="articleImg" src="{{ post.image.url|default_if_none:'#' }}" alt="newsImg">
+            <hr>
+            <p class="articleTeks">{{post.textarea|safe}}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</div> -->
+
+
+<div class="content">
+    <a href="javascript:history.back()" style="font-size: 1vw;">&larr; Go back to Article</a>
+    
+    {% for post in article %}
+    <div >
+        <img class="imgIssue" src="{{ post.image.url|default_if_none:'#' }}" alt="newsImg" width="200px">
+    </div><!-- /.main-photo -->
+    <h1>{{ post.headline }}</h1>
+    <p class="article-info"><b>Author:</b> John Doe / <b>Date:</b> {{post.createAt}}</p>
+    <p>{{post.textarea|safe}}</p>
+  {% endfor %}  
+</div>
+
+{% endblock %}

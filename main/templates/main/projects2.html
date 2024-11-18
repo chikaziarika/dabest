@@ -1,0 +1,490 @@
+{% include 'main/main.html' %}
+{% load static %}
+{% include 'main/navbar.html' %}
+{% block content%} 
+<style>
+  body { overflow-y: scroll; overflow-x:hidden; }
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;800&display=swap");
+ :root {
+	 --grid-gap: 3vw;
+}
+ * {
+	 margin: 0;
+	 padding: 0;
+	 box-sizing: border-box;
+}
+ h1 {
+	 color: white;
+	 font-size: 60px;
+	 padding: var(--grid-gap) var(--grid-gap) 0;
+	 margin: 0;
+}
+ #projects {
+	 padding: var(--grid-gap);
+	 display: grid;
+	 grid-gap: var(--grid-gap);
+	 grid-template-columns: 1fr 1fr;
+}
+ .project-item {
+	 height: clamp(20vh, 35vh, 40vh);
+	 position: relative;
+	 cursor: pointer;
+	 will-change: width, height, top, left, padding;
+	 overflow: hidden;
+	 border-radius: 6px;
+	 transition: filter 0.3s ease-out, opacity 0.3s ease-out;
+}
+ .project-item.active {
+	 pointer-events: none;
+	 cursor: default;
+	 filter: saturate(0);
+	 opacity: 0.6;
+}
+ .project-item.active .project-title {
+	 opacity: 0;
+}
+/* Remove pointer events, to prevent unintended click targets */
+ .project-item * {
+	 pointer-events: none;
+	 user-select: none;
+}
+ #projects .project-item:nth-child(n + 3) {
+	 grid-column: span 2;
+	 height: clamp(30vh, 45vh, 50vh);
+}
+ #projects .project-item:nth-child(1) {
+	 grid-row: 0.3333333333;
+	 height: 100%;
+}
+ #projects .project-item:nth-child(3) {
+	 grid-column: 0.6666666667;
+}
+ .project-title {
+	 font-size: 36px;
+	 line-height: 1;
+	 color: white;
+	 position: relative;
+	 transition: opacity 0.3s ease-out;
+	 margin-bottom: 15px;
+	 z-index: 1;
+}
+ .project-title small {
+	 font-weight: normal;
+	 font-size: 0.65em;
+}
+ .project-hero {
+	 height: 100%;
+	 padding: 3vw;
+	 display: flex;
+	 align-items: flex-end;
+	 position: relative;
+}
+ .project-image {
+	 position: absolute;
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 left: 0;
+	 overflow: hidden;
+	 z-index: 0;
+}
+ .project-image img {
+	 width: 100%;
+	 height: 100%;
+	 display: block;
+	 object-fit: cover;
+	 mix-blend-mode: multiply;
+	 opacity: 1;
+}
+ #projects .project-image {
+	 transition: all 0.6s ease-out;
+	 transform: scale(1.05);
+	 opacity: 1;
+}
+ #projects:hover .project-item:hover .project-image {
+	 opacity: 1;
+	 transform: scale(1);
+}
+ .project-content {
+	 display: none;
+	 background: white;
+	 position: relative;
+	 color: black;
+	 padding: 5vw 20vw;
+	 overflow: hidden;
+	 z-index: 1;
+}
+ .project-content p {
+	 line-height: 1.5;
+	 margin: 30px 0;
+}
+ .project-content img {
+	 width: 100%;
+}
+ #project-close {
+	 position: fixed;
+	 top: 30px;
+	 right: 30px;
+	 z-index: 20;
+	 color: white;
+	 width: 48px;
+	 height: 48px;
+	 border-radius: 24px;
+	 border: 1px solid white;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 opacity: 0;
+	 cursor: pointer;
+	 pointer-events: none;
+	 transition: all 0.6s ease-out;
+	 background: rgba(0, 0, 0, 0.15);
+	 box-shadow: 0 1px 30px rgba(0, 0, 0, 0.15);
+	 text-shadow: 0 1px 30px rgba(0, 0, 0, 0.15);
+}
+ #project-page .project-image:before {
+	 content: "\2193";
+	 font-size: 2vw;
+	 position: absolute;
+	 left: 0;
+	 right: 0;
+	 margin: auto;
+	 bottom: 30px;
+	 color: white;
+	 border: 1px solid rgba(255, 255, 255, 0.15);
+	 border-radius: 24px;
+	 width: 48px;
+	 height: 48px;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 transition: all 0.6s ease-out;
+	 opacity: 0;
+	 z-index: 1;
+	 animation: arrow-down 2s infinite;
+}
+ @keyframes arrow-down {
+	 0% {
+		 transform: translate3d(0, 0, 0);
+	}
+	 90% {
+		 transform: translate3d(0, 24px, 0);
+	}
+	 100% {
+		 opacity: 0;
+	}
+}
+ body.project-active #project-page .project-image:before, body.project-active #project-close {
+	 opacity: 1;
+	 pointer-events: all;
+}
+ body.project-active #project-page .project-item {
+	 cursor: initial;
+}
+ body.project-active #project-page .project-content {
+	 display: block;
+   
+}
+
+
+ 
+</style>
+
+<div class="water">
+    <article class="container">
+        <h2>My Projects</h2>
+        <ul class="projects">
+          <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+           <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+           <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+           <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+           <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+             <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+           <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+           <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+           <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+             <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+           <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 1</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 1</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+          <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 2</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 2</h3>
+             <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+          <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 3</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 3</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+          <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 4</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 4</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+          <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 5</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+              <h3>project 5</h3>
+              <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+          <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 6</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 6</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+          <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 7</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt=" ">
+              <div class="text">
+            <h3>project 7</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+          <li>
+            <a href=""><img src="http://placehold.it/200x200" alt=""><span class="project-label">project 8</span></a>
+            <div class="details">
+              <img src="http://placehold.it/500x300" alt="">
+              <div class="text">
+            <h3>project 8</h3>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+            </div></div>
+          </li>
+        </ul>  
+      
+    </article>
+      
+</div>
+
+
+
+<script>
+const projects = document.getElementById("projects");
+const projectClose = document.getElementById("project-close");
+const projectItems = document.querySelectorAll(".project-item");
+const projectPage = document.getElementById("project-page");
+
+projectClose.addEventListener("click", onProjectClose);
+projectItems.forEach((item) => item.addEventListener("click", onProjectClick));
+
+function onProjectClick(event) {
+    $('document.body').css({ 'overflow-y': '', 'overflow-x':'' })
+    const { target } = event;
+    const { index } = target.dataset;
+    const { width, height, top, left } = target.getBoundingClientRect();
+    const clone = document.createElement("div");
+    clone.style.height = height + "px";
+    clone.style.width = width + "px";
+    clone.style.top = top + "px";
+    clone.style.left = left + "px";
+    clone.style.position = "absolute";
+    clone.style.zIndex = 10;
+    clone.classList.add("project-item");
+    clone.classList.add("clone");
+    clone.innerHTML = target.innerHTML;
+    projectPage.appendChild(clone);
+
+    const title = clone.querySelector(".project-title");
+    const hero = clone.querySelector(".project-hero");
+    const duration = 1.5;
+
+    gsap.timeline()
+        .add("scaleFS")
+        .to(clone, {
+            duration,
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            borderRadius: "0px",
+            overvlowY: 'scroll',
+            // test aja
+            ease: Expo.easeInOut
+        }, "scaleFS")
+        .to(title, {
+            duration,
+            fontSize: "60px",
+            ease: Expo.easeInOut
+        }, "scaleFS")
+        .to(hero, {
+            duration,
+            padding: "5vw 8vw",
+            ease: Expo.easeInOut
+        }, "scaleFS")
+        .add(() => {
+            window.scrollTo(0, 0);
+            if (projectPage.children.length > 1) {
+                projectPage.firstElementChild.remove();
+            }
+            document.body.classList.add("project-active");
+            Array.from(projects.children).forEach((child) =>
+                child.classList.remove("active")
+            );
+            projects.children[parseInt(index)].classList.add("active");
+        })
+        .add(() => {
+            const projectHero = projectPage.querySelector(".project-hero");
+            gsap.set(clone, {
+                position: "relative",
+                height: "100vh",
+                minHeight: "100vh",
+                overflowY: 'scroll',
+            });
+            gsap.set(projectHero, {
+                height: "100vh"
+            });
+        });
+}
+
+function onProjectClose() {
+    const clone = document.querySelector(".clone");
+    const projectHero = clone.querySelector(".project-hero");
+    const projectContent = clone.querySelector(".project-content");
+    const duration = 1;
+
+    gsap.timeline()
+        .add("close")
+        .to([projectHero, projectContent], {
+            duration,
+            height: "0vh",
+            padding: "0",
+            ease: Expo.easeInOut
+        },  "close")
+        .to(clone, {
+            duration,
+            minHeight: "0vh",
+            ease: Expo.easeInOut,
+            onComplete() {
+                clone.remove();
+            }
+        }, "close")
+        .to(projectContent.children, {
+            duration,
+            opacity: 0,
+            ease: Expo.easeInOut
+        }, "close")
+        .to(window, {
+            duration,
+            scrollTo: {
+                y: 0
+            },
+            ease: Expo.easeInOut
+        }, "close")
+        .add(() => {
+            document.body.classList.remove("project-active");
+            Array.from(projects.children).forEach((child) =>
+                child.classList.remove("active")
+            );
+        });
+}
+
+</script>
+<script>
+  //    console.log('kikuk..')
+    $(".water").ripples({ 
+      interactive:true,
+      resolution:280,
+      dropRadius: 20,
+      perturbance: 0.1,
+      imageUrl:("https://storage.googleapis.com/production-hostgator-v1-0-9/849/252849/TDxzwrei/fdd4acc7d83248a28c6624c8b7f54f6d"),
+    });
+  
+</script>
+      
+{% endblock %}
+{% include 'main/footer.html' %}
+{% include 'main/javascript.html' %}
+
+    
+
+
+

@@ -1,0 +1,389 @@
+{% extends "main/main.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load allauth account %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+
+
+{% block content %}
+
+<style>
+
+body {
+    
+    {% comment %} background-image: url(../../static/images/BGLogin.avif); {% endcomment %}
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    height: 100%;
+    border-radius: 8px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center top 15em;
+}
+
+@media only screen and (max-width : 768px) {
+    .form {
+        width: 20em !important;
+        margin: 5em auto !important;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  body {
+    background-image: url(../../static/images/BGLogin.avif);
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    height: 100%;
+    border-radius: 8px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center top 30em;
+
+  }
+
+  .form {
+    border: 8px solid #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: linear-gradient(45deg, skyblue, darkblue);
+    padding: 30px;
+    width: 450px;
+    border-radius: 20px;
+    margin: 10% auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    transition: background 0.3s ease;
+    position: relative;
+    top: 62% !important;
+    transform: translateY(-80%);
+    z-index: 1;
+}
+}
+
+@media  screen and (max-width: 1366px) { 
+  form {
+    margin: 5% auto !important;
+  }
+    
+}
+
+.form {
+    border: 8px solid #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: #fff;
+    padding: 30px;
+    width: 450px;
+    border-radius: 20px;
+    margin: 10% auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    transition: background 0.3s ease;
+    position: relative;
+    top: 50%;
+    transform: translateY(-80%);
+    z-index: 1;
+}
+
+.form:hover {
+  background: #F5f5ff;
+}
+
+::placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.form button {
+  align-self: flex-end;
+}
+
+.flex-column > label {
+  color: white;
+  font-weight: 600;
+}
+
+.inputForm {
+  border: 1.5px solid #ecedec;
+  border-radius: 10em;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+  background-color: white;
+}
+
+.input {
+  margin-left: 10px;
+  border-radius: 10rem;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.inputForm:focus-within {
+  border: 1.5px solid orange;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.flex-row > div > label {
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+}
+
+.span {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #253252;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.button-submit {
+  position: relative;
+  display: inline-block;
+  padding: 5px 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: transparent;
+  transition: ease-out 0.5s;
+  border: 2px solid;
+  border-radius: 10em;
+  box-shadow: inset 0 0 0 0 blue;
+  margin: 20px 0 10px 0;
+  color: #253252;
+  font-size: 15px;
+  font-weight: 500;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button-submit:hover {
+  color: white;
+  box-shadow: inset 0 -100px 0 0 royalblue;
+}
+
+.button-submit:active {
+  transform: scale(0.9);
+}
+
+.p {
+  text-align: center;
+  color: #253252;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.btn {
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  gap: 10px;
+  border: 1px solid #ededef;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+  border: 1px solid orange;
+}
+
+.navbar {
+    display: none;
+}
+
+form > .div:nth-child(4) {
+  justify-content: flex-end !important;
+}
+
+.infoUser {
+  display: none !important;
+}
+
+#map {
+    position: absolute !important;
+    top: 1em;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+.google {
+    color: #253252 !important ;
+}
+
+.h1Error {
+    z-index: 1;
+    width: 50%;
+    position: relative;
+    top: 25%;
+    transform: translateY(-50%);
+    margin: auto;
+    font-size: 24px;
+    text-align: center;
+
+}
+
+.field-icon {
+  float: right;
+  margin-right: 15px;
+  margin-top: 0px;
+  position: relative;
+  z-index: 2;
+}
+    
+</style>
+
+
+<h1 class='h1Error'>
+Silahkan login terlebih dahulu untuk dapat mengakses informasi pekerjaan yang sudah <strong>DABEST CONSULTANT</strong> selesaikan.
+</h1>
+<form class="form" method='post' action="/accounts/login/" tags="entrance,login">
+  {% csrf_token %}
+
+  <div class="flex-row">
+    
+    <a href="/accounts/google/login/?process=login" class="btn google">
+      <svg
+        xml:space="preserve"
+        style="enable-background:new 0 0 512 512;"
+        viewBox="0 0 512 512"
+        y="0px"
+        x="0px"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+        id="Layer_1"
+        width="20"
+        version="1.1"
+      >
+        <path
+          d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256
+	c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456
+	C103.821,274.792,107.225,292.797,113.47,309.408z"
+          style="fill:#FBBB00;"
+        ></path>
+        <path
+          d="M507.527,208.176C510.467,223.662,512,239.655,512,256c0,18.328-1.927,36.206-5.598,53.451
+	c-12.462,58.683-45.025,109.925-90.134,146.187l-0.014-0.014l-73.044-3.727l-10.338-64.535
+	c29.932-17.554,53.324-45.025,65.646-77.911h-136.89V208.176h138.887L507.527,208.176L507.527,208.176z"
+          style="fill:#518EF8;"
+        ></path>
+        <path
+          d="M416.253,455.624l0.014,0.014C372.396,490.901,316.666,512,256,512
+	c-97.491,0-182.252-54.491-225.491-134.681l82.961-67.91c21.619,57.698,77.278,98.771,142.53,98.771
+	c28.047,0,54.323-7.582,76.87-20.818L416.253,455.624z"
+          style="fill:#28B446;"
+        ></path>
+        <path
+          d="M419.404,58.936l-82.933,67.896c-23.335-14.586-50.919-23.012-80.471-23.012
+	c-66.729,0-123.429,42.957-143.965,102.724l-83.397-68.276h-0.014C71.23,56.123,157.06,0,256,0
+	C318.115,0,375.068,22.126,419.404,58.936z"
+          style="fill:#F14336;"
+        ></path>
+      </svg>
+
+      Continue with Google</a
+    >
+    
+    
+    
+    
+  </div>
+ <p class="p line">Or With</p>
+  <div class="flex-column">
+    {% comment %} <label>Username</label> {% endcomment %}
+  </div>
+  <div class="inputForm">
+    <svg width="22" height="34" viewBox="0 0 22 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.1934 14C14.1934 15.7802 12.8705 17 11.5054 17C10.1404 17 8.8175 15.7802 8.8175 14C8.8175 12.2198 10.1404 11 11.5054 11C12.8705 11 14.1934 12.2198 14.1934 14ZM16.1934 14C16.1934 16.7614 14.0945 19 11.5054 19C8.91636 19 6.8175 16.7614 6.8175 14C6.8175 11.2386 8.91636 9 11.5054 9C14.0945 9 16.1934 11.2386 16.1934 14ZM6.82237 19.3053C6.96317 19.1886 7.1374 19.1155 7.32021 19.1109C7.80157 19.0989 8.03895 19.2296 8.22593 19.4709C8.5684 19.9128 8.33496 20.5745 7.90977 20.9375C7.12397 21.6084 6.51648 22.493 6.16685 23.4998H16.8431C16.4936 22.4932 15.8863 21.6088 15.1007 20.938C14.6755 20.5749 14.4422 19.913 14.7847 19.4711C14.9718 19.2297 15.2091 19.0991 15.6904 19.1112C15.8732 19.1158 16.0473 19.1889 16.188 19.3056C17.6983 20.5574 18.7401 22.4012 18.9932 24.502C19.0592 25.0498 18.6331 25.4998 18.1153 25.4998H4.89468C4.37686 25.4998 3.95076 25.0498 4.01676 24.502C4.2699 22.401 5.31183 20.5571 6.82237 19.3053Z" fill="#222222"/>
+</svg>
+
+    <input name='login' placeholder="Enter your Username" class="input" type="text" required="" aria-invalid="true" id="id_login">
+    {% comment %} <input type="text" name="login" placeholder="Username" autocomplete="username" maxlength="150" required="" aria-invalid="true" id="id_login"> {% endcomment %}
+  </div>
+
+  <div class="flex-column">
+    {% comment %} <label>Password </label> {% endcomment %}
+  </div>
+  <div class="inputForm">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      viewBox="-64 0 512 512"
+      height="20"
+    >
+      <path
+        d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"
+      ></path>
+      <path
+        d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"
+      ></path>
+    </svg>
+    {% comment %} <input placeholder="Enter your Password" class="input" type="password" /> {% endcomment %}
+    <input id="password-field" class="input" type="password" name="password" placeholder="Password" autocomplete="current-password" required="" aria-describedby="id_password_helptext" id="id_password" >
+    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+  </div>
+
+  <div class="flex-row">
+    {% comment %} <div>
+      <input type="radio" />
+      <label>Remember me </label>
+    </div> {% endcomment %}
+    <a href="/accounts/password/reset/" class="span">Forgot password?</a>
+  </div>
+  <button class="button-submit" type="submit" tags="prominent,login" >Sign In</button>
+  <p class="p">Don't have an account? <a href={% url 'account_signup' %}>  <span class="span">Sign Up</span></p> </a>
+ 
+
+  
+</form>
+{% include 'main/projects.html' %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    $(".toggle-password").on('click',function() {
+
+    $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        console.log('nih...', $($(this).attr("toggle")))
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
+    });
+    
+})
+
+</script>
+
+{% endblock %}

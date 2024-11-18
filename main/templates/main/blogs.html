@@ -1,0 +1,237 @@
+{% include 'main/main.html' %}
+{% load static %}
+{% include 'main/navbar.html' %}
+
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h2,
+p,
+a {
+  font-family: 'Poppins';
+  font-size: 1rem;
+  text-align: justify;
+}
+
+a {
+  text-decoration: none;
+}
+
+.blog-posts-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.post-link {
+  margin: 20px 20px 20px 20px;
+}
+
+.post-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 400px;
+  background-color: #fff;
+  box-shadow: 0px 2px 20px rgba(0,0,0,.25);
+  transition: all .25s;
+  top: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.post-wrap:hover {
+  top: 2px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.25);
+}
+
+.post-image {
+  height: 200px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.post-body {
+  width: 300px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.post-body-primary {
+  margin: 40px 0 40px 0;
+}
+
+.post-meta {
+  color: #7B7B7B;
+}
+
+.post-meta b {
+  font-weight: 500;
+}
+
+.post-title {
+  color: #444;
+  font-size: 20px;
+  padding: 5px 0 10px 0;
+}
+
+.post-text {
+  color: #7B7B7B;
+}
+
+.post-body-secondary {
+  border-top: 1px solid #ECECEC;
+}
+
+.post-category {
+  color: #7B7B7B;
+  padding: 15px 0 10px 0;
+}
+
+/* Button Styling */
+.button-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 20px 0;
+}
+
+.button {
+  position: relative;
+  background-color: #3089DB;
+  padding: 20px 60px 20px 60px;
+  box-shadow: 0px 6px 20px rgba(48,137,219,.60);
+  transition: all .25s;
+  top: 0;  
+  border-radius: 10px;
+  
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.button:hover {
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(48,137,219,.60);
+  top: 2px;
+}
+
+</style>
+
+
+
+{% block content%} 
+
+<div class='blog-posts-wrap'>
+    <a class='post-link' href='#'>
+      <div class='post-wrap'>
+  
+        <div class='post-image' style='background-image: url("https://d29fhpw069ctt2.cloudfront.net/photo/34669/preview/e2ddba22_npreviews_dd6e.jpg")'>
+        </div>
+  
+        <div class='post-body'>
+          <div class='post-body-primary'>
+            <div class='post-meta'>
+              <p>by <b>James Lelong</b> on October 10, 2017</p>
+            </div>
+  
+            <div class='post-title'>
+              <h2>Blog Title</h2>
+            </div>
+  
+            <div class='post-text'>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non nunc id nunc elementum hendrerit. Nunc posuere augue nec sagittis porttitor. Sed venenatis purus ut mi laoreet, a efficitur orci dignissim.</p>
+            </div>
+          </div>
+  
+          <div class='post-body-secondary'>
+            <div class='post-category'>
+              <p>Oceans, Cliffs, Grass</p>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </a>
+    <a class='post-link' href='#'>
+      <div class='post-wrap'>
+  
+        <div class='post-image' style='background-image: url("https://d29fhpw069ctt2.cloudfront.net/photo/34669/preview/e2ddba22_npreviews_dd6e.jpg")'>
+        </div>
+  
+        <div class='post-body'>
+          <div class='post-body-primary'>
+            <div class='post-meta'>
+              <p>by <b>James Lelong</b> on October 10, 2017</p>
+            </div>
+  
+            <div class='post-title'>
+              <h2>Blog Title</h2>
+            </div>
+  
+            <div class='post-text'>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non nunc id nunc elementum hendrerit. Nunc posuere augue nec sagittis porttitor. Sed venenatis purus ut mi laoreet, a efficitur orci dignissim.</p>
+            </div>
+          </div>
+  
+          <div class='post-body-secondary'>
+            <div class='post-category'>
+              <p>Oceans, Cliffs, Grass</p>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+  </a>
+    <a class='post-link' href='#'>
+      <div class='post-wrap'>
+  
+        <div class='post-image' style='background-image: url("https://d29fhpw069ctt2.cloudfront.net/photo/34669/preview/e2ddba22_npreviews_dd6e.jpg")'>
+        </div>
+  
+        <div class='post-body'>
+          <div class='post-body-primary'>
+            <div class='post-meta'>
+              <p>by <b>James Lelong</b> on October 10, 2017</p>
+            </div>
+  
+            <div class='post-title'>
+              <h2>Blog Title</h2>
+            </div>
+  
+            <div class='post-text'>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non nunc id nunc elementum hendrerit. Nunc posuere augue nec sagittis porttitor. Sed venenatis purus ut mi laoreet, a efficitur orci dignissim.</p>
+            </div>
+          </div>
+  
+          <div class='post-body-secondary'>
+            <div class='post-category'>
+              <p>Oceans, Cliffs, Grass</p>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </a>
+  </div>
+  
+  <div class='button-wrap'>
+    <a class='button' href='#'>Read More</a>
+  </div>
+      
+{% endblock %}
+{% include 'main/footer.html' %}
+{% include 'main/javascript.html' %}
+
+    
+
+
+

@@ -1,0 +1,127 @@
+{% include 'main/main.html' %}
+{% load static %}
+
+
+<div class="main">
+    {% include 'main/navbar.html' %}
+    {% block content%} 
+    
+      
+    <div class="slider">
+        <div class="slide current">
+          <!-- <div class="content"> -->
+            <script>
+                THREE.ShapeUtils.triangulateShape = (function () {
+                        var pnlTriangulator = new PNLTRI.Triangulator();
+                        return function triangulateShape(contour, holes) {
+                            return pnlTriangulator.triangulate_polygon([contour].concat(holes));
+                        };
+                    })();
+            </script>
+            
+            <div id="three-container" style="position: relative; "></div>
+            
+            <div id="instructions" style="bottom: 15px;">
+                click and drag to control the animation
+            </div>
+            
+          <!-- </div> -->
+        </div>
+        <div class="slide">
+            
+            <div class="content" style="background: transparent;">
+                <div class="water" style="position: absolute;
+                margin: 0;
+                text-align: center;
+                float: right;
+                white-space: nowrap;
+                left: 58%;
+                top: -752px;
+                font-size: 0.9rem;">
+                    <h2 style="bottom: 5%; top: 129px;">ABOUT US</h2>
+                    <h2 style="bottom: 5%; top: 10px;">ABOUT US</h2>
+                    
+                    <img src="{% static 'images/undraw_engineering_team_a7n2.svg'%}" alt="">
+                </div>
+                <!-- <h1>About Us</h1>
+                <p style="font-size: 0.8rem;">
+                    Our esteemed organization operates in the field of water resources engineering and caters to a diverse clientele, comprising water users across industries such as Dams, Irrigation, Water Resources, Flood Control, Groundwater, and many more. Our proficient team of experts works tirelessly to meticulously plan, develop, manage, and safeguard both surface and groundwater resources, adhering to the fundamental principle of sustainable utilization.
+                </p> -->
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content" style="background: transparent; ">
+                <div class="water" style="position: absolute;
+                margin: 0;
+                text-align: center;
+                float: right;
+                white-space: nowrap;
+                left: 95%;
+                top: -734px;
+                font-size: 0.9rem;">
+                    <h2 style="bottom: 5%; top: 129px;">VISION AND MISSION</h2>
+                    <h2 style="bottom: 5%; top: 10px;">VISION AND MISSION</h2>
+                </div>
+                <!-- <h1>Vision and Mission</h1>
+                <p style="font-size: 0.8rem;">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit hic
+                  maxime, voluptatibus labore doloremque vero!
+                </p> -->
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content" style="background: transparent;">
+              <div class="water" style="position: absolute;margin: 0;text-align: center;float: right;white-space: nowrap;left: 103%;top: -727px;">
+                  <h2 style="bottom: 5%; top: 129px;">OUR LEADERS THOUGHT</h2>
+                  <h2 style="bottom: 5%;">OUR LEADERS THOUGHT</h2>
+              </div>
+            <!-- <h1>Our Leaders Thought</h1>
+            <p style="font-size: 0.8rem;">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit hic
+              maxime, voluptatibus labore doloremque vero!
+            </p> -->
+          </div>
+        </div>
+        <div class="slide">
+            <div class="content" style="background: transparent;">
+                <div class="water" style="position: absolute;margin: 0;text-align: center;float: right;white-space: nowrap;left: 82%;top: -727px;">
+                    <h2 style="bottom: 5%; top: 129px;">COMPANY CULTURE</h2>
+                    <h2 style="bottom: 5%;">COMPANY CULTURE</h2>
+                </div>
+                <!-- <h1>Company Culture</h1>
+                <p style="font-size: 0.8rem;">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit hic
+                  maxime, voluptatibus labore doloremque vero!
+                </p> -->
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content" style="background: transparent;">
+                <div class="water" style="position: absolute;margin: 0;text-align: center;float: right;white-space: nowrap;left: 48%;top: -727px;">
+                    <h2 style="bottom: 5%; top: 129px;">EXPERTISE</h2>
+                    <h2 style="bottom: 5%;">EXPERTISE</h2>
+                </div>
+                <!-- <h1>Expertise</h1>
+                <p style="font-size: 0.8rem;">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit hic
+                  maxime, voluptatibus labore doloremque vero!
+                </p> -->
+            </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="prev"><i class="fas fa-arrow-left"></i></button>
+        <button id="next"><i class="fas fa-arrow-right"></i></button>
+      </div>
+  
+      <!-- <script src="main.js"></script> -->
+    
+      
+    {% endblock %}
+    {% include 'main/footer.html' %}
+    {% include 'main/javascript.html' %}
+</div>
+    
+
+
+

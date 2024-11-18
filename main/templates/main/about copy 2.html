@@ -1,0 +1,236 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content%} 
+
+
+<!-- <body style="background-image: url('../static/images/backgroundAbout.png');background-repeat: no-repeat fixed;background-size: cover"> -->
+<body style="display: flex;align-items: center;justify-content: center; ">
+    <div class="tabs-container">
+        <div class="tabs-layout">
+            <select class="tabs-select">
+                <option value="tab1">Tentang DABEST</option>
+                <option value="tab2">Visi dan Misi DABEST </option>
+                <option value="tab3">Company Value DABEST</option>
+                <option value="tab4">Super Team DABEST</option>
+                <option value="tab5">Legalitas DABEST</option>
+            </select>
+            <ul class="tabs">
+                <li>
+                    <a id="tab1" >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                        <path d="M12 9h.01" />
+                        <path d="M11 12h1v4h1" />
+                      </svg>
+                        Tentang DABEST
+                    </a>
+                </li>
+                <li>
+                    <a id="tab2" >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bulb" width="24"
+                          height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7"></path>
+                          <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3"></path>
+                          <path d="M9.7 17l4.6 0"></path>
+                      </svg>
+                        Visi dan Misi DABEST
+                    </a>
+                </li>
+                <li>
+                    <a id="tab3" >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-diamond" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M6 5h12l3 5l-8.5 9.5a.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5" />
+                        <path d="M10 12l-2 -2.2l.6 -1" />
+                      </svg>
+                        Company Value DABEST
+                    </a>
+                </li>
+                <li>
+                    <a id="tab4" >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                      </svg>
+                        Super Team DABEST
+                    </a>
+                </li>
+                <li>
+                    <a id="tab5" >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-description"
+                          width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                          fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                          <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                          <path d="M9 17h6"></path>
+                          <path d="M9 13h6"></path>
+                      </svg>
+                        Legalitas DABEST
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content-wrapper">
+                <section id="tab1-content" class="tab-content">
+                    <h2>Tentang DABEST</h2>
+                    <p>
+                      Sejarah Perusahaan PT. Daya Agung Bestari (DABEST)
+                    </p>
+                    <img class="imgCardAbout" src="../static/images/AboutUs.png" alt="idea" >
+                    <a class="btnReadMore" data-bs-toggle="modal" data-bs-target="#modalTiga">Read More..</a>
+                </section>
+                <section id="tab2-content" class="tab-content">
+                    <h2>Our Idea & Vision</h2>
+                    <p>
+                      Tujuan kami adalah memposisikan diri sebagai entitas konsultansi
+                      Sumber Daya Air terkemuka yang diakui atas keahlian kami dalam
+                      mengembangkan, merumuskan, dan menerapkan strategi
+                      pertumbuhan terkait Sumber Daya Air, baik di dalam negeri maupun
+                      internasional, dengan fokus khususnya di Indonesia. 
+                      Tujuan utama kami adalah mempertahankan reputasi kami sebagai
+                      perusahaan konsultansi Sumber Daya Air yang berkomitmen penuh
+                      untuk menciptakan dan menerapkan solusi inovatif.
+                    </p>
+                    <img class="imgCardAbout" src="../static/images/VnM.png" alt="product" >
+                    <a class="btnReadMore" data-bs-toggle="modal" data-bs-target="#modalDua">Read More..</a>
+                </section>
+                <section id="tab3-content" class="tab-content">
+                    <h2>Company Value DABEST</h2>
+                    <p>
+                      Company value yang baik harus menciptakan lingkungan atau budaya yang dipegang oleh setiap karyawannya. 
+                      Mereka pun harus menghormati nilai-nilai perusahaan dalam segala aspek kehidupan. 
+                      Alhasil, nilai tersebut bisa membangun komunikasi yang baik serta berpengaruh pada pekerjaan sehari-hari. 
+                      Setiap orang dalam perusahaan, mulai dari top management sampai di karyawannya
+                    </p>
+                    <img srcsrc="../static/images/CoVal.png" alt="ui">
+                    <a class="btnReadMore" data-bs-toggle="modal" data-bs-target="#modalCompany">Read More..</a>
+                </section>
+                <section id="tab4-content" class="tab-content">
+                    <h2>Super Team DABEST</h2>
+                    <p>
+                        The application of AI & machine learning is the key focus for every modern product. So many new
+                        market opportunities emerge every day.
+                    </p>
+                    <img class="imgCardAbout" src="../static/images/MoT.png" alt="brain" >
+                    <a class="btnReadMore" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Read More..</a>
+                </section>
+                <section id="tab5-content" class="tab-content">
+                    <h2>Legalitas DABEST</h2>
+                    <p>
+                        Software architecture and engineering includes designing the database, backend, and frontend
+                        engineering, as well as preparing the infrastructure and automating your business processes.
+                    </p>
+                    <img class="imgCardAbout" src="../static/images/Legal.png" alt="engineer" >
+                    <a class="btnReadMore" data-bs-toggle="modal" data-bs-target="#Tiga">Read More..</a>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+
+<script>
+
+const allLinks = document.querySelectorAll(".tabs a");
+  const allTabs = document.querySelectorAll(".tab-content");
+  const tabContentWrapper = document.querySelector(".tab-content-wrapper");
+  const select = document.querySelector(".tabs-select");
+
+  const shiftTabs = (linkId) => {
+    allTabs.forEach((tab, i) => {
+      if (tab.id.includes(linkId)) {
+        allTabs.forEach((tabItem) => {
+          const height = tabContentWrapper.clientHeight;
+          tabItem.style = `transform: translateY(-${i * height}px);`;
+          select.value = linkId;
+        });
+      }
+    });
+  };
+
+  const handleLinkChange = (elem) => {
+    const linkId = elem.id;
+    const hrefLinkClick = elem.href;
+
+    // allLinks.forEach((link, i) => {
+    //   if (link.href == hrefLinkClick) {
+    //     link.classList.add("active");
+    //   } else {
+    //     link.classList.remove("active");
+    //   }
+    // });
+
+    shiftTabs(linkId);
+  };
+
+  allLinks.forEach((elem) => {
+    elem.addEventListener("click", function () {
+      handleLinkChange(elem);
+    });
+  });
+
+  //? handle proper selection for initial load
+  const currentHash = window.location.hash;
+
+  let activeLink = document.querySelector(`.tabs a`);
+
+  if (currentHash) {
+    const visibleHash = document.getElementById(
+      `${currentHash.replace("#", "")}`
+    );
+
+    if (visibleHash) {
+      activeLink = visibleHash;
+    }
+  }
+
+  activeLink.classList.toggle("active");
+
+  shiftTabs(activeLink.id);
+
+  const tabsSelect = document.querySelector(".tabs-select");
+
+  tabsSelect.addEventListener("change", function (e) {
+    window.location.hash = e.target.value;
+    const linkId = e.target.value;
+    const elem = document.getElementById(linkId);
+    handleLinkChange(elem);
+  });
+
+  $('a[id*="tab"]').on('click', function(){
+    console.log(' Ke klik ini..', $(this).parent().html())
+
+    $('a[id*="tab"]').removeClass('active');
+    $(this).addClass('active')
+  })
+
+  $(window).on('resize', function(){
+    var win = $(this); //this = window
+    if (win.width() < 1375) { 
+      $('.tabs-select').addClass('form-select');
+     }
+     if (win.width() > 1375) {
+      $('.tabs-select').removeClass('form-select');
+     }
+});
+
+</script>
+
+
+{% include 'main/modal.html'%}
+
+
+
+
+
+
+
+
+{% endblock %}

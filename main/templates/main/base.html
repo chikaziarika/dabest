@@ -1,0 +1,1499 @@
+{% extends 'main/main.html' %}
+
+{% load static %}
+{% load i18n%}
+
+
+{% block content%} 
+
+<style>
+
+
+{% comment %} @media (min-width:1281px) { {% endcomment %}
+
+.container {
+  padding: 0 !important;
+  max-width: 1920px;
+}
+
+.parentDiv {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 22vh repeat(1, 30vh) 10vh;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  position: relative;
+  top: 5%;
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 1 / 3 / 2 / 4; }
+.div4 { grid-area: 1 / 4 / 2 / 5; }
+.div5 { grid-area: 1 / 5 / 2 / 6; }
+.div6 { grid-area: 2 / 1 / 3 / 2; }
+.div7 { grid-area: 2 / 2 / 3 / 3; }
+.div8 { grid-area: 2 / 3 / 3 / 4; }
+.div9 { grid-area: 2 / 4 / 3 / 5; }
+.div10 { grid-area: 2 / 5 / 3 / 6; }
+.div11 { 
+  grid-area: 3 / 1 / 4 / 2; 
+  height: 30%;
+  }
+.div12 { grid-area: 3 / 6 / 3 / 2; }
+
+
+.div11 > h2 {
+  color: #004aad;
+  font-weight: 800;
+  font-family: 'Poppins';
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+{% comment %} .ImpactCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  height: 30vh;
+} {% endcomment %}
+
+img.huechange2020 { 
+  filter: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(4017%) hue-rotate(229deg) brightness(93%) contrast(100%);
+  }
+img.huechange2021 { 
+  filter: brightness(0) saturate(100%) invert(51%) sepia(70%) saturate(1473%) hue-rotate(165deg) brightness(101%) contrast(93%);
+  }
+img.huechange2022 { 
+    filter: brightness(0) saturate(100%) invert(16%) sepia(39%) saturate(816%) hue-rotate(183deg) brightness(92%) contrast(90%);
+  }
+img.huechange2023 { 
+  filter: brightness(0) saturate(100%) invert(35%) sepia(49%) saturate(4352%) hue-rotate(328deg) brightness(95%) contrast(110%);
+  }
+img.huechange2024 { 
+  filter: brightness(0) saturate(100%) invert(87%) sepia(33%) saturate(1504%) hue-rotate(132deg) brightness(100%) contrast(91%);
+}
+
+
+</style>
+
+
+<div class="container">
+
+{% comment %} <div class="FABMenu">
+  <input type="checkbox" checked/>
+  <div class="hamburger">
+    <div class="dots">
+      <span class="first"></span>
+      <span class="second"></span>
+      <span class="third"></span>
+    </div>
+  </div>
+  <div class="action_items_bar">
+    <div class="action_items">
+      <span class="first_item">
+	   <a  href="#home" >
+        <i class="material-icons">
+        home
+        </i>
+	   </a>
+      </span>
+      <span class="second_item">
+		<a  href="#about" >
+			<i class="material-icons">
+			info
+			</i>
+		</a>
+      </span>
+      <span class="third_item">
+        <a  href="#service" >
+			<i class="material-icons">
+			settings
+			</i>
+		</a>
+      </span>
+      <span class="fourth_item">
+		<a  href="#contact" >
+			<i class="material-icons">
+			contact_page
+			</i>
+		</a>
+      </span>
+    </div>
+  </div>
+</div> 
+  {% comment %} <nav class="navbar">
+      <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav> {% endcomment %}
+  
+  <section id="home">
+    <div class="container-home">
+      <div class="row withBG">
+        <div class="col-sm-8 leftWBG">
+        <h1>
+         {% translate 'Advancing Civilization Through the Development of Water Resources' %}
+        </h1>
+
+        </div>
+        <div class="col-sm-4 opsiRow">
+          <form method="post">
+          {% csrf_token %}
+          <div class='isiOpsi'>
+            <h2> choose your package </h2>
+            <select class="form-select selectSize ProjestList" aria-label="Default select example" name='package'>
+              <option selected value='0' >{% translate 'Packages' %}</option>
+              <option  value='Pemanfaatan Sumber Daya Air'>Pemanfaatan Sumber Daya Air</option>
+              <option  value='Perencanaan Pesisir'>Perencanaan pesisir</option>
+              <option  value='Pengendalian Daya Rusak Air'>Pengendalian Daya Rusak Air</option>
+              <option  value='Konservasi Sumber Daya Air'>Konservasi Sumber Daya Air</option>
+            </select>
+            <select class="form-select selectSize" aria-label="Default select example" name='project'>
+              <option selected>{% translate 'Your Project'%}</option>
+              <option class ='PSDA'>Neraca dan alokasi ketersediaan air</option>
+              <option class ='PSDA'>Perencanaan air baku</option>
+              <option class ='PSDA'>Perencanaan Irigasi / Industri</option>
+              <option class ='PSDA'>Penyediaan Air untuk PLTA</option>
+              <option class ='PSDA'>Perencanaan Sistem Penyediaan Air Minum (SPAM)</option>
+              <option class='PP'>Perencanaan Alur Pelayaran</option>
+              <option class='PP'>Desain Pelindung Pantai</option>
+              <option class='PP'>Desain Dermaga</option>
+              <option class='PDRA'>Perencanaan Pengendali Banjir</option>
+              <option class='PDRA'>Perencanaan sungai</option>
+              <option class='PDRA'>Settling pond</option>
+              <option class='KSDA'>Perencanaan Penanaman Pohon</option>
+              <option class='KSDA'>perencanaan embung</option>
+              <option class='KSDA'>Perencanaan Bendungan</option>
+              <option class='KSDA'>Perencanaan Sumur Resapan</option>
+              <option class='KSDA'>Pemanenan Air Hujan</option>
+              <option class='KSDA'>Perencanaan Trashboom</option>
+              
+            </select>
+            <select class="form-select selectSize" aria-label="Default select example" name='servicepackages'>
+              <option selected>{% translate 'Paket Layanan'%}</option>
+              <option >Administrasi Package</option>
+              <option >Survey Package</option>
+              <option >Studio Package</option>
+              <option >All in Package</option>
+            </select>
+            <input type="text" class="inputComp CompanyInput" name='companyInputz' placeholder='Your Company'>
+            <input type="email" class="inputComp EmailInput" placeholder="Email Address">
+            <div class='btnGr'>
+            <button type="submit" class="btn btn-EN" name='btnWA'  >{% translate 'Book Now'%}</button>
+            <a href="https://api.whatsapp.com/send?phone=+6281280862017&text=Hi">{% translate 'Send Message'%}</a>
+            {% comment %} <a href="{% url 'package' %}" class="btn btn-SM">See More</a> {% endcomment %}
+            </div>
+            <p class='baseUnder'>{% translate 'No suitable projects found?'%} <a href='#'>{% translate 'Contact Us' %}  </a></p>
+          </div>
+          </form>
+        </div>
+      </div>
+      <div class="row withCD">
+        <div class="col-lg flexCD">
+          <div class="box Openn">
+            <img class='boxG' src='../static/images/38.avif'>
+            <p>
+            <nobr>{% translate 'Pemanfaatan Sumber Daya Air'%}</nobr>
+            </p>
+            <a class='Link1' href="{% url 'package' %}">
+            <button type="button" class="btn btn-SD " >See Detail</button>
+            </a>
+          </div>
+          <div class="box">
+            <img class='boxG' src='../static/images/39.avif'>
+            <p>
+            <nobr>{% translate 'Perencanaan Pesisir' %}</nobr>
+            </p>
+            <a class='Link2' href="{% url 'package' %}">
+            <button type="button" class="btn btn-SD " >See Detail</button>
+            </a>
+          </div>
+          <div class="box">
+           <img class='boxG' src='../static/images/40.avif'>
+            <p>
+            <nobr>{% translate 'Pengendalian Daya Rusak Air' %}</nobr>
+            </p>
+            <a class='Link3' href="{% url 'package' %}">
+            <button type="button" class="btn btn-SD " >See Detail</button>
+            </a>
+          </div>
+          <div class="box">
+           <img class='boxG' src='../static/images/41.avif'>
+            <p>
+            <nobr>{% translate 'Konservasi Sumber Daya Air' %}</nobr>
+            </p>
+            <a class='Link4' href="{% url 'package' %}">
+            <button type="button" class="btn btn-SD " >See Detail</button>
+            </a>
+          </div>
+          
+        </div>
+       
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="container-home">
+      <div class="row mapFrame">
+      <div class="col-md-8 ">
+
+      <form>
+
+        
+
+        <div class="scale">
+        {% for a in Years%}
+          <input type="radio" name="test" id="{{ a }}" value='{{a}}'><label for="{{a }}">{{a}}</label>
+        {% endfor %}
+          {% comment %} <input type="radio" name="test" id="test2"><label for="test2">2021</label>
+          <input type="radio" name="test" id="test3"><label for="test3">2022</label>
+          <input type="radio" name="test" id="test4"><label for="test4">2023</label>
+          <input type="radio" name="test" id="test5"><label for="test5">2024</label>
+          <input type="radio" name="test" id="test6"  checked><label for="test6">2025</label> {% endcomment %}
+        </div>
+        
+        
+      </form>
+      <div id="map"></div>
+        <table id="tblPro" class="table table-bordered" hidden >
+          <thead>
+            <tr>
+              <th>{% translate 'Daftar Pengalaman Pekerjaan DABEST'%}</th>
+            </tr>
+          </thead>
+          <tbody id="t_points" style="font-family: 'Poppins', sans-serif;font-size: 0.7em;"></tbody>
+          <div class='btnProj'>
+            <a href='{% url 'projects' %}'>
+            <button type="button" class="btn " style='background:#253252; color: #fff'><strong>Check</strong>  <br>Your Project</button>
+            </a>
+            {% comment %} <a target="_blank" href="https://wa.me/628111014006">
+            <button type="button" class="btn " style='background:#004aad; color: #fff'><strong>Create</strong> <br> Your Project</button>
+            </a> {% endcomment %}
+            {% comment %} <a target="_blank" href="https://wa.me/628111014006"> {% endcomment %}
+            <button type="button" class="btn " style='background:#004aad; color: #fff'><strong>Create</strong> <br> Your Project</button>
+            {% comment %} </a> {% endcomment %}
+          </div>
+        </table>
+        
+      </div>
+      
+      <div class="col-md-4 rightMap">
+            <div class="row" style='line-height: 1.5em;margin-top: 2em;'>
+                <h2 class='ourProj'> Our Project </h2>
+                <div class="col-md-12">
+                  {% for dataX in Kategori %}
+                  
+                  <div class='card_proj'>
+                  <p class='KategoriText'> {{dataX}} </p>
+                  <h2 class='ktProjNumb' data-number="86" value='41'>41</h2>
+                  <p class='ProjText'>Project <p>
+                  </div>
+                  {% endfor %}
+                    {% comment %} <p> Perencanaan Pesisir </p>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                    <p> Pengendalian Daya Rusak </p>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                    <p> Konservasi Sumber Daya Air </p>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div> {% endcomment %}
+                </div>
+                
+                {% comment %} {% for number in Impact%}
+                <p class='ImpactText' > {{ number}} </p>
+                <div class="progress">
+                  <div id='{{ number}}' class="progress-bar Impact" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                {% endfor %} {% endcomment %}
+                {% comment %} <p> xx </p>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p> xx </p>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p> xx </p>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </div>     {% endcomment %}
+            </div> 
+      </div>
+      <div class="col-md-12 impactDiv" >
+                <br>
+                <p class='impacto'> Impact </p>
+                <div class='ImpactCard'> 
+                    {% for number in Impact%}
+                      <div class="card_impact">
+                        <h2 class='numberH2' data-number="86" value='41'>41</h2>
+                        <p>{{ number}}</p>
+                      </div>
+                    {% endfor %}
+                  </div>  
+      </div>
+    </div>
+  </section>
+  <section id="service">
+      <div class="container-home-usp">
+        <h2 style="font-family: 'league spartan';font-weight: 800;color: #004aad;margin-bottom: 1em;"> Unique Selling Proposition </h2>
+
+
+        <div class="parentDiv">
+          <div class="div1">
+          <img class='Home_13' src='../static/images/Home_13.avif'>
+          <p class='Home_13'>Administrative Compliance in Regulations </p>
+          </div>
+          <div class="div2">
+              <img class='Home_5' src='../static/images/Home_5.avif'>
+              <img class='Home_6' src='../static/images/Home_6.avif'>
+            
+              <p class='Home_5'>Updated Information <br> and Technology </p>
+          </div>
+          <div class="div3">
+            <p class='Home_8'>Experienced Expertise </p>
+            <img class='Home_8' src='../static/images/Home_8.avif'>
+          </div>
+          <div class="div4">
+            <img class='Home_9' src='../static/images/Home_9.avif'>
+            <p class='Home_9'>Multigenerational Employees </p>
+          </div>
+          <div class="div5"> 
+            <img class='Home_11' src='../static/images/Home_11.avif'>
+            <p class='Home_11'>Supporting Database </p>
+          </div>
+          <div class="div6"> 
+            <div class='gmbr_Home_3'>
+            <img class='Home_3' src='../static/images/Home_3.avif'>
+            
+            <img class='Home_4' src='../static/images/Home_4.avif'>
+            </div>
+            <p class='Home_3'>Administrative Compliance in Regulations </p>
+          </div>
+          <div class="div7"> 
+            <img class='Home_7' src='../static/images/Home_7.avif'>
+          </div>
+          <div class="div8"> 
+            <p class='Home_8b'>Speakers at Various Events </p>
+            <img class='Home_8b' src='../static/images/Home_8.avif'>
+          </div>
+          <div class="div9"> 
+            <img class='Home_10' src='../static/images/Home_10.avif'>
+          </div>
+          <div class="div10"> 
+            <img class='Home_2' src='../static/images/Home_2.avif'>
+            <button type="button" class="btn btn-CYP " onclick="location.href='{% url 'projects' %}'">Create Your Project</button>
+          </div>
+
+          <div class="div11"> 
+              <h2> Our Client </h2>
+          </div>
+          <div class="div12"> 
+          <div class="parent">
+            <div class="slider">
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_14.avif'>
+              </div>
+              <div class="logo logo2">
+                <img class='logoOC'src='../static/images/client_15.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_16.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_17.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_18.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_19.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_20.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_21.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_22.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC_SDA'src='../static/images/client_23.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC_PUPR'src='../static/images/client_24.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC_AB'src='../static/images/client_25.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC_CIT'src='../static/images/client_26.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC'src='../static/images/client_27.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC'src='../static/images/client_28.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC_ITB'src='../static/images/client_29.avif'>
+              </div>
+              <br>
+              <br>
+              <br>
+              </div>
+              <div class="slider">
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_14.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC'src='../static/images/client_15.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_16.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_17.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_18.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_19.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_20.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_21.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC'src='../static/images/client_22.avif'>
+              </div>
+                <div class="logo">
+                <img class='logoOC_SDA'src='../static/images/client_23.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC_PUPR'src='../static/images/client_24.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC_AB'src='../static/images/client_25.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC_CIT'src='../static/images/client_26.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC'src='../static/images/client_27.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC'src='../static/images/client_28.avif'>
+              </div>
+              <div class="logo">
+                <img class='logoOC_ITB'src='../static/images/client_29.avif'>
+              </div>
+              </div>
+            </div>
+        </div>
+
+       
+      </div>
+  </section>
+  <section id="contact">
+      <div class="container-home">
+        
+            <h2 class='textLU'> Latest Update </h2>
+            <button type='button' class='btn  leftArrow' value='left'><i class="far fa-arrow-alt-circle-left"></i></button>
+            <button type='button' class='btn  rightArrow' value='right'><i class="far fa-arrow-alt-circle-right"></i>  </button>
+            <div class="row socialNetwork mxxx mt-3">
+              {% for i in dataB %}
+              <div class="col-sm-3 listCol" onclick="location.href='{% url 'read' i.id %}'">
+                <p class='date' style='padding-left: 1rem;'> {{i.createAt|date:"d M Y"}} </p>
+                <div class="card cardwithbg" style="background-image:url('{{ i.image.url }}');">
+                  <div class="card-body cssCard">
+                    {% comment %} <p class="card-text">{{i.textarea|striptags|safe}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
+                  </div>
+                </div>
+                <h5 class="card-title" style='font-size: 1rem;'>{{i.headline}}</h5>
+                {% comment %} <a href="{% url 'read' i.id %}"> {% endcomment %}
+                {% comment %} </a> {% endcomment %}
+            </div>
+            {% endfor %}
+          
+          </div>
+            <h2 class='follow'> Connect with Us </h2>
+            <div class="row socialNetwork mxxt mt-1 mb-3">
+            <div class="col-sm-3">
+              <div class="card cardSN linkedin" data-social-icon="linkedin">
+                <div class="card-body">
+                  <h5 class="card-title">LINKED IN</h5>
+                  <p class="card-text">Temukan peluang kolaborasi baru dengan mengungjungi profil LinkedIn DABEST.</p>
+                  <a href="https://www.linkedin.com/company/daya-agung-bestari/" target='_blank' class="btn btnVisit btn-primary">Visit Profile</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card cardSN facebook" data-social-icon="facebook">
+                <div class="card-body">
+                  <h5 class="card-title">FACEBOOK</h5>
+                  <p class="card-text">Jadilah bagian dari komunitas kami!.</p>
+                  <a href="#" target='_blank' class="btn btnVisit btn-primary">Visit Profile</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card cardSN instagram" data-social-icon="instagram">
+                <div class="card-body">
+                  <h5 class="card-title">INSTAGRAM</h5>
+                  <p class="card-text">Kunjungi Instagram Kami untuk Informasi Terbaru.</p>
+                  <a href="https://www.linkedin.com/company/daya-agung-bestari/" target='_blank' class="btn btnVisit btn-primary">Visit Profile</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card cardSN tiktok" data-social-icon="tiktok">
+                <div class="card-body">
+                  <h5 class="card-title">TIKTOK</h5>
+                  <p class="card-text">Tonton Keseruan Kami di TikTok.</p>
+                  <a href="https://www.tiktok.com/@dabest.consultant" target='_blank' class="btn btnVisit btn-primary">Visit Profile</a>
+                </div>
+              </div>
+            </div>
+          </div>  
+      </div>
+  </section>
+
+  <section class="Parallax" style='padding:0;'>
+		<footer class="footer-section">
+			<div class="containerPX">
+				<div class="footer-cta pt-5 pb-5">
+					<div class="row">
+						<div class="col-3 mb-30">
+							<div class="single-cta">
+								
+								<div class="cta-text">
+									<i class="fa fa-envelope" aria-hidden="true" style="font-size: 32px;color: #13B2F6;"></i>
+									<br>
+									<h4> {% translate 'Mailing Address' %} </h4>
+									<a target="_blank" href="https://maps.app.goo.gl/EpKYr6w9GxNoYprX8"> <span style="font-weight: 400;  font-family: 'Poppins';"> &nbsp; POINT Lab, Jalan Banda No. 30 Blok C Lt.2
+										<br>Citarum, Bandung Wetan 
+										<br>Bandung 40115</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-3">
+							<div class="single-cta">
+								<div class="cta-text">
+									<i class="fas fa-map-marker-alt" style="font-size: 32px;color: #13B2F6;"></i>
+									<br>
+									<h4>{% translate 'Office' %} </h4>
+									<a target="_blank" href="https://maps.app.goo.gl/EpKYr6w9GxNoYprX8"> <span style="font-weight: 400;  font-family: 'Poppins';"> &nbsp; Jalan Batik Saketi No. 5
+										<br>Sukaluyu, Cibeunying Kaler <br>Bandung - 40135</span></a>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="col"> -->
+							<!-- <div class="row"> -->
+								<div class="col-3">
+									<div class="single-cta">
+										<div class="cta-text">
+											<i class='fab fa-whatsapp-square' style='font-size:32px;color:#13B2F6'></i>
+											<br>
+											<h4>Whatsapp</h4>
+											<a target="_blank" href="https://wa.me/628111014006"><span style="font-weight: 400; font-family: 'Poppins';">  &nbsp; +6281 1101 4006</span></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="single-cta">
+										<div class="cta-text">
+											<i class="fas fa-envelope-open" style="font-size: 32px;color: #13B2F6;"></i>
+											<br>
+											<a target="_blank" href="mailto:connect@dabestconsultan.com">
+												<h4>Email</h4>
+												<span style="font-weight: 400; font-family: 'Poppins';"> &nbsp;connect@dabestconsultan.com </span>
+											</a> 
+										</div>
+									</div>
+								</div>
+							<!-- </div> -->
+							<!-- <div class="row mt-3"> -->
+							<!-- </div> -->
+
+						<!-- </div> -->
+					</div>
+				</div>
+				<div class="footer-content pt-5 pb-5" style="bottom: 50px;">
+					<h2 class="logoDab">PT. DAYA AGUNG BESTARI | DABEST CONSULTANT</h2>
+					<div id="logoROW" class="row" >
+						<div class="col-xl-6 col-lg-6 mb-50">
+							<div class="footer-widget">
+								<div class="footer-logo">
+									<a href="index.html"><img src="{% static 'images/LDW2.png' %}" srcset="../static/images/LDW2.png 480w, ../static/images/LDW2.png 1080w" sizes="50vw"  alt="logo"></a>
+									<div>
+										<p style="display: none;">PT. Daya Agung Bestari (DABEST CONSULTANT) merupakan perusahaan konsultan di bidang Sumber Daya Air dan telah berpengalaman lebih dari 14 tahun. </p>
+										<p style="display: none;">Mulai dari strategi, perencanaan, desain, dan pelatihan, kami menciptakan solusi Sumber Daya Air yang aman dan berkelanjutan yang memberikan kontribusi positif bagi semua orang.</p>
+										<p style="display: none;">Keahlian teknis kami didasarkan pada pengalaman yang berkontribusi terhadap strategi, perencanaan, dan desain infrastruktur energi dan air terbarukan. Kami memiliki wawasan langsung dan pemahaman mendalam tentang Sumber Daya Air yang ditemui di kehidupan nyata. Itu sebabnya klien kami mempercayai kami untuk memberikan solusi praktis secara komersial di seluruh siklus hidup aset mereka, membantu mereka mengelola risiko dan mencapai keuntungan yang berharga.</p>
+									</div>
+								</div>
+								<div class="footer-text" >
+									<!-- <p style="white-space: nowrap;">ADVANCING CIVILIZATION THROUGH THE DEVELOPMENT OF WATER RESOURCES.</p> -->
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 mb-30" id="FooterKanan" >
+							<div class="footer-social-icon">
+								<span>{% translate 'Follow us' %}</span>
+								
+									<div class="height450">
+										<div class="social-overlap process-scetion mt100">
+										 <div class="containerFooter">
+											 <div class="row justify-content-center">
+												 <div class="col-md-12">
+													 <div class="social-bar">
+														 <div class="social-icons mb-3 iconpad text-center">															 
+															 <a href="https://www.facebook.com/springsconsultant" target="_blank" class="slider-nav-item" aria-label="socialLink"><i class="fa-brands fa-square-facebook"></i></a>
+															 <a href="https://twitter.com/springconsultnt" target="_blank" class="slider-nav-item" aria-label="socialLink"><i class="fab fa-tiktok" style="color: #111111;filter: drop-shadow(2px 0px 0px #FD3E3E) drop-shadow(-2px -2px 0px #4DE8F4);"></i></i></a>
+															 <a href="https://www.instagram.com/dabest.consultant/" target="_blank" class="slider-nav-item" aria-label="socialLink"><i class="fab fa-instagram" style="background: #d6249f;background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"></i></a>
+															 <a href="https://www.linkedin.com/company/daya-agung-bestari/" target="_blank" class="slider-nav-item" aria-label="socialLink"><i class="fa-brands fa-linkedin"></i></a>
+														 </div>
+													 </div>
+												 </div>
+											 </div>
+										 </div>
+									 </div>
+									</div> 
+						  		 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright-area">
+				<div class="container cacont">
+					<div class="copyright-text" style="text-align: center;">
+						<p>Copyright &copy; 2024, All Right Reserved <a href="{% url 'privacy' %}">DABEST CONSULTANT</a></p>
+						<a href="{% url 'toc' %}">Terms and Condition</a> | <a href="{% url 'disclaimer' %}">disclaimer</a>
+					</div>
+        <!-- <div class="row">
+						<div class="col-xl-6 col-lg-6 text-center text-lg-left">
+						</div>
+						<div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+							<div class="footer-menu">
+								<ul>
+									<li><a href="{% url 'home' %}">Home</a></li>
+									<li><a href="#">Terms</a></li>
+									<li><a href="#">Privacy</a></li>
+									<li><a href="#">Policy</a></li>
+									<li><a href="#">Contact</a></li>
+								</ul>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</footer>
+	</section>
+</div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+
+  $(".box:nth-child(1) > a").on('click', function(){
+    window.location.href = '../package#PSDA';
+    console.log('1....')
+  });
+ 
+ $(".box:nth-child(2) > a").on('click', function(){
+    window.location.href = '../package#PP';
+    console.log('2....')
+  });
+
+  $(".box:nth-child(3) > a").on('click', function(){
+    window.location.href = '../package#PDRA';
+    console.log('3....')
+  });
+
+  $(".box:nth-child(4) > a").on('click', function(){
+    window.location.href = '../package#KSDA';
+  })
+
+$(".leftArrow").click(function () { 
+  var leftPos = $('.mxxx').scrollLeft();
+  $(".mxxx").animate({scrollLeft: leftPos - 400}, 800);
+});
+
+$(".rightArrow").click(function () { 
+  var leftPos = $('.mxxx').scrollLeft();
+  $(".mxxx").animate({scrollLeft: leftPos + 400}, 800);
+});
+
+
+$('div.container-fluid:not(:first)').hide();
+$('div.container-fluid:gt(0)').hide();
+
+$('#tblPro > thead').css('display','none');
+$('.box').not('.Openn').find('p').css('display','none');
+
+let container = document.querySelector(".flexCD");
+let box = document.querySelectorAll(".box");
+let p = document.querySelectorAll(".box p");
+// console.log(p);
+for (let i = 0; i < box.length; i++) {
+  box[i].addEventListener("click", function (e) {
+    e.preventDefault();
+    
+    for (let j = 0; j < box.length; j++) {
+      box[j].style.flexGrow = 0;
+      box[j].style.transform = "scale(.95)";
+      box[j].style.border = 0;
+      box[j].classList.remove('Openn');
+      p[j].style.opacity = 0;
+      p[i].style.display = "none";
+      
+    }
+    this.style.cssText = `
+    flex-grow:1; 
+    transform:scale(1);
+    border: 2px solid;`;
+    this.style.innerText = '::after { content: "text"; }';
+    this.classList.add('Openn');
+    p[i].style.display = "block";
+    p[i].style.opacity = 1;
+  });
+}
+
+
+});
+
+</script>
+
+
+<!-- script map-->
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+  
+  $('[data-social-icon~=facebook]').on('mouseover', function(){
+    $('.follow').addClass('facebook');
+  });
+  $('[data-social-icon~=facebook]').on('mouseout', function(){
+    $('.follow').removeClass('facebook');
+  });
+  $('[data-social-icon~=tiktok]').on('mouseover', function(){
+    $('.follow').addClass('tiktok');
+  });
+  $('[data-social-icon~=tiktok]').on('mouseout', function(){
+    $('.follow').removeClass('tiktok');
+  });
+  $('[data-social-icon~=instagram]').on('mouseover', function(){
+    $('.follow').addClass('instagram');
+  });
+  $('[data-social-icon~=instagram]').on('mouseout', function(){
+    $('.follow').removeClass('instagram');
+  });
+  $('[data-social-icon~=linkedin]').on('mouseover', function(){
+    $('.follow').addClass('linkedin');
+  });
+  $('[data-social-icon~=linkedin]').on('mouseout', function(){
+    $('.follow').removeClass('linkedin');
+  });
+  $('[data-social-icon~=youtube]').on('mouseover', function(){
+    $('.follow').addClass('youtube');
+  });
+  $('[data-social-icon~=youtube]').on('mouseout', function(){
+    $('.follow').removeClass('youtube');
+  });
+
+
+
+
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+
+  
+
+
+
+  map = L.map('map').setView([-1.681488, 113.382355], 5);
+      
+  mapLink ='<a href="http://openstreetmap.org">OpenStreetMap</a>';
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; ' + mapLink + ' Contributors',
+    maxZoom: 10,
+  }).addTo(map);
+
+
+  L.control.resetView({
+      position: "topleft",
+      title: "Reset view",
+      latlng: L.latLng([-1.681488, 113.382355]),
+      zoom: 5,
+      }).addTo(map);
+   
+  map.on('popupopen', function(centerMarker) {
+    map.setView(centerMarker.popup._latlng, 12);   
+  });    
+        
+function addRowTable(marker, code, coords) {
+  var tr = document.createElement("tr");
+  var td = document.createElement("td");
+  td.textContent = code;
+  tr.appendChild(td);
+  tr.onclick = () => {
+    marker.openPopup();
+    map.setView([value['lat'], value['lng']], 12);
+  };
+  document.getElementById("t_points").appendChild(tr);
+}
+
+function addMarker(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            addRowTable(marker, code, [lat, lng]);
+                          }
+  
+
+$(document).ready(function () {
+  var a = []
+  var b = []
+  var c = []
+  var point = []
+  $.ajax({
+        type: 'GET',
+        url: "../dataProject/?format=json",
+        dataType: "json",
+        
+        success:function(data){
+          
+          for(i = 0; i < data.length; i++){
+                addMarker(data[i].namaPekerjaan, data[i].latCoor, data[i].longCoor, data[i].videoFile)
+            };
+            
+             // console.log('apa ini??', a);
+
+            
+          }
+          
+    });
+  
+});
+
+  
+
+  
+  
+  var tahun = $(this).next('label').text();
+  var total = 0;
+
+  var ktText1 = $('.KategoriText').eq(0).text();
+  ktText1a = ktText1.replace(/ /g,'+')
+  var ktText2 = $('.KategoriText').eq(1).text();
+  ktText2a = ktText2.replace(/ /g,'+')
+  var ktText3 = $('.KategoriText').eq(2).text();
+  ktText3a = ktText3.replace(/ /g,'+')
+  var ktText4 = $('.KategoriText').eq(3).text();
+  ktText4a = ktText4.replace(/ /g,'+')
+  var ktText5 = $('.KategoriText').eq(4).text();
+  ktText5a = ktText5.replace(/ /g,'+')
+
+  var ImpactTextA = $('.card_impact > p ').eq(0).text();
+  var ImpactTextB = $('.card_impact > p ').eq(1).text();
+  var ImpactTextC = $('.card_impact > p ').eq(2).text();
+  var ImpactTextD = $('.card_impact > p ').eq(3).text();
+  var ImpactTextE = $('.card_impact > p ').eq(4).text();
+  
+  
+$.ajax ({
+    url: '/dataProject/?tahun=&unitImpact=&ktPekerjaan=',
+    type: 'GET',
+    dataType: "json",
+    success: function (data) {
+      console.log('Jumlah Projek', data)
+      var totalA = 0;
+      var totalB = 0;
+      var totalC = 0;
+      var totalD = 0;
+      var totalE = 0;
+
+      var impactA
+
+      for ( var i = 0; i < data.length; i++ ) {
+          totalA += (data[i]['ktPekerjaan'] == ktText1) ;
+          totalB += (data[i]['ktPekerjaan'] == ktText2) ;
+          totalC += (data[i]['ktPekerjaan'] == ktText3) ;
+          totalD += (data[i]['ktPekerjaan'] == ktText4) ;
+          totalE += (data[i]['ktPekerjaan'] == ktText5) ;
+      }
+      
+      valueA = ((parseInt(totalA)/(data.length)) * 100).toFixed(2) + '%';
+      valueB = ((parseInt(totalB)/(data.length)) * 100).toFixed(2) + '%';
+      valueC = ((parseInt(totalC)/(data.length)) * 100).toFixed(2) + '%';
+      valueD = ((parseInt(totalD)/(data.length)) * 100).toFixed(2) + '%';
+      valueE = ((parseInt(totalE)/(data.length)) * 100).toFixed(2) + '%';
+      
+      var HektarSawah = 0;
+      var InfraPel = 0;
+      var DesKaj = 0;
+      var JiPend = 0 ;
+      var Herpenyater = 0;
+      
+      var tahunX = new Date().getFullYear();
+
+
+
+      // NILAI JIWA PENDUDUK
+      var impactX4 = data.filter(v => v.unitImpact === ImpactTextC );
+      impactX4.forEach((obj) => {JiPend += obj.impact})
+
+      var impactAcc5 = data.filter(v => v.unitImpact === ImpactTextC && v.tahun < tahunX);
+      impactAcc5.forEach((obj) => {JiPend += obj.impact});
+
+      // NILAI HEKTAR SAWAH
+      var impactX1 = data.filter(v => v.unitImpact === ImpactTextD  );
+      impactX1.forEach((obj) => {HektarSawah += obj.impact})
+
+
+      var impactAcc = data.filter(v => v.unitImpact === ImpactTextD && v.tahun < tahunX);
+      impactAcc.forEach((obj) => {HektarSawah += obj.impact});
+      
+
+      // NILAI INFRA STRUKTUR PELABUHAN
+      var impactX2 = data.filter(v => v.unitImpact === ImpactTextA  );
+      impactX2.forEach((obj) => {InfraPel += obj.impact})
+      
+      var impactAcc2 = data.filter(v => v.unitImpact === ImpactTextA && v.tahun < tahunX);
+      impactAcc2.forEach((obj) => {InfraPel += obj.impact});
+      
+
+
+      // NILAI DESAIN / KAJIAN
+      var impactX3 = data.filter(v => v.unitImpact === ImpactTextB);
+      impactX3.forEach((obj) => {DesKaj += obj.impact})
+
+      var impactAcc3 = data.filter(v => v.unitImpact === ImpactTextB && v.tahun < tahunX);
+      impactAcc3.forEach((obj) => {DesKaj += obj.impact});
+      
+      
+      
+      // NILAI HEKTAR PERMUKIMAN YANG TERLINDUNGI
+      var impactX5 = data.filter(v => v.unitImpact === ImpactTextE );
+      impactX5.forEach((obj) => {Herpenyater += obj.impact})
+      
+      var impactAcc4 = data.filter(v => v.unitImpact === ImpactTextE && v.tahun < tahunX);
+      impactAcc4.forEach((obj) => {Herpenyater += obj.impact});
+
+      
+      $('.ktProjNumb:eq(0)').text(totalA).fadeOut(300).fadeIn(150);
+      $('.ktProjNumb:eq(1)').text(totalB).fadeOut(300).fadeIn(150);
+      $('.ktProjNumb:eq(2)').text(totalC).fadeOut(300).fadeIn(150);
+      $('.ktProjNumb:eq(3)').text(totalD).fadeOut(300).fadeIn(150);
+      $('.ktProjNumb:eq(4)').text(totalE).fadeOut(300).fadeIn(150);
+      
+
+      $('h2.numberH2:eq(0)').text(InfraPel).toLocaleString("en");
+      $('h2.numberH2:eq(1)').text(DesKaj).toLocaleString("en");
+      $('h2.numberH2:eq(2)').text(addCommas(JiPend));
+      $('h2.numberH2:eq(3)').text(addCommas(HektarSawah));
+      $('h2.numberH2:eq(4)').text(addCommas(Herpenyater));
+       
+         
+     },
+    
+  });
+
+
+$('.scale').find('input').last().trigger("click");
+
+$('.ProjestList').on('change',  function (e){
+
+    var optionSelected = $(this).val()
+    //console.log('Nih....', optionSelected)
+
+    if ( optionSelected == 'Pemanfaatan Sumber Daya Air') {
+          //console.log('A.....')
+          $('.box:nth-child(1)').click();
+          $('.PP, .PDRA, .KSDA').hide();
+          $('.PSDA').show();
+        } else if ( optionSelected == 'Perencanaan Pesisir') {
+          //console.log('B.....')
+          $('.box:nth-child(2)').click();
+          $('.PSDA, .PDRA, .KSDA').hide();
+          $('.PP').show();
+        } else if ( optionSelected == 'Pengendalian Daya Rusak Air') {
+          //console.log('C.....')
+          $('.box:nth-child(3)').click();
+          $('.PP, .PSDA, .KSDA').hide();
+          $('.PDRA').show();
+        } else {
+          //console.log('D.....')
+          $('.box:nth-child(4)').click();
+          $('.PP, .PDRA, .PSDA').hide();
+          $('.KSDA').show();
+        }
+
+})
+
+$('.btnWA').on('click', function(){ 
+    console.log('Test ah.....')
+  })
+
+$('input[name="test"]').on('click', function() {
+
+  if (map != undefined) map.remove();
+  
+  map = L.map('map').setView([-1.681488, 113.382355], 5);
+       
+  mapLink ='<a href="http://openstreetmap.org">OpenStreetMap</a>';
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; ' + mapLink + ' Contributors',
+    maxZoom: 10,
+  }).addTo(map);
+
+
+  L.control.resetView({
+      position: "topleft",
+      title: "Reset view",
+      latlng: L.latLng([-1.681488, 113.382355]),
+      zoom: 5,
+      }).addTo(map);
+   
+  map.on('popupopen', function(centerMarker) {
+    map.setView(centerMarker.popup._latlng, 12);   
+  });    
+        
+function addRowTable(marker, code, coords) {
+  var tr = document.createElement("tr");
+  var td = document.createElement("td");
+  td.textContent = code;
+  tr.appendChild(td);
+  tr.onclick = () => {
+    marker.openPopup();
+    map.setView([value['lat'], value['lng']], 12);
+  };
+  document.getElementById("t_points").appendChild(tr);
+}
+
+// TAHUN 2020
+function addMarker(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2020");
+                            addRowTable(marker, code, [lat, lng]);
+                          }
+
+// TAHUN 2024
+function addMarker2(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2024");
+                            addRowTable(marker, code, [lat, lng]);
+                          }
+
+// TAHUN 2021
+function addMarker3(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2021");
+                            addRowTable(marker, code, [lat, lng]);
+                          }
+
+// TAHUN 2022
+function addMarker4(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2022");
+                            addRowTable(marker, code, [lat, lng]);
+                          }
+// TAHUN 2023
+function addMarker5(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            marker._icon.classList.add("huechange2023");
+                            addRowTable(marker, code, [lat, lng]);
+                          }
+
+  $(document).ready(function () {
+    var a = []
+    var b = []
+    var c = []
+    var point = []
+    $.ajax({
+          type: 'GET',
+          url: '/dataProject/?tahun=&unitImpact=&ktPekerjaan=',
+          dataType: "json",
+          
+          success:function(data){
+            
+            var dataFilter = data.filter(v => v.tahun <= tahun && v.tahun != null)
+
+            var dataXilter = data.filter(v => v.tahun == tahun && v.tahun != null)
+
+            var dataXilter2 = data.filter(v => v.tahun <= tahun && v.tahun == '2021' && v.tahun != null)
+
+            var dataXilter3 = data.filter(v => v.tahun == '2022' && v.tahun != null)
+
+            var dataXilter4 = data.filter(v => v.tahun == '2023' && v.tahun != null)
+
+            for(i = 0; i < dataFilter.length; i++){
+                  addMarker(dataFilter[i].namaPekerjaan, dataFilter[i].latCoor, dataFilter[i].longCoor, dataFilter[i].videoFile);
+                  
+              };
+           
+            for(i = 0; i < dataXilter.length; i++){
+                  addMarker(dataXilter[i].namaPekerjaan, dataXilter[i].latCoor, dataXilter[i].longCoor, dataXilter[i].videoFile);
+                  
+              };
+            
+            for(i = 0; i < dataXilter2.length; i++){
+                  addMarker2(dataXilter2[i].namaPekerjaan, dataXilter2[i].latCoor, dataXilter2[i].longCoor, dataXilter2[i].videoFile);
+                  
+            };
+
+            for(i = 0; i < dataXilter4.length; i++){
+                  addMarker5(dataXilter4[i].namaPekerjaan, dataXilter4[i].latCoor, dataXilter4[i].longCoor, dataXilter4[i].videoFile);
+                  
+              };
+              console.log('GOAL......', dataXilter2);
+              console.log('GOAL 2......', dataXilter3);
+              console.log('GOAL 3......', dataXilter4);
+
+
+
+
+
+
+
+
+
+            {% comment %} for(i = 0; i < dataXilter.length; i++){
+
+                  
+                  addMarker2(dataXilter[i].namaPekerjaan, dataXilter[i].latCoor, dataXilter[i].longCoor, dataXilter[i].videoFile);
+                  
+              };
+            for(i = 0; i < dataXilter2.length; i++){
+
+                  
+                  addMarker3(dataXilter2[i].namaPekerjaan, dataXilter2[i].latCoor, dataXilter2[i].longCoor, dataXilter2[i].videoFile);
+                  
+              };
+            for(i = 0; i < dataXilter3.length; i++){
+
+                  
+                  addMarker4(dataXilter3[i].namaPekerjaan, dataXilter3[i].latCoor, dataXilter3[i].longCoor, dataXilter3[i].videoFile);
+                  
+              };
+            for(i = 0; i < dataXilter4.length; i++){
+
+                  
+                  addMarker5(dataXilter4[i].namaPekerjaan, dataXilter4[i].latCoor, dataXilter4[i].longCoor, dataXilter4[i].videoFile);
+                  
+              }; {% endcomment %}
+            
+              
+            {% comment %} console.log('apa ini??', dataFilter); {% endcomment %}
+
+              
+            }
+            
+      });
+    
+  });
+
+
+
+
+  
+  var tahun = $(this).next('label').text();
+  var total = 0;
+
+  var ktText1 = $('.KategoriText').eq(0).text();
+  ktText1a = ktText1.replace(/ /g,'+')
+  var ktText2 = $('.KategoriText').eq(1).text();
+  ktText2a = ktText2.replace(/ /g,'+')
+  var ktText3 = $('.KategoriText').eq(2).text();
+  ktText3a = ktText3.replace(/ /g,'+')
+  var ktText4 = $('.KategoriText').eq(3).text();
+  ktText4a = ktText4.replace(/ /g,'+')
+  var ktText5 = $('.KategoriText').eq(4).text();
+  ktText5a = ktText5.replace(/ /g,'+')
+
+
+  var ImpactText1 = $('.ImpactText').eq(0).text();
+  var ImpactText1 = $('.ImpactText').eq(1).text();
+  var ImpactText2 = $('.ImpactText').eq(2).text();
+  var ImpactText4 = $('.ImpactText').eq(3).text();
+  ImpactText4 = ImpactText4.replace(/ /g,'+')
+  var ImpactText4 = $('.ImpactText').eq(4).text();
+  ImpactText5 = ImpactText4.replace(/ /g,'+')
+
+
+  var ImpactTextA = $('.card_impact > p ').eq(0).text();
+  var ImpactTextB = $('.card_impact > p ').eq(1).text();
+  var ImpactTextC = $('.card_impact > p ').eq(2).text();
+  var ImpactTextD = $('.card_impact > p ').eq(3).text();
+  var ImpactTextE = $('.card_impact > p ').eq(4).text();
+
+
+  $.ajax ({
+    url: '/dataProject/?tahun=&unitImpact=&ktPekerjaan=',
+    type: 'GET',
+    dataType: "json",
+    success: function (data) {
+      var totalA = 0;
+      var totalB = 0;
+      var totalC = 0;
+      var totalD = 0;
+      var totalE = 0;
+      
+      
+
+
+      for ( var i = 0; i < data.length; i++ ) {
+          
+          totalA += (data[i]['ktPekerjaan'] == ktText1 && data[i]['tahun'] <= tahun ) ;
+          totalB += (data[i]['ktPekerjaan'] == ktText2 && data[i]['tahun'] <= tahun ) ;
+          totalC += (data[i]['ktPekerjaan'] == ktText3 && data[i]['tahun'] <= tahun ) ;
+          totalD += (data[i]['ktPekerjaan'] == ktText4 && data[i]['tahun'] <= tahun ) ;
+          totalE += (data[i]['ktPekerjaan'] == ktText5 && data[i]['tahun'] <= tahun ) ;          
+          
+      } 
+
+      console.log('Jumlah Pekerjaan.....', totalA)
+
+      var HektarSawah = 0;
+      var InfraPel = 0;
+      var DesKaj = 0;
+      var JiPend = 0 ;
+      var Herpenyater = 0;
+
+
+      // NILAI JIWA PENDUDUK
+      var impactX4 = data.filter(v => v.unitImpact === ImpactTextC );
+      impactX4.forEach((obj) => {JiPend += obj.impact})
+
+      var impactAcc5 = data.filter(v => v.unitImpact === ImpactTextC && v.tahun < tahun);
+      impactAcc5.forEach((obj) => {JiPend += obj.impact});
+
+
+      // NILAI HEKTAR SAWAH
+      var impactX1 = data.filter(v => v.unitImpact === ImpactTextD  );
+      impactX1.forEach((obj) => {HektarSawah += obj.impact})
+
+
+      var impactAcc = data.filter(v => v.unitImpact === ImpactTextD && v.tahun < tahun);
+      impactAcc.forEach((obj) => {HektarSawah += obj.impact});
+      
+
+      // NILAI INFRA STRUKTUR PELABUHAN
+      var impactX2 = data.filter(v => v.unitImpact === ImpactTextA  );
+      impactX2.forEach((obj) => {InfraPel += obj.impact})
+      
+      var impactAcc2 = data.filter(v => v.unitImpact === ImpactTextA && v.tahun < tahun);
+      impactAcc2.forEach((obj) => {InfraPel += obj.impact});
+      
+
+
+      // NILAI DESAIN / KAJIAN
+      var impactX3 = data.filter(v => v.unitImpact === ImpactTextB);
+      impactX3.forEach((obj) => {DesKaj += obj.impact})
+
+      var impactAcc3 = data.filter(v => v.unitImpact === ImpactTextB && v.tahun < tahun);
+      impactAcc3.forEach((obj) => {DesKaj += obj.impact});
+      
+      
+      
+      // NILAI HEKTAR PERMUKIMAN YANG TERLINDUNGI
+      var impactX5 = data.filter(v => v.unitImpact === ImpactTextE );
+      impactX5.forEach((obj) => {Herpenyater += obj.impact})
+      
+      var impactAcc4 = data.filter(v => v.unitImpact === ImpactTextE && v.tahun < tahun);
+      impactAcc4.forEach((obj) => {Herpenyater += obj.impact});
+      
+      
+      
+      
+      valueA = ((parseInt(totalA)/(data.length)) * 100).toFixed(2) + '%';
+      valueB = ((parseInt(totalB)/(data.length)) * 100).toFixed(2) + '%';
+      valueC = ((parseInt(totalC)/(data.length)) * 100).toFixed(2) + '%';
+      valueD = ((parseInt(totalD)/(data.length)) * 100).toFixed(2) + '%';
+      valueE = ((parseInt(totalE)/(data.length)) * 100).toFixed(2) + '%';
+      
+      
+      
+      $('.ktProjNumb:eq(0)').text(totalA).fadeOut(300).fadeIn(150);
+      $('.ktProjNumb:eq(1)').text(totalB).fadeOut(300).fadeIn(150);
+      $('.ktProjNumb:eq(2)').text(totalC).fadeOut(300).fadeIn(150);
+      $('.ktProjNumb:eq(3)').text(totalD).fadeOut(300).fadeIn(150);
+      $('.ktProjNumb:eq(4)').text(totalE).fadeOut(300).fadeIn(150);
+      
+      $('h2.numberH2:eq(0)').text(InfraPel).fadeOut(300).fadeIn(150);
+      $('h2.numberH2:eq(1)').text(DesKaj).fadeOut(300).fadeIn(150);
+      $('h2.numberH2:eq(2)').text(addCommas(JiPend)).fadeOut(300).fadeIn(150);
+      $('h2.numberH2:eq(3)').text(addCommas(HektarSawah)).fadeOut(300).fadeIn(150);
+      $('h2.numberH2:eq(4)').text(addCommas(Herpenyater)).fadeOut(300).fadeIn(150);
+       
+         
+     },
+    
+  });
+  
+      
+  
+  
+  
+})
+
+
+
+addCommas = function(input){
+  // If the regex doesn't match, `replace` returns the string unmodified
+  return (input.toString()).replace(
+    // Each parentheses group (or 'capture') in this regex becomes an argument 
+    // to the function; in this case, every argument after 'match'
+    /^([-+]?)(0?)(\d+)(.?)(\d+)$/g, function(match, sign, zeros, before, decimal, after) {
+
+      // Less obtrusive than adding 'reverse' method on all strings
+      var reverseString = function(string) { return string.split('').reverse().join(''); };
+
+      // Insert commas every three characters from the right
+      var insertCommas  = function(string) { 
+
+        // Reverse, because it's easier to do things from the left
+        var reversed           = reverseString(string);
+
+        // Add commas every three characters
+        var reversedWithCommas = reversed.match(/.{1,3}/g).join(',');
+
+        // Reverse again (back to normal)
+        return reverseString(reversedWithCommas);
+      };
+
+      // If there was no decimal, the last capture grabs the final digit, so
+      // we have to put it back together with the 'before' substring
+      return sign + (decimal ? insertCommas(before) + decimal + after : insertCommas(before + after));
+    }
+  );
+};
+
+})
+
+
+
+
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+  {% comment %} $('.btn-EN').attr('disabled', 'disabled');
+
+  $('.isiOpsi input').on('keyup', function() {
+    let empty = false;
+
+    $('.isiOpsi input').each(function() {
+      empty = $(this).val().length == 0;
+    });
+
+    if (empty)
+      $('.btn-EN').attr('disabled', 'disabled');
+      
+    else
+      $('.btn-EN').attr('disabled', false);
+      
+  }); {% endcomment %}
+  
+})
+
+</script>
+
+
+
+{% endblock %}
+
+
+	

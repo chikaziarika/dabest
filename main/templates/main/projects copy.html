@@ -1,0 +1,298 @@
+{% extends 'main/main.html' %}
+{% load static %}
+
+{% block content%} 
+
+
+<style>
+body { margin:0; padding:0; }
+#map {
+    position: absolute !important;
+    top: 1em;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+video {
+  width: 100%;
+}
+
+video::-webkit-media-controls-panel {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.leaflet-popup-content {
+    margin: 13px 19px;
+    line-height: 1.4;
+    width: 350px !important;
+    text-align: center;
+}
+
+#tblPro {
+  position: sticky;
+  z-index: 1000;
+  width: 25%;
+  background: #F8F8FF;
+  top: 100%;
+  left: 100%;
+}
+
+#t_points tr:hover {
+  /* color: #F8F8FF; */
+  background-color: blue;
+  cursor: pointer;
+
+}
+
+#t_points td:hover {
+  background-color: blue;
+  color: #F8F8FF;
+  cursor: pointer;
+}
+</style>
+
+
+<div id="map"></div>
+{% comment %} <h2 style="position: absolute;bottom: 0%;left: 1%;z-index: 1000;font-family: 'League Spartan', sans-serif;font-weight: 800;">DABEST PROJECT</h2> {% endcomment %}
+{% comment %} <h3 >Geodesic Points</h3>   {% endcomment %}
+  <table id="tblPro" class="table table-bordered" >
+    <thead>
+      <tr>
+        <th>Daftar Pengalaman Pekerjaan DABEST</th>
+      </tr>
+    </thead>
+    <tbody id="t_points" style="font-family: 'Poppins', sans-serif;font-size: 0.7em;"></tbody>
+  </table>
+
+
+
+
+<!-- var map = L.map("map").setView([-4.003392, 114.739904], 5); -->
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+
+$('li.nav-item a.nav-link').removeClass('active');
+$('li.nav-item a.nav-link:eq(2)').addClass('active');
+  // $('.navbar ').css('display', 'none');
+  
+    
+
+// var markers = [
+//     ["DETAIL ENGINEERING DESIGN PEMBANGUNAN CEK DAM / SEDIMEN TRAP SAGULING", -6.926970, 107.312483],
+//     ["SID PEMBANGUNAN PANTAI KAWASAN WISATA BURUNG MANDI", -2.884289, 108.242454],
+//     ["FEASIBILITY STUDY EMBUNG SE KABUPATEN ROKAN HULU", 0.960528, 100.472632],
+//     ["Review Perhitungan Neraca Air untuk evaluasi rencana pengambilan air di intake Cibangoak - RWS Kertasari", -7.223760, 107.678917],
+//     ["Survey Inventarisasi dan identifikasi Potensi Embung dan Perencanaan Sumur Resapan pada Mikro DAS Cirasea", -7.179543, 107.673615],
+//     ["Perencanaan Teknis Embung Cibereum Sukabumi", -6.930301, 106.928199],
+//     ["PERENCANAAN KONSERVASI PADA DAS CIRASEA DAN IDENTIFIKASI KONDISI SALURAN IRIGASI DI WANIR DAN DI WANGISAGARA", -7.208967, 107.657491],
+//   ];
+ 
+
+//   var map = L.map('map').setView([-4.003392, 114.739904], 5);
+//       // map.addControl( new L.Control.ListMarkers({layer: markersLayer}) );
+   
+
+//   mapLink ='<a href="http://openstreetmap.org">OpenStreetMap</a>';
+//   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     attribution: '&copy; ' + mapLink + ' Contributors',
+//     maxZoom: 10,
+//   }).addTo(map);
+
+//   L.control.resetView({
+//         position: "topleft",
+//         title: "Reset view",
+//         latlng: L.latLng([-4.003392, 114.739904]),
+//         zoom: 5,
+//         }).addTo(map);
+
+// map.on('popupopen', function(centerMarker) {
+//     map.flyTo(centerMarker.popup._latlng, 15);   
+// });
+
+// function addRowTable(code, coords){
+//   var tr = document.createElement("tr");
+//   var td = document.createElement("td");
+//   var p2 = L.marker([code]);
+//   td.textContent = code;
+//   tr.appendChild(td);
+//   tr.onclick = function(){
+//     // console.log('UWOW.......', p2)
+//     // map.setView(coords, 17);
+
+//     marker.openPopup();
+//     map.flyTo([value['lat'], value['lng']], 15);
+    
+//   };
+//   document.getElementById("t_points").appendChild(tr);
+// }
+// var buffers = [];
+
+
+// function addMarker(code, lat, lng) {
+//   var marker = L.marker([lat, lng]);
+//   marker.title = code;
+//   marker.bindPopup("<table><tr><td style='font-size: 0.8em;'>Nama Pekerjaan : </td><td style='font-size: 0.8em;'>"+ code +"</td></tr></table>");
+//   marker.addTo(map);
+//   addRowTable(marker, code, [lat, lng]);
+// }
+
+// $(document).ready(function () {
+//   var points = [
+//     ["DETAIL ENGINEERING DESIGN PEMBANGUNAN CEK DAM / SEDIMEN TRAP SAGULING", -6.926970, 107.312483],
+//     ["SID PEMBANGUNAN PANTAI KAWASAN WISATA BURUNG MANDI", -2.884289, 108.242454],
+//     ["FEASIBILITY STUDY EMBUNG SE KABUPATEN ROKAN HULU", 0.960528, 100.472632],
+//     ["Review Perhitungan Neraca Air untuk evaluasi rencana pengambilan air di intake Cibangoak - RWS Kertasari", -7.223760, 107.678917],
+//     ["Survey Inventarisasi dan identifikasi Potensi Embung dan Perencanaan Sumur Resapan pada Mikro DAS Cirasea", -7.179543, 107.673615],
+//     ["Perencanaan Teknis Embung Cibereum Sukabumi", -6.930301, 106.928199],
+//     ["PERENCANAAN KONSERVASI PADA DAS CIRASEA DAN IDENTIFIKASI KONDISI SALURAN IRIGASI DI WANIR DAN DI WANGISAGARA", -7.208967, 107.657491]
+//   ];
+//   for (var i = 0; i < points.length; i++) {
+//     addMarker(points[i][0], points[i][1], points[i][2]);
+//   }
+// });
+
+
+
+// $("#range").change(function(e){
+//   var radius = parseInt($(this).val())
+//   buffers.forEach(function(e){
+//     e.setRadius(radius);
+//     e.addTo(map);
+//   });
+// });
+
+
+
+
+  var map = L.map('map').setView([-4.003392, 114.739904], 5);
+      
+  mapLink ='<a href="http://openstreetmap.org">OpenStreetMap</a>';
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; ' + mapLink + ' Contributors',
+    maxZoom: 10,
+  }).addTo(map);
+
+
+  L.control.resetView({
+      position: "topleft",
+      title: "Reset view",
+      latlng: L.latLng([-4.003392, 114.739904]),
+      zoom: 5,
+      }).addTo(map);
+   
+  map.on('popupopen', function(centerMarker) {
+    map.setView(centerMarker.popup._latlng, 12);   
+  });    
+        
+function addRowTable(marker, code, coords) {
+  var tr = document.createElement("tr");
+  var td = document.createElement("td");
+  td.textContent = code;
+  tr.appendChild(td);
+  tr.onclick = () => {
+    marker.openPopup();
+    map.setView([value['lat'], value['lng']], 12);
+  };
+  document.getElementById("t_points").appendChild(tr);
+}
+
+function addMarker(code, lat, lng, videoFile) {
+  var marker = L.marker([lat, lng]);
+  marker.title = code;
+  marker.video = videoFile;
+  marker.bindPopup("<table>\
+                          <tr>\
+                            <br>\
+                            <video controls autoplay loop='true'><source src='"+ videoFile +"' width='560px' height='315px'></source></video>\
+                            <td style='font-size: 0.8em; width='560px', font-family: 'Poppins','>"+ code +"</td>\
+                            </tr>\
+                            </table>", {
+                              maxWidth : 560}
+                            );
+                            marker.addTo(map);
+                            addRowTable(marker, code, [lat, lng]);
+                          }
+  // marker.bindPopup("<table>\
+  //                         <tr>\
+  //                           <br>\
+  //                           <video control autoplay loop='true'><source src='../static/media/video1.mp4?autoplay=1' width='560px' height='315px'></source></video>\
+  //                           <td style='font-size: 0.8em;'>Nama Pekerjaan : </td><td style='font-size: 0.8em;'>"+ code +"</td>\
+  //                           </tr>\
+  //                           </table>", {
+  //                             maxWidth : 560}
+  //                           );
+  //                           marker.addTo(map);
+  //                           addRowTable(marker, code, [lat, lng]);
+  //                         }
+                          // <object id='myvideo' data='../static/media/video1.mp4' width='560' height='315'></object>\
+
+$(document).ready(function () {
+  var a = []
+  var b = []
+  var c = []
+  var point = []
+  $.ajax({
+        type: 'GET',
+        url: "../dataProject/?format=json",
+        dataType: "json",
+        
+        success:function(data){
+          console.log('DATA......',data);
+          for(i = 0; i < data.length; i++){
+                // a.push(data[i].namaPekerjaan);   
+                // b.push(data[i].latCoor);   
+                // c.push(data[i].longCoor);   
+                addMarker(data[i].namaPekerjaan, data[i].latCoor, data[i].longCoor, data[i].videoFile)
+            };
+            console.log('apa ini??', a);
+            
+            // point.push(a,b,c)
+            // for (var i = 0; i < point.length; i++) {
+            //   addMarker(point[i].namaPekerjaan, point[i].latCoor, point[i].longCoor);
+            // }  
+            
+          }
+          
+    });
+  // var points = [
+  //   ["DETAIL ENGINEERING DESIGN PEMBANGUNAN CEK DAM / SEDIMEN TRAP SAGULING", -6.926970, 107.312483],
+  //   ["SID PEMBANGUNAN PANTAI KAWASAN WISATA BURUNG MANDI", -2.884289, 108.242454],
+  //   ["FEASIBILITY STUDY EMBUNG SE KABUPATEN ROKAN HULU", 0.960528, 100.472632],
+  //   ["REVIEW PERHITUNGAN NERACA AIR UNTUK EVALUASI RENCANA PENGAMBILAN AIR DI CIBANGOAK - RWS KERTASARI", -7.223760, 107.678917],
+  //   ["SURVEY INVENTARISASI DAN IDENTIFIKASI POTENSI EMBUNG DAN PERENCANAAN SUMUMR RESAPAN PADA MIKRO DAS CIRASEA", -7.179543, 107.673615],
+  //   ["Perencanaan Teknis Embung Cibereum Sukabumi", -6.930301, 106.928199],
+  //   ["PERENCANAAN KONSERVASI PADA DAS CIRASEA DAN IDENTIFIKASI KONDISI SALURAN IRIGASI DI WANIR DAN DI WANGISAGARA", -7.208967, 107.657491]
+  // ];
+  
+  // for (var i = 0; i < points.length; i++) {
+  //   addMarker(points[i][0], points[i][1], points[i][2]);
+  // }
+  // console.log('masuk ga nih', points)
+});
+  
+
+// var elem = document.querySelector("[name='media']");
+// if (elem.requestFullscreen) {
+//   elem.requestFullscreen();
+// } else if (elem.mozRequestFullScreen) {
+//   elem.mozRequestFullScreen();
+// } else if (elem.webkitRequestFullscreen) {
+//   elem.webkitRequestFullscreen();
+// } else if (elem.msRequestFullscreen) { 
+//   elem.msRequestFullscreen();
+// }
+});
+</script>
+      
+{% endblock %}
+
+    
+
+
+

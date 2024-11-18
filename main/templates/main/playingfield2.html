@@ -1,0 +1,330 @@
+{% load static %}
+
+{% block content%} 
+
+<style>
+a {
+	 color: #00e6b8;
+}
+ a:hover {
+	 color: #00b38f;
+}
+ div {
+	 box-sizing: content-box;
+}
+ img {
+	 max-width: 100%;
+}
+ h1 {
+	 line-height: 1em;
+}
+ h1 small {
+	 display: block;
+	 font-size: 0.5em;
+}
+ h2 {
+	 font-weight: lighter;
+	 line-height: 30px;
+}
+ .containerPF {
+	 margin: 40px;
+	 width: calc(100% - 80px);
+}
+ .gridPF {
+	 display: grid;
+	 grid-template-columns: repeat(1, 1fr);
+}
+ .cardPF {
+	 height: 500px;
+	 margin: 0 0 20px;
+	 position: relative;
+}
+ .cardPF .cardPF-image {
+	 background: #666;
+	 display: inline-flex;
+	 overflow: hidden;
+	 height: 400px;
+	 width: auto;
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+	 position: relative;
+	 z-index: 1;
+}
+ .cardPF .cardPF-image img {
+	 height: 400px;
+	 object-fit: cover;
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+}
+ .cardPF .cardPF-title {
+	 background: #014AAD;
+	 box-shadow: 0 1px 1px rgba(0, 0, 0, 0);
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+	 margin: -5px 0 0 -20px;
+	 padding: 10px 20px 10px 20px;
+	 position: relative;
+	 font-family: 'League Spartan', sans-serif;
+	 font-weight: 600;
+     color: #fff;
+                                                
+}
+ .cardPF .cardPF-title::before {
+	 position: absolute;
+	 top: -20px;
+	 left: 0;
+	 content: "";
+	 display: block;
+	 width: 0;
+	 height: 0;
+	 border-style: solid;
+	 border-width: 0 0 20px 20px;
+	 border-color: transparent transparent #014AAD transparent;
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+	 z-index: 1;
+}
+ .cardPF .cardPF-title::after {
+	 position: absolute;
+	 bottom: 0px;
+	 left: 0;
+	 content: "";
+	 display: block;
+	 width: 0;
+	 height: 0;
+	 border-style: solid;
+	 border-width: 20px 0 20px 20px;
+	 border-color: #00b38f transparent transparent transparent;
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+	 z-index: -1;
+}
+ .cardPF .cardPF-detail {
+	 background: #00e6b8;
+	 background: #eee;
+	 height: auto;
+	 margin: 0;
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+}
+ .cardPF .tgl-btn {
+	 background: #014AAD;
+	 position: absolute;
+	 cursor: pointer;
+	 display: block;
+	 width: 50px;
+	 height: 50px;
+	 border-radius: 50px;
+	 z-index: 99;
+	 top: 10px;
+	 right: 10px;
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+}
+ .cardPF .tgl-btn span {
+	 background: #fff;
+	 display: block;
+	 height: 2px;
+	 width: 12px;
+	 margin: 20px;
+	 position: relative;
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+}
+ .cardPF .tgl-btn span::before, .cardPF .tgl-btn span::after {
+	 content: "";
+	 background: #fff;
+	 display: block;
+	 height: 2px;
+	 width: 12px;
+	 position: absolute;
+	 transition: all 0.66s cubic-bezier(1, -0.28, 0.66, 0.48);
+}
+ .cardPF .tgl-btn span::before {
+	 bottom: -10px;
+}
+ .cardPF .tgl-btn span::after {
+	 bottom: -5px;
+}
+ .cardPF [type=checkbox] {
+	 display: none;
+}
+ .cardPF [type=checkbox]:checked + .tgl-btn {
+	 background: transparent;
+}
+ .cardPF [type=checkbox]:checked + .tgl-btn span {
+	 background: #014AAD;
+	 width: 0;
+}
+ .cardPF [type=checkbox]:checked + .tgl-btn span::before {
+	 bottom: -5px;
+	 width: 25px;
+	 transform: rotate(45deg);
+}
+ .cardPF [type=checkbox]:checked + .tgl-btn span::after {
+	 bottom: -5px;
+	 width: 25px;
+	 transform: rotate(-45deg);
+}
+ .cardPF [type=checkbox]:not(:checked) ~ .tgl-view .cardPF-image {
+	 height: 100%;
+	 width: 100%;
+	 margin: 0;
+}
+ .cardPF [type=checkbox]:not(:checked) ~ .tgl-view .cardPF-detail  {
+	 opacity: 0;
+	 overflow: hidden;
+	 padding: 0;
+	 min-height: 0;
+	 max-height: 0;
+}
+
+.cardPF [type=checkbox]:not(:checked) ~ .tgl-view .btn-donate  {
+	 opacity: 0;
+	 float: right;
+}
+ .cardPF [type=checkbox]:checked ~ .tgl-view .cardPF-image {
+	 border-radius: 30px;
+	 height: 60px;
+	 width: 60px;
+	 margin: 10px 0;
+}
+ .cardPF [type=checkbox]:checked ~ .tgl-view .cardPF-image img {
+	 height: 60px;
+}
+ .cardPF [type=checkbox]:checked ~ .tgl-view .cardPF-title {
+	 font-size: 18px;
+	 line-height: 60px;
+	 margin-top: -80px;
+	 margin-left: -10px;
+	 padding: 10px 10px 10px 80px;
+	 box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+ .cardPF [type=checkbox]:checked ~ .tgl-view .cardPF-title::before {
+	 top: 0px;
+}
+ .cardPF [type=checkbox]:checked ~ .tgl-view .cardPF-title::after {
+	 bottom: -40px;
+}
+ .cardPF [type=checkbox]:checked ~ .tgl-view .cardPF-detail {
+	 opacity: 1;
+	 padding: 40px 20px;
+	 min-height: 290px;
+	 max-height: 325px;
+     overflow-y: auto;
+}
+ .cardPF [type=checkbox]:checked ~ .tgl-view .btn-donate {
+	 opacity: 1;
+	 float: right;
+}
+
+ @media only screen and (min-width: 500px) {
+	 .gridPF {
+		 margin-left: -20px;
+		 margin-right: -20px;
+		 grid-template-columns: repeat(1, 1fr);
+	}
+	 .cardPF {
+		 margin: 20px;
+	}
+}
+ @media only screen and (min-width: 900px) {
+	 .containerPF {
+		 margin: 80px auto;
+		 max-width: 100%;
+		 width: calc(100% - 160px);
+	}
+	 .gridPF {
+		 grid-template-columns: repeat(4, 1fr);
+	}
+}  
+</style>
+
+<div class="containerPF">
+
+  <div class="gridPF">
+
+    <div class="cardPF">
+      <input id="cardPF1" type="checkbox" checked>
+      <label class="tgl-btn" for="cardPF1"><span></span></label>
+      <div class="tgl-view">
+        <div class="cardPF-image">
+          <img src="../static/images/DabestCard.jpg" >
+        </div>
+        <h2 class="cardPF-title">Sumber Daya Air</h2>
+        <p class="cardPF-detail">Pemanfaatan air yang tidak optimal tidak hanya menjadi penghambat bagi produktivitas manusia, tetapi juga membawa dampak negatif yang signifikan terhadap ekonomi dan keberlanjutan lingkungan. Dengan menghadapi dan menyelesaikan tantangan-tantangan ini, kami memiliki berbagai solusi untuk meningkatkan keberlanjutan pemanfaatan air dan memastikan akses air yang memadai bagi semua pihak.</p>
+		<a class="btn-donate" onclick="openMyModal21()">Our Solution</a>
+      </div>
+    </div>
+
+    <div class="cardPF">
+      <input id="cardPF2" type="checkbox">
+      <label class="tgl-btn" for="cardPF2"><span></span></label>
+      <div class="tgl-view">
+        <div class="cardPF-image">
+          <img src="../static/images/DabestCard.jpg" >
+        </div>
+        <h2 class="cardPF-title">Daya Rusak Air</h2>
+        <p class="cardPF-detail">Fokus utama dalam upaya kami untuk meningkatkan manajemen air. Tantangan meliputi masalah drainase yang buruk yang dapat menyebabkan banjir dan genangan air, desain sungai yang tidak optimal yang berkontribusi pada erosi tanah dan pencemaran air, serta dewatering yang tidak tepat yang dapat mengganggu lingkungan alami. Selain itu, pembahasan gambut dan desain kolam endapan sedimen menjadi penting dalam pelestarian ekosistem gambut yang rentan dan menjaga keberlanjutan sumber daya air secara keseluruhan.</p>
+		<a class="btn-donate" onclick="openMyModal22()">Our Solution</a>
+      </div>
+    </div>
+
+    <div class="cardPF">
+      <input id="cardPF3" type="checkbox">
+      <label class="tgl-btn" for="cardPF3"><span></span></label>
+      <div class="tgl-view">
+        <div class="cardPF-image">
+          <img src="../static/images/DabestCard.jpg" >
+        </div>
+        <h2 class="cardPF-title">Konservasi</h2>
+        <p class="cardPF-detail">Fokus utama dalam upaya kami untuk meningkatkan pengelolaan sumber daya air. Masalah yang dihadapi mencakup penanaman pohon yang tidak terencana dapat menyebabkan erosi tanah dan degradasi lahan, pembangunan bendungan yang berpotensi mengubah pola aliran air dan mempengaruhi ekosistem sungai, serta desain yang tidak optimal dari sungai dan kolam yang dapat mengakibatkan erosi dan pencemaran air. Dengan memahami serta mengatasi tantangan-tantangan ini, kami memiliki berbagai solusi untuk memperbaiki dan melindungi kualitas serta keberlanjutan sumber daya air. </p>
+		<a class="btn-donate" onclick="openMyModal23()">Our Solution</a>
+      </div>
+    </div>
+	<div class="cardPF">
+		<input id="cardPF4" type="checkbox">
+		<label class="tgl-btn" for="cardPF4"><span></span></label>
+		<div class="tgl-view">
+		  <div class="cardPF-image">
+			<img src="../static/images/DabestCard.jpg" >
+		  </div>
+		  <h2 class="cardPF-title">Jalur Pelayaran</h2>
+		  <p class="cardPF-detail">Fokus utama dalam upaya kami untuk memperbaiki infrastruktur maritim. Tantangan yang dihadapi termasuk tata letak pelabuhan yang tidak efisien dapat mengganggu arus logistik dan lalu lintas kapal, perencanaan alur pelayaran yang kurang optimal berpotensi meningkatkan risiko kecelakaan dan hambatan navigasi, serta desain bangunan pengaman pantai yang tidak memadai dapat meningkatkan kerentanan terhadap erosi pantai dan dampak akibat naiknya permukaan air laut. Dengan memperhatikan dan mengatasi tantangan-tantangan ini, kami bertujuan untuk meningkatkan keamanan, efisiensi, dan keberlanjutan sistem maritim. </p>
+		  <a class="btn-donate" onclick="openMyModal24()">Our Solution</a>
+		</div>
+	  </div>
+
+  </div>
+</div>
+
+
+<script>
+	function openMyModal21() {
+		   let myModal = new
+				   bootstrap.Modal(document.getElementById('playingField1'), {});
+		   myModal.show();
+	   }  
+  
+	function openMyModal22() {
+		   let myModal = new
+				   bootstrap.Modal(document.getElementById('playingField2'), {});
+		   myModal.show();
+	   }     
+  
+	function openMyModal23() {
+		   let myModal = new
+				   bootstrap.Modal(document.getElementById('playingField3'), {});
+		   myModal.show();
+	   }  
+	
+	function openMyModal24() {
+		   let myModal = new
+				   bootstrap.Modal(document.getElementById('playingField4'), {});
+		   myModal.show();
+	   }     
+  
+	
+</script>
+
+
+
+{% endblock %}
+
+
+    
+
+
+

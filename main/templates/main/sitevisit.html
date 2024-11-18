@@ -1,0 +1,381 @@
+{% load static %}
+{% load i18n %}
+{% block content%} 
+
+<style>
+.containerSV{
+    max-width: 1920px;
+    width: 90%;
+    padding: 20px;
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 20px;
+    height: 50%;
+}
+
+.cardSV{
+    background-color: rgb(0 65 189 / 75%);
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
+    padding-top: 200px;
+}
+
+.cardSV img{
+    width: 90%;
+    height: 250px;
+    object-fit: cover;
+    position: absolute;
+    top: -50px;
+    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cardSV-body{
+    padding: 20px;
+}
+
+.cardSV-body .cardSV-title {
+    font-size: 1.2vw;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+    color: #F8F8FF;
+}
+
+.cardSV-body .cardSV-text{
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 30px;
+    color: #F8F8FF;
+}
+
+.cardSV-body .btn {
+    width: 50%;
+    display: block;
+    height: auto;
+    line-height: 100%;
+    text-align: center;
+    background-color: #13B2F6;
+    color: white;
+    font-size: 20px;
+    transition: 0.4s ease;
+    margin: 0 auto;
+}
+
+.cardSV-body .btn:hover{
+    background-color: blue;
+    color: #fff;
+}
+
+@media screen and (max-width:768px) {
+    .containerSV{
+        grid-template-columns: 1fr;
+        grid-row-gap: 100px;
+    }
+
+
+}
+</style>
+
+
+<div class="container">
+    <div>
+        <div class="col-md-12">
+            <h2 class="infoH1">{% translate 'SURVEY TOPOGRAFI' %}</h2>
+        </div>       
+        <div class="row mt-3 mb-3 p-3" style="border-bottom: 1rem solid;">
+            <div class="col-md-4 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'SURVEY LIDAR' %}</h2>
+                <p class="headP">
+                {% translate 'Survei LiDAR (Light Detection and Ranging) adalah teknik pemetaan yang menggunakan sinar laser untuk mengukur jarak dari sensor ke permukaan tanah atau objek lainnya. Teknologi ini memungkinkan pengumpulan data topografi yang sangat akurat dan detail.'%}
+                </p>
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'SURVEY DRONE' %}</h2>
+                <p class="headP">
+                {% translate 'Survei drone adalah metode pengumpulan data yang menggunakan pesawat tanpa awak (drone) yang dilengkapi dengan berbagai sensor dan kamera. Teknologi ini memungkinkan pengumpulan informasi yang cepat, efisien, dan akurat dari udara untuk berbagai keperluan.'%}
+                </p>
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'SURVEY TERESTRIS' %}</h2>
+                <p class="headP">
+                {% translate 'Survei terestris adalah metode pengukuran dan pemetaan yang dilakukan langsung di permukaan bumi menggunakan peralatan survei yang dioperasikan oleh petugas di lapangan. Metode ini sangat penting untuk menghasilkan data yang akurat tentang posisi, jarak, dan elevasi berbagai titik di permukaan tanah.'%}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-12">
+            <h2 class="infoH1">{% translate 'SURVEY HIDROMETI' %}</h2>
+        </div>       
+        <div class="row mt-3 mb-3 p-3" style="border-bottom: 1rem solid;">
+            <div class="col-md-3 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'PENGUKURAN PASANG SURUT' %}</h2>
+                <p class="headP">
+                {% translate 'Survei pengukuran pasang surut adalah metode untuk mengamati dan mencatat perubahan permukaan air laut yang disebabkan oleh pasang surut. Pasang surut adalah fenomena periodik yang disebabkan oleh gaya gravitasi bulan dan matahari terhadap bumi.'%}
+                </p>
+            </div>
+            <div class="col-md-3 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'SURVEY BATIMETRI' %}</h2>
+                <p class="headP">
+                {% translate 'Survei batimetri adalah proses pengukuran dan pemetaan kedalaman dan topografi dasar perairan, seperti laut, danau, sungai, dan waduk.'%}
+                </p>
+            </div>
+            <div class="col-md-3 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'PENGUKURAN ARUS' %}</h2>
+                <p class="headP">
+                {% translate 'Survei pengukuran arus adalah proses pengumpulan data tentang kecepatan dan arah pergerakan air di berbagai badan air seperti laut, sungai, dan danau. Informasi ini penting untuk berbagai keperluan termasuk navigasi maritim, perencanaan proyek kelautan, penelitian ilmiah, dan pengelolaan sumber daya air.'%}
+                </p>
+            </div>
+            <div class="col-md-3 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'PENGAMBILAN SAMPLE SEDIMEN' %}</h2>
+                <p class="headP">
+                {% translate 'Survei pengambilan sampel sedimen adalah proses mengumpulkan material dari dasar perairan, seperti laut, danau, sungai, atau waduk, untuk analisis laboratorium.'%}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-12" >
+            <h2 class="infoH1">{% translate 'SURVEY GEOTEKNIK' %}</h2>
+        </div>       
+        <div class="row mt-3 mb-3 p-3" id="SGT" style="border-bottom: 1rem solid;">
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'TEST PIT' %}</h2>
+                <p class="headP">
+                {% translate 'Survei test pit adalah metode investigasi geoteknik yang melibatkan penggalian lubang uji di lokasi proyek untuk memeriksa kondisi tanah dan material di bawah permukaan. Teknik ini digunakan untuk mengumpulkan data tentang sifat fisik dan mekanik tanah yang penting untuk perencanaan dan desain infrastruktur.'%}
+                </p>
+            </div>
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'HANDBOR' %}</h2>
+                <p class="headP">
+                {% translate 'Survei handbor adalah metode pengumpulan data geoteknik yang menggunakan peralatan tangan untuk membuat lubang uji kecil di permukaan tanah. Metode ini berguna untuk memperoleh informasi awal tentang karakteristik tanah di lokasi proyek dengan cepat dan biaya yang relatif rendah.'%}
+                </p>
+            </div>
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'SONDIR' %}</h2>
+                <p class="headP">
+                {% translate 'Survei sondir adalah teknik investigasi geoteknik yang digunakan untuk mengukur resistensi tanah dan karakteristik mekanisnya di bawah permukaan tanah. Metode ini melibatkan penggunaan peralatan sondir untuk mendorong atau menekan penetrometer ke dalam tanah, dan hasilnya digunakan untuk mengevaluasi kekuatan tanah dan kondisi geotekniknya..'%}
+                </p>
+            </div>
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'SOIL PENETRATION TEST' %}</h2>
+                <p class="headP">
+                {% translate 'Uji penetrasi tanah adalah metode pengujian geoteknik yang digunakan untuk mengevaluasi karakteristik fisik dan mekanik tanah di bawah permukaan. Metode ini melibatkan penggunaan peralatan untuk menekan atau menembus tanah dengan tekanan yang dikenakan, dan hasilnya digunakan untuk menentukan kekuatan dan kepadatan tanah.'%}
+                </p>
+            </div>
+
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'BOR INTI' %}</h2>
+                <p class="headP">
+                {% translate 'Survey bor inti adalah metode pengambilan contoh tanah secara vertikal menggunakan alat bor inti. Metode ini digunakan untuk memperoleh informasi tentang sifat fisik dan kimia tanah di bawah permukaan tanah.'%}
+                </p>
+            </div>
+
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'UJI LABORATORIUM TANAH' %}</h2>
+                <p class="headP">
+                {% translate 'To enhance our level of services, our aim is to deliver optimal solutions in water resource management, ensuring sustainability, and effectively meeting the needs of both society and the environment.'%}
+                </p>
+            </div>
+
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'SURVEY GEOLISTRIK' %}</h2>
+                <p class="headP">
+                {% translate 'Survey geolistrik adalah metode geofisika non-invasif yang digunakan untuk memetakan struktur bawah permukaan tanah dengan mengukur resistivitas listrik tanah. Metode ini membantu dalam memahami distribusi material geologis, air tanah, dan formasi batuan di bawah permukaan tanah.'%}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-12" >
+            <h2 class="infoH1">{% translate 'SOCIAL MAPPING' %}</h2>
+        </div>       
+        <div class="row mt-3 mb-3 p-3" id="SGT" style="border-bottom: 1rem solid;">
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'IDENTIFIKASI KOMUNITAS DAN PIHAK TERKAIT' %}</h2>
+                <p class="headP">
+                {% translate 'Pemetaan sosial adalah proses identifikasi, analisis, dan pemetaan komunitas serta pihak terkait yang terlibat dalam suatu proyek, kegiatan, atau isu tertentu. Tujuan utamanya adalah untuk memahami struktur sosial, dinamika interaksi, dan pola keterlibatan masyarakat dalam konteks yang relevan.'%}
+                </p>
+            </div>
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'ANALISA SOSIAL EKONOMI' %}</h2>
+                <p class="headP">
+                {% translate 'Analisis sosial ekonomi adalah proses penelitian yang digunakan untuk memahami hubungan antara faktor-faktor sosial dan ekonomi dalam suatu masyarakat atau populasi. Tujuan utamanya adalah untuk mengidentifikasi, menganalisis, dan memahami dampak serta implikasi dari kebijakan, program, atau perubahan sosial ekonomi terhadap individu, kelompok, atau masyarakat secara keseluruhan.'%}
+                </p>
+            </div>
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'PEMETAAN INFRASTRUKTUR DAN SUMBER DAYA AIR' %}</h2>
+                <p class="headP">
+                {% translate 'Pemetaan infrastruktur dan sumber daya air adalah proses analisis dan pemetaan yang bertujuan untuk mengidentifikasi, menggambarkan, dan memetakan infrastruktur yang terkait dengan penyediaan dan pengelolaan sumber daya air.'%}
+                </p>
+            </div>
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'IDENTIFIKASI MASALAH DAN TANTANGAN' %}</h2>
+                <p class="headP">
+                {% translate 'Identifikasi masalah dan tantangan adalah proses yang dilakukan untuk mengidentifikasi dan menganalisis masalah atau hambatan yang dihadapi dalam suatu konteks tertentu.'%}
+                </p>
+            </div>
+
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'PEMETAAN POTENSI DAN PELUANG' %}</h2>
+                <p class="headP">
+                {% translate 'Pemetaan potensi dan peluang adalah proses analisis yang dilakukan untuk mengidentifikasi dan memetakan berbagai potensi serta peluang yang ada dalam suatu wilayah, sektor, atau konteks tertentu.'%}
+                </p>
+            </div>
+
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'KONSULTASI DAN FGD DENGAN MASYARAKAT' %}</h2>
+                <p class="headP">
+                {% translate 'Konsultasi dan FGD (Focus Group Discussion) dengan masyarakat adalah proses interaksi dan komunikasi antara pihak-pihak terkait dengan tujuan mendapatkan masukan, gagasan, atau umpan balik dari masyarakat tentang suatu topik atau isu tertentu.'%}
+                </p>
+            </div>
+
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'ANALISA RESIKO DAN DAMPAK' %}</h2>
+                <p class="headP">
+                {% translate 'Analisis risiko dan dampak adalah proses evaluasi yang dilakukan untuk mengidentifikasi, menilai, dan memahami potensi risiko serta dampak yang dapat ditimbulkan oleh suatu kejadian atau kegiatan.'%}
+                </p>
+            </div>
+
+            <div class="col col-md-offset-2 mt-3 mb-3">
+                <h2 class="infoH1">{% translate 'PEMETAAN KEBIJKAN DAN REGULASI DAN REKOMENDASI PROGRAM' %}</h2>
+                <p class="headP">
+                {% translate 'Pemetaan kebijakan dan regulasi serta rekomendasi program adalah proses analisis yang bertujuan untuk mengidentifikasi, mengevaluasi, dan menyusun rekomendasi terkait kebijakan, regulasi, dan program-program yang relevan dalam suatu konteks tertentu.'%}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-12">
+            <h2 class="infoH1">{% translate 'SURVEY EKOLOGI' %}</h2>
+        </div>       
+        <div class="row mt-3 mb-3 p-3" style="border-bottom: 1rem solid;">
+            <div class="col-md-4 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'TEST PIT TANAH' %}</h2>
+                <p class="headP">
+                {% translate 'Survey test pit tanah adalah proses pengumpulan data lapangan yang melibatkan penelitian dan pengamatan langsung terhadap kondisi tanah di suatu lokasi tertentu.'%}
+                </p>
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'SURVEY VEGETASI' %}</h2>
+                <p class="headP">
+                {% translate 'Survey vegetasi adalah proses pengumpulan data lapangan yang melibatkan penelitian, identifikasi, dan pengamatan langsung terhadap komunitas tumbuhan atau vegetasi di suatu area tertentu.'%}
+                </p>
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                <h2 class="infoH1">{% translate 'PENGUKURAN SUHU DAN KELEMBAPAN' %}</h2>
+                <p class="headP">
+                {% translate 'Pengukuran suhu dan kelembapan adalah proses mengukur dan merekam suhu udara dan kadar air dalam udara di suatu lokasi pada waktu tertentu. Suatu alat yang disebut termometer digunakan untuk mengukur suhu, sedangkan higrometer digunakan untuk mengukur kelembapan.'%}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<!-- <div class="containerSV">
+    
+
+  <div class="cardSV">
+      <img src="../static/images/DabestCard.jpg" alt="First Image">
+      <div class="cardSV-body">
+          <h2 class="cardSV-title">SURVEY TOPOGRAFI</h2>
+          <p class="cardSV-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo minus voluptas magnam veritatis error quis dolorum ab placeat quasi doloremque.</p>
+          <a class="btn-donate" style="margin: auto;position: relative;left: 30%;" onclick="openMyModal2()">Read More</a>
+      </div>
+  </div>
+
+
+  <div class="cardSV">
+   <img src="../static/images/DabestCard.jpg" alt="First Image">
+   <div class="cardSV-body">
+       <h2 class="cardSV-title">SURVEY HIDROMETI</h2>
+       <p class="cardSV-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo minus voluptas magnam veritatis error quis dolorum ab placeat quasi doloremque.</p>
+       <a class="btn-donate" style="margin: auto;position: relative;left: 30%;" onclick="openMyModal3()">Read More</a>
+   </div>
+</div>
+
+
+  <div class="cardSV">
+    <img src="../static/images/DabestCard.jpg" alt="First Image">
+    <div class="cardSV-body">
+        <h2 class="cardSV-title">SURVEY GEOTEKNIK</h2>
+        <p class="cardSV-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo minus voluptas magnam veritatis error quis dolorum ab placeat quasi doloremque.</p>
+        <a class="btn-donate" style="margin: auto;position: relative;left: 30%;" onclick="openMyModal4()">Read More</a>
+    </div>
+  </div>
+
+  <div class="cardSV">
+    <img src="../static/images/DabestCard.jpg" alt="First Image">
+    <div class="cardSV-body">
+        <h2 class="cardSV-title">SOCIAL MAPPING</h2>
+        <p class="cardSV-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo minus voluptas magnam veritatis error quis dolorum ab placeat quasi doloremque.</p>
+        <a class="btn-donate" style="margin: auto;position: relative;left: 30%;" onclick="openMyModal5()">Read More</a>
+    </div>
+  </div>
+
+  <div class="cardSV">
+    <img src="../static/images/DabestCard.jpg" alt="First Image">
+    <div class="cardSV-body">
+        <h2 class="cardSV-title">SURVEY EKOLOGI</h2>
+        <p class="cardSV-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo minus voluptas magnam veritatis error quis dolorum ab placeat quasi doloremque.</p>
+        <a class="btn-donate" style="margin: auto;position: relative;left: 30%;" onclick="openMyModal6()">Read More</a>
+    </div>
+  </div>
+
+</div> -->
+
+<script>
+  function openMyModal2() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('sitevisit1'), {});
+         myModal.show();
+     }  
+
+  function openMyModal3() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('sitevisit2'), {});
+         myModal.show();
+     }     
+
+  function openMyModal4() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('sitevisit3'), {});
+         myModal.show();
+     }    
+
+  function openMyModal5() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('sitevisit4'), {});
+         myModal.show();
+     }     
+
+  function openMyModal6() {
+         let myModal = new
+                 bootstrap.Modal(document.getElementById('sitevisit5'), {});
+         myModal.show();
+     }  
+ </script>
+ 
+
+
+
+
+
+
+{% endblock %}
+
+
+    
+
+
+

@@ -1,0 +1,263 @@
+{% load static %}
+
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.imageCard {
+  border-radius: 50%;
+  width: clamp(100px, 40vw, 120px);
+  height: clamp(100px, 40vw, 120px);
+  object-fit: cover;
+  object-position: top;
+}
+
+.circle-top {
+  width: clamp(25rem, 30vw, 31.25rem);
+  position: absolute;
+  top: 3em;
+  left: -8em;
+  height: clamp(25rem, 30vw, 31.25rem);
+  background: hsl(211deg, 100%, 28%);
+  background: radial-gradient(circle, rgba(0, 69, 143, 0.5607843137) 0%, rgba(0, 69, 142, 0) 60%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-radial-gradient(circle, rgba(0, 69, 143, 0.5607843137) 0%, rgba(0, 69, 142, 0) 60%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-radial-radial-gradient(circle, rgba(0, 69, 143, 0.5607843137) 0%, rgba(0, 69, 142, 0) 60%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.circle-bottom {
+  width: clamp(25rem, 30vw, 31.25rem);
+  position: absolute;
+  bottom: -5em;
+  right: -8em;
+  height: clamp(25rem, 30vw, 31.25rem);
+  background: hsl(211deg, 100%, 28%);
+  background: radial-gradient(circle, rgba(0, 69, 143, 0.5607843137) 0%, rgba(0, 69, 142, 0) 65%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-radial-gradient(circle, rgba(0, 69, 143, 0.5607843137) 0%, rgba(0, 69, 142, 0) 65%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-radial-radial-gradient(circle, rgba(0, 69, 143, 0.5607843137) 0%, rgba(0, 69, 142, 0) 65%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 50%;
+  z-index: 1  ;
+}
+
+.OrgHeader {
+  background: linear-gradient(to top, #1f2c3a 0%, rgba(47, 60, 71, 0.2588235294) 100%), url(https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat 50% 50% / cover;
+  width: 100%;
+  min-height: 25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  opacity: 0.6;
+  transform: scale(1.1);
+  filter: blur(3px);
+}
+.OrgHeader .header-content {
+  width: min(37.5em, 90%);
+  margin-top: -25em;
+  position: relative;
+  z-index: 10;
+}
+.OrgHeader .header-content span {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.063rem;
+  font-size: clamp(0.8rem, 0.7625rem + 0.1875vw, 0.95rem);
+  font-family: 'Poppins';
+}
+.OrgHeader .header-content h1 {
+  font-size: clamp(1.5rem, 1.375rem + 0.625vw, 2rem);
+  font-weight: 700;
+  font-family: 'Poppins';
+}
+
+.OrgSection {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 75em;
+  margin-inline: auto;
+  gap: 0.938rem;
+  transform: translatey(-3em);
+  position: relative;
+  z-index: 10;
+  top: -50em;
+}
+.OrgSection .cardBefore {
+  padding: 1.875em 1.25em;
+  max-width: 18.75rem;
+  width: 90%;
+  height: 16.875rem;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  text-align: center;
+  position: relative;
+}
+.OrgSection .cardBefore::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  z-index: -1;
+  border: 0.125rem solid transparent;
+  background: linear-gradient(45deg, #1e272e, #48627a) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+.OrgSection .cardBefore h2 {
+  color: #fff;
+  letter-spacing: 0.05rem;
+  font-size: clamp(1rem, 0.9375rem + 0.3125vw, 1.25rem);
+  margin-top: 0.625em;
+  margin-bottom: 0.188em;
+}
+.OrgSection .cardBefore p {
+  color: #afafaf;
+  font-size: clamp(0.8rem, 0.7625rem + 0.1875vw, 0.95rem);
+}
+.OrgSection .card-top {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.938rem;
+  flex-wrap: wrap;
+}
+.OrgSection .card-top .cardBefore .imageCard {
+  width: clamp(7.5rem, 40vw, 9.375rem);
+  height: clamp(7.5rem, 40vw, 9.375rem);
+}    
+</style>
+
+
+<div class="circle-top"></div>
+<div class="circle-bottom"></div>
+<header class="OrgHeader">
+  <!-- <div class="header-content">
+    <span>company management</span>
+    <h1>Meet a team of experts and innovators who are pioneers in their field</h1>
+  </div> -->
+</header>
+<section class="OrgSection">
+  <div class="card-top">
+    <div class="cardBefore">
+      <img class="imageCard" src="../static/images/placeholder.jpg" alt="WIna Yuanita">
+      <h2>Wina Yuanita</h2>
+      <p>Founder and Chief Financial Officer</p>
+    </div>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Danis Aryo Bronto, ST.,MPSDA">
+    <h2>Danis Aryo Bronto, ST.,MPSDA</h2>
+    <p>Chief Executive Officer</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Danis Aryo Bronto">
+    <h2>C. Ridwan Gunawidjaya, ST.,MPSDA</h2>
+    <p>Chief Operating Officer</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Haekal Fauzan, ST.,MSP.">
+    <h2>Haekal Fauzan, ST.,MSP.</h2>
+    <p>Chief Marketing Officer</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Anggia Prajna Paramitha">
+      <h2>Anggia Prajna Paramitha</h2>
+      <p>Financial Controller</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Asep Saepurrahman">
+    <h2>Asep Saepurrahman</h2>
+    <p>Survey & Gambar Coordinator</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Edi Suryadi">
+    <h2>Edi Suryadi</h2>
+    <p>Senior Drafter</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Sodik Hidayah">
+    <h2>Sodik Hidayah</h2>
+    <p>Senior Surveyor</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Naufal Rizki">
+    <h2>Naufal Rizki</h2>
+    <p>Assistant Engineer</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Gomgom B.Y.S">
+    <h2>Gomgom B.Y.S</h2>
+    <p>Project Coordinator</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Faisal Arya">
+    <h2>Faisal Arya</h2>
+    <p>Project Coordinator</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Erlangga W.">
+    <h2>Erlangga W.</h2>
+    <p>Assistant Engineer</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="M. Farhan P.">
+    <h2>M. Farhan P.</h2>
+    <p>Assistant Engineer</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Tasa Fachri Oktasar.">
+    <h2>Tasa Fachri Oktasar.</h2>
+    <p>IT Support</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Intan K.">
+    <h2>Intan K.</h2>
+    <p>Marketing Comm.</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Rabbiendra">
+    <h2>Rabbiendra</h2>
+    <p>Project Administrator</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Dian Andiyana">
+    <h2>Dian Andiyana</h2>
+    <p>Project Administrator</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Syam Afra F.">
+    <h2>Syam Afra F.</h2>
+    <p>R & N Coordinator</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="M. Yudhisman">
+    <h2>M. Yudhisman</h2>
+    <p>Research & Development</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Ahmad Nugraha">
+    <h2>Jovan Fortino</h2>
+    <p>Research & Development</p>
+  </div>
+  <div class="cardBefore">
+    <img class="imageCard" src="../static/images/placeholder.jpg" alt="Ahmad Nugraha">
+    <h2>Ahmad Nugraha</h2>
+    <p>General Affairs</p>
+  </div>
+
+</section>
